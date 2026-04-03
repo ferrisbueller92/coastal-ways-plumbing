@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coastal Ways Plumbing | Emergency Plumber Central Coast NSW</title>
+  <meta name="description" content="Licensed plumber on the Central Coast. 10+ years experience. Residential, commercial &amp; emergency plumbing. Leak detection, blocked drains, hot water, gas fitting. Call 0402 269 088.">
+  <meta name="keywords" content="plumber central coast, emergency plumber central coast, plumber jilliby, blocked drain central coast, hot water system central coast, gas fitter central coast, leak detection central coast">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Coastal Ways Plumbing">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Coastal Ways Plumbing | Central Coast's Trusted Plumber">
+  <meta property="og:description" content="Licensed plumber. 10+ years experience. Emergency call-outs, leak detection, blocked drains, hot water systems. Central Coast NSW.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_AU">
+  <meta property="og:image" content="assets/og-image.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sand: '#FBF6F3',
+            'cool-grey': '#C4CFD1',
+            teal: { DEFAULT: '#055A5F', hover: '#044A4E', active: '#033A3E' },
+            navy: '#10202D',
+          },
+          fontFamily: {
+            display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+            body: ['Roboto', 'system-ui', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Roboto', system-ui, sans-serif; font-weight: 300; color: #10202D; }
+    h1, h2, h3, h4 { font-family: 'Space Grotesk', system-ui, sans-serif; letter-spacing: -0.03em; }
+
+    /* Emergency pulse */
+    @keyframes pulse-ring {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(1.4); opacity: 0; }
+    }
+    .pulse-ring::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 9999px;
+      border: 2px solid #055A5F;
+      animation: pulse-ring 1.5s ease-out infinite;
+    }
+
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Plumber",
+    "name": "Coastal Ways Plumbing",
+    "description": "Licensed plumber on the Central Coast NSW. 10+ years experience in residential, commercial and emergency plumbing.",
+    "telephone": "+61402269088",
+    "email": "enquirebpplumbing@outlook.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "11 Treelands Drive",
+      "addressLocality": "Jilliby",
+      "addressRegion": "NSW",
+      "postalCode": "2259",
+      "addressCountry": "AU"
+    },
+    "areaServed": {
+      "@type": "GeoCircle",
+      "geoMidpoint": { "@type": "GeoCoordinates", "latitude": -33.2286, "longitude": 151.3830 },
+      "geoRadius": "40000"
+    },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "17:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday","Sunday"], "opens": "00:00", "closes": "23:59", "description": "Emergency calls only" }
+    ],
+    "priceRange": "$$",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Plumbing Services",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Emergency Plumbing" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Leak Detection & Repair" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Blocked Drains" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Hot Water Systems" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Gas Fitting" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Bathroom Renovations" } }
+      ]
+    }
+  }
+  </script>
+</head>
+
+<body class="bg-sand">
+
+  <!-- HEADER -->
+  <header class="fixed top-0 left-0 right-0 bg-navy/95 backdrop-blur-sm z-50 border-b border-teal/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-3">
+          <img src="assets/logo-main.png" alt="Coastal Ways Plumbing" class="h-10 sm:h-12 w-auto">
+        </a>
+
+        <!-- Nav (desktop) -->
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="#services" class="text-cool-grey hover:text-white transition-colors text-sm font-body font-normal tracking-wide">Services</a>
+          <a href="#about" class="text-cool-grey hover:text-white transition-colors text-sm font-body font-normal tracking-wide">About</a>
+          <a href="#area" class="text-cool-grey hover:text-white transition-colors text-sm font-body font-normal tracking-wide">Service Area</a>
+          <a href="#contact" class="text-cool-grey hover:text-white transition-colors text-sm font-body font-normal tracking-wide">Contact</a>
+        </nav>
+
+        <!-- Emergency CTA -->
+        <a href="tel:0402269088" class="relative inline-flex items-center gap-2 bg-teal hover:bg-teal-hover text-white px-4 py-2.5 rounded-lg font-display font-medium text-sm transition-colors pulse-ring">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          <span class="hidden sm:inline">0402 269 088</span>
+          <span class="sm:hidden">Call Now</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Mobile nav -->
+    <div id="mobile-nav" class="md:hidden hidden border-t border-teal/20 bg-navy">
+      <div class="px-4 py-3 space-y-2">
+        <a href="#services" class="block text-cool-grey hover:text-white py-2 text-sm">Services</a>
+        <a href="#about" class="block text-cool-grey hover:text-white py-2 text-sm">About</a>
+        <a href="#area" class="block text-cool-grey hover:text-white py-2 text-sm">Service Area</a>
+        <a href="#contact" class="block text-cool-grey hover:text-white py-2 text-sm">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative min-h-[85vh] flex items-center bg-navy pt-20">
+    <div class="absolute inset-0 bg-gradient-to-br from-navy via-navy to-teal/30"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+      <div class="max-w-3xl">
+        <p class="text-teal font-display font-medium text-sm tracking-widest uppercase mb-4">Central Coast NSW</p>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white leading-[1.05] tracking-tight mb-6">
+          Plumbing done right.<br>
+          <span class="text-cool-grey">Every time.</span>
+        </h1>
+        <p class="text-lg sm:text-xl text-cool-grey font-body font-light leading-relaxed mb-8 max-w-xl">
+          Licensed plumber with 10+ years experience. Residential, commercial and emergency plumbing across the Central Coast. Quality work you can rely on.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="tel:0402269088" class="inline-flex items-center justify-center gap-2 bg-teal hover:bg-teal-hover text-white px-8 py-4 rounded-lg font-display font-medium text-lg transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            Call 0402 269 088
+          </a>
+          <a href="#contact" class="inline-flex items-center justify-center gap-2 border-2 border-cool-grey/30 hover:border-cool-grey/60 text-white px-8 py-4 rounded-lg font-display font-medium text-lg transition-colors">
+            Request a Quote
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trust strip -->
+    <div class="absolute bottom-0 left-0 right-0 bg-teal/10 border-t border-teal/20 backdrop-blur-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div class="flex flex-wrap justify-center sm:justify-between items-center gap-4 sm:gap-8 text-sm text-cool-grey">
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>Licensed &amp; Insured</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>24/7 Emergency</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span>Central Coast Local</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+            <span>10+ Years Experience</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="py-20 sm:py-28 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <p class="text-teal font-display font-medium text-sm tracking-widest uppercase mb-3">What We Do</p>
+        <h2 class="text-3xl sm:text-4xl font-display font-bold text-navy mb-4">Our Services</h2>
+        <p class="text-lg text-navy/60 font-light max-w-2xl mx-auto">From a dripping tap to a full bathroom renovation. Whatever the job, we do it right the first time.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+
+        <!-- Service Card -->
+        <div class="reveal group bg-sand rounded-xl p-8 hover:shadow-lg transition-all duration-300 border border-cool-grey/20 hover:border-teal/30">
+          <div class="w-12 h-12 rounded-lg bg-teal/10 flex items-center justify-center mb-5 group-hover:bg-teal/20 transition-colors">
+            <svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          </div>
+          <h3 class="text-xl font-display font-bold text-navy mb-2">Residential Plumbing</h3>
+          <p class="text-navy/60 font-light leading-relaxed">Leak repairs, tap replacements, toilet fixes, pipe installations and general maintenance for homes across the Central Coast.</p>
+        </div>
+
+        <div class="reveal group bg-sand rounded-xl p-8 hover:shadow-lg transition-all duration-300 border border-cool-grey/20 hover:border-teal/30">
+          <div class="w-12 h-12 rounded-lg bg-teal/10 flex items-center justify-center mb-5 group-hover:bg-teal/20 transition-colors">
+            <svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"/></svg>
+          </div>
+          <h3 class="text-xl font-display font-bold text-navy mb-2">Commercial Plumbing</h3>
+          <p class="text-navy/60 font-light leading-relaxed">Commercial installations, routine maintenance, thermostatic mixing valves, backflow prevention and grease trap servicing.</p>
+        </div>
+
+        <div class="reveal group bg-sand rounded-xl p-8 hover:shadow-lg transition-all duration-300 border border-cool-grey/20 hover:border-teal/30">
+          <div class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center mb-5 group-hover:bg-red-500/20 transition-colors">
+            <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+          </div>
+          <h3 class="text-xl font-display font-bold text-navy mb-2">Emergency 24/7</h3>
+          <p class="text-navy/60 font-light leading-relaxed">Burst pipes, gas leaks, blocked sewers, flooding. We're available around the clock for urgent plumbing emergencies.</p>
+        </div>
+
+        <div class="reveal group bg-sand rounded-xl p-8 hover:shadow-lg transition-all duration-300 border border-cool-grey/20 hover:border-teal/30">
+          <div class="w-12 h-12 rounded-lg bg-teal/10 flex items-center justify-center mb-5 group-hover:bg-teal/20 transition-colors">
+            <svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"/></svg>
+          </div>
+          <h3 class="text-xl font-display font-bold text-navy mb-2">Gas Fitting</h3>
+          <p class="text-navy/60 font-light leading-relaxed">Gas leak detection, appliance installation, gas line repairs and compliance certification. Licensed and qualified.</p>
+        </div>
+
+        <div class="reveal group bg-sand rounded-xl p-8 hover:shadow-lg transition-all duration-300 border border-cool-grey/20 hover:border-teal/30">
+          <div class="w-12 h-12 rounded-lg bg-teal/10 flex items-center justify-center mb-5 group-hover:bg-teal/20 transition-colors">
+            <svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          </div>
+          <h3 class="text-xl font-display font-bold text-navy mb-2">Blocked Drains</h3>
+          <p class="text-navy/60 font-light leading-relaxed">High-pressure water jetting, CCTV drain camera inspections and sewer clearing. We find the problem and fix it fast.</p>
+        </div>
+
+        <div class="reveal group bg-sand rounded-xl p-8 hover:shadow-lg transition-all duration-300 border border-cool-grey/20 hover:border-teal/30">
+          <div class="w-12 h-12 rounded-lg bg-teal/10 flex items-center justify-center mb-5 group-hover:bg-teal/20 transition-colors">
+            <svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+          </div>
+          <h3 class="text-xl font-display font-bold text-navy mb-2">Specialist Equipment</h3>
+          <p class="text-navy/60 font-light leading-relaxed">Thermal imaging for hidden leaks, electronic pipe locators, CCTV cameras and high-pressure jetters. Gear most plumbers don't carry.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section class="py-20 sm:py-28 bg-sand">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="reveal">
+          <p class="text-teal font-display font-medium text-sm tracking-widest uppercase mb-3">Why Coastal Ways</p>
+          <h2 class="text-3xl sm:text-4xl font-display font-bold text-navy mb-6">Built on doing things the right way</h2>
+          <p class="text-lg text-navy/60 font-light leading-relaxed mb-8">
+            We're not the biggest plumbing company on the Coast. We're the one that shows up on time, explains what's going on, and fixes it properly. No shortcuts, no surprises on the invoice.
+          </p>
+
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-teal/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-5 h-5 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <div>
+                <h4 class="font-display font-bold text-navy mb-1">Reliable</h4>
+                <p class="text-navy/60 font-light">We turn up when we say we will. Consistent workmanship from start to finish.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-teal/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-5 h-5 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <div>
+                <h4 class="font-display font-bold text-navy mb-1">Trustworthy</h4>
+                <p class="text-navy/60 font-light">Fair pricing, clear communication, and work done right. No hidden costs.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-teal/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-5 h-5 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <div>
+                <h4 class="font-display font-bold text-navy mb-1">Attention to Detail</h4>
+                <p class="text-navy/60 font-light">We focus on the small things that make the difference between a quick fix and a lasting repair.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-teal/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-5 h-5 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <div>
+                <h4 class="font-display font-bold text-navy mb-1">Specialist Gear</h4>
+                <p class="text-navy/60 font-light">Thermal imaging, electronic leak detection, CCTV cameras and high-pressure jetters. We bring the tools others don't.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image placeholder -->
+        <div class="reveal">
+          <div class="bg-cool-grey/20 rounded-2xl aspect-[4/3] flex items-center justify-center border border-cool-grey/30">
+            <div class="text-center p-8">
+              <svg class="w-16 h-16 text-teal/30 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              <p class="text-navy/40 font-display text-sm">Beau's job photos go here</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="py-20 sm:py-28 bg-navy text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <!-- Photo placeholder -->
+        <div class="reveal order-2 lg:order-1">
+          <div class="bg-teal/10 rounded-2xl aspect-square flex items-center justify-center border border-teal/20">
+            <div class="text-center p-8">
+              <svg class="w-16 h-16 text-teal/30 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+              <p class="text-cool-grey/40 font-display text-sm">Photo of Beau</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal order-1 lg:order-2">
+          <p class="text-teal font-display font-medium text-sm tracking-widest uppercase mb-3">Meet Beau</p>
+          <h2 class="text-3xl sm:text-4xl font-display font-bold mb-6">10+ years doing plumbing the right way</h2>
+          <div class="space-y-4 text-cool-grey font-light leading-relaxed">
+            <p>
+              Beau Petterson has been a plumber for over a decade. He spent 8 years at Bear Plumbing in Sydney's north, working on high-end bathroom renovations where attention to detail wasn't optional — it was the standard.
+            </p>
+            <p>
+              For the last 18 months, Beau worked with AMPS Plumbing covering the Central Coast, building deep local knowledge and a reputation as the plumber customers ask for by name.
+            </p>
+            <p>
+              Now with Coastal Ways Plumbing, Beau brings that same commitment to quality and customer care — backed by specialist equipment that most plumbers don't carry. Thermal imaging, electronic leak detection, CCTV drain cameras and high-pressure jetters mean faster diagnosis and better results.
+            </p>
+          </div>
+          <div class="mt-8 flex items-center gap-6">
+            <div>
+              <p class="text-3xl font-display font-bold text-teal">10+</p>
+              <p class="text-sm text-cool-grey/60">Years Experience</p>
+            </div>
+            <div class="w-px h-12 bg-teal/20"></div>
+            <div>
+              <p class="text-3xl font-display font-bold text-teal">24/7</p>
+              <p class="text-sm text-cool-grey/60">Emergency Service</p>
+            </div>
+            <div class="w-px h-12 bg-teal/20"></div>
+            <div>
+              <p class="text-3xl font-display font-bold text-teal">100%</p>
+              <p class="text-sm text-cool-grey/60">Licensed &amp; Insured</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE AREA -->
+  <section id="area" class="py-20 sm:py-28 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <p class="text-teal font-display font-medium text-sm tracking-widest uppercase mb-3">Where We Work</p>
+        <h2 class="text-3xl sm:text-4xl font-display font-bold text-navy mb-4">Serving the Central Coast</h2>
+        <p class="text-lg text-navy/60 font-light max-w-2xl mx-auto">Based in Jilliby, we cover the entire Central Coast region. If you're local, we're your plumber.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 reveal">
+        <div class="bg-sand rounded-lg p-4 text-center">
+          <p class="font-display font-medium text-navy">Jilliby</p>
+        </div>
+        <div class="bg-sand rounded-lg p-4 text-center">
+          <p class="font-display font-medium text-navy">Wyong</p>
+        </div>
+        <div class="bg-sand rounded-lg p-4 text-center">
+          <p class="font-display font-medium text-navy">Tuggerah</p>
+        </div>
+        <div class="bg-sand rounded-lg p-4 text-center">
+          <p class="font-display font-medium text-navy">Gosford</p>
+        </div>
+        <div class="bg-sand rounded-lg p-4 text-center">
+          <p class="font-display font-medium text-navy">Terrigal</p>
+        </div>
+        <div class="bg-sand rounded-lg p-4 text-center">
+          <p class="font-display font-medium text-navy">Erina</p>
+        </div>
+        <div class="bg-sand rounded-lg p-4 text-center">
+          <p class="font-display font-medium text-navy">Woy Woy</p>
+        </div>
+        <div class="bg-sand rounded-lg p-4 text-center">
+          <p class="font-display font-medium text-navy">Bateau Bay</p>
+        </div>
+        <div class="bg-sand rounded-lg p-4 text-center">
+          <p class="font-display font-medium text-navy">The Entrance</p>
+        </div>
+        <div class="bg-sand rounded-lg p-4 text-center">
+          <p class="font-display font-medium text-navy">Toukley</p>
+        </div>
+        <div class="bg-sand rounded-lg p-4 text-center">
+          <p class="font-display font-medium text-navy">Kariong</p>
+        </div>
+        <div class="bg-sand rounded-lg p-4 text-center">
+          <p class="font-display font-medium text-navy">+ surrounds</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-20 sm:py-28 bg-sand">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16">
+        <div class="reveal">
+          <p class="text-teal font-display font-medium text-sm tracking-widest uppercase mb-3">Get in Touch</p>
+          <h2 class="text-3xl sm:text-4xl font-display font-bold text-navy mb-6">Need a plumber?</h2>
+          <p class="text-lg text-navy/60 font-light leading-relaxed mb-8">
+            Give us a call or fill out the form. For emergencies, call directly — we pick up 24/7.
+          </p>
+
+          <div class="space-y-6">
+            <a href="tel:0402269088" class="flex items-center gap-4 group">
+              <div class="w-12 h-12 rounded-lg bg-teal flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              </div>
+              <div>
+                <p class="font-display font-bold text-navy text-lg group-hover:text-teal transition-colors">0402 269 088</p>
+                <p class="text-navy/40 text-sm">Available 24/7 for emergencies</p>
+              </div>
+            </a>
+
+            <a href="mailto:enquirebpplumbing@outlook.com" class="flex items-center gap-4 group">
+              <div class="w-12 h-12 rounded-lg bg-teal flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </div>
+              <div>
+                <p class="font-display font-bold text-navy group-hover:text-teal transition-colors">enquirebpplumbing@outlook.com</p>
+                <p class="text-navy/40 text-sm">We'll get back to you within a few hours</p>
+              </div>
+            </a>
+
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-lg bg-teal flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </div>
+              <div>
+                <p class="font-display font-bold text-navy">Jilliby, NSW 2259</p>
+                <p class="text-navy/40 text-sm">Serving the entire Central Coast</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="reveal">
+          <form action="https://formspree.io/f/placeholder" method="POST" class="bg-white rounded-2xl p-8 shadow-sm border border-cool-grey/20">
+            <div class="space-y-5">
+              <div>
+                <label class="block text-sm font-display font-medium text-navy mb-1.5">Name</label>
+                <input type="text" name="name" required class="w-full px-4 py-3 rounded-lg border border-cool-grey/30 bg-sand/50 focus:outline-none focus:ring-2 focus:ring-teal/30 focus:border-teal font-body font-light" placeholder="Your name">
+              </div>
+              <div>
+                <label class="block text-sm font-display font-medium text-navy mb-1.5">Phone</label>
+                <input type="tel" name="phone" required class="w-full px-4 py-3 rounded-lg border border-cool-grey/30 bg-sand/50 focus:outline-none focus:ring-2 focus:ring-teal/30 focus:border-teal font-body font-light" placeholder="0400 000 000">
+              </div>
+              <div>
+                <label class="block text-sm font-display font-medium text-navy mb-1.5">Email</label>
+                <input type="email" name="email" class="w-full px-4 py-3 rounded-lg border border-cool-grey/30 bg-sand/50 focus:outline-none focus:ring-2 focus:ring-teal/30 focus:border-teal font-body font-light" placeholder="you@email.com">
+              </div>
+              <div>
+                <label class="block text-sm font-display font-medium text-navy mb-1.5">What do you need help with?</label>
+                <select name="service" class="w-full px-4 py-3 rounded-lg border border-cool-grey/30 bg-sand/50 focus:outline-none focus:ring-2 focus:ring-teal/30 focus:border-teal font-body font-light text-navy/70">
+                  <option value="">Select a service</option>
+                  <option value="emergency">Emergency / Urgent</option>
+                  <option value="leak">Leak or Dripping Tap</option>
+                  <option value="blocked">Blocked Drain</option>
+                  <option value="hotwater">Hot Water System</option>
+                  <option value="gas">Gas Fitting</option>
+                  <option value="toilet">Toilet Repair</option>
+                  <option value="renovation">Bathroom Renovation</option>
+                  <option value="commercial">Commercial / Strata</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-display font-medium text-navy mb-1.5">Details</label>
+                <textarea name="message" rows="4" class="w-full px-4 py-3 rounded-lg border border-cool-grey/30 bg-sand/50 focus:outline-none focus:ring-2 focus:ring-teal/30 focus:border-teal font-body font-light resize-none" placeholder="Tell us a bit about the job..."></textarea>
+              </div>
+              <button type="submit" class="w-full bg-teal hover:bg-teal-hover text-white px-8 py-4 rounded-lg font-display font-medium text-lg transition-colors">
+                Request a Quote
+              </button>
+              <p class="text-center text-sm text-navy/40 font-light">We'll get back to you within a few hours. For emergencies, call directly.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-navy border-t border-teal/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Brand -->
+        <div class="sm:col-span-2 lg:col-span-1">
+          <img src="assets/logo-main.png" alt="Coastal Ways Plumbing" class="h-10 w-auto mb-4">
+          <p class="text-cool-grey/60 font-light text-sm leading-relaxed">Licensed plumber serving the Central Coast. Quality work, fair pricing, and a genuine commitment to getting it right.</p>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <h4 class="font-display font-medium text-white text-sm mb-4">Services</h4>
+          <ul class="space-y-2 text-cool-grey/60 text-sm font-light">
+            <li>Residential Plumbing</li>
+            <li>Commercial Plumbing</li>
+            <li>Emergency 24/7</li>
+            <li>Gas Fitting</li>
+            <li>Blocked Drains</li>
+            <li>Leak Detection</li>
+          </ul>
+        </div>
+
+        <!-- Area -->
+        <div>
+          <h4 class="font-display font-medium text-white text-sm mb-4">Service Area</h4>
+          <ul class="space-y-2 text-cool-grey/60 text-sm font-light">
+            <li>Jilliby</li>
+            <li>Wyong</li>
+            <li>Tuggerah</li>
+            <li>Gosford</li>
+            <li>Terrigal</li>
+            <li>+ Central Coast</li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h4 class="font-display font-medium text-white text-sm mb-4">Contact</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="tel:0402269088" class="text-teal hover:text-teal-hover transition-colors font-display">0402 269 088</a></li>
+            <li><a href="mailto:enquirebpplumbing@outlook.com" class="text-cool-grey/60 hover:text-white transition-colors font-light">enquirebpplumbing@outlook.com</a></li>
+            <li class="text-cool-grey/60 font-light">Jilliby, NSW 2259</li>
+            <li class="text-cool-grey/60 font-light">ABN: 62 284 909 142</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-teal/10 mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-cool-grey/40 font-light">
+        <p>&copy; 2026 Coastal Ways Plumbing. All rights reserved.</p>
+        <p>NSW Plumbing Licence</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll Reveal Script -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Mobile menu toggle
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('[data-menu-toggle]')) {
+        document.getElementById('mobile-nav').classList.toggle('hidden');
+      }
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(anchor.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          document.getElementById('mobile-nav')?.classList.add('hidden');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
