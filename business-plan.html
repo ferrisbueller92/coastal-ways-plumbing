@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coastal Ways Plumbing — Business Plan 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  /* ── Reset & Base ─────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sand:       #FBF6F3;
+    --cool-grey:  #C4CFD1;
+    --teal:       #055A5F;
+    --navy:       #10202D;
+    --white:      #FFFFFF;
+    --card-shadow: 0 1px 3px rgba(16,32,45,0.06), 0 4px 12px rgba(16,32,45,0.04);
+    --radius:     8px;
+    --page-max:   920px;
+  }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: var(--navy);
+    background: var(--sand);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Typography ───────────────────────────────────── */
+  h1, h2, h3, h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.03em;
+    line-height: 1.25;
+  }
+
+  h1 { font-size: 2.4rem; font-weight: 700; }
+  h2 { font-size: 1.6rem; font-weight: 600; color: var(--teal); margin-bottom: 1.25rem; }
+  h3 { font-size: 1.15rem; font-weight: 600; color: var(--navy); margin-bottom: 0.75rem; }
+  h4 { font-size: 0.95rem; font-weight: 500; color: var(--teal); margin-bottom: 0.5rem; }
+
+  p { margin-bottom: 1rem; }
+  strong { font-weight: 500; }
+
+  .label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--teal);
+  }
+
+  /* ── Layout ───────────────────────────────────────── */
+  .page-wrapper {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+  }
+
+  /* ── Cover / Header ───────────────────────────────── */
+  .cover {
+    background: var(--navy);
+    color: var(--white);
+    padding: 3.5rem 0 3rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .cover-inner {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.75rem;
+  }
+
+  .cover-logo {
+    max-width: 220px;
+    height: auto;
+    filter: brightness(0) invert(1);
+  }
+
+  .cover-divider {
+    width: 60px;
+    height: 2px;
+    background: var(--teal);
+    border: none;
+  }
+
+  .cover h1 { color: var(--white); font-size: 2.6rem; }
+
+  .cover-subtitle {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--cool-grey);
+    letter-spacing: 0.04em;
+  }
+
+  .cover-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-top: 0.5rem;
+  }
+
+  .cover-meta span {
+    font-size: 0.9rem;
+    color: var(--cool-grey);
+    font-weight: 300;
+  }
+
+  .cover-meta strong {
+    color: var(--white);
+    font-weight: 400;
+  }
+
+  /* ── Table of Contents ────────────────────────────── */
+  .toc {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--card-shadow);
+    padding: 2rem 2.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .toc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem 2rem;
+    margin-top: 1rem;
+  }
+
+  .toc-grid a {
+    font-size: 0.92rem;
+    color: var(--navy);
+    text-decoration: none;
+    padding: 0.35rem 0;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .toc-grid a:hover {
+    color: var(--teal);
+    border-bottom-color: var(--cool-grey);
+  }
+
+  .toc-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 0.75rem;
+    color: var(--teal);
+    min-width: 1.6rem;
+  }
+
+  /* ── Cards (sections) ─────────────────────────────── */
+  .card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--card-shadow);
+    padding: 2.25rem 2.25rem 1.75rem;
+    margin-bottom: 1.75rem;
+    page-break-inside: avoid;
+  }
+
+  .card h2 {
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--sand);
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── Key Details grid ─────────────────────────────── */
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem 2rem;
+  }
+
+  .detail-item .label { display: block; margin-bottom: 0.2rem; }
+  .detail-item .value { font-size: 1rem; font-weight: 400; }
+
+  /* ── Lists ────────────────────────────────────────── */
+  .content-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1rem;
+  }
+
+  .content-list li {
+    position: relative;
+    padding-left: 1.25rem;
+    margin-bottom: 0.55rem;
+    line-height: 1.6;
+  }
+
+  .content-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6rem;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--teal);
+  }
+
+  /* ── Tables ───────────────────────────────────────── */
+  .styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.92rem;
+  }
+
+  .styled-table thead th {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--teal);
+    text-align: left;
+    padding: 0.75rem 1rem;
+    border-bottom: 2px solid var(--teal);
+  }
+
+  .styled-table tbody td {
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid #EDE9E5;
+    vertical-align: top;
+  }
+
+  .styled-table tbody tr:nth-child(even) { background: var(--sand); }
+  .styled-table tbody tr:last-child td { border-bottom: none; }
+
+  /* ── SWOT Grid ────────────────────────────────────── */
+  .swot-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin: 1.25rem 0;
+  }
+
+  .swot-box {
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    background: var(--sand);
+  }
+
+  .swot-box h4 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+
+  .swot-box.strength { border-left: 3px solid var(--teal); }
+  .swot-box.weakness { border-left: 3px solid var(--cool-grey); }
+  .swot-box.opportunity { border-left: 3px solid #2E8B57; }
+  .swot-box.threat { border-left: 3px solid #C0392B; }
+
+  .swot-box.strength h4 { color: var(--teal); }
+  .swot-box.weakness h4 { color: #7A8A8E; }
+  .swot-box.opportunity h4 { color: #2E8B57; }
+  .swot-box.threat h4 { color: #C0392B; }
+
+  .swot-box ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .swot-box li {
+    position: relative;
+    padding-left: 1rem;
+    margin-bottom: 0.4rem;
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+
+  .swot-box li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55rem;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.35;
+  }
+
+  /* ── Goals Timeline ───────────────────────────────── */
+  .timeline {
+    position: relative;
+    padding-left: 1.75rem;
+    margin: 1.25rem 0;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 2px;
+    background: var(--cool-grey);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.75rem;
+    top: 0.5rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--teal);
+    border: 2px solid var(--white);
+    box-shadow: 0 0 0 2px var(--teal);
+    transform: translateX(-4px);
+  }
+
+  .timeline-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--navy);
+    margin-bottom: 0.35rem;
+  }
+
+  /* ── Financials highlight ─────────────────────────── */
+  .finance-highlight {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 1.25rem 0;
+  }
+
+  .finance-card {
+    background: var(--sand);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    text-align: center;
+  }
+
+  .finance-card .label { display: block; margin-bottom: 0.3rem; }
+
+  .finance-card .amount {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--teal);
+  }
+
+  .finance-card .note {
+    font-size: 0.78rem;
+    color: #7A8A8E;
+    margin-top: 0.2rem;
+  }
+
+  /* ── Subsections ──────────────────────────────────── */
+  .subsection {
+    margin-bottom: 1.5rem;
+  }
+
+  .subsection:last-child { margin-bottom: 0; }
+
+  .address-block {
+    margin-bottom: 1rem;
+  }
+
+  .address-block h3 {
+    margin-bottom: 0.5rem;
+  }
+
+  /* ── Footer ───────────────────────────────────────── */
+  .doc-footer {
+    text-align: center;
+    padding: 2rem 0;
+    border-top: 1px solid var(--cool-grey);
+    margin-top: 1rem;
+  }
+
+  .doc-footer p {
+    font-size: 0.8rem;
+    color: #7A8A8E;
+    margin-bottom: 0.25rem;
+  }
+
+  .doc-footer .brand-line {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--navy);
+    letter-spacing: -0.02em;
+  }
+
+  /* ── Responsive ───────────────────────────────────── */
+  @media (max-width: 640px) {
+    .cover h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.35rem; }
+    .card { padding: 1.5rem 1.25rem 1.25rem; }
+    .detail-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .toc-grid { grid-template-columns: 1fr; }
+    .swot-grid { grid-template-columns: 1fr; }
+    .finance-highlight { grid-template-columns: 1fr; }
+    .styled-table { font-size: 0.82rem; }
+    .styled-table thead th,
+    .styled-table tbody td { padding: 0.55rem 0.6rem; }
+  }
+
+  /* ── Print ────────────────────────────────────────── */
+  @media print {
+    @page {
+      size: A4;
+      margin: 18mm 15mm 20mm;
+    }
+
+    body {
+      background: #fff;
+      font-size: 10pt;
+      line-height: 1.55;
+      color: #10202D;
+    }
+
+    .cover {
+      background: var(--navy) !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      padding: 2.5rem 0 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cover h1 { font-size: 22pt; }
+    .cover-logo { max-width: 160px; }
+
+    .page-wrapper { padding: 0; max-width: 100%; }
+
+    .card {
+      box-shadow: none;
+      border: 1px solid #E8E4E0;
+      padding: 1.25rem 1.5rem 1rem;
+      margin-bottom: 1rem;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    h2 { font-size: 13pt; }
+    h3 { font-size: 11pt; }
+
+    .toc { page-break-after: always; }
+
+    .swot-grid {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .swot-box {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .finance-card {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .styled-table tbody tr:nth-child(even) {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .doc-footer {
+      page-break-before: avoid;
+    }
+
+    a { color: var(--navy); text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ COVER ═══════════ -->
+<header class="cover">
+  <div class="cover-inner">
+    <img src="assets/logo-main.png" alt="Coastal Ways Plumbing" class="cover-logo">
+    <hr class="cover-divider">
+    <h1>Business Plan 2026</h1>
+    <div class="cover-meta">
+      <span><strong>Beau Petterson</strong> &mdash; Owner / Operator</span>
+      <span>Collated by mpstudioco</span>
+    </div>
+  </div>
+</header>
+
+<div class="page-wrapper">
+
+  <!-- ═══════════ TABLE OF CONTENTS ═══════════ -->
+  <nav class="toc card">
+    <span class="label">Contents</span>
+    <div class="toc-grid">
+      <a href="#key-details"><span class="toc-num">01</span> Key Details</a>
+      <a href="#the-business"><span class="toc-num">02</span> The Business</a>
+      <a href="#why-vision-mission"><span class="toc-num">03</span> Our Why, Vision &amp; Mission</a>
+      <a href="#operations"><span class="toc-num">04</span> Operations</a>
+      <a href="#key-people"><span class="toc-num">05</span> Key People</a>
+      <a href="#the-market"><span class="toc-num">06</span> The Market</a>
+      <a href="#swot"><span class="toc-num">07</span> SWOT Analysis</a>
+      <a href="#risk"><span class="toc-num">08</span> Risk Management</a>
+      <a href="#goals"><span class="toc-num">09</span> Goals &amp; Actions</a>
+      <a href="#finances"><span class="toc-num">10</span> The Finances</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════ 01 KEY DETAILS ═══════════ -->
+  <section class="card" id="key-details">
+    <h2>01 &mdash; Key Details</h2>
+
+    <div class="detail-grid">
+      <div class="detail-item">
+        <span class="label">Business Name</span>
+        <span class="value">Coastal Ways Plumbing</span>
+      </div>
+      <div class="detail-item">
+        <span class="label">Business Structure</span>
+        <span class="value">TBD</span>
+      </div>
+      <div class="detail-item">
+        <span class="label">ABN</span>
+        <span class="value">62 284 909 142</span>
+      </div>
+      <div class="detail-item">
+        <span class="label">ACN</span>
+        <span class="value">N/A</span>
+      </div>
+      <div class="detail-item">
+        <span class="label">Licences</span>
+        <span class="value">Plumbing &mdash; NSW</span>
+      </div>
+    </div>
+
+    <div style="margin-top: 2rem;">
+      <h3>Contact Details</h3>
+      <div class="detail-grid">
+        <div class="detail-item">
+          <span class="label">Name</span>
+          <span class="value">Beau Petterson</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Phone</span>
+          <span class="value">0402 269 088</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Email</span>
+          <span class="value">enquirebpplumbing@outlook.com</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Address</span>
+          <span class="value">11 Treelands Drive, Jilliby, NSW 2259</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 02 THE BUSINESS ═══════════ -->
+  <section class="card" id="the-business">
+    <h2>02 &mdash; The Business</h2>
+
+    <div class="subsection">
+      <h3>What Our Business Does</h3>
+      <p>A plumbing company based in the Central Coast of NSW, specialising in residential, construction and emergency plumbing services. Services include plumbing repairs, installations, maintenance, drainage, gas and water solutions, blocked sewers, leak detection, new builds and commercial maintenance.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>Target Market</h3>
+      <ul class="content-list">
+        <li><strong>Residential:</strong> Homeowners, property managers, tenants</li>
+        <li><strong>Commercial:</strong> Small to medium businesses, commercial property owners, real estate developers</li>
+        <li><strong>Emergency:</strong> Property owners requiring urgent plumbing repairs</li>
+      </ul>
+    </div>
+
+    <div class="subsection">
+      <h3>Unique Selling Point</h3>
+      <p>Personalised services, rapid response times, eco-friendly solutions, state of the art equipment (thermal imaging, water/gas leak detection, high pressure water jetting). This equipment and skill set is not commonly present in a regular plumbing company. Local presence in Jilliby and surrounding areas.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>Business Goals</h3>
+      <ul class="content-list">
+        <li><strong>Year 1</strong> &mdash; Leverage subcontracting (3 days/week) to provide foundation, grow direct business alongside.</li>
+        <li><strong>Year 2</strong> &mdash; Reduce subcontracting to minimum.</li>
+        <li><strong>By 24 months</strong> &mdash; Direct work from own clientele only.</li>
+        <li><strong>5-year</strong> &mdash; Grow to comfortable financial level, decide on keeping small or hiring staff. May take on apprentices. Family manages finance/accounting.</li>
+      </ul>
+    </div>
+
+    <div class="subsection">
+      <h3>History</h3>
+      <p>Beau has been a plumber for over 10 years. 8 years at Bear Plumbing (high-end bathroom renovations, northern Sydney). 18 months at AMPS Plumbing (Central Coast maintenance, large customer base, 10 plumbers). Regular positive reviews from customers.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════ 03 WHY / VISION / MISSION ═══════════ -->
+  <section class="card" id="why-vision-mission">
+    <h2>03 &mdash; Our Why, Vision &amp; Mission</h2>
+
+    <div class="subsection">
+      <h3>Our Why</h3>
+      <p>To grow a business reflecting Beau's values: high-quality plumbing services with focus on customer satisfaction, reliability, cost-effectiveness. Strong desire to do plumbing the "right way" &mdash; care, consistency, respect.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>Our Vision</h3>
+      <p>Build a plumbing business that reflects who we are &mdash; hardworking, honest, committed. Create stability, support family, serve community, take pride in every job. Stay hands-on, build lasting relationships, earn trust. Create fulfillment, security, and legacy.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>Our Mission</h3>
+      <p>Provide reliable, high-quality plumbing services with honesty, accountability, attention to detail. Dependable solutions, long-term trust. Prompt, professional service with respect and transparency. Solve problems efficiently and correctly the first time.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════ 04 OPERATIONS ═══════════ -->
+  <section class="card" id="operations">
+    <h2>04 &mdash; Operations</h2>
+
+    <div class="subsection">
+      <h3>Products &amp; Services</h3>
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Description</th>
+            <th>Pricing</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Residential</strong></td>
+            <td>Leak detection/repair, hot/cold water systems, gas installations, pipework, blocked drains, rough in/fitting off, new builds, renovations</td>
+            <td>Variable</td>
+          </tr>
+          <tr>
+            <td><strong>Commercial</strong></td>
+            <td>Commercial installations, routine maintenance, TMV maintenance, backflow prevention, grease traps</td>
+            <td>Variable</td>
+          </tr>
+          <tr>
+            <td><strong>Emergency</strong></td>
+            <td>24/7 emergency plumbing for urgent issues</td>
+            <td>Variable</td>
+          </tr>
+          <tr>
+            <td><strong>Specialist</strong></td>
+            <td>Gas fitting, stormwater drainage, plumbing inspections</td>
+            <td>Variable</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection">
+      <h3>Production</h3>
+      <p>Services provided by Beau initially. May take on apprentices in first 5 years.</p>
+      <p><strong>Suppliers:</strong> Reece Plumbing, Tradelink, Eagles Plumbing, Bunnings Warehouse.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>Sales Channels</h3>
+      <ul class="content-list">
+        <li><strong>Direct to customer</strong> &mdash; build this over time</li>
+        <li><strong>Subcontracting</strong> &mdash; daily rate to other plumbers/builders, foundation in year 1, reduce over year 2</li>
+      </ul>
+    </div>
+
+    <div class="subsection">
+      <h3>Technology</h3>
+      <ul class="content-list">
+        <li><strong>AroFlo</strong> &mdash; Job management (reviewing if needed initially)</li>
+        <li><strong>Xero</strong> &mdash; Financial management</li>
+        <li><strong>WordPress</strong> &mdash; Website (now being replaced with custom build)</li>
+        <li><strong>Google Tools</strong> &mdash; Calendars, data sharing</li>
+        <li><strong>Facebook / Instagram</strong> &mdash; Social media</li>
+      </ul>
+    </div>
+
+    <div class="subsection">
+      <h3>Infrastructure</h3>
+      <ul class="content-list">
+        <li><strong>Information management:</strong> Cloud-based tools for customer data storage.</li>
+        <li><strong>Premises:</strong> No business premises planned, residential storage.</li>
+        <li><strong>Stock:</strong> Minimal &mdash; spare parts accumulated through service, stored at residence.</li>
+      </ul>
+    </div>
+
+    <div class="subsection">
+      <h3>Equipment</h3>
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Equipment</th>
+            <th style="text-align: right;">Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Jetter</td>
+            <td style="text-align: right;">$14,000</td>
+          </tr>
+          <tr>
+            <td>Monitor</td>
+            <td style="text-align: right;">$4,700</td>
+          </tr>
+          <tr>
+            <td>Locator</td>
+            <td style="text-align: right;">$3,200</td>
+          </tr>
+          <tr>
+            <td>Camera</td>
+            <td style="text-align: right;">$12,900</td>
+          </tr>
+          <tr>
+            <td>Vehicle</td>
+            <td style="text-align: right;">$28,000</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td style="border-top: 2px solid var(--teal); padding-top: 0.75rem;"><strong>Total</strong></td>
+            <td style="border-top: 2px solid var(--teal); padding-top: 0.75rem; text-align: right;"><strong>$62,800</strong></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══════════ 05 KEY PEOPLE ═══════════ -->
+  <section class="card" id="key-people">
+    <h2>05 &mdash; Key People</h2>
+
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>Role</th>
+          <th>Name</th>
+          <th>Experience</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Owner / Plumber</strong></td>
+          <td>Beau Petterson</td>
+          <td>10 years as a plumber</td>
+        </tr>
+        <tr>
+          <td><strong>Accounts</strong></td>
+          <td>Emma Bridge (partner)</td>
+          <td>New to role, has capacity</td>
+        </tr>
+        <tr>
+          <td><strong>Accounts</strong></td>
+          <td>Tim Bridge (partner's father)</td>
+          <td>40+ years business experience</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="subsection" style="margin-top: 1.5rem;">
+      <h3>External Support</h3>
+      <ul class="content-list">
+        <li><strong>Accountant:</strong> TBA</li>
+        <li><strong>Marketing:</strong> Monique Pollock (branding)</li>
+        <li><strong>Website:</strong> TBA (now handled)</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════ 06 THE MARKET ═══════════ -->
+  <section class="card" id="the-market">
+    <h2>06 &mdash; The Market</h2>
+
+    <div class="subsection">
+      <h3>Advertising Channels</h3>
+      <ul class="content-list">
+        <li><strong>Networking:</strong> Local business groups</li>
+        <li><strong>Social media:</strong> Direct customers, work showcase</li>
+        <li><strong>Letterbox drops / magnets:</strong> Local area awareness</li>
+        <li><strong>Google Business:</strong> Search visibility</li>
+        <li><strong>Vehicle branding:</strong> Visibility on the road</li>
+      </ul>
+    </div>
+
+    <div class="subsection">
+      <h3>Pricing</h3>
+      <p>Competitive market rates, case-by-case discounts.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════ 07 SWOT ═══════════ -->
+  <section class="card" id="swot">
+    <h2>07 &mdash; SWOT Analysis</h2>
+
+    <div class="swot-grid">
+      <div class="swot-box strength">
+        <h4>Strengths</h4>
+        <ul>
+          <li>Skilled trade expertise &mdash; licensed, trained, problem-solving</li>
+          <li>Local market knowledge &mdash; codes, suppliers, customer needs</li>
+          <li>Personalised customer service &mdash; strong relationships</li>
+          <li>Fast response times &mdash; emergency and same-day</li>
+          <li>Quality workmanship &mdash; right first time, trust, referrals</li>
+        </ul>
+      </div>
+      <div class="swot-box weakness">
+        <h4>Weaknesses</h4>
+        <ul>
+          <li>Limited brand recognition &mdash; new business</li>
+          <li>Smaller workforce &mdash; peak demand constraints</li>
+          <li>Cash flow sensitivity &mdash; high upfront costs</li>
+          <li>Dependence on owner &mdash; performance tied to Beau</li>
+          <li>Limited marketing reach &mdash; smaller budget</li>
+          <li>Seasonal fluctuations &mdash; demand drops</li>
+        </ul>
+      </div>
+      <div class="swot-box opportunity">
+        <h4>Opportunities</h4>
+        <ul>
+          <li>Growing demand &mdash; aging infrastructure, new housing</li>
+          <li>Emergency / 24/7 &mdash; premium pricing</li>
+          <li>Maintenance contracts &mdash; recurring revenue</li>
+          <li>Eco-friendly solutions &mdash; water saving, energy efficient</li>
+          <li>Online presence &mdash; Google, social media, reviews</li>
+          <li>Partnerships &mdash; builders, real estate, property managers</li>
+          <li>Service expansion &mdash; drain cleaning, gas fitting, hot water, renovations</li>
+        </ul>
+      </div>
+      <div class="swot-box threat">
+        <h4>Threats</h4>
+        <ul>
+          <li>Economic downturn &mdash; deferred work</li>
+          <li>High competition &mdash; established plumbers, franchises</li>
+          <li>Rising material costs &mdash; margin impact</li>
+          <li>Regulatory compliance &mdash; licensing, insurance, safety</li>
+          <li>Skilled labour shortages &mdash; hiring difficulty</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subsection" style="margin-top: 1.5rem;">
+      <h3>Addressing Weaknesses</h3>
+      <ul class="content-list">
+        <li><strong>Brand recognition:</strong> Customer reviews, branded uniforms/vehicles/invoices, referral incentives</li>
+        <li><strong>Smaller workforce:</strong> Clear scheduling, high-margin focus, subcontractors for peak, early apprentice</li>
+        <li><strong>Cash flow:</strong> Deposits for large jobs, immediate invoicing, multiple payment options, supplier credit, cash reserve</li>
+        <li><strong>Owner dependence:</strong> Job management software, delegate admin, train staff on comms</li>
+        <li><strong>Marketing reach:</strong> Low-cost high-return, partner with RE agents, sponsor local events, before/after online</li>
+        <li><strong>Seasonal:</strong> Preventative maintenance promotion, off-season discounts, annual budgeting</li>
+      </ul>
+    </div>
+
+    <div class="subsection">
+      <h3>Addressing Threats</h3>
+      <ul class="content-list">
+        <li><strong>Competition:</strong> Differentiate on response time/professionalism/communication, clear upfront pricing, warranties/guarantees, niche specialisation</li>
+        <li><strong>Price pressure:</strong> Educate on quality, tiered pricing, careful cost tracking, avoid under-pricing</li>
+        <li><strong>Material costs:</strong> Lock supplier pricing, include price buffers, regular review, communicate validity periods</li>
+        <li><strong>Regulatory:</strong> Keep licenses/insurance current, stay informed of code changes, safety checklists, compliance advisor</li>
+        <li><strong>Economic downturns:</strong> Focus marketing on essential services, expand maintenance contracts, offer payment plans, control fixed costs</li>
+        <li><strong>Labour shortages:</strong> Competitive pay, positive culture, trade school relationships</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════ 08 RISK MANAGEMENT ═══════════ -->
+  <section class="card" id="risk">
+    <h2>08 &mdash; Risk Management</h2>
+
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>Risk</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Faulty work causing damage</td>
+          <td>Quality focus, document work, hold insurance</td>
+        </tr>
+        <tr>
+          <td>Computer theft / data loss</td>
+          <td>Cloud storage for business records</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="subsection" style="margin-top: 1.5rem;">
+      <h3>Insurance</h3>
+      <p>Public liability, professional indemnity, asset/vehicle coverage.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>Succession</h3>
+      <p>No plans currently (single-person). Revisit if business grows.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>Laws &amp; Compliance</h3>
+      <p>Plumbing Code of Australia (PCA), fair trading, privacy laws.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════ 09 GOALS & ACTIONS ═══════════ -->
+  <section class="card" id="goals">
+    <h2>09 &mdash; Goals &amp; Actions</h2>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-label">First 6 Months</div>
+        <ul class="content-list">
+          <li>Secure subcontracting work (3 days/week) &mdash; <em>Beau</em></li>
+          <li>Establish accounts (Xero, accountant, training) &mdash; <em>Tim / Emma</em></li>
+          <li>Grow direct business (business groups, letterbox drops, social media, advertising) &mdash; <em>All</em></li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-label">Second 6 Months</div>
+        <ul class="content-list">
+          <li>Reduce subcontracting to 2 days/week &mdash; <em>Beau</em></li>
+          <li>Continue growing direct business &mdash; <em>All</em></li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-label">Year 2</div>
+        <ul class="content-list">
+          <li>Reduce subcontracting to 1 day/week &mdash; <em>All</em></li>
+          <li>Continue growing direct &mdash; <em>All</em></li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-label">Years 3 &ndash; 5</div>
+        <ul class="content-list">
+          <li>Grow direct business &mdash; <em>Beau</em></li>
+          <li>Take on apprentice (TAFE, recruit) &mdash; <em>Beau</em></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 10 THE FINANCES ═══════════ -->
+  <section class="card" id="finances">
+    <h2>10 &mdash; The Finances</h2>
+
+    <div class="subsection">
+      <h3>Funding</h3>
+      <p>Seeking <strong>$95,000</strong> loan from IBA (Indigenous Business Australia), of which <strong>$28,500 (30%)</strong> is a grant. Own capital for initial cash flow. New business, no current finances.</p>
+    </div>
+
+    <div class="finance-highlight">
+      <div class="finance-card">
+        <span class="label">Loan Sought</span>
+        <span class="amount">$95k</span>
+        <span class="note">IBA</span>
+      </div>
+      <div class="finance-card">
+        <span class="label">Grant Portion</span>
+        <span class="amount">$28.5k</span>
+        <span class="note">30% of loan</span>
+      </div>
+      <div class="finance-card">
+        <span class="label">Year 5 Net Profit</span>
+        <span class="amount">$131k</span>
+        <span class="note">Projected</span>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3>Profit &amp; Loss Forecast</h3>
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th style="text-align: right;">Year 1</th>
+            <th style="text-align: right;">Year 2</th>
+            <th style="text-align: right;">Year 3</th>
+            <th style="text-align: right;">Year 4</th>
+            <th style="text-align: right;">Year 5</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Income</strong></td>
+            <td style="text-align: right;">$295,519</td>
+            <td style="text-align: right;">$356,532</td>
+            <td style="text-align: right;">$361,724</td>
+            <td style="text-align: right;">$380,468</td>
+            <td style="text-align: right;">$380,468</td>
+          </tr>
+          <tr>
+            <td><strong>Expenses</strong></td>
+            <td style="text-align: right;">$130,658</td>
+            <td style="text-align: right;">$67,398</td>
+            <td style="text-align: right;">$66,998</td>
+            <td style="text-align: right;">$66,998</td>
+            <td style="text-align: right;">$49,040</td>
+          </tr>
+          <tr>
+            <td><strong>Salary</strong></td>
+            <td style="text-align: right;">$110,000</td>
+            <td style="text-align: right;">$200,000</td>
+            <td style="text-align: right;">$200,000</td>
+            <td style="text-align: right;">$200,000</td>
+            <td style="text-align: right;">$200,000</td>
+          </tr>
+          <tr style="background: var(--sand);">
+            <td style="border-top: 2px solid var(--teal); padding-top: 0.75rem;"><strong>Net Profit</strong></td>
+            <td style="border-top: 2px solid var(--teal); padding-top: 0.75rem; text-align: right; color: var(--teal); font-weight: 500;">$54,861</td>
+            <td style="border-top: 2px solid var(--teal); padding-top: 0.75rem; text-align: right; color: var(--teal); font-weight: 500;">$89,134</td>
+            <td style="border-top: 2px solid var(--teal); padding-top: 0.75rem; text-align: right; color: var(--teal); font-weight: 500;">$94,726</td>
+            <td style="border-top: 2px solid var(--teal); padding-top: 0.75rem; text-align: right; color: var(--teal); font-weight: 500;">$113,470</td>
+            <td style="border-top: 2px solid var(--teal); padding-top: 0.75rem; text-align: right; color: var(--teal); font-weight: 500;">$131,428</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer class="doc-footer">
+    <p class="brand-line">Coastal Ways Plumbing &ensp;|&ensp; Business Plan 2026</p>
+    <p>Last updated: 2026-04-04</p>
+  </footer>
+
+</div>
+</body>
+</html>

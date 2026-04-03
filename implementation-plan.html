@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coastal Ways Plumbing — Digital Implementation Plan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sand: #FBF6F3;
+      --cool-grey: #C4CFD1;
+      --teal: #055A5F;
+      --teal-light: #E6F0F1;
+      --navy: #10202D;
+      --white: #FFFFFF;
+      --red-light: #FEF2F2;
+      --red: #DC2626;
+      --amber-light: #FFFBEB;
+      --amber: #D97706;
+      --green-light: #F0FDF4;
+      --green: #16A34A;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Roboto', system-ui, sans-serif; font-weight: 300; color: var(--navy); background: var(--sand); line-height: 1.6; }
+    h1, h2, h3, h4, h5 { font-family: 'Space Grotesk', system-ui, sans-serif; letter-spacing: -0.03em; font-weight: 700; }
+
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+
+    /* Header */
+    .doc-header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 48px 0;
+      border-bottom: 4px solid var(--teal);
+    }
+    .doc-header h1 { font-size: 2.5rem; margin-bottom: 8px; }
+    .doc-header .subtitle { color: var(--cool-grey); font-size: 1.125rem; font-weight: 300; }
+    .doc-header .meta { margin-top: 24px; display: flex; gap: 32px; flex-wrap: wrap; }
+    .doc-header .meta-item { font-size: 0.875rem; color: var(--cool-grey); }
+    .doc-header .meta-item span { color: var(--teal); font-family: 'Space Grotesk', sans-serif; font-weight: 500; }
+    .doc-label {
+      display: inline-block;
+      background: var(--teal);
+      color: var(--white);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+    }
+
+    /* Sections */
+    .section { padding: 48px 0; border-bottom: 1px solid rgba(196,207,209,0.3); }
+    .section:last-child { border-bottom: none; }
+    .section-title { font-size: 1.75rem; margin-bottom: 8px; }
+    .section-desc { color: rgba(16,32,45,0.6); font-size: 1.05rem; margin-bottom: 32px; max-width: 700px; }
+
+    /* Cards */
+    .card {
+      background: var(--white);
+      border: 1px solid rgba(196,207,209,0.3);
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 16px;
+      transition: box-shadow 0.2s;
+    }
+    .card:hover { box-shadow: 0 4px 16px rgba(16,32,45,0.06); }
+    .card h4 { font-size: 1.125rem; margin-bottom: 6px; }
+    .card p { color: rgba(16,32,45,0.6); font-size: 0.95rem; }
+
+    /* Grid */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    @media (max-width: 768px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+    /* Tags */
+    .tag {
+      display: inline-block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-right: 6px;
+      margin-bottom: 6px;
+    }
+    .tag-validated { background: var(--green-light); color: var(--green); }
+    .tag-assumed { background: var(--amber-light); color: var(--amber); }
+    .tag-critical { background: var(--red-light); color: var(--red); }
+    .tag-phase { background: var(--teal-light); color: var(--teal); }
+    .tag-cost { background: rgba(16,32,45,0.06); color: rgba(16,32,45,0.6); }
+
+    /* Priority */
+    .priority-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+    .priority-high { background: var(--red-light); }
+    .priority-med { background: var(--amber-light); }
+    .priority-low { background: var(--teal-light); }
+    .priority-dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+    }
+    .priority-high .priority-dot { background: var(--red); }
+    .priority-med .priority-dot { background: var(--amber); }
+    .priority-low .priority-dot { background: var(--teal); }
+
+    /* Tables */
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+    th { background: var(--navy); color: var(--white); text-align: left; padding: 12px 16px; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    td { padding: 12px 16px; border-bottom: 1px solid rgba(196,207,209,0.3); }
+    tr:nth-child(even) td { background: rgba(251,246,243,0.5); }
+    th:first-child { border-radius: 8px 0 0 0; }
+    th:last-child { border-radius: 0 8px 0 0; }
+
+    /* Timeline */
+    .timeline { position: relative; padding-left: 32px; }
+    .timeline::before { content: ''; position: absolute; left: 11px; top: 8px; bottom: 8px; width: 2px; background: var(--cool-grey); }
+    .timeline-item { position: relative; margin-bottom: 32px; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -32px; top: 6px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--teal);
+      border: 3px solid var(--sand);
+      box-shadow: 0 0 0 2px var(--teal);
+    }
+    .timeline-item h4 { font-size: 1rem; margin-bottom: 4px; }
+    .timeline-item p { color: rgba(16,32,45,0.6); font-size: 0.9rem; }
+
+    /* Callout */
+    .callout {
+      background: var(--teal-light);
+      border-left: 4px solid var(--teal);
+      border-radius: 0 8px 8px 0;
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+    .callout-amber {
+      background: var(--amber-light);
+      border-left-color: var(--amber);
+    }
+    .callout h4 { font-size: 0.95rem; margin-bottom: 6px; }
+    .callout p { color: rgba(16,32,45,0.7); font-size: 0.9rem; }
+
+    /* Footer */
+    .doc-footer {
+      background: var(--navy);
+      color: var(--cool-grey);
+      padding: 32px 0;
+      font-size: 0.85rem;
+      margin-top: 48px;
+    }
+    .doc-footer a { color: var(--teal); text-decoration: none; }
+
+    /* Print */
+    @media print {
+      body { font-size: 11pt; }
+      .doc-header { padding: 32px 0; }
+      .section { page-break-inside: avoid; }
+      .card { box-shadow: none; border: 1px solid #ddd; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="doc-header">
+    <div class="container">
+      <div class="doc-label">Implementation Plan</div>
+      <h1>Digital &amp; AI Solutions</h1>
+      <p class="subtitle">How technology can free up Beau's time, reduce admin, and grow Coastal Ways Plumbing faster.</p>
+      <div class="meta">
+        <div class="meta-item">Prepared for <span>Beau Petterson</span></div>
+        <div class="meta-item">Prepared by <span>Dave Calder</span></div>
+        <div class="meta-item">Date <span>4 April 2026</span></div>
+        <div class="meta-item">Version <span>1.0 — Draft</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- EXECUTIVE SUMMARY -->
+    <div class="section">
+      <div class="container">
+        <h2 class="section-title">Executive Summary</h2>
+        <p class="section-desc">
+          Beau is a great plumber. The goal of this plan is to make sure he spends his time being one — not drowning in admin, chasing invoices, or manually scheduling jobs.
+        </p>
+
+        <div class="grid-3">
+          <div class="card" style="text-align:center; border-top: 3px solid var(--red);">
+            <h4 style="color: var(--red);">The Problem</h4>
+            <p style="font-size: 2rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--navy); margin: 8px 0;">40%</p>
+            <p>of a solo tradesperson's week is typically spent on non-plumbing work — quoting, invoicing, scheduling, chasing payments, bookkeeping</p>
+            <span class="tag tag-assumed">Industry average — validate with Beau</span>
+          </div>
+          <div class="card" style="text-align:center; border-top: 3px solid var(--teal);">
+            <h4 style="color: var(--teal);">The Opportunity</h4>
+            <p style="font-size: 2rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--navy); margin: 8px 0;">15+ hrs</p>
+            <p>per week can be reclaimed through smart automation — quoting from templates, auto-invoicing, receipt scanning, job scheduling</p>
+            <span class="tag tag-assumed">Estimate — needs Beau's input</span>
+          </div>
+          <div class="card" style="text-align:center; border-top: 3px solid var(--green);">
+            <h4 style="color: var(--green);">The Result</h4>
+            <p style="font-size: 2rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--navy); margin: 8px 0;">2 more</p>
+            <p>jobs per week. More time on tools = more revenue. At ~$300/job average, that's $2,400+/month in additional income</p>
+            <span class="tag tag-assumed">Estimate — validate with Beau's rates</span>
+          </div>
+        </div>
+
+        <div class="callout-amber callout">
+          <h4>Validation key</h4>
+          <p><span class="tag tag-validated">Validated</span> = confirmed by Beau or from business plan.
+          <span class="tag tag-assumed">Assumed</span> = reasonable assumption based on industry data, needs Beau's confirmation.
+          Items marked as assumed will be confirmed during Beau's interview and updated in V2.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CURRENT STATE -->
+    <div class="section">
+      <div class="container">
+        <h2 class="section-title">Current State</h2>
+        <p class="section-desc">What Beau has today, based on the business plan and initial conversation.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Area</th>
+              <th>Current Tool / Process</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Website</strong></td>
+              <td>None (planned WordPress) — now custom site built</td>
+              <td><span class="tag tag-validated">Done</span></td>
+            </tr>
+            <tr>
+              <td><strong>Job Management</strong></td>
+              <td>Considering AroFlo ($59+/mo) — flagged as "may be overkill"</td>
+              <td><span class="tag tag-assumed">Needs evaluation</span></td>
+            </tr>
+            <tr>
+              <td><strong>Accounting</strong></td>
+              <td>Xero (planned, not yet set up)</td>
+              <td><span class="tag tag-validated">From plan</span></td>
+            </tr>
+            <tr>
+              <td><strong>Invoicing</strong></td>
+              <td>Unknown — likely manual or via job management tool</td>
+              <td><span class="tag tag-assumed">Ask Beau</span></td>
+            </tr>
+            <tr>
+              <td><strong>Quoting</strong></td>
+              <td>Unknown — likely verbal or handwritten</td>
+              <td><span class="tag tag-assumed">Ask Beau</span></td>
+            </tr>
+            <tr>
+              <td><strong>Scheduling</strong></td>
+              <td>Google Calendar (planned)</td>
+              <td><span class="tag tag-validated">From plan</span></td>
+            </tr>
+            <tr>
+              <td><strong>Social Media</strong></td>
+              <td>Facebook/Instagram (planned, not yet active)</td>
+              <td><span class="tag tag-validated">From plan</span></td>
+            </tr>
+            <tr>
+              <td><strong>Google Business</strong></td>
+              <td>Not set up</td>
+              <td><span class="tag tag-critical">Critical</span></td>
+            </tr>
+            <tr>
+              <td><strong>Email</strong></td>
+              <td>enquirebpplumbing@outlook.com (not branded)</td>
+              <td><span class="tag tag-assumed">Upgrade recommended</span></td>
+            </tr>
+            <tr>
+              <td><strong>Payments</strong></td>
+              <td>60-70% invoice after (strata/RE), 30-40% cash on the spot</td>
+              <td><span class="tag tag-validated">From Beau</span></td>
+            </tr>
+            <tr>
+              <td><strong>Suppliers</strong></td>
+              <td>Reece + Walsh Plumbing — arrears end-of-month</td>
+              <td><span class="tag tag-validated">From Beau</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- RECOMMENDED SOLUTIONS -->
+    <div class="section">
+      <div class="container">
+        <h2 class="section-title">Recommended Solutions</h2>
+        <p class="section-desc">Prioritised by impact. Each solution is mapped to a specific pain point Beau faces and includes cost, time to set up, and the result.</p>
+
+        <!-- Solution 1 -->
+        <div class="card">
+          <div class="priority-bar priority-high">
+            <div class="priority-dot"></div>
+            <strong style="font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem;">PRIORITY 1 — Do this week</strong>
+          </div>
+          <h4>Google Business Profile</h4>
+          <p>When someone searches "plumber near me" or "plumber central coast", Google shows the Map Pack first — before any website. Without a GBP listing, Coastal Ways is invisible to the #1 way people find local plumbers.</p>
+          <div style="margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="tag tag-cost">Free</span>
+            <span class="tag tag-phase">30 min setup</span>
+            <span class="tag tag-critical">Highest impact</span>
+          </div>
+          <div style="margin-top: 16px; padding: 12px 16px; background: var(--green-light); border-radius: 8px;">
+            <p style="font-size: 0.85rem; color: var(--green);"><strong>Result:</strong> Beau appears in Google Maps when Central Coast residents search for a plumber. Reviews accumulate here and directly drive new business.</p>
+          </div>
+        </div>
+
+        <!-- Solution 2 -->
+        <div class="card">
+          <div class="priority-bar priority-high">
+            <div class="priority-dot"></div>
+            <strong style="font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem;">PRIORITY 2 — Do this week</strong>
+          </div>
+          <h4>Job Management: ServiceM8 over AroFlo</h4>
+          <p>Beau's business plan considers AroFlo but flags it as "may be overkill for a one man business." We agree. ServiceM8 is purpose-built for Australian solo tradies and does everything Beau needs at half the cost.</p>
+
+          <table style="margin-top: 16px; font-size: 0.85rem;">
+            <thead>
+              <tr><th>Feature</th><th>ServiceM8 ($29/mo)</th><th>AroFlo ($59+/mo)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Quoting</td><td>Templates, on-site, photo attach</td><td>Yes, more complex</td></tr>
+              <tr><td>Invoicing</td><td>Auto-generate from job, send by email/SMS</td><td>Yes</td></tr>
+              <tr><td>Scheduling</td><td>Drag-and-drop calendar</td><td>Yes, team-oriented</td></tr>
+              <tr><td>Xero integration</td><td>Native sync</td><td>Native sync</td></tr>
+              <tr><td>Client portal</td><td>Online booking page</td><td>Yes</td></tr>
+              <tr><td>Review requests</td><td>Auto after job completion</td><td>No built-in</td></tr>
+              <tr><td>Complexity</td><td>Simple — designed for 1-5 person teams</td><td>Enterprise — steep learning curve</td></tr>
+              <tr><td>Mobile app</td><td>Excellent iOS/Android</td><td>Yes</td></tr>
+            </tbody>
+          </table>
+
+          <div style="margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="tag tag-cost">$29/month</span>
+            <span class="tag tag-phase">2-3 hours setup</span>
+            <span class="tag tag-assumed">Validate — does Beau prefer ServiceM8 UX?</span>
+          </div>
+          <div style="margin-top: 16px; padding: 12px 16px; background: var(--green-light); border-radius: 8px;">
+            <p style="font-size: 0.85rem; color: var(--green);"><strong>Result:</strong> Quote on-site → auto-invoice when done → auto-sync to Xero → auto-request Google review. One tap replaces 30+ minutes of admin per job.</p>
+          </div>
+        </div>
+
+        <!-- Solution 3 -->
+        <div class="card">
+          <div class="priority-bar priority-high">
+            <div class="priority-dot"></div>
+            <strong style="font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem;">PRIORITY 3 — Do this fortnight</strong>
+          </div>
+          <h4>Xero Accounting Setup</h4>
+          <p>The business plan already includes Xero. The key is setting it up correctly from day one — chart of accounts for a plumbing business, supplier accounts for Reece and Walsh (arrears tracking), strata invoicing workflow, and GST compliance.</p>
+          <ul style="margin: 16px 0; padding-left: 20px; color: rgba(16,32,45,0.6); font-size: 0.9rem;">
+            <li>Chart of accounts tailored to plumbing trades</li>
+            <li>Supplier accounts: Reece Plumbing, Walsh Plumbing (end-of-month arrears)</li>
+            <li>Invoice templates branded to CWP</li>
+            <li>Bank feed connected to business account</li>
+            <li>Receipt scanning via Hubdoc (included with Xero)</li>
+            <li>ServiceM8 → Xero auto-sync for invoices</li>
+            <li>BAS prep automated quarterly</li>
+          </ul>
+          <div style="margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="tag tag-cost">$29-50/month (Xero plan)</span>
+            <span class="tag tag-phase">3-4 hours setup</span>
+            <span class="tag tag-validated">Already in plan</span>
+          </div>
+          <div style="margin-top: 16px; padding: 12px 16px; background: var(--green-light); border-radius: 8px;">
+            <p style="font-size: 0.85rem; color: var(--green);"><strong>Result:</strong> Emma and Tim can see financial position any time. BAS prep takes hours not days. Receipts scanned from phone. No shoeboxes of paper invoices.</p>
+          </div>
+        </div>
+
+        <!-- Solution 4 -->
+        <div class="card">
+          <div class="priority-bar priority-med">
+            <div class="priority-dot"></div>
+            <strong style="font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem;">PRIORITY 4 — Month 1</strong>
+          </div>
+          <h4>Branded Email</h4>
+          <p>Currently using enquirebpplumbing@outlook.com. A branded email (beau@coastalwaysplumbing.com) signals professionalism and builds trust — especially important for strata managers and real estate agents who deal with multiple tradies daily.</p>
+          <div style="margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="tag tag-cost">Free (Zoho Mail) or $7.20/mo (Google Workspace)</span>
+            <span class="tag tag-phase">30 min setup</span>
+          </div>
+        </div>
+
+        <!-- Solution 5 -->
+        <div class="card">
+          <div class="priority-bar priority-med">
+            <div class="priority-dot"></div>
+            <strong style="font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem;">PRIORITY 5 — Month 1</strong>
+          </div>
+          <h4>Automated Review Requests</h4>
+          <p>Google reviews are the single biggest factor in local search ranking after GBP setup. ServiceM8 can automatically send a "How did we go?" text after each job with a direct link to leave a Google review. Beau's existing customers already give great feedback — this just captures it where it matters.</p>
+          <div style="margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="tag tag-cost">Included in ServiceM8</span>
+            <span class="tag tag-phase">15 min setup</span>
+          </div>
+          <div style="margin-top: 16px; padding: 12px 16px; background: var(--green-light); border-radius: 8px;">
+            <p style="font-size: 0.85rem; color: var(--green);"><strong>Result:</strong> 5-star reviews accumulate on Google. Each review makes Coastal Ways rank higher in "plumber near me" searches. Compounds over time — by month 6, Beau could have 30+ reviews while competitors have 5.</p>
+          </div>
+        </div>
+
+        <!-- Solution 6 -->
+        <div class="card">
+          <div class="priority-bar priority-med">
+            <div class="priority-dot"></div>
+            <strong style="font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem;">PRIORITY 6 — Month 2</strong>
+          </div>
+          <h4>Social Media: Before &amp; After Content System</h4>
+          <p>Beau already takes photos of his work. A simple system: snap a before photo when arriving, snap an after photo when done. These get posted to Facebook/Instagram with branded templates — zero extra effort, consistent content that shows Beau's quality workmanship.</p>
+          <ul style="margin: 16px 0; padding-left: 20px; color: rgba(16,32,45,0.6); font-size: 0.9rem;">
+            <li>Before/after photo pairs from ServiceM8 job records</li>
+            <li>Branded template overlay (CWP logo, colours, "Coastal Ways Plumbing" watermark)</li>
+            <li>Posted to Facebook + Instagram 2-3x per week</li>
+            <li>Builds portfolio that speaks for itself</li>
+          </ul>
+          <div style="margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="tag tag-cost">Free</span>
+            <span class="tag tag-phase">Ongoing — 5 min per post</span>
+            <span class="tag tag-assumed">Validate — does Beau take job photos now?</span>
+          </div>
+        </div>
+
+        <!-- Solution 7 -->
+        <div class="card">
+          <div class="priority-bar priority-low">
+            <div class="priority-dot"></div>
+            <strong style="font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem;">PRIORITY 7 — Month 3+</strong>
+          </div>
+          <h4>AI-Assisted Quoting</h4>
+          <p>As Beau builds a history of jobs and costs in ServiceM8, we can create a quoting assistant that suggests prices based on job type, materials, and time. This reduces the mental load of pricing every job from scratch and ensures consistent, profitable quotes.</p>
+          <ul style="margin: 16px 0; padding-left: 20px; color: rgba(16,32,45,0.6); font-size: 0.9rem;">
+            <li>Job history analysis — "similar blocked drain jobs have averaged $X"</li>
+            <li>Materials cost calculator with Reece/Walsh pricing</li>
+            <li>Travel time factored by suburb</li>
+            <li>Suggested quote range with margin protection</li>
+          </ul>
+          <div style="margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="tag tag-cost">Custom build — free (pro bono)</span>
+            <span class="tag tag-phase">Needs 3+ months of job data first</span>
+            <span class="tag tag-assumed">Validate — is quoting a pain point?</span>
+          </div>
+        </div>
+
+        <!-- Solution 8 -->
+        <div class="card">
+          <div class="priority-bar priority-low">
+            <div class="priority-dot"></div>
+            <strong style="font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem;">PRIORITY 8 — Month 3+</strong>
+          </div>
+          <h4>Online Booking Page</h4>
+          <p>ServiceM8 includes an online booking widget that can be embedded on the website. Customers can request a booking directly — selecting service type, preferred time, and adding photos of the issue. Reduces phone tag and captures leads 24/7.</p>
+          <div style="margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="tag tag-cost">Included in ServiceM8</span>
+            <span class="tag tag-phase">1 hour setup</span>
+          </div>
+        </div>
+
+        <!-- Solution 9 -->
+        <div class="card">
+          <div class="priority-bar priority-low">
+            <div class="priority-dot"></div>
+            <strong style="font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem;">PRIORITY 9 — Month 6+</strong>
+          </div>
+          <h4>Maintenance Contract System</h4>
+          <p>The business plan identifies maintenance contracts as an opportunity for recurring revenue. Once Beau has 20+ direct customers, we can build a simple system: annual plumbing check for $X, reminder sent automatically, scheduled in ServiceM8. Turns one-off customers into recurring revenue.</p>
+          <div style="margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="tag tag-cost">Free — uses existing tools</span>
+            <span class="tag tag-phase">Needs customer base first</span>
+            <span class="tag tag-assumed">Validate — is this something Beau wants?</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IMPLEMENTATION TIMELINE -->
+    <div class="section">
+      <div class="container">
+        <h2 class="section-title">Implementation Timeline</h2>
+        <p class="section-desc">A phased approach — get the high-impact items running first, then layer on automation as the business grows.</p>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <h4>Week 1: Foundation</h4>
+            <p>Website live + domain connected. Google Business Profile created. ServiceM8 trial started. Branded email set up.</p>
+          </div>
+          <div class="timeline-item">
+            <h4>Week 2-3: Core Systems</h4>
+            <p>ServiceM8 configured (job types, quote templates, invoice templates). Xero set up with chart of accounts. ServiceM8 → Xero sync connected. Bank feeds live.</p>
+          </div>
+          <div class="timeline-item">
+            <h4>Month 2: Growth Layer</h4>
+            <p>Automated review requests turned on. First before/after photos posted. Facebook + Instagram pages active. Hubdoc receipt scanning for Reece/Walsh invoices.</p>
+          </div>
+          <div class="timeline-item">
+            <h4>Month 3-6: Optimisation</h4>
+            <p>Online booking embedded on website. AI quoting suggestions (once job data exists). Maintenance contract templates. Local directory listings.</p>
+          </div>
+          <div class="timeline-item">
+            <h4>Month 6+: Scale</h4>
+            <p>Review data informs marketing (what services get best reviews?). SEO content based on search data. Financial reporting automated for IBA compliance. Ready for apprentice onboarding if needed.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COST SUMMARY -->
+    <div class="section">
+      <div class="container">
+        <h2 class="section-title">Monthly Cost Summary</h2>
+        <p class="section-desc">Total ongoing cost for the full digital stack.</p>
+
+        <table>
+          <thead>
+            <tr><th>Tool</th><th>Purpose</th><th>Monthly Cost</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Website (GitHub Pages)</td><td>Business website</td><td style="font-family: 'Space Grotesk', sans-serif; font-weight: 700;">Free</td></tr>
+            <tr><td>Domain (coastalwaysplumbing.com)</td><td>Custom domain</td><td style="font-family: 'Space Grotesk', sans-serif;">~$1.25/mo ($15/yr)</td></tr>
+            <tr><td>Google Business Profile</td><td>Local search visibility</td><td style="font-family: 'Space Grotesk', sans-serif; font-weight: 700;">Free</td></tr>
+            <tr><td>ServiceM8</td><td>Job management + invoicing + scheduling</td><td style="font-family: 'Space Grotesk', sans-serif;">$29/mo</td></tr>
+            <tr><td>Xero (Growing plan)</td><td>Accounting + BAS + bank feeds</td><td style="font-family: 'Space Grotesk', sans-serif;">$42/mo</td></tr>
+            <tr><td>Branded email (Zoho)</td><td>Professional email</td><td style="font-family: 'Space Grotesk', sans-serif; font-weight: 700;">Free</td></tr>
+            <tr><td>Facebook + Instagram</td><td>Social media presence</td><td style="font-family: 'Space Grotesk', sans-serif; font-weight: 700;">Free</td></tr>
+            <tr><td>AI solutions (custom)</td><td>Quoting assistant, automation</td><td style="font-family: 'Space Grotesk', sans-serif; font-weight: 700;">Free (pro bono)</td></tr>
+            <tr style="background: var(--teal-light);">
+              <td colspan="2"><strong style="font-family: 'Space Grotesk', sans-serif;">Total Monthly</strong></td>
+              <td><strong style="font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; color: var(--teal);">~$72/mo</strong></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="callout">
+          <h4>Return on investment</h4>
+          <p>At $72/month, this stack needs to generate just one additional small job per month to pay for itself. The real ROI is time — if automation saves Beau even 5 hours per week, that's 260 hours per year back on the tools.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEXT STEPS -->
+    <div class="section">
+      <div class="container">
+        <h2 class="section-title">Next Steps</h2>
+        <p class="section-desc">What needs to happen to turn this plan into reality.</p>
+
+        <div class="grid-2">
+          <div class="card" style="border-left: 3px solid var(--teal);">
+            <h4>Beau's Actions</h4>
+            <ul style="padding-left: 18px; margin-top: 12px; color: rgba(16,32,45,0.6); font-size: 0.9rem;">
+              <li>Register domain (coastalwaysplumbing.com) — in progress</li>
+              <li>Set up Google Business Profile (business.google.com)</li>
+              <li>Start ServiceM8 free trial (servicem8.com)</li>
+              <li>Send job photos for website</li>
+              <li>Get Loos font files from Monique</li>
+              <li>Answer interview questions (pain points, customer journey)</li>
+            </ul>
+          </div>
+          <div class="card" style="border-left: 3px solid var(--navy);">
+            <h4>Dave / Snips Actions</h4>
+            <ul style="padding-left: 18px; margin-top: 12px; color: rgba(16,32,45,0.6); font-size: 0.9rem;">
+              <li>Connect domain to website</li>
+              <li>Configure ServiceM8 job types + templates</li>
+              <li>Set up Xero chart of accounts</li>
+              <li>Build branded invoice/quote templates</li>
+              <li>Create social media branded templates</li>
+              <li>Update implementation plan V2 with Beau's interview answers</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout-amber callout" style="margin-top: 24px;">
+          <h4>Questions still open (for V2)</h4>
+          <p>These need Beau's input to finalise the plan:</p>
+          <ul style="padding-left: 18px; margin-top: 8px; font-size: 0.9rem; color: rgba(16,32,45,0.7);">
+            <li>Typical job flow from first contact to payment</li>
+            <li>Biggest admin time-sink right now</li>
+            <li>How he currently quotes and invoices</li>
+            <li>Customer communication preferences (phone vs text vs email)</li>
+            <li>Whether he follows up after jobs / asks for reviews</li>
+            <li>Emma and Tim's comfort with technology</li>
+            <li>What customers compliment him on most (for messaging)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="doc-footer">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+      <p>Coastal Ways Plumbing &mdash; Digital Implementation Plan v1.0</p>
+      <p>Last updated: 4 April 2026</p>
+    </div>
+  </footer>
+
+</body>
+</html>
