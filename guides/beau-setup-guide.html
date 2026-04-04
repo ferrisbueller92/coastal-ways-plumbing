@@ -26,10 +26,12 @@
     .step-number {
       display: inline-flex; align-items: center; justify-content: center;
       width: 36px; height: 36px; border-radius: 50%;
-      background: var(--teal); color: #fff;
       font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1rem;
       margin-bottom: 12px;
     }
+    .step-active .step-number { background: var(--teal); color: #fff; }
+    .step-done .step-number { background: #16A34A; color: #fff; }
+    .step-waiting .step-number { background: var(--grey); color: var(--navy); }
     .step h2 { font-size: 1.35rem; margin-bottom: 4px; }
     .step .what { color: var(--teal); font-size: 0.85rem; font-family: 'Space Grotesk', sans-serif; font-weight: 500; margin-bottom: 12px; }
     .step .why {
@@ -75,18 +77,22 @@
       font-size: 0.9rem; color: rgba(16,32,45,0.7);
     }
 
-    .done-tag {
-      display: inline-block; background: #F0FDF4; color: #16A34A;
+    .tag {
+      display: inline-block;
       font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; font-weight: 500;
       letter-spacing: 0.05em; text-transform: uppercase;
       padding: 3px 10px; border-radius: 4px;
     }
-    .wait-tag {
-      display: inline-block; background: rgba(5,90,95,0.08); color: var(--teal);
-      font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; font-weight: 500;
-      letter-spacing: 0.05em; text-transform: uppercase;
-      padding: 3px 10px; border-radius: 4px;
+    .tag-done { background: #F0FDF4; color: #16A34A; }
+    .tag-next { background: rgba(5,90,95,0.08); color: var(--teal); }
+    .tag-waiting { background: rgba(196,207,209,0.2); color: rgba(16,32,45,0.5); }
+
+    .done-section {
+      background: rgba(34,197,94,0.05); border: 1px solid rgba(34,197,94,0.2);
+      border-radius: 12px; padding: 24px; margin: 24px 0;
     }
+    .done-section h3 { color: #16A34A; font-size: 1.1rem; margin-bottom: 12px; }
+    .done-section li { margin-bottom: 6px; font-size: 0.9rem; color: rgba(16,32,45,0.7); }
 
     footer {
       background: var(--navy); color: var(--grey); padding: 24px 0;
@@ -105,7 +111,7 @@
     <div class="container">
       <h1>Getting Online</h1>
       <p>Your step-by-step guide to setting up Coastal Ways Plumbing's digital presence.</p>
-      <div class="meta">For Beau Petterson &bull; Prepared by Dave Calder &bull; 4 April 2026</div>
+      <div class="meta">For Beau Petterson &bull; Prepared by Dave Calder &bull; Last updated: 4 April 2026</div>
     </div>
   </header>
 
@@ -113,22 +119,35 @@
 
     <div class="intro">
       <p>We're setting up the digital foundation for Coastal Ways Plumbing. Think of it like connecting the plumbing in a new house — the pipes (domain, Google, email) need to be in place before the fixtures (website, reviews, booking) work properly.</p>
-      <p style="margin-top: 12px;">Most of these are one-time tasks that take 5-10 minutes each. Once done, they work forever.</p>
+    </div>
+
+    <!-- COMPLETED -->
+    <div class="done-section">
+      <h3>Already Done</h3>
+      <ul style="padding-left: 18px;">
+        <li><strong>Domain purchased</strong> — coastalwaysplumbing.com on GoDaddy</li>
+        <li><strong>Website live</strong> — 7 pages (home + 6 service pages), contact form working, HTTPS enabled</li>
+        <li><strong>DNS connected</strong> — domain points to the website</li>
+        <li><strong>Google Business Profile created</strong> — listed on Google Maps (needs ownership transfer to your Google account)</li>
+        <li><strong>Google Search Console</strong> — sitemap submitted, Google is indexing your site</li>
+        <li><strong>Contact form tested</strong> — enquiries go to coastalwaysplumbing@outlook.com</li>
+      </ul>
     </div>
 
     <!-- STEP 1 -->
-    <div class="step">
+    <div class="step step-active">
       <div class="step-number">1</div>
       <h2>Create a Google account for the business</h2>
       <div class="what">One login for everything Google — Maps, Reviews, Calendar</div>
+      <span class="tag tag-next">Do this first</span>
 
       <div class="why">
-        <strong>Why:</strong> When someone searches "plumber near me" on their phone, Google shows a map with local businesses first. Without a Google account, Coastal Ways is invisible on that map. This is the #1 way people find local plumbers.
+        <strong>Why:</strong> Dave set up the Google Business Profile using his personal account. You need your own Google account so you own it. This account controls your Google Maps listing, Google Reviews, and everything Google-related for the business.
       </div>
 
       <ol class="actions">
         <li>Go to <strong>accounts.google.com/signup</strong></li>
-        <li>Tap <strong>Create account</strong> → choose <strong>"For work or my business"</strong></li>
+        <li>Tap <strong>Create account</strong> &rarr; choose <strong>"For work or my business"</strong></li>
         <li>Fill in:
           <table class="field-table">
             <tr><th>Field</th><th>What to type</th></tr>
@@ -144,60 +163,19 @@
 
       <div class="after">
         <h4>When you're done</h4>
-        <p>Write down the email and password somewhere safe. Send Dave the email address (not the password). You'll use this login for the next step.</p>
+        <p>Text Dave the Gmail address. He'll transfer the Google Business Profile ownership to your account so you control it.</p>
       </div>
     </div>
 
     <!-- STEP 2 -->
-    <div class="step">
+    <div class="step step-active">
       <div class="step-number">2</div>
-      <h2>Set up Google Business Profile</h2>
-      <div class="what">Your listing on Google Maps — how new customers find you</div>
-
-      <div class="why">
-        <strong>Why:</strong> This is the single most important thing you can do to get phone calls from new customers. When someone in Wyong searches "plumber near me," Google shows a map with businesses ranked by reviews and relevance. This puts you on that map. It's free.
-      </div>
-
-      <ol class="actions">
-        <li>Go to <strong>business.google.com</strong> (easier on a laptop)</li>
-        <li>Sign in with the Google account you just created</li>
-        <li>Tap <strong>"Add your business to Google"</strong></li>
-        <li>Search for "Coastal Ways Plumbing" — tap <strong>"Add your business"</strong></li>
-        <li>Fill in:
-          <table class="field-table">
-            <tr><th>Field</th><th>What to enter</th></tr>
-            <tr><td>Business name</td><td><code>Coastal Ways Plumbing</code></td></tr>
-            <tr><td>Category</td><td>Start typing <code>Plumber</code> and select it</td></tr>
-            <tr><td>Location customers can visit?</td><td>Select <strong>No</strong> (you go to them)</td></tr>
-            <tr><td>Service area</td><td>Type <code>Central Coast</code> and select NSW</td></tr>
-            <tr><td>Phone</td><td><code>0402 269 088</code></td></tr>
-            <tr><td>Website</td><td><code>coastalwaysplumbing.com</code></td></tr>
-          </table>
-        </li>
-        <li><strong>Verify your business</strong> — pick <strong>phone verification</strong> if offered (fastest). Google calls or texts a code to your number. Type it in. Done.</li>
-        <li>Once verified, add:
-          <ul style="margin: 8px 0 0 16px; font-size: 0.9rem; color: rgba(16,32,45,0.7);">
-            <li><strong>Hours:</strong> Mon-Fri 7am-5pm, Sat-Sun "Emergency calls only"</li>
-            <li><strong>Description:</strong> "Licensed plumber serving the Central Coast. 10+ years experience in residential, commercial and emergency plumbing. Leak detection, blocked drains, hot water systems, gas fitting, bathroom renovations. Available 24/7 for emergencies."</li>
-            <li><strong>Photos:</strong> Upload your logo + 3-5 job photos</li>
-          </ul>
-        </li>
-      </ol>
-
-      <div class="after">
-        <h4>When you're done</h4>
-        <p>Your listing starts appearing on Google Maps within 24-48 hours. Every Google Review you get from a customer makes you rank higher. Ask happy customers to leave a review — it's the best free marketing you can do.</p>
-      </div>
-    </div>
-
-    <!-- STEP 3 -->
-    <div class="step">
-      <div class="step-number">3</div>
       <h2>Send assets to Dave</h2>
-      <div class="what">The files Dave needs to finish the website</div>
+      <div class="what">The files needed to finish the website</div>
+      <span class="tag tag-next">Whenever ready</span>
 
       <div class="why">
-        <strong>Why:</strong> Real photos of you and your work build trust faster than any words on a page. A property manager deciding between two plumbers will pick the one who looks real. Stock photos scream "I just started yesterday."
+        <strong>Why:</strong> The website has placeholder spots for your photos. Real photos of you and your work build trust faster than any words on a page. A property manager deciding between two plumbers will pick the one who looks real.
       </div>
 
       <ul class="checklist">
@@ -211,27 +189,9 @@
       </div>
     </div>
 
-    <!-- STEP 4 -->
-    <div class="step">
-      <div class="step-number">4</div>
-      <h2>Branded email</h2>
-      <div class="what">beau@coastalwaysplumbing.com instead of an Outlook address</div>
-
-      <div class="why">
-        <strong>Why:</strong> When a property manager gets a quote from <strong>beau@coastalwaysplumbing.com</strong>, it looks established and professional. <em>enquirebpplumbing@outlook.com</em> looks temporary. This is free to set up.
-      </div>
-
-      <div class="after">
-        <h4>When to do this</h4>
-        <p>Dave will let you know when the domain is ready and walk you through the setup. Takes about 10 minutes.</p>
-      </div>
-
-      <span class="wait-tag">Dave will guide you</span>
-    </div>
-
-    <!-- STEP 5 -->
-    <div class="step">
-      <div class="step-number">5</div>
+    <!-- STEP 3 -->
+    <div class="step step-active">
+      <div class="step-number">3</div>
       <h2>Facebook Business Page</h2>
       <div class="what">A separate page for the business (not your personal Facebook)</div>
 
@@ -241,18 +201,18 @@
 
       <ol class="actions">
         <li>Open Facebook on your phone</li>
-        <li>Tap the menu (three lines) → <strong>Pages</strong> → <strong>Create</strong></li>
+        <li>Tap the menu (three lines) &rarr; <strong>Pages</strong> &rarr; <strong>Create</strong></li>
         <li>Fill in:
           <table class="field-table">
             <tr><th>Field</th><th>What to enter</th></tr>
             <tr><td>Page name</td><td><code>Coastal Ways Plumbing</code></td></tr>
             <tr><td>Category</td><td><code>Plumber</code></td></tr>
-            <tr><td>Bio</td><td>Licensed plumber on the Central Coast. Residential, commercial & emergency. Call 0402 269 088.</td></tr>
+            <tr><td>Bio</td><td>Licensed plumber on the Central Coast. Residential, commercial &amp; emergency. Call 0402 269 088.</td></tr>
           </table>
         </li>
         <li>Upload the Coastal Ways <strong>logo</strong> as the profile picture</li>
         <li>Upload a <strong>cover photo</strong> (a job photo or the van)</li>
-        <li>Add your phone number, website, and service area in the Page Info section</li>
+        <li>Add your phone number, website (<code>coastalwaysplumbing.com</code>), and service area in the Page Info section</li>
       </ol>
 
       <div class="after">
@@ -261,9 +221,9 @@
       </div>
     </div>
 
-    <!-- STEP 6 -->
-    <div class="step">
-      <div class="step-number">6</div>
+    <!-- STEP 4 -->
+    <div class="step step-active">
+      <div class="step-number">4</div>
       <h2>Instagram Business Account</h2>
       <div class="what">Before/after job photos that show your quality work</div>
 
@@ -272,7 +232,7 @@
       </div>
 
       <ol class="actions">
-        <li>Open Instagram → if you don't have one, create an account:
+        <li>Open Instagram &rarr; if you don't have one, create an account:
           <table class="field-table">
             <tr><th>Field</th><th>What to enter</th></tr>
             <tr><td>Username</td><td><code>coastalwaysplumbing</code></td></tr>
@@ -280,9 +240,9 @@
             <tr><td>Bio</td><td>Licensed plumber. 10+ yrs experience. Residential, Commercial, Emergency 24/7. Central Coast NSW. 0402 269 088</td></tr>
           </table>
         </li>
-        <li>Tap your profile → <strong>Settings</strong> → <strong>Account</strong> → <strong>Switch to Professional Account</strong> → choose <strong>Business</strong></li>
+        <li>Tap your profile &rarr; <strong>Settings</strong> &rarr; <strong>Account</strong> &rarr; <strong>Switch to Professional Account</strong> &rarr; choose <strong>Business</strong></li>
         <li>Upload the logo as your profile picture</li>
-        <li>Add coastalwaysplumbing.com as your website link</li>
+        <li>Add <code>coastalwaysplumbing.com</code> as your website link</li>
       </ol>
 
       <div class="note">
@@ -290,21 +250,93 @@
       </div>
     </div>
 
-    <!-- WHAT HAPPENS NEXT -->
+    <!-- STEP 5 -->
+    <div class="step step-waiting">
+      <div class="step-number">5</div>
+      <h2>Branded email</h2>
+      <div class="what">beau@coastalwaysplumbing.com instead of an Outlook address</div>
+      <span class="tag tag-waiting">Dave will set up</span>
+
+      <div class="why">
+        <strong>Why:</strong> When a property manager gets a quote from <strong>beau@coastalwaysplumbing.com</strong>, it looks established and professional. This is free to set up and Dave will walk you through it when it's ready.
+      </div>
+    </div>
+
+    <!-- STEP 6 -->
+    <div class="step step-waiting">
+      <div class="step-number">6</div>
+      <h2>AroFlo setup</h2>
+      <div class="what">Your job management system — quoting, invoicing, scheduling</div>
+      <span class="tag tag-waiting">Next session with Dave</span>
+
+      <div class="why">
+        <strong>Why:</strong> AroFlo is where your jobs, quotes, invoices, and schedule live. It connects to Xero for accounting and has a direct link to Reece for ordering parts. Dave is building tools on top of AroFlo to make it faster for you in the field and easier for Emma and Tim in the office.
+      </div>
+
+      <ol class="actions">
+        <li>Go to <strong>aroflo.com</strong> and sign up for the <strong>AroFloGo 14-day free trial</strong></li>
+        <li>During the trial, Dave needs to check a few things:
+          <ul style="margin: 8px 0 0 16px; font-size: 0.9rem; color: rgba(16,32,45,0.7);">
+            <li>Does the Go plan include API access? (needed for automation)</li>
+            <li>Does it include the Reece supplier integration?</li>
+            <li>Does it include Zapier? (connects AroFlo to other tools)</li>
+          </ul>
+        </li>
+        <li>Dave will help configure job types, quote templates, and invoice templates</li>
+      </ol>
+
+      <div class="after">
+        <h4>Cost</h4>
+        <p>AroFloGo is $39/month after the trial. This replaces needing separate tools for quoting, invoicing, scheduling, and job tracking.</p>
+      </div>
+    </div>
+
+    <!-- STEP 7 -->
+    <div class="step step-waiting">
+      <div class="step-number">7</div>
+      <h2>Start asking for Google Reviews</h2>
+      <div class="what">The single most important thing for getting found online</div>
+      <span class="tag tag-waiting">After first few jobs</span>
+
+      <div class="why">
+        <strong>Why:</strong> Google Reviews are the #1 factor in local search ranking. Every 5-star review pushes you higher in "plumber near me" results. Competitors with 50 reviews will always rank above someone with none — even if your website is better. Start from your very first job.
+      </div>
+
+      <ol class="actions">
+        <li>After completing a job where the customer is happy, simply ask: <em>"If you were happy with the work, I'd really appreciate a Google review — it helps people find us."</em></li>
+        <li>You can text them a direct link to your review page (Dave will give you this link once GBP is verified under your account)</li>
+        <li>Aim for 1-2 reviews per week. By month 3, you'll have 10-20 reviews — more than most new plumbers on the Coast</li>
+      </ol>
+
+      <div class="note">
+        <strong>Tip:</strong> The best time to ask is right after you've shown them the finished work and they've said something positive. Don't be shy — customers want to help, they just need a nudge.
+      </div>
+    </div>
+
+    <!-- SUMMARY -->
     <div class="step" style="border-bottom: none;">
-      <h2>What happens next</h2>
-      <p style="color: rgba(16,32,45,0.7); margin-bottom: 16px;">Once you've done Steps 1-3, Dave will handle the rest:</p>
-      <ul style="padding-left: 18px; color: rgba(16,32,45,0.7); font-size: 0.95rem;">
-        <li style="margin-bottom: 8px;">Connect your domain to the live website</li>
-        <li style="margin-bottom: 8px;">Set up the contact form so enquiries come to your email</li>
-        <li style="margin-bottom: 8px;">Walk you through branded email setup (Step 5)</li>
-        <li style="margin-bottom: 8px;">Link everything together — website, Google, Facebook, Instagram</li>
-        <li style="margin-bottom: 8px;">Build the tools that reduce your daily admin time</li>
-      </ul>
+      <h2>Summary</h2>
+
+      <table class="field-table" style="margin-top: 16px;">
+        <tr><th>Item</th><th>Status</th><th>Who</th></tr>
+        <tr><td>Domain (coastalwaysplumbing.com)</td><td><span class="tag tag-done">Done</span></td><td>Beau</td></tr>
+        <tr><td>Website (7 pages, live)</td><td><span class="tag tag-done">Done</span></td><td>Dave</td></tr>
+        <tr><td>Contact form (working)</td><td><span class="tag tag-done">Done</span></td><td>Dave</td></tr>
+        <tr><td>Google Business Profile (created)</td><td><span class="tag tag-done">Done</span></td><td>Dave</td></tr>
+        <tr><td>Google Search Console (sitemap submitted)</td><td><span class="tag tag-done">Done</span></td><td>Dave</td></tr>
+        <tr><td>Google account (coastalwaysplumbing@gmail.com)</td><td><span class="tag tag-next">Beau to do</span></td><td>Beau</td></tr>
+        <tr><td>GBP ownership transfer</td><td><span class="tag tag-next">After Gmail created</span></td><td>Dave</td></tr>
+        <tr><td>Send logo + photos + font files</td><td><span class="tag tag-next">Beau to do</span></td><td>Beau</td></tr>
+        <tr><td>Facebook page</td><td><span class="tag tag-next">Beau to do</span></td><td>Beau</td></tr>
+        <tr><td>Instagram account</td><td><span class="tag tag-next">Beau to do</span></td><td>Beau</td></tr>
+        <tr><td>Branded email</td><td><span class="tag tag-waiting">Dave sets up</span></td><td>Dave</td></tr>
+        <tr><td>AroFlo trial</td><td><span class="tag tag-waiting">Next session</span></td><td>Both</td></tr>
+        <tr><td>Google Reviews</td><td><span class="tag tag-waiting">After first jobs</span></td><td>Beau</td></tr>
+      </table>
 
       <div class="after" style="margin-top: 24px; border-color: var(--teal); border-width: 2px;">
         <h4 style="color: var(--navy); font-size: 1rem;">Questions?</h4>
-        <p>Text Dave anytime. There's no such thing as a dumb question here — this is all new territory and we're building it together.</p>
+        <p>Text or call Dave anytime. There's no such thing as a dumb question — this is all new territory and we're building it together.</p>
       </div>
     </div>
 
