@@ -14,7 +14,12 @@
   <meta property="og:description" content="Licensed plumber. 10+ years experience. Emergency call-outs, leak detection, blocked drains, hot water systems. Central Coast NSW.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_AU">
-  <meta property="og:image" content="assets/og-image.png">
+  <meta property="og:image" content="https://coastalwaysplumbing.com/assets/og-image.png">
+  <meta property="og:url" content="https://coastalwaysplumbing.com">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23055A5F'/%3E%3Ctext x='16' y='22' font-size='20' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="assets/logomark-variants.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -129,8 +134,13 @@
           <a href="#contact" class="text-cool-grey hover:text-white transition-colors text-sm font-body font-normal tracking-wide">Contact</a>
         </nav>
 
+        <!-- Mobile menu button -->
+        <button data-menu-toggle class="md:hidden text-cool-grey hover:text-white p-2 -mr-2" aria-label="Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
         <!-- Emergency CTA -->
-        <a href="tel:0402269088" class="relative inline-flex items-center gap-2 bg-teal hover:bg-teal-hover text-white px-4 py-2.5 rounded-lg font-display font-medium text-sm transition-colors pulse-ring">
+        <a href="tel:0402269088" class="hidden sm:relative sm:inline-flex items-center gap-2 bg-teal hover:bg-teal-hover text-white px-4 py-2.5 rounded-lg font-display font-medium text-sm transition-colors pulse-ring">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
           <span class="hidden sm:inline">0402 269 088</span>
           <span class="sm:hidden">Call Now</span>
@@ -475,7 +485,11 @@
 
         <!-- Contact Form -->
         <div class="reveal">
-          <form action="https://formspree.io/f/placeholder" method="POST" class="bg-white rounded-2xl p-8 shadow-sm border border-cool-grey/20">
+          <form action="https://formsubmit.co/enquirebpplumbing@outlook.com" method="POST" class="bg-white rounded-2xl p-8 shadow-sm border border-cool-grey/20">
+            <input type="hidden" name="_subject" value="New enquiry from coastalwaysplumbing.com">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://coastalwaysplumbing.com/#contact">
+            <input type="text" name="_honey" style="display:none">
             <div class="space-y-5">
               <div>
                 <label class="block text-sm font-display font-medium text-navy mb-1.5">Name</label>
