@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coastal Ways Plumbing — Digital Implementation Plan</title>
+  <title>Coastal Ways Plumbing — Digital Implementation Plan v2.0</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
@@ -21,12 +21,14 @@
       --amber: #D97706;
       --green-light: #F0FDF4;
       --green: #16A34A;
+      --grey-light: rgba(16,32,45,0.06);
+      --grey-text: rgba(16,32,45,0.6);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Roboto', system-ui, sans-serif; font-weight: 300; color: var(--navy); background: var(--sand); line-height: 1.6; }
-    h1, h2, h3, h4, h5 { font-family: 'Space Grotesk', system-ui, sans-serif; letter-spacing: -0.03em; font-weight: 700; }
+    body { font-family: 'Roboto', system-ui, sans-serif; font-weight: 300; color: var(--navy); background: var(--sand); line-height: 1.7; }
+    h1, h2, h3, h4, h5 { font-family: 'Space Grotesk', system-ui, sans-serif; letter-spacing: -0.03em; font-weight: 700; line-height: 1.3; }
 
     .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
 
@@ -34,12 +36,12 @@
     .doc-header {
       background: var(--navy);
       color: var(--white);
-      padding: 48px 0;
+      padding: 56px 0;
       border-bottom: 4px solid var(--teal);
     }
     .doc-header h1 { font-size: 2.5rem; margin-bottom: 8px; }
-    .doc-header .subtitle { color: var(--cool-grey); font-size: 1.125rem; font-weight: 300; }
-    .doc-header .meta { margin-top: 24px; display: flex; gap: 32px; flex-wrap: wrap; }
+    .doc-header .subtitle { color: var(--cool-grey); font-size: 1.15rem; font-weight: 300; max-width: 640px; line-height: 1.6; }
+    .doc-header .meta { margin-top: 28px; display: flex; gap: 32px; flex-wrap: wrap; }
     .doc-header .meta-item { font-size: 0.875rem; color: var(--cool-grey); }
     .doc-header .meta-item span { color: var(--teal); font-family: 'Space Grotesk', sans-serif; font-weight: 500; }
     .doc-label {
@@ -57,10 +59,20 @@
     }
 
     /* Sections */
-    .section { padding: 48px 0; border-bottom: 1px solid rgba(196,207,209,0.3); }
+    .section { padding: 56px 0; border-bottom: 1px solid rgba(196,207,209,0.3); }
     .section:last-child { border-bottom: none; }
     .section-title { font-size: 1.75rem; margin-bottom: 8px; }
-    .section-desc { color: rgba(16,32,45,0.6); font-size: 1.05rem; margin-bottom: 32px; max-width: 700px; }
+    .section-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .section-desc { color: var(--grey-text); font-size: 1.05rem; margin-bottom: 32px; max-width: 720px; }
 
     /* Cards */
     .card {
@@ -68,17 +80,96 @@
       border: 1px solid rgba(196,207,209,0.3);
       border-radius: 12px;
       padding: 28px;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
       transition: box-shadow 0.2s;
     }
-    .card:hover { box-shadow: 0 4px 16px rgba(16,32,45,0.06); }
-    .card h4 { font-size: 1.125rem; margin-bottom: 6px; }
-    .card p { color: rgba(16,32,45,0.6); font-size: 0.95rem; }
+    .card:hover { box-shadow: 0 4px 20px rgba(16,32,45,0.07); }
+    .card h3 { font-size: 1.25rem; margin-bottom: 8px; }
+    .card h4 { font-size: 1.1rem; margin-bottom: 6px; }
+    .card p { color: var(--grey-text); font-size: 0.95rem; }
+
+    /* Tool cards */
+    .tool-card { border-left: 4px solid var(--teal); }
+    .tool-card .tool-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .tool-card .tool-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      display: block;
+      margin-bottom: 2px;
+    }
+    .tool-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .tool-section {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(196,207,209,0.2);
+    }
+    .tool-section-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+    .tool-section ol, .tool-section ul {
+      padding-left: 20px;
+      color: var(--grey-text);
+      font-size: 0.9rem;
+    }
+    .tool-section li { margin-bottom: 4px; }
+    .tool-detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .tool-detail-box {
+      background: var(--sand);
+      border-radius: 8px;
+      padding: 12px 16px;
+      text-align: center;
+    }
+    .tool-detail-box .label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--grey-text);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .tool-detail-box .value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--navy);
+    }
 
     /* Grid */
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
-    @media (max-width: 768px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .tool-detail-grid { grid-template-columns: 1fr; }
+    }
 
     /* Tags */
     .tag {
@@ -97,51 +188,15 @@
     .tag-assumed { background: var(--amber-light); color: var(--amber); }
     .tag-critical { background: var(--red-light); color: var(--red); }
     .tag-phase { background: var(--teal-light); color: var(--teal); }
-    .tag-cost { background: rgba(16,32,45,0.06); color: rgba(16,32,45,0.6); }
-
-    /* Priority */
-    .priority-bar {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 16px;
-      border-radius: 8px;
-      margin-bottom: 12px;
-    }
-    .priority-high { background: var(--red-light); }
-    .priority-med { background: var(--amber-light); }
-    .priority-low { background: var(--teal-light); }
-    .priority-dot {
-      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
-    }
-    .priority-high .priority-dot { background: var(--red); }
-    .priority-med .priority-dot { background: var(--amber); }
-    .priority-low .priority-dot { background: var(--teal); }
+    .tag-cost { background: var(--grey-light); color: var(--grey-text); }
 
     /* Tables */
     table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
-    th { background: var(--navy); color: var(--white); text-align: left; padding: 12px 16px; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
-    td { padding: 12px 16px; border-bottom: 1px solid rgba(196,207,209,0.3); }
+    th { background: var(--navy); color: var(--white); text-align: left; padding: 12px 16px; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    td { padding: 12px 16px; border-bottom: 1px solid rgba(196,207,209,0.3); vertical-align: top; }
     tr:nth-child(even) td { background: rgba(251,246,243,0.5); }
     th:first-child { border-radius: 8px 0 0 0; }
     th:last-child { border-radius: 0 8px 0 0; }
-
-    /* Timeline */
-    .timeline { position: relative; padding-left: 32px; }
-    .timeline::before { content: ''; position: absolute; left: 11px; top: 8px; bottom: 8px; width: 2px; background: var(--cool-grey); }
-    .timeline-item { position: relative; margin-bottom: 32px; }
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -32px; top: 6px;
-      width: 12px; height: 12px;
-      border-radius: 50%;
-      background: var(--teal);
-      border: 3px solid var(--sand);
-      box-shadow: 0 0 0 2px var(--teal);
-    }
-    .timeline-item h4 { font-size: 1rem; margin-bottom: 4px; }
-    .timeline-item p { color: rgba(16,32,45,0.6); font-size: 0.9rem; }
 
     /* Callout */
     .callout {
@@ -155,14 +210,195 @@
       background: var(--amber-light);
       border-left-color: var(--amber);
     }
+    .callout-green {
+      background: var(--green-light);
+      border-left-color: var(--green);
+    }
     .callout h4 { font-size: 0.95rem; margin-bottom: 6px; }
     .callout p { color: rgba(16,32,45,0.7); font-size: 0.9rem; }
+
+    /* Architecture diagram */
+    .arch-diagram {
+      background: var(--white);
+      border: 1px solid rgba(196,207,209,0.3);
+      border-radius: 12px;
+      padding: 40px 32px;
+      margin: 32px 0;
+    }
+    .arch-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+      flex-direction: column;
+    }
+    .arch-box {
+      background: var(--sand);
+      border: 2px solid var(--cool-grey);
+      border-radius: 10px;
+      padding: 20px 32px;
+      text-align: center;
+      width: 100%;
+      max-width: 480px;
+      position: relative;
+    }
+    .arch-box.primary {
+      border-color: var(--teal);
+      background: var(--teal-light);
+    }
+    .arch-box.highlight {
+      border-color: var(--navy);
+      background: var(--white);
+    }
+    .arch-box h4 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+    .arch-box p {
+      font-size: 0.8rem;
+      color: var(--grey-text);
+      margin: 0;
+    }
+    .arch-connector {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 6px 0;
+      color: var(--teal);
+    }
+    .arch-connector .arrow {
+      font-size: 1.4rem;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+    .arch-connector .label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--grey-text);
+    }
+
+    /* Comparison highlight */
+    .comparison-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin: 32px 0;
+    }
+    .comparison-col {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 28px;
+      border: 1px solid rgba(196,207,209,0.3);
+      text-align: center;
+    }
+    .comparison-col.old {
+      border-top: 4px solid var(--red);
+      opacity: 0.7;
+    }
+    .comparison-col.new {
+      border-top: 4px solid var(--green);
+    }
+    .comparison-col .big-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 2.5rem;
+      line-height: 1.1;
+    }
+    .comparison-col h4 {
+      margin-bottom: 8px;
+    }
+
+    /* Timeline */
+    .timeline { position: relative; padding-left: 36px; }
+    .timeline::before { content: ''; position: absolute; left: 13px; top: 8px; bottom: 8px; width: 2px; background: var(--cool-grey); }
+    .timeline-item { position: relative; margin-bottom: 36px; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -36px; top: 6px;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--teal);
+      border: 3px solid var(--sand);
+      box-shadow: 0 0 0 2px var(--teal);
+    }
+    .timeline-item h4 { font-size: 1.05rem; margin-bottom: 6px; }
+    .timeline-item p { color: var(--grey-text); font-size: 0.9rem; }
+    .timeline-item ul { padding-left: 20px; color: var(--grey-text); font-size: 0.9rem; margin-top: 8px; }
+    .timeline-item li { margin-bottom: 4px; }
+
+    /* Checklist */
+    .checklist { list-style: none; padding: 0; }
+    .checklist li {
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(196,207,209,0.2);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .checklist li::before {
+      content: '';
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--cool-grey);
+      border-radius: 3px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Data model */
+    .data-tab {
+      background: var(--white);
+      border: 1px solid rgba(196,207,209,0.3);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .data-tab h4 {
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .data-tab .tab-icon {
+      background: var(--teal-light);
+      color: var(--teal);
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+    .data-tab code {
+      font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+      font-size: 0.8rem;
+      color: var(--grey-text);
+      background: var(--sand);
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+    .data-columns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
 
     /* Footer */
     .doc-footer {
       background: var(--navy);
       color: var(--cool-grey);
-      padding: 32px 0;
+      padding: 36px 0;
       font-size: 0.85rem;
       margin-top: 48px;
     }
@@ -170,10 +406,24 @@
 
     /* Print */
     @media print {
-      body { font-size: 11pt; }
-      .doc-header { padding: 32px 0; }
-      .section { page-break-inside: avoid; }
-      .card { box-shadow: none; border: 1px solid #ddd; }
+      body { font-size: 10pt; background: white; }
+      .doc-header { padding: 24px 0; }
+      .doc-header h1 { font-size: 1.8rem; }
+      .section { page-break-inside: avoid; padding: 32px 0; }
+      .card, .arch-diagram { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; }
+      .tool-card { page-break-inside: avoid; }
+      table { page-break-inside: avoid; }
+      .comparison-row { page-break-inside: avoid; }
+      .no-print { display: none; }
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .doc-header h1 { font-size: 1.75rem; }
+      .doc-header .meta { gap: 16px; }
+      .comparison-row { grid-template-columns: 1fr; }
+      .card { padding: 20px; }
+      .arch-box { padding: 14px 20px; }
     }
   </style>
 </head>
@@ -182,429 +432,1129 @@
   <!-- HEADER -->
   <header class="doc-header">
     <div class="container">
-      <div class="doc-label">Implementation Plan</div>
-      <h1>Digital &amp; AI Solutions</h1>
-      <p class="subtitle">How technology can free up Beau's time, reduce admin, and grow Coastal Ways Plumbing faster.</p>
+      <div class="doc-label">Implementation Plan v2.0</div>
+      <h1>Digital Implementation Plan</h1>
+      <p class="subtitle">Custom-built tools that cost nothing, work everywhere, and do exactly what Beau needs.</p>
       <div class="meta">
         <div class="meta-item">Prepared for <span>Beau Petterson</span></div>
         <div class="meta-item">Prepared by <span>Dave Calder</span></div>
         <div class="meta-item">Date <span>4 April 2026</span></div>
-        <div class="meta-item">Version <span>1.0 — Draft</span></div>
+        <div class="meta-item">Version <span>2.0</span></div>
       </div>
     </div>
   </header>
 
   <main>
 
-    <!-- EXECUTIVE SUMMARY -->
+    <!-- ========================================== -->
+    <!-- SECTION 1: THE BIG IDEA                    -->
+    <!-- ========================================== -->
     <div class="section">
       <div class="container">
-        <h2 class="section-title">Executive Summary</h2>
-        <p class="section-desc">
-          Beau is a great plumber. The goal of this plan is to make sure he spends his time being one — not drowning in admin, chasing invoices, or manually scheduling jobs.
-        </p>
+        <span class="section-number">Section 1</span>
+        <h2 class="section-title">The Big Idea</h2>
+        <p class="section-desc">V1 recommended off-the-shelf software. V2 throws that out and builds exactly what Beau needs instead. Here's why.</p>
 
-        <div class="grid-3">
-          <div class="card" style="text-align:center; border-top: 3px solid var(--red);">
-            <h4 style="color: var(--red);">The Problem</h4>
-            <p style="font-size: 2rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--navy); margin: 8px 0;">40%</p>
-            <p>of a solo tradesperson's week is typically spent on non-plumbing work — quoting, invoicing, scheduling, chasing payments, bookkeeping</p>
-            <span class="tag tag-assumed">Industry average — validate with Beau</span>
+        <div class="comparison-row">
+          <div class="comparison-col old">
+            <h4 style="color: var(--red);">V1 Plan (SaaS)</h4>
+            <p class="big-number" style="color: var(--red);">$72+</p>
+            <p style="font-size: 0.85rem; color: var(--grey-text); margin-top: 4px;">per month</p>
+            <p style="font-size: 0.85rem; color: var(--grey-text); margin-top: 12px;">ServiceM8 ($29) + Xero ($42) + extras = $72+/month in subscriptions, every month, forever. Plus learning 3-4 different apps with features Beau will never touch.</p>
           </div>
-          <div class="card" style="text-align:center; border-top: 3px solid var(--teal);">
-            <h4 style="color: var(--teal);">The Opportunity</h4>
-            <p style="font-size: 2rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--navy); margin: 8px 0;">15+ hrs</p>
-            <p>per week can be reclaimed through smart automation — quoting from templates, auto-invoicing, receipt scanning, job scheduling</p>
-            <span class="tag tag-assumed">Estimate — needs Beau's input</span>
+          <div class="comparison-col new">
+            <h4 style="color: var(--green);">V2 Plan (Custom)</h4>
+            <p class="big-number" style="color: var(--green);">$0</p>
+            <p style="font-size: 0.85rem; color: var(--grey-text); margin-top: 4px;">per month</p>
+            <p style="font-size: 0.85rem; color: var(--grey-text); margin-top: 12px;">Custom tools built on free infrastructure. One app that does exactly what Beau needs. Emma uses Google Sheets she already knows. No subscriptions. No bloat.</p>
           </div>
-          <div class="card" style="text-align:center; border-top: 3px solid var(--green);">
-            <h4 style="color: var(--green);">The Result</h4>
-            <p style="font-size: 2rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--navy); margin: 8px 0;">2 more</p>
-            <p>jobs per week. More time on tools = more revenue. At ~$300/job average, that's $2,400+/month in additional income</p>
-            <span class="tag tag-assumed">Estimate — validate with Beau's rates</span>
-          </div>
+        </div>
+
+        <div class="card" style="border-top: 3px solid var(--teal);">
+          <h4>Why build instead of buy?</h4>
+          <p style="margin-top: 12px;">Not because we're cheap. Because custom tools have <strong style="color: var(--navy);">zero friction</strong>.</p>
+          <ul style="margin: 16px 0 0 20px; color: var(--grey-text); font-size: 0.95rem;">
+            <li style="margin-bottom: 8px;"><strong style="color: var(--navy);">ServiceM8 has 50+ features.</strong> Beau needs about 6 of them. Every extra feature is a button he'll never tap, a menu he has to scroll past, a setting that confuses things. Our custom app has exactly what he needs and nothing he doesn't.</li>
+            <li style="margin-bottom: 8px;"><strong style="color: var(--navy);">No learning curve.</strong> The app is designed around how Beau already works. Create job, quote it, invoice it, get paid. That's it.</li>
+            <li style="margin-bottom: 8px;"><strong style="color: var(--navy);">No monthly drain.</strong> $72/month is $864/year. Over 5 years, that's $4,320 gone. Our tools cost nothing to run.</li>
+            <li style="margin-bottom: 8px;"><strong style="color: var(--navy);">Emma already knows spreadsheets.</strong> No training her on Xero. She opens Google Sheets, sees the data, does what she does.</li>
+            <li><strong style="color: var(--navy);">We can build features that don't exist.</strong> Like an AI that learns Beau's pricing history and suggests quotes. No SaaS tool offers that because they don't have Beau's data.</li>
+          </ul>
         </div>
 
         <div class="callout-amber callout">
-          <h4>Validation key</h4>
-          <p><span class="tag tag-validated">Validated</span> = confirmed by Beau or from business plan.
-          <span class="tag tag-assumed">Assumed</span> = reasonable assumption based on industry data, needs Beau's confirmation.
-          Items marked as assumed will be confirmed during Beau's interview and updated in V2.</p>
+          <h4>Exception: Xero stays as an option</h4>
+          <p>Accounting software is genuinely hard to replicate, and Beau's accountant may require it for BAS lodgement. But for the first 6 months, Google Sheets IS the financial ledger. If and when an accountant needs Xero, we'll plug it in. Until then, we don't pay for it.</p>
         </div>
-      </div>
-    </div>
-
-    <!-- CURRENT STATE -->
-    <div class="section">
-      <div class="container">
-        <h2 class="section-title">Current State</h2>
-        <p class="section-desc">What Beau has today, based on the business plan and initial conversation.</p>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Area</th>
-              <th>Current Tool / Process</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Website</strong></td>
-              <td>None (planned WordPress) — now custom site built</td>
-              <td><span class="tag tag-validated">Done</span></td>
-            </tr>
-            <tr>
-              <td><strong>Job Management</strong></td>
-              <td>Considering AroFlo ($59+/mo) — flagged as "may be overkill"</td>
-              <td><span class="tag tag-assumed">Needs evaluation</span></td>
-            </tr>
-            <tr>
-              <td><strong>Accounting</strong></td>
-              <td>Xero (planned, not yet set up)</td>
-              <td><span class="tag tag-validated">From plan</span></td>
-            </tr>
-            <tr>
-              <td><strong>Invoicing</strong></td>
-              <td>Unknown — likely manual or via job management tool</td>
-              <td><span class="tag tag-assumed">Ask Beau</span></td>
-            </tr>
-            <tr>
-              <td><strong>Quoting</strong></td>
-              <td>Unknown — likely verbal or handwritten</td>
-              <td><span class="tag tag-assumed">Ask Beau</span></td>
-            </tr>
-            <tr>
-              <td><strong>Scheduling</strong></td>
-              <td>Google Calendar (planned)</td>
-              <td><span class="tag tag-validated">From plan</span></td>
-            </tr>
-            <tr>
-              <td><strong>Social Media</strong></td>
-              <td>Facebook/Instagram (planned, not yet active)</td>
-              <td><span class="tag tag-validated">From plan</span></td>
-            </tr>
-            <tr>
-              <td><strong>Google Business</strong></td>
-              <td>Not set up</td>
-              <td><span class="tag tag-critical">Critical</span></td>
-            </tr>
-            <tr>
-              <td><strong>Email</strong></td>
-              <td>enquirebpplumbing@outlook.com (not branded)</td>
-              <td><span class="tag tag-assumed">Upgrade recommended</span></td>
-            </tr>
-            <tr>
-              <td><strong>Payments</strong></td>
-              <td>60-70% invoice after (strata/RE), 30-40% cash on the spot</td>
-              <td><span class="tag tag-validated">From Beau</span></td>
-            </tr>
-            <tr>
-              <td><strong>Suppliers</strong></td>
-              <td>Reece + Walsh Plumbing — arrears end-of-month</td>
-              <td><span class="tag tag-validated">From Beau</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- RECOMMENDED SOLUTIONS -->
-    <div class="section">
-      <div class="container">
-        <h2 class="section-title">Recommended Solutions</h2>
-        <p class="section-desc">Prioritised by impact. Each solution is mapped to a specific pain point Beau faces and includes cost, time to set up, and the result.</p>
-
-        <!-- Solution 1 -->
-        <div class="card">
-          <div class="priority-bar priority-high">
-            <div class="priority-dot"></div>
-            <strong style="font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem;">PRIORITY 1 — Do this week</strong>
-          </div>
-          <h4>Google Business Profile</h4>
-          <p>When someone searches "plumber near me" or "plumber central coast", Google shows the Map Pack first — before any website. Without a GBP listing, Coastal Ways is invisible to the #1 way people find local plumbers.</p>
-          <div style="margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
-            <span class="tag tag-cost">Free</span>
-            <span class="tag tag-phase">30 min setup</span>
-            <span class="tag tag-critical">Highest impact</span>
-          </div>
-          <div style="margin-top: 16px; padding: 12px 16px; background: var(--green-light); border-radius: 8px;">
-            <p style="font-size: 0.85rem; color: var(--green);"><strong>Result:</strong> Beau appears in Google Maps when Central Coast residents search for a plumber. Reviews accumulate here and directly drive new business.</p>
-          </div>
-        </div>
-
-        <!-- Solution 2 -->
-        <div class="card">
-          <div class="priority-bar priority-high">
-            <div class="priority-dot"></div>
-            <strong style="font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem;">PRIORITY 2 — Do this week</strong>
-          </div>
-          <h4>Job Management: ServiceM8 over AroFlo</h4>
-          <p>Beau's business plan considers AroFlo but flags it as "may be overkill for a one man business." We agree. ServiceM8 is purpose-built for Australian solo tradies and does everything Beau needs at half the cost.</p>
-
-          <table style="margin-top: 16px; font-size: 0.85rem;">
-            <thead>
-              <tr><th>Feature</th><th>ServiceM8 ($29/mo)</th><th>AroFlo ($59+/mo)</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Quoting</td><td>Templates, on-site, photo attach</td><td>Yes, more complex</td></tr>
-              <tr><td>Invoicing</td><td>Auto-generate from job, send by email/SMS</td><td>Yes</td></tr>
-              <tr><td>Scheduling</td><td>Drag-and-drop calendar</td><td>Yes, team-oriented</td></tr>
-              <tr><td>Xero integration</td><td>Native sync</td><td>Native sync</td></tr>
-              <tr><td>Client portal</td><td>Online booking page</td><td>Yes</td></tr>
-              <tr><td>Review requests</td><td>Auto after job completion</td><td>No built-in</td></tr>
-              <tr><td>Complexity</td><td>Simple — designed for 1-5 person teams</td><td>Enterprise — steep learning curve</td></tr>
-              <tr><td>Mobile app</td><td>Excellent iOS/Android</td><td>Yes</td></tr>
-            </tbody>
-          </table>
-
-          <div style="margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
-            <span class="tag tag-cost">$29/month</span>
-            <span class="tag tag-phase">2-3 hours setup</span>
-            <span class="tag tag-assumed">Validate — does Beau prefer ServiceM8 UX?</span>
-          </div>
-          <div style="margin-top: 16px; padding: 12px 16px; background: var(--green-light); border-radius: 8px;">
-            <p style="font-size: 0.85rem; color: var(--green);"><strong>Result:</strong> Quote on-site → auto-invoice when done → auto-sync to Xero → auto-request Google review. One tap replaces 30+ minutes of admin per job.</p>
-          </div>
-        </div>
-
-        <!-- Solution 3 -->
-        <div class="card">
-          <div class="priority-bar priority-high">
-            <div class="priority-dot"></div>
-            <strong style="font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem;">PRIORITY 3 — Do this fortnight</strong>
-          </div>
-          <h4>Xero Accounting Setup</h4>
-          <p>The business plan already includes Xero. The key is setting it up correctly from day one — chart of accounts for a plumbing business, supplier accounts for Reece and Walsh (arrears tracking), strata invoicing workflow, and GST compliance.</p>
-          <ul style="margin: 16px 0; padding-left: 20px; color: rgba(16,32,45,0.6); font-size: 0.9rem;">
-            <li>Chart of accounts tailored to plumbing trades</li>
-            <li>Supplier accounts: Reece Plumbing, Walsh Plumbing (end-of-month arrears)</li>
-            <li>Invoice templates branded to CWP</li>
-            <li>Bank feed connected to business account</li>
-            <li>Receipt scanning via Hubdoc (included with Xero)</li>
-            <li>ServiceM8 → Xero auto-sync for invoices</li>
-            <li>BAS prep automated quarterly</li>
-          </ul>
-          <div style="margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
-            <span class="tag tag-cost">$29-50/month (Xero plan)</span>
-            <span class="tag tag-phase">3-4 hours setup</span>
-            <span class="tag tag-validated">Already in plan</span>
-          </div>
-          <div style="margin-top: 16px; padding: 12px 16px; background: var(--green-light); border-radius: 8px;">
-            <p style="font-size: 0.85rem; color: var(--green);"><strong>Result:</strong> Emma and Tim can see financial position any time. BAS prep takes hours not days. Receipts scanned from phone. No shoeboxes of paper invoices.</p>
-          </div>
-        </div>
-
-        <!-- Solution 4 -->
-        <div class="card">
-          <div class="priority-bar priority-med">
-            <div class="priority-dot"></div>
-            <strong style="font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem;">PRIORITY 4 — Month 1</strong>
-          </div>
-          <h4>Branded Email</h4>
-          <p>Currently using enquirebpplumbing@outlook.com. A branded email (beau@coastalwaysplumbing.com) signals professionalism and builds trust — especially important for strata managers and real estate agents who deal with multiple tradies daily.</p>
-          <div style="margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
-            <span class="tag tag-cost">Free (Zoho Mail) or $7.20/mo (Google Workspace)</span>
-            <span class="tag tag-phase">30 min setup</span>
-          </div>
-        </div>
-
-        <!-- Solution 5 -->
-        <div class="card">
-          <div class="priority-bar priority-med">
-            <div class="priority-dot"></div>
-            <strong style="font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem;">PRIORITY 5 — Month 1</strong>
-          </div>
-          <h4>Automated Review Requests</h4>
-          <p>Google reviews are the single biggest factor in local search ranking after GBP setup. ServiceM8 can automatically send a "How did we go?" text after each job with a direct link to leave a Google review. Beau's existing customers already give great feedback — this just captures it where it matters.</p>
-          <div style="margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
-            <span class="tag tag-cost">Included in ServiceM8</span>
-            <span class="tag tag-phase">15 min setup</span>
-          </div>
-          <div style="margin-top: 16px; padding: 12px 16px; background: var(--green-light); border-radius: 8px;">
-            <p style="font-size: 0.85rem; color: var(--green);"><strong>Result:</strong> 5-star reviews accumulate on Google. Each review makes Coastal Ways rank higher in "plumber near me" searches. Compounds over time — by month 6, Beau could have 30+ reviews while competitors have 5.</p>
-          </div>
-        </div>
-
-        <!-- Solution 6 -->
-        <div class="card">
-          <div class="priority-bar priority-med">
-            <div class="priority-dot"></div>
-            <strong style="font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem;">PRIORITY 6 — Month 2</strong>
-          </div>
-          <h4>Social Media: Before &amp; After Content System</h4>
-          <p>Beau already takes photos of his work. A simple system: snap a before photo when arriving, snap an after photo when done. These get posted to Facebook/Instagram with branded templates — zero extra effort, consistent content that shows Beau's quality workmanship.</p>
-          <ul style="margin: 16px 0; padding-left: 20px; color: rgba(16,32,45,0.6); font-size: 0.9rem;">
-            <li>Before/after photo pairs from ServiceM8 job records</li>
-            <li>Branded template overlay (CWP logo, colours, "Coastal Ways Plumbing" watermark)</li>
-            <li>Posted to Facebook + Instagram 2-3x per week</li>
-            <li>Builds portfolio that speaks for itself</li>
-          </ul>
-          <div style="margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
-            <span class="tag tag-cost">Free</span>
-            <span class="tag tag-phase">Ongoing — 5 min per post</span>
-            <span class="tag tag-assumed">Validate — does Beau take job photos now?</span>
-          </div>
-        </div>
-
-        <!-- Solution 7 -->
-        <div class="card">
-          <div class="priority-bar priority-low">
-            <div class="priority-dot"></div>
-            <strong style="font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem;">PRIORITY 7 — Month 3+</strong>
-          </div>
-          <h4>AI-Assisted Quoting</h4>
-          <p>As Beau builds a history of jobs and costs in ServiceM8, we can create a quoting assistant that suggests prices based on job type, materials, and time. This reduces the mental load of pricing every job from scratch and ensures consistent, profitable quotes.</p>
-          <ul style="margin: 16px 0; padding-left: 20px; color: rgba(16,32,45,0.6); font-size: 0.9rem;">
-            <li>Job history analysis — "similar blocked drain jobs have averaged $X"</li>
-            <li>Materials cost calculator with Reece/Walsh pricing</li>
-            <li>Travel time factored by suburb</li>
-            <li>Suggested quote range with margin protection</li>
-          </ul>
-          <div style="margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
-            <span class="tag tag-cost">Custom build — free (pro bono)</span>
-            <span class="tag tag-phase">Needs 3+ months of job data first</span>
-            <span class="tag tag-assumed">Validate — is quoting a pain point?</span>
-          </div>
-        </div>
-
-        <!-- Solution 8 -->
-        <div class="card">
-          <div class="priority-bar priority-low">
-            <div class="priority-dot"></div>
-            <strong style="font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem;">PRIORITY 8 — Month 3+</strong>
-          </div>
-          <h4>Online Booking Page</h4>
-          <p>ServiceM8 includes an online booking widget that can be embedded on the website. Customers can request a booking directly — selecting service type, preferred time, and adding photos of the issue. Reduces phone tag and captures leads 24/7.</p>
-          <div style="margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
-            <span class="tag tag-cost">Included in ServiceM8</span>
-            <span class="tag tag-phase">1 hour setup</span>
-          </div>
-        </div>
-
-        <!-- Solution 9 -->
-        <div class="card">
-          <div class="priority-bar priority-low">
-            <div class="priority-dot"></div>
-            <strong style="font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem;">PRIORITY 9 — Month 6+</strong>
-          </div>
-          <h4>Maintenance Contract System</h4>
-          <p>The business plan identifies maintenance contracts as an opportunity for recurring revenue. Once Beau has 20+ direct customers, we can build a simple system: annual plumbing check for $X, reminder sent automatically, scheduled in ServiceM8. Turns one-off customers into recurring revenue.</p>
-          <div style="margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
-            <span class="tag tag-cost">Free — uses existing tools</span>
-            <span class="tag tag-phase">Needs customer base first</span>
-            <span class="tag tag-assumed">Validate — is this something Beau wants?</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- IMPLEMENTATION TIMELINE -->
-    <div class="section">
-      <div class="container">
-        <h2 class="section-title">Implementation Timeline</h2>
-        <p class="section-desc">A phased approach — get the high-impact items running first, then layer on automation as the business grows.</p>
-
-        <div class="timeline">
-          <div class="timeline-item">
-            <h4>Week 1: Foundation</h4>
-            <p>Website live + domain connected. Google Business Profile created. ServiceM8 trial started. Branded email set up.</p>
-          </div>
-          <div class="timeline-item">
-            <h4>Week 2-3: Core Systems</h4>
-            <p>ServiceM8 configured (job types, quote templates, invoice templates). Xero set up with chart of accounts. ServiceM8 → Xero sync connected. Bank feeds live.</p>
-          </div>
-          <div class="timeline-item">
-            <h4>Month 2: Growth Layer</h4>
-            <p>Automated review requests turned on. First before/after photos posted. Facebook + Instagram pages active. Hubdoc receipt scanning for Reece/Walsh invoices.</p>
-          </div>
-          <div class="timeline-item">
-            <h4>Month 3-6: Optimisation</h4>
-            <p>Online booking embedded on website. AI quoting suggestions (once job data exists). Maintenance contract templates. Local directory listings.</p>
-          </div>
-          <div class="timeline-item">
-            <h4>Month 6+: Scale</h4>
-            <p>Review data informs marketing (what services get best reviews?). SEO content based on search data. Financial reporting automated for IBA compliance. Ready for apprentice onboarding if needed.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- COST SUMMARY -->
-    <div class="section">
-      <div class="container">
-        <h2 class="section-title">Monthly Cost Summary</h2>
-        <p class="section-desc">Total ongoing cost for the full digital stack.</p>
-
-        <table>
-          <thead>
-            <tr><th>Tool</th><th>Purpose</th><th>Monthly Cost</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Website (GitHub Pages)</td><td>Business website</td><td style="font-family: 'Space Grotesk', sans-serif; font-weight: 700;">Free</td></tr>
-            <tr><td>Domain (coastalwaysplumbing.com)</td><td>Custom domain</td><td style="font-family: 'Space Grotesk', sans-serif;">~$1.25/mo ($15/yr)</td></tr>
-            <tr><td>Google Business Profile</td><td>Local search visibility</td><td style="font-family: 'Space Grotesk', sans-serif; font-weight: 700;">Free</td></tr>
-            <tr><td>ServiceM8</td><td>Job management + invoicing + scheduling</td><td style="font-family: 'Space Grotesk', sans-serif;">$29/mo</td></tr>
-            <tr><td>Xero (Growing plan)</td><td>Accounting + BAS + bank feeds</td><td style="font-family: 'Space Grotesk', sans-serif;">$42/mo</td></tr>
-            <tr><td>Branded email (Zoho)</td><td>Professional email</td><td style="font-family: 'Space Grotesk', sans-serif; font-weight: 700;">Free</td></tr>
-            <tr><td>Facebook + Instagram</td><td>Social media presence</td><td style="font-family: 'Space Grotesk', sans-serif; font-weight: 700;">Free</td></tr>
-            <tr><td>AI solutions (custom)</td><td>Quoting assistant, automation</td><td style="font-family: 'Space Grotesk', sans-serif; font-weight: 700;">Free (pro bono)</td></tr>
-            <tr style="background: var(--teal-light);">
-              <td colspan="2"><strong style="font-family: 'Space Grotesk', sans-serif;">Total Monthly</strong></td>
-              <td><strong style="font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; color: var(--teal);">~$72/mo</strong></td>
-            </tr>
-          </tbody>
-        </table>
 
         <div class="callout">
-          <h4>Return on investment</h4>
-          <p>At $72/month, this stack needs to generate just one additional small job per month to pay for itself. The real ROI is time — if automation saves Beau even 5 hours per week, that's 260 hours per year back on the tools.</p>
+          <h4>Validation key</h4>
+          <p style="margin-top: 8px;">
+            <span class="tag tag-validated">Validated</span> Confirmed by Beau or from the business plan.<br>
+            <span class="tag tag-assumed">Assumed</span> Reasonable assumption, needs Beau's confirmation.<br>
+            <span class="tag tag-critical">Critical</span> Must be addressed immediately.<br>
+            <span class="tag tag-phase">Phase</span> Implementation timing or build stage.<br>
+            <span class="tag tag-cost">Cost</span> Pricing or resource information.
+          </p>
         </div>
       </div>
     </div>
 
-    <!-- NEXT STEPS -->
+    <!-- ========================================== -->
+    <!-- SECTION 2: ARCHITECTURE OVERVIEW           -->
+    <!-- ========================================== -->
     <div class="section">
       <div class="container">
-        <h2 class="section-title">Next Steps</h2>
-        <p class="section-desc">What needs to happen to turn this plan into reality.</p>
+        <span class="section-number">Section 2</span>
+        <h2 class="section-title">Architecture Overview</h2>
+        <p class="section-desc">How all the pieces connect. It's simpler than it looks — four layers, all free, all proven.</p>
 
-        <div class="grid-2">
-          <div class="card" style="border-left: 3px solid var(--teal);">
-            <h4>Beau's Actions</h4>
-            <ul style="padding-left: 18px; margin-top: 12px; color: rgba(16,32,45,0.6); font-size: 0.9rem;">
-              <li>Register domain (coastalwaysplumbing.com) — in progress</li>
-              <li>Set up Google Business Profile (business.google.com)</li>
-              <li>Start ServiceM8 free trial (servicem8.com)</li>
-              <li>Send job photos for website</li>
-              <li>Get Loos font files from Monique</li>
-              <li>Answer interview questions (pain points, customer journey)</li>
-            </ul>
-          </div>
-          <div class="card" style="border-left: 3px solid var(--navy);">
-            <h4>Dave / Snips Actions</h4>
-            <ul style="padding-left: 18px; margin-top: 12px; color: rgba(16,32,45,0.6); font-size: 0.9rem;">
-              <li>Connect domain to website</li>
-              <li>Configure ServiceM8 job types + templates</li>
-              <li>Set up Xero chart of accounts</li>
-              <li>Build branded invoice/quote templates</li>
-              <li>Create social media branded templates</li>
-              <li>Update implementation plan V2 with Beau's interview answers</li>
-            </ul>
+        <div class="arch-diagram">
+          <div class="arch-row">
+
+            <div class="arch-box primary">
+              <h4>Beau's Phone</h4>
+              <p>PWA — looks and works like a native app. Add to home screen once, done. Works offline in crawl spaces with no signal.</p>
+            </div>
+
+            <div class="arch-connector">
+              <span class="arrow">&#8595;</span>
+              <span class="label">syncs over internet</span>
+              <span class="arrow">&#8593;</span>
+            </div>
+
+            <div class="arch-box highlight">
+              <h4>Google Apps Script</h4>
+              <p>Free middleman. A small program that handles requests between the phone app and the spreadsheet. Like a receptionist for data.</p>
+            </div>
+
+            <div class="arch-connector">
+              <span class="arrow">&#8595;</span>
+              <span class="label">reads &amp; writes</span>
+              <span class="arrow">&#8593;</span>
+            </div>
+
+            <div class="arch-box primary">
+              <h4>Google Sheets</h4>
+              <p>THE database. One spreadsheet workbook with six tabs: Jobs, Customers, Quotes, Invoices, Expenses, Reviews. All data lives here.</p>
+            </div>
+
+            <div class="arch-connector">
+              <span class="arrow">&#8595;</span>
+              <span class="label">opens directly</span>
+            </div>
+
+            <div class="arch-box">
+              <h4>Emma's Computer</h4>
+              <p>Opens the same Google Sheet. Sees all data in the spreadsheet format she already knows. Filter, sort, export — all standard.</p>
+            </div>
+
           </div>
         </div>
 
-        <div class="callout-amber callout" style="margin-top: 24px;">
-          <h4>Questions still open (for V2)</h4>
-          <p>These need Beau's input to finalise the plan:</p>
-          <ul style="padding-left: 18px; margin-top: 8px; font-size: 0.9rem; color: rgba(16,32,45,0.7);">
-            <li>Typical job flow from first contact to payment</li>
-            <li>Biggest admin time-sink right now</li>
-            <li>How he currently quotes and invoices</li>
-            <li>Customer communication preferences (phone vs text vs email)</li>
-            <li>Whether he follows up after jobs / asks for reviews</li>
-            <li>Emma and Tim's comfort with technology</li>
-            <li>What customers compliment him on most (for messaging)</li>
+        <div class="grid-2">
+          <div class="card">
+            <h4>What's a PWA?</h4>
+            <p style="margin-top: 8px;">Progressive Web App. It's a website that behaves like a phone app. Beau opens a link, taps "Add to Home Screen," and it appears on his phone with its own icon. No App Store, no updates to install, no storage taken up. It just works.</p>
+            <p style="margin-top: 8px;"><strong style="color: var(--navy);">Offline?</strong> Yes. When Beau's in a crawl space with no signal, the app still works. Data saves locally and syncs when he's back online.</p>
+          </div>
+          <div class="card">
+            <h4>What's Google Apps Script?</h4>
+            <p style="margin-top: 8px;">Think of it as a free robot that sits between Beau's phone and the spreadsheet. When Beau creates a job on his phone, the robot writes it to the spreadsheet. When Emma updates something in the spreadsheet, the phone sees it next time it syncs. All free, all Google.</p>
+          </div>
+          <div class="card">
+            <h4>What about hosting?</h4>
+            <p style="margin-top: 8px;"><strong style="color: var(--navy);">App:</strong> GitHub Pages (free, unlimited, used by millions of sites).<br>
+            <strong style="color: var(--navy);">Data:</strong> Google Sheets (free, backed up, version history).<br>
+            <strong style="color: var(--navy);">API:</strong> Google Apps Script (free, runs on Google's servers).<br>
+            <strong style="color: var(--navy);">Emails:</strong> EmailJS (free tier, 200 emails/month).</p>
+            <div style="margin-top: 12px;">
+              <span class="tag tag-cost">Total hosting: $0/month</span>
+            </div>
+          </div>
+          <div class="card">
+            <h4>Is it reliable?</h4>
+            <p style="margin-top: 8px;">Google Sheets has 99.9% uptime (same infrastructure as Gmail and Google Search). GitHub Pages is used by Microsoft, Facebook, and millions of developers worldwide. EmailJS sends 500 million+ emails per year. These aren't experimental — they're boring, proven infrastructure.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SECTION 3: WHAT WE'RE BUILDING             -->
+    <!-- ========================================== -->
+    <div class="section">
+      <div class="container">
+        <span class="section-number">Section 3</span>
+        <h2 class="section-title">What We're Building</h2>
+        <p class="section-desc">Eight tools, each solving a specific problem. Built in priority order so Beau gets value from week one.</p>
+
+        <!-- TOOL 1: JOB BOARD -->
+        <div class="card tool-card">
+          <div class="tool-header">
+            <div>
+              <span class="tool-number">Tool 1</span>
+              <h3>Job Board</h3>
+            </div>
+            <div class="tool-meta">
+              <span class="tag tag-validated">Validated</span>
+              <span class="tag tag-phase">Week 1</span>
+            </div>
+          </div>
+          <p>A mobile-first dashboard showing today's jobs, upcoming jobs, and completed jobs. Beau can create a new job in 30 seconds &mdash; customer name, address, service type, notes. Tap a phone number to call the customer. Tap an address to open Maps and navigate there.</p>
+          <p style="margin-top: 8px;"><strong style="color: var(--navy);">Why build it:</strong> ServiceM8 charges $29/mo for this. Our version does ONE thing perfectly &mdash; track jobs &mdash; without 50 features Beau won't use. It's faster to open, faster to use, and costs nothing.</p>
+
+          <div class="tool-section">
+            <div class="tool-section-label">How Beau Uses It</div>
+            <ol>
+              <li>Open the app on his phone (home screen icon)</li>
+              <li>See today's jobs at a glance &mdash; addresses, times, service types</li>
+              <li>Tap "+" to create a new job</li>
+              <li>Fill in: customer name, phone, address, service type, date/time, notes</li>
+              <li>Save &mdash; job appears on the board instantly</li>
+              <li>Tap a job to update status: <strong>Scheduled</strong> &rarr; <strong>In Progress</strong> &rarr; <strong>Complete</strong></li>
+              <li>Marking a job as "Complete" triggers a prompt: "Create invoice?"</li>
+              <li>Tap the phone icon to call the customer, or the map icon to navigate</li>
+            </ol>
+          </div>
+
+          <div class="tool-section">
+            <div class="tool-section-label">Data Created</div>
+            <p><strong>Jobs tab</strong> &mdash; one row per job with all details, status, and timestamps. <strong>Customers tab</strong> &mdash; auto-created if the customer is new (no duplicate entry needed).</p>
+          </div>
+
+          <div class="tool-detail-grid">
+            <div class="tool-detail-box">
+              <span class="label">Complexity</span>
+              <span class="value">Medium</span>
+            </div>
+            <div class="tool-detail-box">
+              <span class="label">Priority</span>
+              <span class="value" style="color: var(--red);">Week 1</span>
+            </div>
+            <div class="tool-detail-box">
+              <span class="label">Running Cost</span>
+              <span class="value" style="color: var(--green);">$0/mo</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TOOL 2: QUOTE GENERATOR -->
+        <div class="card tool-card">
+          <div class="tool-header">
+            <div>
+              <span class="tool-number">Tool 2</span>
+              <h3>Quote Generator</h3>
+            </div>
+            <div class="tool-meta">
+              <span class="tag tag-validated">Validated</span>
+              <span class="tag tag-phase">Week 1</span>
+            </div>
+          </div>
+          <p>Generate a branded PDF quote on-site from Beau's phone. Select the job type, add line items (labour, materials, callout fee), the tool calculates GST and total automatically, generates a Coastal Ways-branded PDF, and emails it to the customer. All in under two minutes.</p>
+          <p style="margin-top: 8px;"><strong style="color: var(--navy);">Why build it:</strong> Quoting from templates with auto-calculation saves 15+ minutes per quote vs handwriting or typing in a notes app. A professional branded PDF also sets Beau apart from competitors who text a number.</p>
+
+          <div class="tool-section">
+            <div class="tool-section-label">How Beau Uses It</div>
+            <ol>
+              <li>From a job, tap "Create Quote"</li>
+              <li>Select the service type (e.g. blocked drain, hot water, general plumbing)</li>
+              <li>Add line items &mdash; each with description, quantity, and unit price</li>
+              <li>GST calculates automatically (10% of subtotal)</li>
+              <li>Preview the branded PDF &mdash; CWP logo, colours, ABN, professional layout</li>
+              <li>Tap "Send to Customer" &mdash; quote goes via email with the PDF attached</li>
+              <li>Quote is saved to the Quotes tab with status "Sent"</li>
+              <li>When customer accepts, tap "Accepted" &mdash; status updates, ready to schedule</li>
+            </ol>
+          </div>
+
+          <div class="tool-section">
+            <div class="tool-section-label">Data Created</div>
+            <p><strong>Quotes tab</strong> &mdash; quote ID, linked job, line items, subtotal, GST, total, status (Draft/Sent/Accepted/Declined), and dates.</p>
+          </div>
+
+          <div class="tool-section">
+            <div class="tool-section-label">Technical Note</div>
+            <p>Uses <strong>html2pdf.js</strong> for PDF generation &mdash; renders HTML to PDF directly in the browser. No server needed. The PDF is generated on Beau's phone and sent via EmailJS.</p>
+          </div>
+
+          <div class="tool-detail-grid">
+            <div class="tool-detail-box">
+              <span class="label">Complexity</span>
+              <span class="value">Medium</span>
+            </div>
+            <div class="tool-detail-box">
+              <span class="label">Priority</span>
+              <span class="value" style="color: var(--red);">Week 1</span>
+            </div>
+            <div class="tool-detail-box">
+              <span class="label">Running Cost</span>
+              <span class="value" style="color: var(--green);">$0/mo</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TOOL 3: INVOICE GENERATOR -->
+        <div class="card tool-card">
+          <div class="tool-header">
+            <div>
+              <span class="tool-number">Tool 3</span>
+              <h3>Invoice Generator</h3>
+            </div>
+            <div class="tool-meta">
+              <span class="tag tag-validated">Validated</span>
+              <span class="tag tag-phase">Week 1</span>
+            </div>
+          </div>
+          <p>Auto-generates a branded tax invoice from a completed job. Beau taps one button and the customer gets a professional invoice that meets all ATO requirements. He can also mark invoices as paid and track outstanding amounts at a glance.</p>
+          <p style="margin-top: 8px;"><strong style="color: var(--navy);">Why build it:</strong> Invoicing should be ONE TAP from a completed job, not a separate process in a separate app. If a quote already exists for the job, the line items are pre-filled &mdash; zero re-entry.</p>
+
+          <div class="tool-section">
+            <div class="tool-section-label">How Beau Uses It</div>
+            <ol>
+              <li>Complete a job &mdash; app prompts "Create Invoice?"</li>
+              <li>Line items pre-fill from the quote (or enter manually if no quote)</li>
+              <li>Preview the branded tax invoice &mdash; all legal requirements included</li>
+              <li>Tap "Send" &mdash; customer receives invoice via email</li>
+              <li>When payment comes in, tap "Mark Paid"</li>
+              <li>Select payment method: Cash, Bank Transfer, or Card</li>
+              <li>Invoice status updates &mdash; visible to Emma in the spreadsheet immediately</li>
+            </ol>
+          </div>
+
+          <div class="tool-section">
+            <div class="tool-section-label">Invoice Requirements (ATO Compliant)</div>
+            <ul>
+              <li>Business name: Coastal Ways Plumbing</li>
+              <li>ABN: 62 284 909 142</li>
+              <li>"Tax Invoice" header (mandatory for GST-registered businesses)</li>
+              <li>Sequential invoice number (CWP-0001, CWP-0002...)</li>
+              <li>Invoice date and due date</li>
+              <li>Customer name and details</li>
+              <li>Line items with descriptions, quantities, unit prices</li>
+              <li>GST breakdown (subtotal, GST amount, total inc. GST)</li>
+              <li>Payment terms and bank details</li>
+            </ul>
+          </div>
+
+          <div class="tool-section">
+            <div class="tool-section-label">Data Created</div>
+            <p><strong>Invoices tab</strong> &mdash; invoice ID, sequential number, linked job, line items, subtotal, GST, total, status (Draft/Sent/Paid/Overdue), dates, and payment method.</p>
+          </div>
+
+          <div class="tool-detail-grid">
+            <div class="tool-detail-box">
+              <span class="label">Complexity</span>
+              <span class="value">Medium</span>
+            </div>
+            <div class="tool-detail-box">
+              <span class="label">Priority</span>
+              <span class="value" style="color: var(--red);">Week 1</span>
+            </div>
+            <div class="tool-detail-box">
+              <span class="label">Running Cost</span>
+              <span class="value" style="color: var(--green);">$0/mo</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TOOL 4: CUSTOMER DIRECTORY -->
+        <div class="card tool-card">
+          <div class="tool-header">
+            <div>
+              <span class="tool-number">Tool 4</span>
+              <h3>Customer Directory</h3>
+            </div>
+            <div class="tool-meta">
+              <span class="tag tag-validated">Validated</span>
+              <span class="tag tag-phase">Month 1</span>
+            </div>
+          </div>
+          <p>Auto-populated list of every customer with contact details, full job history, and total spend. When a repeat customer calls, Beau can see their history instantly &mdash; what was done, when, how much they paid, whether they left a review.</p>
+          <p style="margin-top: 8px;"><strong style="color: var(--navy);">Why build it:</strong> Customers are auto-created from jobs &mdash; no separate data entry, ever. The directory IS the job history. No CRM subscription (HubSpot, etc.) needed when the data builds itself.</p>
+
+          <div class="tool-section">
+            <div class="tool-section-label">How Beau Uses It</div>
+            <ol>
+              <li>Open the Customers tab in the app</li>
+              <li>Search by name, phone number, or suburb</li>
+              <li>Tap a customer to see their full profile</li>
+              <li>View: all past jobs, quotes sent, invoices paid, total spent, first and last job dates</li>
+              <li>Tap the phone number to call directly</li>
+              <li>Tap the address to open Maps and navigate</li>
+            </ol>
+          </div>
+
+          <div class="tool-section">
+            <div class="tool-section-label">Data Created</div>
+            <p><strong>Customers tab</strong> &mdash; auto-populated from Jobs, enriched from Quotes and Invoices. Includes: customer ID, name, phone, email, address, suburb, total jobs, total spent, last job date, review status.</p>
+          </div>
+
+          <div class="tool-detail-grid">
+            <div class="tool-detail-box">
+              <span class="label">Complexity</span>
+              <span class="value">Simple</span>
+            </div>
+            <div class="tool-detail-box">
+              <span class="label">Priority</span>
+              <span class="value" style="color: var(--amber);">Month 1</span>
+            </div>
+            <div class="tool-detail-box">
+              <span class="label">Running Cost</span>
+              <span class="value" style="color: var(--green);">$0/mo</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TOOL 5: EXPENSE TRACKER -->
+        <div class="card tool-card">
+          <div class="tool-header">
+            <div>
+              <span class="tool-number">Tool 5</span>
+              <h3>Expense Tracker</h3>
+            </div>
+            <div class="tool-meta">
+              <span class="tag tag-validated">Validated</span>
+              <span class="tag tag-phase">Month 1</span>
+            </div>
+          </div>
+          <p>Log material purchases from Reece and Walsh Plumbing on the spot. Snap a photo of the receipt, enter the amount, link it to the job. End-of-month, Emma can see all supplier expenses neatly in the Google Sheet &mdash; no more chasing paper receipts.</p>
+          <p style="margin-top: 8px;"><strong style="color: var(--navy);">Why build it:</strong> Reece and Walsh are on arrears (end-of-month billing). Tracking what's been spent per supplier per month is critical for cash flow. A photo of each receipt means Beau never loses another paper docket.</p>
+
+          <div class="tool-section">
+            <div class="tool-section-label">How Beau Uses It</div>
+            <ol>
+              <li>Buy materials at Reece (or Walsh, Bunnings, etc.)</li>
+              <li>Open the app, tap "Log Expense"</li>
+              <li>Select supplier: Reece / Walsh / Bunnings / Other</li>
+              <li>Enter amount and brief description</li>
+              <li>Snap a photo of the receipt (camera opens in-app)</li>
+              <li>Optionally link to the job the materials are for</li>
+              <li>Save &mdash; receipt photo stored in Google Drive, expense logged in Expenses tab</li>
+              <li>Emma sees the expense appear in the spreadsheet with a link to the receipt photo</li>
+            </ol>
+          </div>
+
+          <div class="tool-section">
+            <div class="tool-section-label">Data Created</div>
+            <p><strong>Expenses tab</strong> &mdash; date, supplier, description, amount, GST, total, linked job (optional), receipt photo URL, month. <strong>Google Drive</strong> &mdash; receipt photos in an organised folder structure.</p>
+          </div>
+
+          <div class="tool-detail-grid">
+            <div class="tool-detail-box">
+              <span class="label">Complexity</span>
+              <span class="value">Medium</span>
+            </div>
+            <div class="tool-detail-box">
+              <span class="label">Priority</span>
+              <span class="value" style="color: var(--amber);">Month 1</span>
+            </div>
+            <div class="tool-detail-box">
+              <span class="label">Running Cost</span>
+              <span class="value" style="color: var(--green);">$0/mo</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TOOL 6: REVIEW REQUEST SYSTEM -->
+        <div class="card tool-card">
+          <div class="tool-header">
+            <div>
+              <span class="tool-number">Tool 6</span>
+              <h3>Review Request System</h3>
+            </div>
+            <div class="tool-meta">
+              <span class="tag tag-validated">Validated</span>
+              <span class="tag tag-phase">Month 1</span>
+            </div>
+          </div>
+          <p>After completing a job, one tap sends the customer a friendly email asking for a Google review. Each review makes Coastal Ways rank higher in "plumber near me" searches. The difference between 5 reviews and 30 reviews is the difference between page 2 and the Map Pack.</p>
+          <p style="margin-top: 8px;"><strong style="color: var(--navy);">Why build it:</strong> ServiceM8 charges extra for SMS review requests. Our version uses EmailJS (free tier: 200 emails/month). A solo plumber doing 20-30 jobs a month will never hit that limit.</p>
+
+          <div class="tool-section">
+            <div class="tool-section-label">How Beau Uses It</div>
+            <ol>
+              <li>Complete a job &mdash; app shows "Send Review Request?"</li>
+              <li>Tap Yes</li>
+              <li>EmailJS sends a branded email: "Thanks for choosing Coastal Ways. If you were happy with the work, we'd love a Google review" with a direct link</li>
+              <li>Request logged in Reviews tab (date sent, customer, reviewed Y/N)</li>
+              <li>When a review appears on Google, Beau can mark it as received</li>
+            </ol>
+          </div>
+
+          <div class="tool-section">
+            <div class="tool-section-label">Data Created</div>
+            <p><strong>Reviews tab</strong> &mdash; review ID, linked job, customer name, date sent, review received (Y/N), platform (Google/Facebook), review date.</p>
+          </div>
+
+          <div class="tool-detail-grid">
+            <div class="tool-detail-box">
+              <span class="label">Complexity</span>
+              <span class="value">Simple</span>
+            </div>
+            <div class="tool-detail-box">
+              <span class="label">Priority</span>
+              <span class="value" style="color: var(--amber);">Month 1</span>
+            </div>
+            <div class="tool-detail-box">
+              <span class="label">Running Cost</span>
+              <span class="value" style="color: var(--green);">$0/mo</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TOOL 7: ONLINE BOOKING FORM -->
+        <div class="card tool-card">
+          <div class="tool-header">
+            <div>
+              <span class="tool-number">Tool 7</span>
+              <h3>Online Booking Form</h3>
+            </div>
+            <div class="tool-meta">
+              <span class="tag tag-assumed">Assumed</span>
+              <span class="tag tag-phase">Month 2</span>
+            </div>
+          </div>
+          <p>An embeddable form on the Coastal Ways website where customers can request a booking 24/7. They pick a service type, describe the problem, optionally upload a photo, and submit. The enquiry goes straight into the Jobs Google Sheet and Beau gets an email notification.</p>
+          <p style="margin-top: 8px;"><strong style="color: var(--navy);">Why build it:</strong> 24/7 lead capture. When someone's toilet is leaking at 10pm and Beau doesn't answer the phone, they can submit a booking request instead of calling the next plumber in their search results.</p>
+
+          <div class="tool-section">
+            <div class="tool-section-label">How the Customer Uses It</div>
+            <ol>
+              <li>Visit coastalwaysplumbing.com</li>
+              <li>Fill in the booking form: name, phone, email, service type, description of the problem</li>
+              <li>Optionally upload a photo (e.g. leaking pipe, blocked drain)</li>
+              <li>Submit &mdash; Google Apps Script writes to the Jobs tab with status "Enquiry"</li>
+              <li>EmailJS notifies Beau immediately</li>
+              <li>Beau sees the new enquiry in his app &mdash; calls the customer to confirm and schedule</li>
+            </ol>
+          </div>
+
+          <div class="tool-section">
+            <div class="tool-section-label">Data Created</div>
+            <p><strong>Jobs tab</strong> &mdash; new row with status "Enquiry", customer details, service type, description, and photo link (if uploaded).</p>
+          </div>
+
+          <div class="tool-detail-grid">
+            <div class="tool-detail-box">
+              <span class="label">Complexity</span>
+              <span class="value">Simple</span>
+            </div>
+            <div class="tool-detail-box">
+              <span class="label">Priority</span>
+              <span class="value" style="color: var(--amber);">Month 2</span>
+            </div>
+            <div class="tool-detail-box">
+              <span class="label">Running Cost</span>
+              <span class="value" style="color: var(--green);">$0/mo</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TOOL 8: AI QUOTE ASSISTANT -->
+        <div class="card tool-card" style="border-left-color: var(--amber);">
+          <div class="tool-header">
+            <div>
+              <span class="tool-number">Tool 8 &mdash; Future</span>
+              <h3>AI Quote Assistant</h3>
+            </div>
+            <div class="tool-meta">
+              <span class="tag tag-assumed">Assumed &mdash; validate with Beau</span>
+              <span class="tag tag-phase">Month 3+</span>
+            </div>
+          </div>
+          <p>After 3+ months of job data, an AI assistant that suggests pricing based on Beau's own history. "A blocked drain in Tuggerah has averaged [validate with Beau] with [validate with Beau] in materials." Reduces the mental load of pricing every job from scratch and ensures consistency.</p>
+          <p style="margin-top: 8px;"><strong style="color: var(--navy);">Why build it:</strong> This is the real unlock &mdash; Beau's experience encoded as data. No SaaS tool offers this because they don't have Beau's specific pricing history, his suburb knowledge, or his material costs.</p>
+
+          <div class="tool-section">
+            <div class="tool-section-label">How Beau Would Use It</div>
+            <ol>
+              <li>Create a new quote</li>
+              <li>AI suggests a price range based on: job type, suburb, materials likely needed, past similar jobs</li>
+              <li>Beau sees the suggestion as a starting point &mdash; "Past blocked drains in this area: [validate with Beau]"</li>
+              <li>Adjusts as needed based on the specific situation</li>
+              <li>Saves the quote &mdash; this job's data further trains future suggestions</li>
+            </ol>
+          </div>
+
+          <div class="tool-section">
+            <div class="tool-section-label">Data Required</div>
+            <p>Reads from <strong>Jobs</strong>, <strong>Quotes</strong>, and <strong>Invoices</strong> tabs. Needs 3+ months of data to make useful suggestions. The more data, the better the recommendations.</p>
+          </div>
+
+          <div class="callout-amber callout" style="margin-top: 16px;">
+            <h4>Needs validation</h4>
+            <p>Is pricing a significant pain point for Beau? Does he price consistently or does each job feel like starting from scratch? If pricing comes naturally to him, this tool drops in priority. If it's a headache, it becomes high-value.</p>
+          </div>
+
+          <div class="tool-detail-grid">
+            <div class="tool-detail-box">
+              <span class="label">Complexity</span>
+              <span class="value">Complex</span>
+            </div>
+            <div class="tool-detail-box">
+              <span class="label">Priority</span>
+              <span class="value" style="color: var(--teal);">Month 3+</span>
+            </div>
+            <div class="tool-detail-box">
+              <span class="label">Running Cost</span>
+              <span class="value" style="color: var(--green);">$0/mo</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SECTION 4: GOOGLE SHEETS DATA MODEL        -->
+    <!-- ========================================== -->
+    <div class="section">
+      <div class="container">
+        <span class="section-number">Section 4</span>
+        <h2 class="section-title">Google Sheets Data Model</h2>
+        <p class="section-desc">One spreadsheet workbook, six tabs. This is the entire database. Emma sees exactly what's here — no hidden layers, no abstraction.</p>
+
+        <div class="data-tab">
+          <h4>
+            <span class="tab-icon">J</span>
+            Jobs
+          </h4>
+          <p style="font-size: 0.85rem; color: var(--grey-text); margin-bottom: 12px;">Core tab &mdash; every job Beau does gets a row here. This is the heartbeat of the system.</p>
+          <div class="data-columns">
+            <code>job_id</code>
+            <code>date_created</code>
+            <code>customer_name</code>
+            <code>customer_phone</code>
+            <code>customer_email</code>
+            <code>address</code>
+            <code>suburb</code>
+            <code>service_type</code>
+            <code>description</code>
+            <code>scheduled_date</code>
+            <code>scheduled_time</code>
+            <code>status</code>
+            <code>quote_id</code>
+            <code>invoice_id</code>
+            <code>notes</code>
+            <code>photos_link</code>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--grey-text); margin-top: 8px;"><strong>Status values:</strong> Enquiry &rarr; Scheduled &rarr; In Progress &rarr; Complete &rarr; Cancelled</p>
+        </div>
+
+        <div class="data-tab">
+          <h4>
+            <span class="tab-icon">C</span>
+            Customers
+          </h4>
+          <p style="font-size: 0.85rem; color: var(--grey-text); margin-bottom: 12px;">Auto-populated from Jobs. No manual customer entry needed &mdash; when a new customer name appears in a job, they get a row here automatically.</p>
+          <div class="data-columns">
+            <code>customer_id</code>
+            <code>name</code>
+            <code>phone</code>
+            <code>email</code>
+            <code>address</code>
+            <code>suburb</code>
+            <code>total_jobs</code>
+            <code>total_spent</code>
+            <code>last_job_date</code>
+            <code>first_job_date</code>
+            <code>review_status</code>
+            <code>notes</code>
+          </div>
+        </div>
+
+        <div class="data-tab">
+          <h4>
+            <span class="tab-icon">Q</span>
+            Quotes
+          </h4>
+          <p style="font-size: 0.85rem; color: var(--grey-text); margin-bottom: 12px;">Every quote generated through the app. Links back to the job and forward to the invoice.</p>
+          <div class="data-columns">
+            <code>quote_id</code>
+            <code>job_id</code>
+            <code>customer_name</code>
+            <code>date_created</code>
+            <code>line_items</code>
+            <code>subtotal</code>
+            <code>gst</code>
+            <code>total</code>
+            <code>status</code>
+            <code>sent_date</code>
+            <code>accepted_date</code>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--grey-text); margin-top: 8px;"><strong>Status values:</strong> Draft &rarr; Sent &rarr; Accepted / Declined</p>
+          <p style="font-size: 0.8rem; color: var(--grey-text);"><strong>line_items:</strong> stored as a JSON string (e.g. description, qty, unit price per item) &mdash; the app reads and writes this, Emma sees the total</p>
+        </div>
+
+        <div class="data-tab">
+          <h4>
+            <span class="tab-icon">I</span>
+            Invoices
+          </h4>
+          <p style="font-size: 0.85rem; color: var(--grey-text); margin-bottom: 12px;">Every invoice issued. Emma's primary view for accounts receivable &mdash; filter by status to see what's outstanding.</p>
+          <div class="data-columns">
+            <code>invoice_id</code>
+            <code>invoice_number</code>
+            <code>job_id</code>
+            <code>customer_name</code>
+            <code>date_created</code>
+            <code>line_items</code>
+            <code>subtotal</code>
+            <code>gst</code>
+            <code>total</code>
+            <code>status</code>
+            <code>sent_date</code>
+            <code>due_date</code>
+            <code>paid_date</code>
+            <code>payment_method</code>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--grey-text); margin-top: 8px;"><strong>Status values:</strong> Draft &rarr; Sent &rarr; Paid / Overdue</p>
+          <p style="font-size: 0.8rem; color: var(--grey-text);"><strong>Payment method:</strong> Cash / Bank Transfer / Card</p>
+        </div>
+
+        <div class="data-tab">
+          <h4>
+            <span class="tab-icon">E</span>
+            Expenses
+          </h4>
+          <p style="font-size: 0.85rem; color: var(--grey-text); margin-bottom: 12px;">Material purchases and business costs. Emma can filter by supplier to reconcile Reece and Walsh end-of-month statements.</p>
+          <div class="data-columns">
+            <code>expense_id</code>
+            <code>date</code>
+            <code>supplier</code>
+            <code>description</code>
+            <code>amount</code>
+            <code>gst</code>
+            <code>total</code>
+            <code>job_id</code>
+            <code>receipt_photo_url</code>
+            <code>month</code>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--grey-text); margin-top: 8px;"><strong>Supplier values:</strong> Reece / Walsh / Bunnings / Other</p>
+        </div>
+
+        <div class="data-tab">
+          <h4>
+            <span class="tab-icon">R</span>
+            Reviews
+          </h4>
+          <p style="font-size: 0.85rem; color: var(--grey-text); margin-bottom: 12px;">Tracks which customers have been asked for reviews and whether they've left one.</p>
+          <div class="data-columns">
+            <code>review_id</code>
+            <code>job_id</code>
+            <code>customer_name</code>
+            <code>request_sent_date</code>
+            <code>review_received</code>
+            <code>platform</code>
+            <code>review_date</code>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--grey-text); margin-top: 8px;"><strong>Platform:</strong> Google / Facebook</p>
+          <p style="font-size: 0.8rem; color: var(--grey-text);"><strong>review_received:</strong> Y / N</p>
+        </div>
+
+        <div class="callout" style="margin-top: 24px;">
+          <h4>Why one spreadsheet?</h4>
+          <p>Everything in one workbook means Emma can cross-reference instantly. Filter invoices by customer, check expenses against a job, see which months had the most revenue &mdash; all in the tool she already knows. No training, no new software.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SECTION 5: BUILD VS BUY DECISION MATRIX    -->
+    <!-- ========================================== -->
+    <div class="section">
+      <div class="container">
+        <span class="section-number">Section 5</span>
+        <h2 class="section-title">Build vs Buy Decision Matrix</h2>
+        <p class="section-desc">For each area of the business, we made a deliberate choice. Here's the reasoning.</p>
+
+        <div style="overflow-x: auto;">
+          <table>
+            <thead>
+              <tr>
+                <th>Area</th>
+                <th>Build (Custom)</th>
+                <th>Buy (SaaS)</th>
+                <th>Decision</th>
+                <th>Reasoning</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Job Management</strong></td>
+                <td>PWA + Google Sheets</td>
+                <td>ServiceM8 $29/mo</td>
+                <td><span class="tag tag-phase" style="margin: 0;">Build</span></td>
+                <td>Core workflow, must be frictionless, no feature bloat. Beau needs 6 features, not 50.</td>
+              </tr>
+              <tr>
+                <td><strong>Quoting</strong></td>
+                <td>html2pdf.js in browser</td>
+                <td>ServiceM8 quotes</td>
+                <td><span class="tag tag-phase" style="margin: 0;">Build</span></td>
+                <td>One-tap branded PDF is simpler than navigating ServiceM8's quote module.</td>
+              </tr>
+              <tr>
+                <td><strong>Invoicing</strong></td>
+                <td>html2pdf.js + EmailJS</td>
+                <td>ServiceM8 / Xero</td>
+                <td><span class="tag tag-phase" style="margin: 0;">Build</span></td>
+                <td>Auto-generate from completed job. Branded, ATO-compliant, one tap.</td>
+              </tr>
+              <tr>
+                <td><strong>CRM</strong></td>
+                <td>Auto from job data</td>
+                <td>HubSpot Free</td>
+                <td><span class="tag tag-phase" style="margin: 0;">Build</span></td>
+                <td>No separate CRM entry. Customers come from jobs &mdash; the data builds itself.</td>
+              </tr>
+              <tr>
+                <td><strong>Expenses</strong></td>
+                <td>Photo + Sheets</td>
+                <td>Dext / Hubdoc $25+/mo</td>
+                <td><span class="tag tag-phase" style="margin: 0;">Build</span></td>
+                <td>Snap receipt, enter amount, done. No OCR subscription needed for a solo tradie.</td>
+              </tr>
+              <tr>
+                <td><strong>Reviews</strong></td>
+                <td>EmailJS free tier</td>
+                <td>Podium $249/mo</td>
+                <td><span class="tag tag-phase" style="margin: 0;">Build</span></td>
+                <td>200 free emails/month is more than enough. Podium is absurdly priced for this.</td>
+              </tr>
+              <tr>
+                <td><strong>Booking</strong></td>
+                <td>Web form + Apps Script</td>
+                <td>Calendly $12/mo</td>
+                <td><span class="tag tag-phase" style="margin: 0;">Build</span></td>
+                <td>Simple enquiry form, no scheduling complexity. Beau calls back to confirm.</td>
+              </tr>
+              <tr>
+                <td><strong>AI Quoting</strong></td>
+                <td>Custom (future)</td>
+                <td>Nothing exists</td>
+                <td><span class="tag tag-phase" style="margin: 0;">Build</span></td>
+                <td>Unique advantage. No SaaS offers personalised pricing AI from your own data.</td>
+              </tr>
+              <tr>
+                <td><strong>Accounting</strong></td>
+                <td>Google Sheets (start)</td>
+                <td>Xero $42/mo</td>
+                <td><span class="tag tag-assumed" style="margin: 0;">Hybrid</span></td>
+                <td>Start free with Sheets. Add Xero Starter when/if the accountant requires it.</td>
+              </tr>
+              <tr>
+                <td><strong>Google Business</strong></td>
+                <td>&mdash;</td>
+                <td>Google (free)</td>
+                <td><span class="tag tag-validated" style="margin: 0;">Use</span></td>
+                <td>No alternative. Critical for local search. Free.</td>
+              </tr>
+              <tr>
+                <td><strong>Social Media</strong></td>
+                <td>&mdash;</td>
+                <td>Facebook / Instagram (free)</td>
+                <td><span class="tag tag-validated" style="margin: 0;">Use</span></td>
+                <td>No alternative for social presence. Free platforms.</td>
+              </tr>
+              <tr>
+                <td><strong>Website</strong></td>
+                <td>Custom HTML</td>
+                <td>WordPress $10+/mo</td>
+                <td><span class="tag tag-validated" style="margin: 0;">Built</span></td>
+                <td>Already done. Free hosting on GitHub Pages. Faster, simpler, no CMS overhead.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SECTION 6: IMPLEMENTATION TIMELINE         -->
+    <!-- ========================================== -->
+    <div class="section">
+      <div class="container">
+        <span class="section-number">Section 6</span>
+        <h2 class="section-title">Implementation Timeline</h2>
+        <p class="section-desc">Beau gets a working system in week one. Each phase adds capability without disrupting what's already working.</p>
+
+        <div class="timeline">
+
+          <div class="timeline-item">
+            <h4 style="color: var(--red);">Week 1 &mdash; Core Foundation</h4>
+            <p>Beau can create jobs, quote, invoice, and get paid. The essentials.</p>
+            <ul>
+              <li>Google Sheets data model set up (all 6 tabs, formatting, validation rules)</li>
+              <li>Google Apps Script API deployed (read/write endpoints for all tabs)</li>
+              <li>Job Board MVP &mdash; create, view, schedule, update status, complete</li>
+              <li>Quote Generator &mdash; line items, GST calc, branded PDF, email to customer</li>
+              <li>Invoice Generator &mdash; auto from job, branded tax invoice PDF, email, mark paid</li>
+              <li>PWA shell &mdash; installable on Beau's phone, home screen icon</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <h4 style="color: var(--amber);">Weeks 2-3 &mdash; Automation Layer</h4>
+            <p>Remove repetitive tasks. Data starts building itself.</p>
+            <ul>
+              <li>Customer Directory &mdash; auto-populated from jobs, searchable, tap-to-call</li>
+              <li>Expense Tracker &mdash; receipt photo capture, supplier tracking, job linking</li>
+              <li>Review Request System &mdash; one-tap email after job completion</li>
+              <li>Offline capability &mdash; app works without signal, syncs when back online</li>
+              <li>Emma walkthrough &mdash; show Emma the Google Sheet, set up her filters and views</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <h4 style="color: var(--teal);">Month 2 &mdash; Growth Layer</h4>
+            <p>Start capturing leads and building the review engine.</p>
+            <ul>
+              <li>Online Booking Form &mdash; embedded on website, submissions to Jobs tab</li>
+              <li>Before/after photo workflow &mdash; snap photos on arrival and completion, linked to job</li>
+              <li>Reporting dashboard in Google Sheets &mdash; pivot tables for Emma and Tim (monthly revenue, outstanding invoices, expenses by supplier, job types breakdown)</li>
+              <li>Google Business Profile setup &mdash; claim listing, optimise, first review push</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <h4 style="color: var(--navy);">Month 3+ &mdash; Intelligence Layer</h4>
+            <p>Data-driven tools that get smarter the more Beau uses the system.</p>
+            <ul>
+              <li>AI Quote Assistant &mdash; pricing suggestions based on accumulated job data</li>
+              <li>Recurring job templates &mdash; for strata contracts and regular maintenance</li>
+              <li>Financial reporting &mdash; monthly P&amp;L from Sheets data, cash flow tracking</li>
+              <li>Xero integration &mdash; if and when the accountant requires it</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SECTION 7: COST COMPARISON                 -->
+    <!-- ========================================== -->
+    <div class="section">
+      <div class="container">
+        <span class="section-number">Section 7</span>
+        <h2 class="section-title">Cost Comparison</h2>
+        <p class="section-desc">What the V1 plan would have cost vs what V2 actually costs. The savings are significant over time.</p>
+
+        <div style="overflow-x: auto;">
+          <table>
+            <thead>
+              <tr>
+                <th>Area</th>
+                <th>V1 Plan (SaaS)</th>
+                <th>V2 Plan (Custom)</th>
+                <th>Monthly Saving</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Job Management</strong></td>
+                <td>ServiceM8 &mdash; $29/mo</td>
+                <td>Custom PWA &mdash; <strong style="color: var(--green);">$0</strong></td>
+                <td style="color: var(--green); font-weight: 500;">$29/mo</td>
+              </tr>
+              <tr>
+                <td><strong>Accounting</strong></td>
+                <td>Xero &mdash; $42/mo</td>
+                <td>Google Sheets &mdash; <strong style="color: var(--green);">$0</strong></td>
+                <td style="color: var(--green); font-weight: 500;">$42/mo</td>
+              </tr>
+              <tr>
+                <td><strong>Website Hosting</strong></td>
+                <td>WordPress &mdash; $10/mo</td>
+                <td>GitHub Pages &mdash; <strong style="color: var(--green);">$0</strong></td>
+                <td style="color: var(--green); font-weight: 500;">$10/mo</td>
+              </tr>
+              <tr>
+                <td><strong>Booking System</strong></td>
+                <td>Calendly &mdash; $12/mo</td>
+                <td>Custom form &mdash; <strong style="color: var(--green);">$0</strong></td>
+                <td style="color: var(--green); font-weight: 500;">$12/mo</td>
+              </tr>
+              <tr>
+                <td><strong>Email</strong></td>
+                <td>Google Workspace &mdash; $7.20/mo</td>
+                <td>Zoho Mail &mdash; <strong style="color: var(--green);">$0</strong></td>
+                <td style="color: var(--green); font-weight: 500;">$7.20/mo</td>
+              </tr>
+              <tr style="background: var(--green-light);">
+                <td><strong>Total</strong></td>
+                <td><strong>$100.20/mo</strong></td>
+                <td><strong style="color: var(--green);">$0/mo</strong></td>
+                <td><strong style="color: var(--green);">$100.20/mo</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="grid-3" style="margin-top: 24px;">
+          <div class="card" style="text-align: center; border-top: 3px solid var(--red);">
+            <p style="font-size: 0.75rem; color: var(--grey-text); text-transform: uppercase; letter-spacing: 0.08em; font-family: 'Space Grotesk', sans-serif;">Year 1 with SaaS</p>
+            <p style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 2rem; color: var(--red); margin: 8px 0;">$1,202</p>
+            <p style="font-size: 0.85rem; color: var(--grey-text);">in subscriptions</p>
+          </div>
+          <div class="card" style="text-align: center; border-top: 3px solid var(--teal);">
+            <p style="font-size: 0.75rem; color: var(--grey-text); text-transform: uppercase; letter-spacing: 0.08em; font-family: 'Space Grotesk', sans-serif;">Year 1 with Custom</p>
+            <p style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 2rem; color: var(--green); margin: 8px 0;">$0</p>
+            <p style="font-size: 0.85rem; color: var(--grey-text);">in subscriptions</p>
+          </div>
+          <div class="card" style="text-align: center; border-top: 3px solid var(--green);">
+            <p style="font-size: 0.75rem; color: var(--grey-text); text-transform: uppercase; letter-spacing: 0.08em; font-family: 'Space Grotesk', sans-serif;">5-Year Savings</p>
+            <p style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 2rem; color: var(--green); margin: 8px 0;">$6,012</p>
+            <p style="font-size: 0.85rem; color: var(--grey-text);">kept in the business</p>
+          </div>
+        </div>
+
+        <div class="callout" style="margin-top: 24px;">
+          <h4>The only ongoing cost</h4>
+          <p>Domain registration: ~$15/year. That's the entire running cost of Beau's digital infrastructure. Everything else is free-tier services that comfortably handle a solo plumber's volume.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SECTION 8: WHAT STAYS THE SAME             -->
+    <!-- ========================================== -->
+    <div class="section">
+      <div class="container">
+        <span class="section-number">Section 8</span>
+        <h2 class="section-title">What Stays the Same</h2>
+        <p class="section-desc">Not everything changes. These are already right and don't need custom alternatives.</p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h4>Google Business Profile</h4>
+            <p style="margin-top: 8px;">Free, critical for local search, no alternative. When someone searches "plumber Central Coast," this is what shows up. Setting it up and collecting reviews is the single highest-ROI activity for a local tradesperson.</p>
+            <span class="tag tag-cost" style="margin-top: 8px;">Free</span>
+            <span class="tag tag-critical">Critical</span>
+          </div>
+          <div class="card">
+            <h4>Domain Name</h4>
+            <p style="margin-top: 8px;">coastalwaysplumbing.com &mdash; already registered. Renews annually. The foundation for branded email, website, and professional presence.</p>
+            <span class="tag tag-cost" style="margin-top: 8px;">~$15/year</span>
+            <span class="tag tag-validated">Already done</span>
+          </div>
+          <div class="card">
+            <h4>Branded Email</h4>
+            <p style="margin-top: 8px;">Zoho Mail free tier provides a professional email address (e.g. beau@coastalwaysplumbing.com) at no cost. Far better than an Outlook address for a business.</p>
+            <span class="tag tag-cost" style="margin-top: 8px;">Free (Zoho)</span>
+          </div>
+          <div class="card">
+            <h4>Social Media Presence</h4>
+            <p style="margin-top: 8px;">Facebook and Instagram for before/after content, community presence, and social proof. Free platforms, organic reach. No need to pay for scheduling tools at this volume.</p>
+            <span class="tag tag-cost" style="margin-top: 8px;">Free</span>
+          </div>
+          <div class="card" style="grid-column: 1 / -1;">
+            <h4>Website</h4>
+            <p style="margin-top: 8px;">Already built. Custom HTML, hosted free on GitHub Pages. Faster load times than WordPress, no security updates, no plugin conflicts. Mobile-optimised and ready for the booking form embed in Month 2.</p>
+            <span class="tag tag-cost" style="margin-top: 8px;">Free hosting</span>
+            <span class="tag tag-validated">Already built</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SECTION 9: RISKS AND MITIGATIONS           -->
+    <!-- ========================================== -->
+    <div class="section">
+      <div class="container">
+        <span class="section-number">Section 9</span>
+        <h2 class="section-title">Risks and Mitigations</h2>
+        <p class="section-desc">Every approach has risks. Here's what could go wrong and what we do about it.</p>
+
+        <div class="card" style="border-left: 4px solid var(--amber);">
+          <h4>Google changes Sheets API pricing</h4>
+          <p style="margin-top: 8px;"><span class="tag tag-assumed">Low risk</span></p>
+          <p>Google Sheets API has been free for low-volume usage for over a decade. A solo plumber doing 20-30 jobs per month is well within any conceivable free tier. Even if pricing changed, the usage volume is negligible.</p>
+          <p style="margin-top: 8px; padding: 10px 14px; background: var(--green-light); border-radius: 6px; font-size: 0.85rem; color: var(--green);"><strong>Mitigation:</strong> Data is in standard spreadsheet format. Can migrate to Supabase (free tier) or any database with minimal effort. No vendor lock-in.</p>
+        </div>
+
+        <div class="card" style="border-left: 4px solid var(--amber);">
+          <h4>Beau finds custom tools too basic</h4>
+          <p style="margin-top: 8px;"><span class="tag tag-assumed">Medium risk</span></p>
+          <p>If Beau has used polished apps before and expects a certain level of refinement, the custom PWA might feel rough in comparison. The trade-off is simplicity and cost vs polish.</p>
+          <p style="margin-top: 8px; padding: 10px 14px; background: var(--green-light); border-radius: 6px; font-size: 0.85rem; color: var(--green);"><strong>Mitigation:</strong> Iterative development. Features are added based on Beau's feedback. If at any point he'd prefer ServiceM8, the data in Google Sheets can be exported and imported. No sunk cost, no data loss.</p>
+        </div>
+
+        <div class="card" style="border-left: 4px solid var(--amber);">
+          <h4>Data loss</h4>
+          <p style="margin-top: 8px;"><span class="tag tag-assumed">Low risk</span></p>
+          <p>What if someone accidentally deletes data from the spreadsheet? Or Google has an outage?</p>
+          <p style="margin-top: 8px; padding: 10px 14px; background: var(--green-light); border-radius: 6px; font-size: 0.85rem; color: var(--green);"><strong>Mitigation:</strong> Google Sheets has built-in version history (every edit is saved, can revert any time). We'll also set up a simple automated backup script that copies the spreadsheet data daily. Belt and braces.</p>
+        </div>
+
+        <div class="card" style="border-left: 4px solid var(--amber);">
+          <h4>Emma prefers a "proper" accounting system</h4>
+          <p style="margin-top: 8px;"><span class="tag tag-assumed">Medium risk</span></p>
+          <p>Emma or Tim's accountant might want proper accounting software for BAS lodgement, bank reconciliation, or reporting.</p>
+          <p style="margin-top: 8px; padding: 10px 14px; background: var(--green-light); border-radius: 6px; font-size: 0.85rem; color: var(--green);"><strong>Mitigation:</strong> Xero Starter ($42/mo) integration is designed as a Phase 2 option. When the time comes, invoice data from Google Sheets maps directly to Xero via API or CSV import. The switch can happen at any time without disrupting the tools Beau uses on his phone.</p>
+        </div>
+
+        <div class="card" style="border-left: 4px solid var(--amber);">
+          <h4>Beau's phone isn't compatible</h4>
+          <p style="margin-top: 8px;"><span class="tag tag-assumed">Low risk &mdash; validate phone model with Beau</span></p>
+          <p>PWAs work on any modern smartphone (iPhone or Android, from the last 5+ years). The only potential issue is very old devices with outdated browsers.</p>
+          <p style="margin-top: 8px; padding: 10px 14px; background: var(--green-light); border-radius: 6px; font-size: 0.85rem; color: var(--green);"><strong>Mitigation:</strong> Confirm Beau's phone model. If it's a recent iPhone or Android device (2020+), it will work perfectly. PWAs have been supported on both platforms for years.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SECTION 10: OPEN QUESTIONS FOR BEAU        -->
+    <!-- ========================================== -->
+    <div class="section">
+      <div class="container">
+        <span class="section-number">Section 10</span>
+        <h2 class="section-title">Open Questions for Beau</h2>
+        <p class="section-desc">These questions will shape the final build. Some are critical (must answer before we start), others refine priority and features.</p>
+
+        <div class="card" style="border-top: 3px solid var(--red);">
+          <h4>Day-to-Day Workflow</h4>
+          <p style="font-size: 0.85rem; color: var(--grey-text); margin-bottom: 12px;">Understanding how Beau currently works so the tools fit his routine, not the other way around.</p>
+          <ul class="checklist">
+            <li>Walk me through a typical job from first contact to getting paid &mdash; what are all the steps?</li>
+            <li>What takes the most time that ISN'T actual plumbing?</li>
+            <li>How do you currently track jobs, your schedule, and payments?</li>
+            <li>What's the most annoying part of your work week?</li>
+          </ul>
+        </div>
+
+        <div class="card" style="border-top: 3px solid var(--teal);">
+          <h4>Customer Acquisition</h4>
+          <p style="font-size: 0.85rem; color: var(--grey-text); margin-bottom: 12px;">Understanding how work comes in today so we can capture and grow those channels.</p>
+          <ul class="checklist">
+            <li>How does a typical customer find you right now? (Word of mouth, Google, referral, strata manager?)</li>
+            <li>What happens when someone calls? Do you answer live, call back later, text?</li>
+            <li>How do you quote? On the spot verbally, write up later, phone estimate?</li>
+            <li>How do you invoice? Handwritten, email a number, use an app?</li>
+            <li>Preferred customer communication &mdash; phone calls, text messages, or email?</li>
+          </ul>
+        </div>
+
+        <div class="card" style="border-top: 3px solid var(--green);">
+          <h4>Growth and Reputation</h4>
+          <p style="font-size: 0.85rem; color: var(--grey-text); margin-bottom: 12px;">Where the review system and online presence will have the most impact.</p>
+          <ul class="checklist">
+            <li>Do you follow up after a job? Do you ask for reviews?</li>
+            <li>What do customers compliment you on most? (Quality, punctuality, pricing, communication?)</li>
+          </ul>
+        </div>
+
+        <div class="card" style="border-top: 3px solid var(--amber);">
+          <h4>Tech and Tooling</h4>
+          <p style="font-size: 0.85rem; color: var(--grey-text); margin-bottom: 12px;">Making sure what we build actually works on Beau's devices and fits Emma's workflow.</p>
+          <ul class="checklist">
+            <li>What phone does Beau use? (iPhone or Android, which model?)</li>
+            <li>How comfortable is Emma with spreadsheets or apps?</li>
+            <li>Is quoting and pricing a significant pain point, or does it come naturally?</li>
+            <li>Does Beau want maintenance contracts (strata, regular clients) as a revenue stream?</li>
           </ul>
         </div>
       </div>
@@ -614,8 +1564,8 @@
 
   <!-- FOOTER -->
   <footer class="doc-footer">
-    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
-      <p>Coastal Ways Plumbing &mdash; Digital Implementation Plan v1.0</p>
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+      <p>Coastal Ways Plumbing &mdash; Digital Implementation Plan v2.0</p>
       <p>Last updated: 4 April 2026</p>
     </div>
   </footer>
