@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Getting Online — Coastal Ways Plumbing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root { --sand: #FBF6F3; --grey: #C4CFD1; --teal: #055A5F; --navy: #10202D; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Roboto', system-ui, sans-serif; font-weight: 300; color: var(--navy); background: var(--sand); line-height: 1.7; }
+    h1,h2,h3,h4 { font-family: 'Space Grotesk', system-ui, sans-serif; letter-spacing: -0.03em; font-weight: 700; }
+    .container { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+
+    header { background: var(--navy); padding: 40px 0; border-bottom: 4px solid var(--teal); }
+    header h1 { color: #fff; font-size: 1.75rem; margin-bottom: 4px; }
+    header p { color: var(--grey); font-size: 0.95rem; font-weight: 300; }
+    header .meta { margin-top: 16px; font-size: 0.8rem; color: var(--grey); opacity: 0.7; }
+
+    .intro { padding: 32px 0; border-bottom: 1px solid rgba(196,207,209,0.3); }
+    .intro p { color: rgba(16,32,45,0.7); font-size: 1.05rem; }
+
+    .step { padding: 32px 0; border-bottom: 1px solid rgba(196,207,209,0.3); }
+    .step-number {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--teal); color: #fff;
+      font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1rem;
+      margin-bottom: 12px;
+    }
+    .step h2 { font-size: 1.35rem; margin-bottom: 4px; }
+    .step .what { color: var(--teal); font-size: 0.85rem; font-family: 'Space Grotesk', sans-serif; font-weight: 500; margin-bottom: 12px; }
+    .step .why {
+      background: rgba(5,90,95,0.06); border-left: 3px solid var(--teal);
+      padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 16px 0;
+      font-size: 0.9rem; color: rgba(16,32,45,0.7);
+    }
+    .step .why strong { color: var(--teal); font-weight: 500; }
+
+    ol.actions { padding-left: 20px; margin: 16px 0; }
+    ol.actions li { margin-bottom: 10px; font-size: 0.95rem; color: rgba(16,32,45,0.8); }
+    ol.actions li strong { color: var(--navy); font-weight: 500; }
+
+    .field-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+    .field-table th { background: var(--navy); color: #fff; text-align: left; padding: 10px 14px; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .field-table td { padding: 10px 14px; border-bottom: 1px solid rgba(196,207,209,0.3); }
+    .field-table tr:nth-child(even) td { background: rgba(251,246,243,0.5); }
+    .field-table th:first-child { border-radius: 8px 0 0 0; }
+    .field-table th:last-child { border-radius: 0 8px 0 0; }
+    .field-table code { background: rgba(5,90,95,0.08); padding: 2px 6px; border-radius: 4px; font-size: 0.85rem; }
+
+    .after {
+      background: #fff; border: 1px solid rgba(196,207,209,0.3); border-radius: 8px;
+      padding: 16px 20px; margin: 16px 0;
+    }
+    .after h4 { font-size: 0.85rem; color: var(--teal); margin-bottom: 4px; }
+    .after p { font-size: 0.9rem; color: rgba(16,32,45,0.7); }
+
+    .checklist { list-style: none; padding: 0; margin: 16px 0; }
+    .checklist li {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px 0; border-bottom: 1px solid rgba(196,207,209,0.15);
+      font-size: 0.95rem; color: rgba(16,32,45,0.8);
+    }
+    .checklist li::before {
+      content: ''; flex-shrink: 0; width: 20px; height: 20px; margin-top: 2px;
+      border: 2px solid var(--grey); border-radius: 4px;
+    }
+
+    .note {
+      background: #FFFBEB; border-left: 3px solid #D97706;
+      padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 16px 0;
+      font-size: 0.9rem; color: rgba(16,32,45,0.7);
+    }
+
+    .done-tag {
+      display: inline-block; background: #F0FDF4; color: #16A34A;
+      font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      padding: 3px 10px; border-radius: 4px;
+    }
+    .wait-tag {
+      display: inline-block; background: rgba(5,90,95,0.08); color: var(--teal);
+      font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      padding: 3px 10px; border-radius: 4px;
+    }
+
+    footer {
+      background: var(--navy); color: var(--grey); padding: 24px 0;
+      font-size: 0.8rem; text-align: center; margin-top: 40px;
+    }
+
+    @media print {
+      body { font-size: 11pt; }
+      .step { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <h1>Getting Online</h1>
+      <p>Your step-by-step guide to setting up Coastal Ways Plumbing's digital presence.</p>
+      <div class="meta">For Beau Petterson &bull; Prepared by Dave Calder &bull; 4 April 2026</div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <div class="intro">
+      <p>We're setting up the digital foundation for Coastal Ways Plumbing. Think of it like connecting the plumbing in a new house — the pipes (domain, Google, email) need to be in place before the fixtures (website, reviews, booking) work properly.</p>
+      <p style="margin-top: 12px;">Most of these are one-time tasks that take 5-10 minutes each. Once done, they work forever.</p>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="step">
+      <div class="step-number">1</div>
+      <h2>Create a Google account for the business</h2>
+      <div class="what">One login for everything Google — Maps, Reviews, Calendar</div>
+
+      <div class="why">
+        <strong>Why:</strong> When someone searches "plumber near me" on their phone, Google shows a map with local businesses first. Without a Google account, Coastal Ways is invisible on that map. This is the #1 way people find local plumbers.
+      </div>
+
+      <ol class="actions">
+        <li>Go to <strong>accounts.google.com/signup</strong></li>
+        <li>Tap <strong>Create account</strong> → choose <strong>"For work or my business"</strong></li>
+        <li>Fill in:
+          <table class="field-table">
+            <tr><th>Field</th><th>What to type</th></tr>
+            <tr><td>First name</td><td><code>Coastal Ways</code></td></tr>
+            <tr><td>Last name</td><td><code>Plumbing</code></td></tr>
+            <tr><td>Email</td><td><code>coastalwaysplumbing@gmail.com</code></td></tr>
+            <tr><td>Password</td><td>Something strong — write it down</td></tr>
+          </table>
+        </li>
+        <li>Add your phone (0402 269 088) for recovery</li>
+        <li>Complete the signup</li>
+      </ol>
+
+      <div class="after">
+        <h4>When you're done</h4>
+        <p>Write down the email and password somewhere safe. Send Dave the email address (not the password). You'll use this login for the next step.</p>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step">
+      <div class="step-number">2</div>
+      <h2>Set up Google Business Profile</h2>
+      <div class="what">Your listing on Google Maps — how new customers find you</div>
+
+      <div class="why">
+        <strong>Why:</strong> This is the single most important thing you can do to get phone calls from new customers. When someone in Wyong searches "plumber near me," Google shows a map with businesses ranked by reviews and relevance. This puts you on that map. It's free.
+      </div>
+
+      <ol class="actions">
+        <li>Go to <strong>business.google.com</strong> (easier on a laptop)</li>
+        <li>Sign in with the Google account you just created</li>
+        <li>Tap <strong>"Add your business to Google"</strong></li>
+        <li>Search for "Coastal Ways Plumbing" — tap <strong>"Add your business"</strong></li>
+        <li>Fill in:
+          <table class="field-table">
+            <tr><th>Field</th><th>What to enter</th></tr>
+            <tr><td>Business name</td><td><code>Coastal Ways Plumbing</code></td></tr>
+            <tr><td>Category</td><td>Start typing <code>Plumber</code> and select it</td></tr>
+            <tr><td>Location customers can visit?</td><td>Select <strong>No</strong> (you go to them)</td></tr>
+            <tr><td>Service area</td><td>Type <code>Central Coast</code> and select NSW</td></tr>
+            <tr><td>Phone</td><td><code>0402 269 088</code></td></tr>
+            <tr><td>Website</td><td><code>coastalwaysplumbing.com</code></td></tr>
+          </table>
+        </li>
+        <li><strong>Verify your business</strong> — pick <strong>phone verification</strong> if offered (fastest). Google calls or texts a code to your number. Type it in. Done.</li>
+        <li>Once verified, add:
+          <ul style="margin: 8px 0 0 16px; font-size: 0.9rem; color: rgba(16,32,45,0.7);">
+            <li><strong>Hours:</strong> Mon-Fri 7am-5pm, Sat-Sun "Emergency calls only"</li>
+            <li><strong>Description:</strong> "Licensed plumber serving the Central Coast. 10+ years experience in residential, commercial and emergency plumbing. Leak detection, blocked drains, hot water systems, gas fitting, bathroom renovations. Available 24/7 for emergencies."</li>
+            <li><strong>Photos:</strong> Upload your logo + 3-5 job photos</li>
+          </ul>
+        </li>
+      </ol>
+
+      <div class="after">
+        <h4>When you're done</h4>
+        <p>Your listing starts appearing on Google Maps within 24-48 hours. Every Google Review you get from a customer makes you rank higher. Ask happy customers to leave a review — it's the best free marketing you can do.</p>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step">
+      <div class="step-number">3</div>
+      <h2>Send assets to Dave</h2>
+      <div class="what">The files Dave needs to finish the website</div>
+
+      <div class="why">
+        <strong>Why:</strong> Real photos of you and your work build trust faster than any words on a page. A property manager deciding between two plumbers will pick the one who looks real. Stock photos scream "I just started yesterday."
+      </div>
+
+      <ul class="checklist">
+        <li><strong>Logo files</strong> from Monique — the actual image files (SVG or PNG), not the PDF. If you're not sure what you have, send everything and Dave will sort it out.</li>
+        <li><strong>3-5 job photos</strong> — before/after shots, you working, your van, your equipment.</li>
+        <li><strong>Loos font files</strong> — ask Monique: "Do you have the Loos font files in web format?" If she doesn't know what that means, just ask for "the font files."</li>
+      </ul>
+
+      <div class="note">
+        <strong>Don't have photos ready?</strong> No stress. Take a few next time you're on a job: one "before" showing the problem, one "during" of you working, one "after" of the finished result. Send them to Dave whenever.
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step">
+      <div class="step-number">4</div>
+      <h2>Branded email</h2>
+      <div class="what">beau@coastalwaysplumbing.com instead of an Outlook address</div>
+
+      <div class="why">
+        <strong>Why:</strong> When a property manager gets a quote from <strong>beau@coastalwaysplumbing.com</strong>, it looks established and professional. <em>enquirebpplumbing@outlook.com</em> looks temporary. This is free to set up.
+      </div>
+
+      <div class="after">
+        <h4>When to do this</h4>
+        <p>Dave will let you know when the domain is ready and walk you through the setup. Takes about 10 minutes.</p>
+      </div>
+
+      <span class="wait-tag">Dave will guide you</span>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="step">
+      <div class="step-number">5</div>
+      <h2>Facebook Business Page</h2>
+      <div class="what">A separate page for the business (not your personal Facebook)</div>
+
+      <div class="why">
+        <strong>Why:</strong> Customers check Facebook to see if a business is real. A page with your logo, some job photos, and a few reviews tells them you're legit. It's also free advertising when people share or recommend you.
+      </div>
+
+      <ol class="actions">
+        <li>Open Facebook on your phone</li>
+        <li>Tap the menu (three lines) → <strong>Pages</strong> → <strong>Create</strong></li>
+        <li>Fill in:
+          <table class="field-table">
+            <tr><th>Field</th><th>What to enter</th></tr>
+            <tr><td>Page name</td><td><code>Coastal Ways Plumbing</code></td></tr>
+            <tr><td>Category</td><td><code>Plumber</code></td></tr>
+            <tr><td>Bio</td><td>Licensed plumber on the Central Coast. Residential, commercial & emergency. Call 0402 269 088.</td></tr>
+          </table>
+        </li>
+        <li>Upload the Coastal Ways <strong>logo</strong> as the profile picture</li>
+        <li>Upload a <strong>cover photo</strong> (a job photo or the van)</li>
+        <li>Add your phone number, website, and service area in the Page Info section</li>
+      </ol>
+
+      <div class="after">
+        <h4>When you're done</h4>
+        <p>Share the page link with Dave. He'll link it from the website.</p>
+      </div>
+    </div>
+
+    <!-- STEP 6 -->
+    <div class="step">
+      <div class="step-number">6</div>
+      <h2>Instagram Business Account</h2>
+      <div class="what">Before/after job photos that show your quality work</div>
+
+      <div class="why">
+        <strong>Why:</strong> Instagram is where younger homeowners and property managers look. Before/after photos of your work are the most powerful trust signal you can have — zero cost, just snap photos you're already taking.
+      </div>
+
+      <ol class="actions">
+        <li>Open Instagram → if you don't have one, create an account:
+          <table class="field-table">
+            <tr><th>Field</th><th>What to enter</th></tr>
+            <tr><td>Username</td><td><code>coastalwaysplumbing</code></td></tr>
+            <tr><td>Profile name</td><td><code>Coastal Ways Plumbing | Central Coast Plumber</code></td></tr>
+            <tr><td>Bio</td><td>Licensed plumber. 10+ yrs experience. Residential, Commercial, Emergency 24/7. Central Coast NSW. 0402 269 088</td></tr>
+          </table>
+        </li>
+        <li>Tap your profile → <strong>Settings</strong> → <strong>Account</strong> → <strong>Switch to Professional Account</strong> → choose <strong>Business</strong></li>
+        <li>Upload the logo as your profile picture</li>
+        <li>Add coastalwaysplumbing.com as your website link</li>
+      </ol>
+
+      <div class="note">
+        <strong>Don't stress about posting yet.</strong> Just get it set up. When you start taking before/after photos on jobs, that becomes your content. One photo pair per week is plenty.
+      </div>
+    </div>
+
+    <!-- WHAT HAPPENS NEXT -->
+    <div class="step" style="border-bottom: none;">
+      <h2>What happens next</h2>
+      <p style="color: rgba(16,32,45,0.7); margin-bottom: 16px;">Once you've done Steps 1-3, Dave will handle the rest:</p>
+      <ul style="padding-left: 18px; color: rgba(16,32,45,0.7); font-size: 0.95rem;">
+        <li style="margin-bottom: 8px;">Connect your domain to the live website</li>
+        <li style="margin-bottom: 8px;">Set up the contact form so enquiries come to your email</li>
+        <li style="margin-bottom: 8px;">Walk you through branded email setup (Step 5)</li>
+        <li style="margin-bottom: 8px;">Link everything together — website, Google, Facebook, Instagram</li>
+        <li style="margin-bottom: 8px;">Build the tools that reduce your daily admin time</li>
+      </ul>
+
+      <div class="after" style="margin-top: 24px; border-color: var(--teal); border-width: 2px;">
+        <h4 style="color: var(--navy); font-size: 1rem;">Questions?</h4>
+        <p>Text Dave anytime. There's no such thing as a dumb question here — this is all new territory and we're building it together.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>Coastal Ways Plumbing &mdash; coastalwaysplumbing.com</p>
+  </footer>
+
+</body>
+</html>
