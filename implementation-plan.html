@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en-AU">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TQ76XWENWS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TQ76XWENWS');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coastal Ways Plumbing — Digital Implementation Plan v5.0 (Lean)</title>
@@ -1048,6 +1056,97 @@
         <div class="callout callout-green">
           <h4>Either way, you're not locked in</h4>
           <p>Google Sheet exports to CSV. CSV imports into AroFlo. The lean stack is a springboard, not a dead end.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 10.5: OUTSTANDING / IN-FLIGHT -->
+    <section class="section" id="outstanding">
+      <div class="container">
+        <span class="section-number">Section 10.5</span>
+        <h2 class="section-title">Outstanding &amp; In-Flight Items (as of 23 Apr 2026)</h2>
+        <p class="section-desc">Items started today but not yet fully closed. Snapshot of live state.</p>
+
+        <div class="callout callout-green">
+          <h4>✅ Completed today (Sprint 1)</h4>
+          <p>&bull; GBP optimisation pass &mdash; categories, service area, hours, services, photos, Q&amp;A, offer post &middot; Review SMS loop &middot; Facebook Business Page + Instagram Business created and cross-linked &middot; Google Workspace Business Starter activated for <code>coastalwaysplumbing.com</code> &middot; DNS cleaned (6 orphan Microsoft records removed) &middot; MX switched to Google (<code>smtp.google.com</code>) &middot; SPF updated to Google &middot; <code>enquire@coastalwaysplumbing.com</code> mailbox live &middot; Business Manager + GBP ownership invitations sent to Beau/Emma via <code>enquire@</code> and accepted &middot; Search Console ownership added for <code>enquire@</code>.</p>
+        </div>
+
+        <div class="callout callout-amber">
+          <h4>⏳ In-flight &mdash; complete Friday 1 May 2026 (7-day seasoning lock)</h4>
+          <p><strong>GBP Primary owner transfer:</strong> <code>enquire@coastalwaysplumbing.com</code> currently sits as Owner with full edit rights. Google's 7-day seasoning lock prevents promoting a new Primary owner on day one. Return on or after 1 May and:</p>
+          <ol style="padding-left: 22px; margin-top: 8px; color: var(--navy); font-size: 0.95rem;">
+            <li>GBP People and access &rarr; click <code>enquire@</code> row &rarr; <strong>Primary owner</strong> &rarr; Confirm.</li>
+            <li>GBP People and access &rarr; <em>davidcalder1703@gmail.com</em> row &rarr; <strong>Remove</strong>.</li>
+            <li>Business Manager People and access &rarr; <em>davidcalder1703@gmail.com</em> row &rarr; <strong>Remove user</strong>.</li>
+            <li>Search Console Users and permissions &rarr; <em>davidcalder1703@gmail.com</em> row &rarr; <strong>Remove</strong>.</li>
+          </ol>
+        </div>
+
+        <div class="callout callout-amber">
+          <h4>⏳ In-flight &mdash; DKIM authentication (automatic, ~15 min from setup)</h4>
+          <p>DKIM TXT added at GoDaddy with host <code>google._domainkey</code>. Workspace admin status: "Authenticating email". No action required &mdash; check back in 15 min for green tick at <strong>Apps &rarr; Google Workspace &rarr; Gmail &rarr; Authenticate email</strong>. Without DKIM, outbound emails from <code>enquire@</code> may land in recipients' spam folders.</p>
+        </div>
+
+        <div class="callout callout-red">
+          <h4>🚨 Watch item &mdash; test first external inbound email</h4>
+          <p>Self-send from <code>enquire@</code> to itself works. First external inbound email (from Dave's personal Gmail) was slow on arrival &mdash; expected during DKIM propagation window. Re-test after DKIM green-ticks. If still not arriving within an hour, spam-folder check + resend.</p>
+        </div>
+
+        <div class="callout">
+          <h4>🔜 Near-term follow-ups (this week)</h4>
+          <ul style="padding-left: 22px; margin-top: 8px; color: var(--navy); font-size: 0.95rem;">
+            <li><strong>Google Analytics 4:</strong> not yet set up for <code>coastalwaysplumbing.com</code>. Add tracking tag + tie to <code>enquire@</code> admin for traffic visibility.</li>
+            <li><strong>Orphan Microsoft 365 tenant:</strong> low priority. Domain DNS is fully disconnected from it, so no operational impact. Microsoft support ticket optional to release the tenant for cleanliness.</li>
+            <li><strong>Social profile links on GBP:</strong> Emma to add Facebook + Instagram URLs under GBP Edit Profile &rarr; Contact &rarr; Social profiles (now unblocked via <code>enquire@</code> Owner role).</li>
+            <li><strong>Directory submissions:</strong> Emma to submit CWP to True Local, Yellow Pages, StartLocal, Hotfrog, Oneflare, hipages, Service Seeking, Yelp AU &mdash; 10 min each.</li>
+            <li><strong>First Instagram post series:</strong> produced via Content Engine OS from Emma's uploaded photos. Delivered to Emma via shared Google Drive folder (see Section 10.6).</li>
+            <li><strong>Zoho / branded email for Beau:</strong> deprecated &mdash; <code>enquire@coastalwaysplumbing.com</code> now serves this purpose. Dave's earlier Zoho mention in the Beau setup guide can be ignored.</li>
+            <li><strong>Website contact form update:</strong> currently routes to <code>coastalwaysplumbing@outlook.com</code> via Formsubmit.co (working). Optional switch to route to <code>enquire@coastalwaysplumbing.com</code> once Workspace mailbox stable for 1 week.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 10.6: CONTENT ENGINE FOR CWP -->
+    <section class="section" id="content-engine">
+      <div class="container">
+        <span class="section-number">Section 10.6</span>
+        <h2 class="section-title">Social Content Engine &mdash; CWP Workflow</h2>
+        <p class="section-desc">How CWP social posts are produced, reviewed, and delivered to Emma to publish. Separate from other Content Engine dashboards &mdash; this is scoped to Beau &amp; Emma's Instagram + Facebook only.</p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h4>Production flow</h4>
+            <ol style="padding-left: 22px; color: var(--navy); font-size: 0.9rem; margin-top: 8px;">
+              <li><strong>Beau captures</strong> 3 photos per job (before / during / after) &rarr; sends to Emma via WhatsApp or Telegram.</li>
+              <li><strong>Emma forwards to Dave</strong> via AirDrop or shared Drive folder for batching.</li>
+              <li><strong>Dave runs Content Engine</strong> (viral-hooks + humanise-text + brand-designer skills) to produce caption + hashtag + post-type recommendation.</li>
+              <li><strong>Dave uploads</strong> finished post package (photo + caption file) to shared Google Drive folder.</li>
+              <li><strong>Emma opens Drive</strong> on her phone &rarr; copies caption &rarr; pastes into Instagram &rarr; posts.</li>
+            </ol>
+          </div>
+          <div class="card">
+            <h4>Working folder (Dave's laptop)</h4>
+            <p style="font-size: 0.85rem; color: var(--grey-text);">Assets staged at:</p>
+            <ul style="padding-left: 22px; color: var(--navy); font-size: 0.9rem; margin-top: 6px;">
+              <li><code>social-content/brand-reference.md</code> &mdash; voice, colours, hashtag kit</li>
+              <li><code>social-content/post-template.md</code> &mdash; standard output format</li>
+              <li><code>social-content/incoming-photos/</code> &mdash; Emma's airdrops land here</li>
+              <li><code>social-content/drafts/</code> &mdash; work-in-progress captions</li>
+              <li><code>social-content/ready-to-post/</code> &mdash; final packages ready for Emma</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout">
+          <h4>Delivery to Emma &mdash; shared Google Drive folder (free with Workspace)</h4>
+          <p>Best channel now that Workspace is live. Dave creates a Drive folder under <code>enquire@coastalwaysplumbing.com</code>, shares view/edit access with Emma's Google account, and drops finished post packages there. Emma opens the Drive mobile app on her phone &rarr; taps the latest package &rarr; saves photo &rarr; copies caption &rarr; posts. No additional tool needed.</p>
+        </div>
+
+        <div class="callout callout-green">
+          <h4>First post batch &mdash; in preparation</h4>
+          <p>Emma has 10+ CWP photos on her phone ready to airdrop. Once received, Dave runs a 3&ndash;5 post batch covering Before/After, Service Highlight, and Trust Signal pillars. Delivered via Drive folder within 24 hours.</p>
         </div>
       </div>
     </section>
