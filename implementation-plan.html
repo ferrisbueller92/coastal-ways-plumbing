@@ -384,14 +384,14 @@
 
   <header class="doc-header">
     <div class="container">
-      <div class="doc-label">Implementation Plan v5.0 &mdash; The Lean Pivot</div>
+      <div class="doc-label">Implementation Plan v5.1 &mdash; Post-Build Audit</div>
       <h1>Digital Implementation Plan</h1>
       <p class="subtitle">AroFlo deferred. Same outcome. A lean stack of tools Beau and Emma already use &mdash; Google, Xero, their phones &mdash; replacing the $3,000 paywall until the business revenue justifies it.</p>
       <div class="meta">
-        <div class="meta-item">Prepared for <span>Beau Petterson</span></div>
+        <div class="meta-item">Prepared for <span>Beau Petterson &amp; Emma Rambo</span></div>
         <div class="meta-item">Prepared by <span>Dave Calder</span></div>
-        <div class="meta-item">Updated <span>23 April 2026</span></div>
-        <div class="meta-item">Version <span>5.0 (Lean)</span></div>
+        <div class="meta-item">Updated <span>23 April 2026 (evening)</span></div>
+        <div class="meta-item">Version <span>5.1 &mdash; Post-Build Audit</span></div>
       </div>
     </div>
   </header>
@@ -447,6 +447,8 @@
             <li><a href="#routines">Emma &amp; Beau Routines</a></li>
             <li><a href="#costs">Costs &mdash; Lean vs AroFlo</a></li>
             <li><a href="#gate">The AroFlo Decision Gate</a></li>
+            <li><a href="#audit">Today's Audit &mdash; What Got Built (Sprint 1)</a></li>
+            <li><a href="#actions">Beau &amp; Emma Full Action List</a></li>
           </ol>
         </div>
       </div>
@@ -1168,11 +1170,553 @@
       </div>
     </section>
 
+    <!-- SECTION 12: TODAY'S AUDIT -->
+    <section class="section" id="audit">
+      <div class="container">
+        <span class="section-number">Section 12</span>
+        <h2 class="section-title">Today's Audit &mdash; What Got Built (23 Apr 2026, Sprint 1)</h2>
+        <p class="section-desc">Complete retrospective of the Sprint 1 session &mdash; every step that happened, reorganised by domain so it can be reused as a playbook for future trade-business onboardings.</p>
+
+        <div class="callout callout-green">
+          <h4>Total build time: ~6 hours (one session, live with Beau + Emma at laptop)</h4>
+          <p>Every output below is live, shared with <code>enquire@coastalwaysplumbing.com</code>, and reusable.</p>
+        </div>
+
+        <!-- 12.1 TIMELINE -->
+        <h3 style="font-size: 1.3rem; margin-top: 36px; margin-bottom: 12px;">12.1 &mdash; Chronological Timeline</h3>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <h4>Morning &mdash; Scoping &amp; Plan Pivot</h4>
+            <p>Discovered AroFlo not yet in use (paywall). Pivoted v4.0 plan to v5.0 Lean &mdash; Google Sheet + Xero + phones as the operational spine. New plan committed to Git, deployed to site.</p>
+          </div>
+
+          <div class="timeline-item">
+            <h4>Midday &mdash; Email / DNS Diagnosis</h4>
+            <p>Identified <code>enquire@coastalwaysplumbing.com</code> was non-functional &mdash; DNS pointed at orphan Microsoft 365 tenant. Customer enquiries still worked because the website contact form uses Formsubmit.co &rarr; <code>coastalwaysplumbing@outlook.com</code> (consumer Outlook, independent of MX).</p>
+          </div>
+
+          <div class="timeline-item">
+            <h4>Early afternoon &mdash; Google Workspace Activation</h4>
+            <p>Confirmed existing Google Workspace Business Starter subscription attached to <code>coastalwaysplumbing.com</code> (Dave's earlier signup). Restarted Gmail activation flow from admin console.</p>
+          </div>
+
+          <div class="timeline-item">
+            <h4>Afternoon &mdash; DNS Cleanup at GoDaddy</h4>
+            <p>Deleted 6 orphan Microsoft records (1 MX, 2 TXT, 3 CNAME). Added Google MX (<code>smtp.google.com</code>, priority 1) + Google SPF. DNS propagated in under 2 minutes. Google verification still lagged ~15 min on Workspace side.</p>
+          </div>
+
+          <div class="timeline-item">
+            <h4>Mid-afternoon &mdash; Gmail Activation + DKIM</h4>
+            <p>"Gmail is activated" confirmation received. DKIM key generated (2048-bit), added to GoDaddy as TXT at <code>google._domainkey</code>. DKIM set to "Authenticating email".</p>
+          </div>
+
+          <div class="timeline-item">
+            <h4>Mid-afternoon &mdash; Ownership Handover Invites</h4>
+            <p>Invited <code>enquire@coastalwaysplumbing.com</code> as Business Manager Super admin (accepted). Added as Google Business Profile Owner (accepted). Added as Search Console Owner (immediate grant). GBP Primary owner transfer blocked by Google's 7-day seasoning lock &mdash; deferred to Fri 1 May.</p>
+          </div>
+
+          <div class="timeline-item">
+            <h4>Late afternoon &mdash; Infrastructure Buildouts</h4>
+            <p>Built CWP Master Google Sheet (6 tabs: Contacts, Jobs, Quotes, Invoices, Reviews, Compliance) via Python script using Google Sheets API. Shared with <code>enquire@</code> as Editor. Built "CWP Social Posts" Drive folder, uploaded Post #01 assets, shared with <code>enquire@</code>.</p>
+          </div>
+
+          <div class="timeline-item">
+            <h4>Late afternoon &mdash; First Instagram Post</h4>
+            <p>Emma airdropped IMG_0506 (Beau beside branded ute with Milwaukee tool kit). Produced Post #01 "Meet Beau" package &mdash; caption, hashtags, posting instructions. Emma manually posted to Instagram (cross-posts to Facebook).</p>
+          </div>
+
+          <div class="timeline-item">
+            <h4>Evening &mdash; Google Analytics 4</h4>
+            <p>GA4 property created, business objectives set (Generate leads + Understand web traffic), web stream "Coastal Ways Website" configured. Measurement ID <code>G-TQ76XWENWS</code> injected into all 9 HTML pages via Python script. Pushed to GitHub Pages. Test installation passed.</p>
+          </div>
+
+          <div class="timeline-item now">
+            <h4>Evening &mdash; Final Artefacts + Documentation</h4>
+            <p>Email signature HTML drafted for Gmail. Outlook auto-responder copy written. Implementation plan v5.1 updated with full audit + Beau/Emma action list. Session artefacts committed to Git and Drive.</p>
+          </div>
+        </div>
+
+        <!-- 12.2 BY DOMAIN -->
+        <h3 style="font-size: 1.3rem; margin-top: 48px; margin-bottom: 12px;">12.2 &mdash; By Domain (Reusable Playbook)</h3>
+        <p style="color: var(--grey-text); margin-bottom: 20px;">Organised by functional area so it can be reused as a checklist for future tradie onboarding engagements.</p>
+
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">A</span><h3>Google Workspace Setup</h3></div>
+          <ol>
+            <li>Sign up at <code>workspace.google.com</code> &rarr; Business Starter plan (AU$11.80/user/mo incl. GST).</li>
+            <li>Use the client's business domain (e.g. <code>coastalwaysplumbing.com</code>).</li>
+            <li>Create first admin mailbox &mdash; typically <code>enquire@[domain]</code> or <code>hello@[domain]</code>.</li>
+            <li>Complete domain verification via TXT record at the domain's DNS host.</li>
+          </ol>
+        </div>
+
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">B</span><h3>DNS Cleanup &amp; MX Swap (GoDaddy pattern)</h3></div>
+          <p><strong>Before starting:</strong> export a backup of the full DNS zone file.</p>
+          <div class="sub-title">Delete (if present) &mdash; any Microsoft 365 remnants</div>
+          <ul>
+            <li>MX: <code>*.mail.protection.outlook.com</code></li>
+            <li>TXT: <code>v=spf1 include:spf.protection.outlook.com -all</code></li>
+            <li>TXT: <code>v=verifydomain MS=[code]</code></li>
+            <li>CNAME: <code>autodiscover</code>, <code>enterpriseenrollment</code>, <code>enterpriseregistration</code></li>
+          </ul>
+          <div class="sub-title">Add &mdash; Google Workspace</div>
+          <ul>
+            <li>MX: <code>@</code> &rarr; <code>smtp.google.com</code> &middot; priority 1 &middot; TTL 1h</li>
+            <li>TXT: <code>@</code> &rarr; <code>v=spf1 include:_spf.google.com ~all</code> &middot; TTL 1h</li>
+            <li>TXT: <code>google._domainkey</code> &rarr; DKIM value from Workspace Admin &middot; TTL 1h</li>
+          </ul>
+          <div class="sub-title">Keep (do not touch)</div>
+          <ul>
+            <li>A records (website hosting)</li>
+            <li>TXT <code>google-site-verification=...</code> (Search Console)</li>
+            <li>TXT <code>_dmarc</code> (if present)</li>
+            <li>NS records</li>
+            <li>CNAME <code>www</code></li>
+          </ul>
+          <div class="deliverable"><strong>Propagation time:</strong> 2&ndash;15 min typical; up to 48h worst case.</div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">C</span><h3>Google Business Manager + Business Profile Ownership</h3></div>
+          <ol>
+            <li>Business Manager auto-enrolls Business Profiles of a certain size &mdash; access lives at <code>business.google.com</code>.</li>
+            <li>Super admin = top-level governance. Can only be added via Business Manager People and access &mdash; requires invitee to have an existing Google Account.</li>
+            <li>GBP Primary owner transfer &mdash; seven-day seasoning lock applies to newly-added Owners before promotion.</li>
+            <li>Workaround if no email access: invitee goes directly to <code>business.google.com</code> signed in with invited email &mdash; pending invite surfaces as banner for in-app acceptance.</li>
+          </ol>
+          <div class="deliverable"><strong>Learning:</strong> the "7-day wait" isn't about transfer timing &mdash; it's about <em>Owner seasoning before Primary owner eligibility</em>.</div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">D</span><h3>Google Search Console + Analytics</h3></div>
+          <ul>
+            <li><strong>Search Console:</strong> Settings &rarr; Users and permissions &rarr; Add user (Owner role). Instant grant, no email acceptance flow required.</li>
+            <li><strong>GA4:</strong> Create property &rarr; pick business objectives (Generate leads + Understand web traffic for local trades) &rarr; Create web stream &rarr; copy Measurement ID (<code>G-XXXXXXXXXX</code>) &rarr; inject tag into all site pages after <code>&lt;head&gt;</code>.</li>
+            <li><strong>Inject method:</strong> Python script scanning for <code>&lt;head&gt;</code> and prepending the snippet. Committed via Git to GitHub Pages.</li>
+            <li><strong>"Data collection isn't active" warning:</strong> standard for first 24&ndash;48h; auto-clears once Realtime view confirms traffic.</li>
+          </ul>
+        </div>
+
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">E</span><h3>CWP Master Sheet (Google Sheets)</h3></div>
+          <p>Six-tab operational spine replacing AroFlo for pre-revenue phase. Built via Python using Google Sheets API (<code>tools/cwp_master_sheet.py</code> in vault).</p>
+          <ul>
+            <li><strong>Tabs:</strong> Contacts &middot; Jobs &middot; Quotes &middot; Invoices &middot; Reviews &middot; Compliance</li>
+            <li><strong>Features:</strong> frozen header row, Coastal Teal branding, dropdowns on Service Type / Status / Platform / etc for data consistency, pre-seeded Compliance tab with 7 standard items.</li>
+            <li><strong>Sharing:</strong> created under builder's Drive, shared with <code>enquire@</code> as Editor, ownership transfer later.</li>
+          </ul>
+          <div class="deliverable"><strong>Live URL:</strong> <a href="https://docs.google.com/spreadsheets/d/1XLYNdLdCQsN87C3hO9_ziVY5ubmjx_860eYwdCEAcHg/edit" target="_blank">CWP Master Sheet</a></div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">F</span><h3>Shared Google Drive Folder</h3></div>
+          <p>For content handoff between Dave (builder) and Emma (posting operator). Built via Python using Drive API (<code>tools/cwp_drive_folder.py</code>).</p>
+          <ul>
+            <li>Folder name: <strong>CWP Social Posts</strong></li>
+            <li>Structure: one sub-file per post &mdash; the image (.jpg) + the caption package (.md)</li>
+            <li>Emma opens Drive mobile app, taps the latest package, reads instructions, posts to Instagram</li>
+          </ul>
+          <div class="deliverable"><strong>Live URL:</strong> <a href="https://drive.google.com/drive/folders/1ZXaRI_FXjqz8_zNzQT68ZKc35ARhthL5" target="_blank">CWP Social Posts Drive folder</a></div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">G</span><h3>First Instagram Post (Content Engine)</h3></div>
+          <ul>
+            <li>Photo received via airdrop (IMG_0506 &mdash; Beau + branded ute + Milwaukee tool kit + bush backdrop).</li>
+            <li>Post type: Founder introduction (Meet the Owner) &mdash; strongest opening post for a new local business (humans hire humans).</li>
+            <li>Caption built using brand voice samples from landing page ("turn up when I say I will", "fair pricing, clear communication, work done right").</li>
+            <li>Hashtag kit: 10 tags mixing broad (#plumberlife) + local (#centralcoastplumber, #wyongplumber) + niche (#licensedplumber).</li>
+            <li>Delivered via Drive folder as <code>post-01-meet-beau.jpg</code> + <code>post-01-meet-beau.md</code>.</li>
+            <li>Published by Emma manually through Instagram app with FB cross-post toggle ON.</li>
+          </ul>
+        </div>
+
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">H</span><h3>Email Infrastructure</h3></div>
+          <ul>
+            <li><strong>Primary inbox:</strong> <code>enquire@coastalwaysplumbing.com</code> via Google Workspace. Used for direct customer emails, Google Account identity, Business Manager Super admin.</li>
+            <li><strong>Form relay:</strong> <code>coastalwaysplumbing@outlook.com</code> (consumer Outlook) via Formsubmit.co &mdash; receives all website contact form submissions. Unchanged from pre-migration &mdash; Formsubmit is independent of MX records.</li>
+            <li><strong>Email signature:</strong> HTML template produced at <code>social-content/email-signature.html</code> for copy/paste into Gmail settings.</li>
+            <li><strong>Outlook auto-responder:</strong> text + setup instructions at <code>social-content/outlook-autoresponder.md</code>.</li>
+          </ul>
+        </div>
+
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">I</span><h3>Reusable Playbook Summary (for future trade client)</h3></div>
+          <p style="color: var(--navy); font-size: 0.95rem;">Total time budget per client (this pattern): <strong>~6&ndash;8 hours</strong> across one session.</p>
+          <table>
+            <thead><tr><th>Stage</th><th>Output</th><th>Time</th></tr></thead>
+            <tbody>
+              <tr><td>Plan + buy-in</td><td>Lean implementation plan v1 (HTML), priced stack</td><td>60 min</td></tr>
+              <tr><td>Email + DNS</td><td>Workspace activated, MX swapped, DKIM live</td><td>90 min</td></tr>
+              <tr><td>Google trio</td><td>GBP + Search Console + GA4 owned by business email</td><td>45 min</td></tr>
+              <tr><td>Infra</td><td>Master Sheet + Drive folder built and shared</td><td>20 min</td></tr>
+              <tr><td>First content</td><td>Instagram Post #01 + Drive handoff</td><td>30 min</td></tr>
+              <tr><td>Handover docs</td><td>v1.1 plan with audit + action list, email sig, auto-responder</td><td>45 min</td></tr>
+            </tbody>
+          </table>
+          <div class="deliverable"><strong>Gotchas to warn future clients about:</strong> 7-day GBP seasoning lock &middot; Microsoft 365 orphan tenants hiding in DNS &middot; Workspace verification cache takes up to 30 min after DNS propagates &middot; GA4 "data collection inactive" warning stays for 24h even when working.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 13: BEAU & EMMA ACTION LIST -->
+    <section class="section" id="actions">
+      <div class="container">
+        <span class="section-number">Section 13</span>
+        <h2 class="section-title">Beau &amp; Emma &mdash; Full Action List (Still To Do)</h2>
+        <p class="section-desc">Everything still outstanding. Each task tagged with owner + time estimate + full step-by-step. Print this section if helpful.</p>
+
+        <div class="callout callout-amber">
+          <h4>Legend</h4>
+          <p>🔵 <strong>BEAU</strong> &middot; 🟣 <strong>EMMA</strong> &middot; ⚪ <strong>BOTH</strong> &middot; 🟡 <strong>DAVE</strong> (returns 1 May)</p>
+        </div>
+
+        <!-- THEME A: GBP FINALISATION -->
+        <h3 style="font-size: 1.3rem; margin-top: 36px; margin-bottom: 12px;">13.1 &mdash; GBP Finalisation</h3>
+
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">A1</span><h3>Add Facebook + Instagram links to GBP</h3></div>
+          <div class="step-meta">🟣 EMMA &middot; 3 min &middot; <strong>BLOCKED by seasoning lock &mdash; retry in 7 days (on/after 1 May)</strong></div>
+          <p>Google blocks social profile edits for newly-added Owners during the 7-day seasoning window (same lock as Primary owner transfer). Attempted today, blocked &mdash; retry after 1 May.</p>
+          <div class="sub-title">When unblocked, steps are:</div>
+          <ol>
+            <li>Sign into Google on phone/laptop as <code>enquire@coastalwaysplumbing.com</code>.</li>
+            <li>google.com &rarr; search <strong>"my business"</strong>.</li>
+            <li>Tap <strong>Edit profile</strong> &rarr; <strong>Contact</strong>.</li>
+            <li>Scroll to <strong>Social profiles</strong> &rarr; tap <strong>+ Add</strong>.</li>
+            <li>Select Facebook &rarr; paste URL &rarr; Save. Repeat for Instagram.</li>
+          </ol>
+          <div class="deliverable"><strong>Success:</strong> FB + IG icons visible on CWP's Google Maps / Search profile.</div>
+        </div>
+
+        <!-- THEME B: REVIEWS LOOP -->
+        <h3 style="font-size: 1.3rem; margin-top: 36px; margin-bottom: 12px;">13.2 &mdash; Reviews Loop (Highest ROI Action)</h3>
+
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">B1</span><h3>Past-customer Google Review SMS blast</h3></div>
+          <div class="step-meta">⚪ BOTH &middot; 15&ndash;20 min &middot; Do this within 3 days of reading this</div>
+          <p><strong>Expected outcome:</strong> 2&ndash;5 Google reviews within 48h. Each review materially boosts GBP ranking for a new profile.</p>
+
+          <div class="sub-title">Step 1 &mdash; Beau lists past customers (5 min)</div>
+          <p>On paper or phone Notes app, Beau writes down his last 10 completed jobs with:</p>
+          <ul>
+            <li>Customer first name</li>
+            <li>Mobile number</li>
+            <li>Service done (one-liner e.g. "hot water replace")</li>
+          </ul>
+
+          <div class="sub-title">Step 2 &mdash; Emma gets the GBP review short link (2 min)</div>
+          <ol>
+            <li>Google "my business" signed in as <code>enquire@</code>.</li>
+            <li>Look for <strong>"Get more reviews"</strong> tile &mdash; copy the short URL (format <code>g.page/r/XXXX/review</code>).</li>
+            <li>Save as a contact in her phone named <strong>"Review Link"</strong> so she can paste it quickly into SMS.</li>
+          </ol>
+
+          <div class="sub-title">Step 3 &mdash; Emma sends SMS to each customer (10 min for 10 messages)</div>
+          <p>Copy/paste this template for each &mdash; replace [Name] and [service] per person:</p>
+          <div class="sms-template">
+            Hi [Name], Beau from Coastal Ways Plumbing &mdash; thanks again for having us out for the [service]. We've just set up our Google listing and would really appreciate a quick review if you've got a minute. Here's the direct link: [review link]. Thanks heaps &mdash; Beau
+          </div>
+
+          <div class="sub-title">Step 4 &mdash; Log each in the Master Sheet (5 min)</div>
+          <p>Open the <a href="https://docs.google.com/spreadsheets/d/1XLYNdLdCQsN87C3hO9_ziVY5ubmjx_860eYwdCEAcHg/edit" target="_blank">CWP Master Sheet</a> &rarr; Reviews tab. Add a row per customer: Date Job Complete &middot; Customer Name &middot; Phone &middot; SMS Sent Date &middot; Platform = "Google" &middot; Review Received? = "Awaiting".</p>
+
+          <div class="deliverable"><strong>Success:</strong> 10 SMS sent &middot; 10 Reviews tab rows filled &middot; GBP review count starts climbing within 48h.</div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">B2</span><h3>Ongoing review SOP &mdash; every new job</h3></div>
+          <div class="step-meta">🟣 EMMA (primary) &middot; 2 min per job &middot; Start tomorrow onward</div>
+          <p>Every time Beau texts Emma <strong>"DONE &mdash; [customer name]"</strong> after finishing a job, Emma:</p>
+          <ol>
+            <li>Opens Messages app on phone.</li>
+            <li>Sends the template SMS (from B1 above) to the customer within <strong>2 hours</strong>, not next day. First hour is best.</li>
+            <li>Opens Master Sheet &rarr; Reviews tab &rarr; adds a row.</li>
+          </ol>
+
+          <div class="sub-title">When a review arrives:</div>
+          <ul>
+            <li><strong>5-star:</strong> reply within 24h. Thank the customer by name. Mention the service type (good for SEO). Example: <em>"Thanks so much [Name] &mdash; really glad we could sort the hot water system for you. Appreciate the review. &mdash; Beau"</em></li>
+            <li><strong>3-star or lower:</strong> acknowledge within 2 hours. Apologise. Offer to fix. Move the conversation off the public review into DM or phone.</li>
+          </ul>
+
+          <div class="deliverable"><strong>Target:</strong> first 10 Google reviews within 30 days.</div>
+        </div>
+
+        <!-- THEME C: EMAIL INFRASTRUCTURE -->
+        <h3 style="font-size: 1.3rem; margin-top: 36px; margin-bottom: 12px;">13.3 &mdash; Email Infrastructure</h3>
+
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">C1</span><h3>Install email signature on Gmail</h3></div>
+          <div class="step-meta">🔵 BEAU &middot; 5 min &middot; Do this on laptop (not phone)</div>
+          <p>The signature HTML is in the shared Drive folder at <strong>CWP Social Posts/email-signature.html</strong> (Dave will add). Preview: shows Beau's name, role, phone, email, website, service area, ABN.</p>
+
+          <ol>
+            <li>Laptop: open <a href="https://mail.google.com" target="_blank">mail.google.com</a> signed in as <code>enquire@coastalwaysplumbing.com</code>.</li>
+            <li>Gear icon (top right) &rarr; <strong>See all settings</strong>.</li>
+            <li>Stay on "General" tab. Scroll down to <strong>Signature</strong>.</li>
+            <li>Click <strong>Create new</strong> &rarr; name it <code>CWP Default</code>.</li>
+            <li>In the signature editor box, either:
+              <ul>
+                <li><em>Option A (easier):</em> open the email-signature.html preview in your browser &rarr; select all &rarr; copy &rarr; paste into Gmail signature box.</li>
+                <li><em>Option B:</em> type it out manually using the plain fallback below.</li>
+              </ul>
+            </li>
+            <li>Tick <strong>Insert this signature before quoted text in replies</strong>.</li>
+            <li>Under <strong>Signature defaults</strong> &mdash; set both "For New Emails Use" and "On Reply/Forward Use" to <strong>CWP Default</strong>.</li>
+            <li>Scroll to bottom &rarr; <strong>Save Changes</strong>.</li>
+            <li>Test: compose a new email to your own other inbox. Signature should appear.</li>
+          </ol>
+
+          <div class="sub-title">Plain fallback signature (if HTML paste doesn't work)</div>
+          <div style="background: var(--sand); border-left: 3px solid var(--teal); padding: 14px 18px; margin: 12px 0; font-family: 'Roboto', sans-serif; font-size: 0.9rem;">
+            Beau Petterson<br>
+            Licensed Plumber &middot; Coastal Ways Plumbing<br>
+            📞 0402 269 088<br>
+            ✉ enquire@coastalwaysplumbing.com<br>
+            🌐 coastalwaysplumbing.com<br>
+            Central Coast NSW &middot; Residential &middot; Commercial &middot; Emergency 24/7<br>
+            ABN 62 284 909 142
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">C2</span><h3>Set up Outlook auto-responder</h3></div>
+          <div class="step-meta">🔵 BEAU &middot; 5 min &middot; One-time setup, runs forever</div>
+          <p>Ensures every customer enquiry via the website form gets an instant acknowledgement, with the emergency phone number.</p>
+
+          <div class="sub-title">Subject + body (copy/paste both)</div>
+
+          <div style="background: var(--sand); border: 1px solid rgba(196,207,209,0.5); border-radius: 8px; padding: 14px 18px; margin: 12px 0;">
+            <div style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 4px;">Subject</div>
+            <div style="font-family: 'Roboto', sans-serif; font-size: 0.95rem;">We've got your enquiry &mdash; Coastal Ways Plumbing</div>
+          </div>
+
+          <div style="background: var(--sand); border: 1px solid rgba(196,207,209,0.5); border-radius: 8px; padding: 14px 18px; margin: 12px 0;">
+            <div style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 6px;">Body</div>
+            <div style="font-family: 'Roboto', sans-serif; font-size: 0.9rem; line-height: 1.6; white-space: pre-wrap;">G'day,
+
+Thanks for reaching out to Coastal Ways Plumbing. Your enquiry has landed with us and we'll be back in touch within a few hours during business hours (Mon&ndash;Fri 7am&ndash;5pm, Sat 8am&ndash;2pm).
+
+If it's a plumbing emergency &mdash; burst pipe, flood, no water, gas leak &mdash; call Beau directly on 0402&nbsp;269&nbsp;088. We're available 24/7 for emergencies.
+
+For standard enquiries, we'll reply as soon as we're off the tools.
+
+Cheers,
+
+Beau Petterson
+Licensed Plumber &middot; Coastal Ways Plumbing
+📞 0402 269 088
+🌐 coastalwaysplumbing.com
+📍 Central Coast NSW</div>
+          </div>
+
+          <div class="sub-title">Setup steps (laptop, Outlook.com web)</div>
+          <ol>
+            <li>Sign into <a href="https://outlook.live.com" target="_blank">outlook.live.com</a> as <code>coastalwaysplumbing@outlook.com</code>.</li>
+            <li>Gear icon (top-right) &rarr; <strong>View all Outlook settings</strong>.</li>
+            <li>Left sidebar: <strong>Mail</strong> &rarr; <strong>Automatic replies</strong>.</li>
+            <li>Toggle <strong>Turn on automatic replies</strong> ON.</li>
+            <li>Leave the date range <strong>unchecked</strong> (we want this running permanently).</li>
+            <li>Paste subject into subject field, body into message field.</li>
+            <li>Leave "Send replies only to contacts" <strong>unchecked</strong> (needs to reply to new customers too).</li>
+            <li>Click <strong>Save</strong> (bottom right).</li>
+            <li>Test: send yourself an email from a different address &mdash; you should get the auto-reply within 30 sec.</li>
+          </ol>
+        </div>
+
+        <!-- THEME D: MASTER SHEET HABITS -->
+        <h3 style="font-size: 1.3rem; margin-top: 36px; margin-bottom: 12px;">13.4 &mdash; CWP Master Sheet Setup &amp; Habits</h3>
+
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">D1</span><h3>Fill in Compliance tab today</h3></div>
+          <div class="step-meta">⚪ BOTH &middot; 15 min &middot; Do this tomorrow morning</div>
+          <p>The Compliance tab is pre-seeded with 7 standard items. Just fill in the numbers + expiry dates.</p>
+
+          <ol>
+            <li>Open <a href="https://docs.google.com/spreadsheets/d/1XLYNdLdCQsN87C3hO9_ziVY5ubmjx_860eYwdCEAcHg/edit" target="_blank">CWP Master Sheet</a>.</li>
+            <li>Click <strong>Compliance</strong> tab.</li>
+            <li>For each row, fill in:
+              <ul>
+                <li><strong>Number / Reference</strong> &mdash; licence number, policy number, rego plate, etc.</li>
+                <li><strong>Expiry Date</strong> &mdash; from the licence/policy document.</li>
+                <li><strong>Renewal Cost</strong> &mdash; what the renewal cost last time.</li>
+              </ul>
+            </li>
+            <li>For the Days to Expiry column, paste this formula into row 2 (replace D2 with your expiry date cell): <code>=IFERROR(D2-TODAY(),"")</code>, then drag down to all rows.</li>
+            <li>Update the Status dropdown to match: Current / Expiring Soon / Expired.</li>
+          </ol>
+
+          <div class="deliverable"><strong>Success:</strong> All 7 Compliance rows filled. Days to Expiry auto-calculates. Status reflects reality.</div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">D2</span><h3>Bookmark on phone + laptop</h3></div>
+          <div class="step-meta">⚪ BOTH &middot; 2 min each &middot; Do tonight</div>
+          <ol>
+            <li>Phone: open the Master Sheet URL in Safari/Chrome &rarr; share icon &rarr; <strong>Add to Home Screen</strong>. Name it "CWP Sheet".</li>
+            <li>Laptop: bookmark the URL to the bookmark bar.</li>
+            <li>Do the same for the <a href="https://drive.google.com/drive/folders/1ZXaRI_FXjqz8_zNzQT68ZKc35ARhthL5" target="_blank">Drive folder</a> and <a href="https://mail.google.com" target="_blank">Gmail</a>.</li>
+          </ol>
+        </div>
+
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">D3</span><h3>Data entry habit &mdash; Emma's daily rhythm</h3></div>
+          <div class="step-meta">🟣 EMMA &middot; 5&ndash;10 min/day &middot; From tomorrow onward</div>
+
+          <div class="sub-title">Every morning (5 min)</div>
+          <ul>
+            <li>Open Gmail as <code>enquire@</code> &mdash; check for new enquiries.</li>
+            <li>Open Outlook web (<code>coastalwaysplumbing@outlook.com</code>) &mdash; check for new form submissions.</li>
+            <li>Any new enquiry &rarr; add a row to <strong>Contacts</strong> tab. Note the source (Website form / GBP / Referral / etc).</li>
+          </ul>
+
+          <div class="sub-title">Every time Beau starts a new job (2 min)</div>
+          <ul>
+            <li>Add a row to <strong>Jobs</strong> tab. Assign a Job number (start at 1001, increment).</li>
+            <li>Status = "Scheduled".</li>
+          </ul>
+
+          <div class="sub-title">Every time Beau completes a job (2 min)</div>
+          <ul>
+            <li>Update Jobs row &mdash; Status = "Complete".</li>
+            <li>Send review SMS (per B2 above). Log in Reviews tab.</li>
+          </ul>
+        </div>
+
+        <!-- THEME E: DIRECTORIES -->
+        <h3 style="font-size: 1.3rem; margin-top: 36px; margin-bottom: 12px;">13.5 &mdash; Directory Listings (SEO + Free Leads)</h3>
+
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">E1</span><h3>Submit to 8 directories</h3></div>
+          <div class="step-meta">🟣 EMMA &middot; 10 min each, 80 min total &middot; Spread over 2&ndash;3 days, not one sitting</div>
+
+          <p>SEO rule: use identical Name, Address, Phone (NAP) on every listing. Inconsistency dilutes Google's trust in the business.</p>
+
+          <div class="sub-title">Standard NAP to paste on every directory</div>
+          <div style="background: var(--sand); border: 1px solid rgba(196,207,209,0.5); border-radius: 8px; padding: 14px 18px; margin: 12px 0; font-family: 'Roboto', sans-serif; font-size: 0.9rem; line-height: 1.7;">
+            <strong>Business name:</strong> Coastal Ways Plumbing<br>
+            <strong>Phone:</strong> 0402 269 088<br>
+            <strong>Email:</strong> coastalwaysplumbing@outlook.com<br>
+            <strong>Website:</strong> https://coastalwaysplumbing.com<br>
+            <strong>Service area:</strong> Central Coast NSW (Wyong, Tuggerah, Gosford, Terrigal, The Entrance, Jilliby, Berkeley Vale, Bateau Bay, Long Jetty, Shelly Beach)<br>
+            <strong>Category:</strong> Plumber / Emergency Plumber / Gas Fitter<br>
+            <strong>ABN:</strong> 62 284 909 142<br>
+            <strong>Description:</strong> "Licensed plumber serving the Central Coast. 10+ years experience in residential, commercial and emergency plumbing. Leak detection, blocked drains, hot water systems, gas fitting, bathroom renovations. Available 24/7 for emergencies."
+          </div>
+
+          <div class="sub-title">Directories to submit to (in priority order)</div>
+          <ol>
+            <li><a href="https://www.truelocal.com.au" target="_blank">True Local</a> &mdash; biggest AU directory. Create free account &rarr; add business.</li>
+            <li><a href="https://www.yellowpages.com.au" target="_blank">Yellow Pages</a> &mdash; free basic listing option.</li>
+            <li><a href="https://www.hipages.com.au" target="_blank">hipages</a> &mdash; free profile. Paid leads optional (skip for now).</li>
+            <li><a href="https://www.oneflare.com.au" target="_blank">Oneflare</a> &mdash; free lead listing.</li>
+            <li><a href="https://www.startlocal.com.au" target="_blank">StartLocal</a> &mdash; free listing.</li>
+            <li><a href="https://www.hotfrog.com.au" target="_blank">Hotfrog</a> &mdash; free listing.</li>
+            <li><a href="https://www.serviceseeking.com.au" target="_blank">Service Seeking</a> &mdash; free profile.</li>
+            <li><a href="https://www.yelp.com.au" target="_blank">Yelp Australia</a> &mdash; claim/create free listing.</li>
+          </ol>
+
+          <div class="deliverable"><strong>Success:</strong> 8 directory profiles live with identical NAP. Expect first organic directory traffic in 2&ndash;4 weeks via GA4.</div>
+        </div>
+
+        <!-- THEME F: CONTENT & SOCIALS -->
+        <h3 style="font-size: 1.3rem; margin-top: 36px; margin-bottom: 12px;">13.6 &mdash; Content &amp; Socials (Ongoing)</h3>
+
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">F1</span><h3>Beau's 3-photo rule &mdash; every job</h3></div>
+          <div class="step-meta">🔵 BEAU &middot; 30 seconds per job &middot; Starts tomorrow</div>
+          <p>Every single job, Beau takes three photos on his phone:</p>
+          <ol>
+            <li><strong>BEFORE</strong> &mdash; the problem (leak, blocked drain, old hot water unit, etc.)</li>
+            <li><strong>DURING</strong> &mdash; Beau working (hands + tools + the fix in progress)</li>
+            <li><strong>AFTER</strong> &mdash; the finished job, clean and tidy</li>
+          </ol>
+          <p><strong>Immediately after the job:</strong> Beau sends all 3 photos to Emma via WhatsApp or Telegram with one line of context:</p>
+          <div class="sms-template">
+            Hot water replace, Wyong, Tuesday morning
+          </div>
+          <p>Emma forwards to Dave weekly for post production, or stores in her phone for her own posting.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">F2</span><h3>Emma posts 3x/week minimum</h3></div>
+          <div class="step-meta">🟣 EMMA &middot; 10 min per post &middot; Mon / Wed / Fri</div>
+          <p>For each post:</p>
+          <ol>
+            <li>Check the Drive folder for new post packages from Dave.</li>
+            <li>If there's a new package &rarr; follow its .md instructions (caption ready to paste).</li>
+            <li>If no new package &rarr; use one of Beau's recent 3-photo sets with this caption template:</li>
+          </ol>
+          <div class="sms-template">
+            [Before &rarr; After] [Service] in [Suburb].
+
+            [1-sentence story &mdash; e.g. "Called out to a burst hot water system and had the family back in hot water within 2 hours."]
+
+            Need a plumber? 📞 0402 269 088.
+
+            #centralcoastplumber #[suburb]plumber #[service] #plumberlife #plumbing
+          </div>
+
+          <div class="sub-title">Always on Instagram first &mdash; cross-posts to Facebook</div>
+          <ul>
+            <li>Post to Instagram (IG Business + FB Page are linked, so FB cross-post toggles ON by default).</li>
+            <li>Tag location: "Central Coast, New South Wales".</li>
+            <li>Best times: 7&ndash;9am or 6&ndash;8pm AEST.</li>
+          </ul>
+        </div>
+
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">F3</span><h3>Weekly Friday close-out</h3></div>
+          <div class="step-meta">🟣 EMMA &middot; 15 min each Friday &middot; Lock this into calendar</div>
+          <ol>
+            <li>Sign into Google as <code>enquire@</code> &rarr; "my business" &rarr; <strong>Performance / Insights</strong>.</li>
+            <li>Screenshot: Searches this week &middot; Calls this week &middot; Direction requests this week.</li>
+            <li>Send screenshots to Dave via SMS or email.</li>
+            <li>Check the Master Sheet Reviews tab &mdash; count reviews received this week.</li>
+            <li>Reply to any reviews from the week that haven't been responded to.</li>
+          </ol>
+        </div>
+
+        <!-- THEME G: DAVE RETURNING -->
+        <h3 style="font-size: 1.3rem; margin-top: 36px; margin-bottom: 12px;">13.7 &mdash; Future-dated (Dave Returns)</h3>
+
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">G1</span><h3>Friday 1 May 2026 &mdash; ownership handover completion</h3></div>
+          <div class="step-meta">🟡 DAVE &middot; 15 min &middot; Calendar reminder set</div>
+          <p>Google's 7-day seasoning lock unlocks. Dave returns to finalise:</p>
+          <ol>
+            <li>Promote <code>enquire@</code> to GBP <strong>Primary owner</strong>.</li>
+            <li>Remove Dave's personal Gmail from GBP, Business Manager, Search Console, Analytics admin.</li>
+            <li>Transfer Master Sheet ownership to <code>enquire@</code> via Drive (right-click &rarr; Share &rarr; Make owner).</li>
+            <li>Transfer Drive folder ownership same way.</li>
+            <li>Verify Emma can still edit everything post-transfer.</li>
+          </ol>
+          <div class="deliverable"><strong>After 1 May:</strong> Dave has zero CWP ties. Everything runs through <code>enquire@coastalwaysplumbing.com</code>.</div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-head"><span class="step-num">G2</span><h3>Monthly check-in (ongoing)</h3></div>
+          <div class="step-meta">🟡 DAVE &middot; 30 min / month &middot; First one: Monday 1 June 2026</div>
+          <ul>
+            <li>Review Master Sheet &mdash; job count, quote conversion, review count, outstanding invoices.</li>
+            <li>GBP Insights trend check &mdash; searches, calls, directions WoW.</li>
+            <li>GA4 weekly traffic trend &mdash; is directory+social driving traffic?</li>
+            <li>Identify one workflow to tighten.</li>
+            <li>Short Loom or phone call with Beau + Emma to feedback + assign next sprint.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="doc-footer">
     <div class="container">
-      <p>Coastal Ways Plumbing &mdash; Digital Implementation Plan v5.0 (Lean) &middot; Prepared by Dave Calder &middot; Updated 23 April 2026</p>
+      <p>Coastal Ways Plumbing &mdash; Digital Implementation Plan v5.1 (Post-Build Audit) &middot; Prepared by Dave Calder &middot; Updated 23 April 2026 (evening)</p>
       <p style="margin-top: 8px;"><a href="index.html">&larr; Back to site</a></p>
     </div>
   </footer>
