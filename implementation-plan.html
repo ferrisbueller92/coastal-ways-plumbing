@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coastal Ways Plumbing — Digital Implementation Plan v4.0</title>
+  <title>Coastal Ways Plumbing — Digital Implementation Plan v5.0 (Lean)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
@@ -32,7 +32,6 @@
 
     .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
 
-    /* Header */
     .doc-header {
       background: var(--navy);
       color: var(--white);
@@ -58,7 +57,6 @@
       margin-bottom: 16px;
     }
 
-    /* Sections */
     .section { padding: 56px 0; border-bottom: 1px solid rgba(196,207,209,0.3); }
     .section:last-child { border-bottom: none; }
     .section-title { font-size: 1.75rem; margin-bottom: 8px; }
@@ -74,7 +72,6 @@
     }
     .section-desc { color: var(--grey-text); font-size: 1.05rem; margin-bottom: 32px; max-width: 720px; }
 
-    /* Cards */
     .card {
       background: var(--white);
       border: 1px solid rgba(196,207,209,0.3);
@@ -88,7 +85,6 @@
     .card h4 { font-size: 1.1rem; margin-bottom: 6px; }
     .card p { color: var(--grey-text); font-size: 0.95rem; }
 
-    /* Tool cards */
     .tool-card { border-left: 4px solid var(--teal); }
     .tool-card .tool-header {
       display: flex;
@@ -98,7 +94,7 @@
       gap: 12px;
       margin-bottom: 16px;
     }
-    .tool-card .tool-number {
+    .tool-number {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 0.7rem;
       font-weight: 500;
@@ -130,10 +126,10 @@
     }
     .tool-section ol, .tool-section ul {
       padding-left: 20px;
-      color: var(--grey-text);
-      font-size: 0.9rem;
+      color: var(--navy);
+      font-size: 0.95rem;
     }
-    .tool-section li { margin-bottom: 4px; }
+    .tool-section li { margin-bottom: 6px; }
     .tool-detail-grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -163,7 +159,6 @@
       color: var(--navy);
     }
 
-    /* Grid */
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
     @media (max-width: 768px) {
@@ -171,7 +166,6 @@
       .tool-detail-grid { grid-template-columns: 1fr; }
     }
 
-    /* Tags */
     .tag {
       display: inline-block;
       font-family: 'Space Grotesk', sans-serif;
@@ -189,8 +183,8 @@
     .tag-critical { background: var(--red-light); color: var(--red); }
     .tag-phase { background: var(--teal-light); color: var(--teal); }
     .tag-cost { background: var(--grey-light); color: var(--grey-text); }
+    .tag-owner { background: var(--navy); color: var(--white); }
 
-    /* Tables */
     table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
     th { background: var(--navy); color: var(--white); text-align: left; padding: 12px 16px; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
     td { padding: 12px 16px; border-bottom: 1px solid rgba(196,207,209,0.3); vertical-align: top; }
@@ -198,7 +192,6 @@
     th:first-child { border-radius: 8px 0 0 0; }
     th:last-child { border-radius: 0 8px 0 0; }
 
-    /* Callout */
     .callout {
       background: var(--teal-light);
       border-left: 4px solid var(--teal);
@@ -206,22 +199,12 @@
       padding: 20px 24px;
       margin: 24px 0;
     }
-    .callout-amber {
-      background: var(--amber-light);
-      border-left-color: var(--amber);
-    }
-    .callout-red {
-      background: var(--red-light);
-      border-left-color: var(--red);
-    }
-    .callout-green {
-      background: var(--green-light);
-      border-left-color: var(--green);
-    }
+    .callout-amber { background: var(--amber-light); border-left-color: var(--amber); }
+    .callout-red { background: var(--red-light); border-left-color: var(--red); }
+    .callout-green { background: var(--green-light); border-left-color: var(--green); }
     .callout h4 { font-size: 0.95rem; margin-bottom: 6px; }
-    .callout p { color: rgba(16,32,45,0.7); font-size: 0.9rem; }
+    .callout p { color: rgba(16,32,45,0.75); font-size: 0.9rem; }
 
-    /* Architecture diagram */
     .arch-diagram {
       background: var(--white);
       border: 1px solid rgba(196,207,209,0.3);
@@ -247,138 +230,23 @@
       max-width: 480px;
       position: relative;
     }
-    .arch-box.primary {
-      border-color: var(--teal);
-      background: var(--teal-light);
-    }
-    .arch-box.highlight {
-      border-color: var(--navy);
-      background: var(--white);
-    }
-    .arch-box.custom {
-      border-color: var(--amber);
-      background: var(--amber-light);
-      border-style: dashed;
-    }
-    .arch-box h4 {
-      font-size: 1rem;
-      margin-bottom: 4px;
-    }
-    .arch-box p {
-      font-size: 0.8rem;
-      color: var(--grey-text);
-      margin: 0;
-    }
-    .arch-connector {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 6px 0;
-      color: var(--teal);
-    }
-    .arch-connector .arrow {
-      font-size: 1.4rem;
-      line-height: 1;
-      letter-spacing: 0;
-    }
-    .arch-connector .label {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--grey-text);
-    }
-
-    /* Branching arch rows */
-    .arch-branch {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 20px;
-      width: 100%;
-      max-width: 720px;
-      margin: 0 auto;
-    }
-    .arch-branch-col {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      flex: 1;
-    }
-    .arch-box.small {
-      padding: 14px 16px;
-      max-width: 320px;
-    }
+    .arch-box.primary { border-color: var(--teal); background: var(--teal-light); }
+    .arch-box.highlight { border-color: var(--navy); background: var(--white); }
+    .arch-box.custom { border-color: var(--amber); background: var(--amber-light); border-style: dashed; }
+    .arch-box h4 { font-size: 1rem; margin-bottom: 4px; }
+    .arch-box p { font-size: 0.8rem; color: var(--grey-text); margin: 0; }
+    .arch-connector { display: flex; flex-direction: column; align-items: center; padding: 6px 0; color: var(--teal); }
+    .arch-connector .arrow { font-size: 1.4rem; line-height: 1; }
+    .arch-connector .label { font-family: 'Space Grotesk', sans-serif; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey-text); }
+    .arch-branch { display: flex; justify-content: center; align-items: flex-start; gap: 20px; width: 100%; max-width: 820px; margin: 0 auto; flex-wrap: wrap; }
+    .arch-branch-col { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 180px; }
+    .arch-box.small { padding: 14px 16px; max-width: 320px; }
     .arch-box.small h4 { font-size: 0.9rem; }
     .arch-box.small p { font-size: 0.75rem; }
 
-    /* Capability grid */
-    .cap-card {
-      background: var(--white);
-      border: 1px solid rgba(196,207,209,0.3);
-      border-radius: 12px;
-      padding: 24px;
-      margin-bottom: 16px;
-    }
-    .cap-card h4 {
-      font-size: 1.05rem;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .cap-icon {
-      background: var(--teal-light);
-      color: var(--teal);
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-      flex-shrink: 0;
-    }
-    .cap-card p { color: var(--grey-text); font-size: 0.9rem; }
-
-    /* Flow steps */
-    .flow-steps {
-      counter-reset: flow;
-      padding: 0;
-      list-style: none;
-    }
-    .flow-steps li {
-      counter-increment: flow;
-      padding: 12px 16px 12px 52px;
-      position: relative;
-      color: var(--grey-text);
-      font-size: 0.9rem;
-      border-bottom: 1px solid rgba(196,207,209,0.15);
-    }
-    .flow-steps li::before {
-      content: counter(flow);
-      position: absolute;
-      left: 16px;
-      top: 12px;
-      width: 24px;
-      height: 24px;
-      background: var(--teal);
-      color: var(--white);
-      border-radius: 50%;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Timeline */
     .timeline { position: relative; padding-left: 36px; }
     .timeline::before { content: ''; position: absolute; left: 13px; top: 8px; bottom: 8px; width: 2px; background: var(--cool-grey); }
     .timeline-item { position: relative; margin-bottom: 36px; }
-    .timeline-item.done::before { background: var(--green); box-shadow: 0 0 0 2px var(--green); }
     .timeline-item::before {
       content: '';
       position: absolute;
@@ -389,67 +257,84 @@
       border: 3px solid var(--sand);
       box-shadow: 0 0 0 2px var(--teal);
     }
+    .timeline-item.now::before { background: var(--amber); box-shadow: 0 0 0 2px var(--amber); }
     .timeline-item h4 { font-size: 1.05rem; margin-bottom: 6px; }
     .timeline-item p { color: var(--grey-text); font-size: 0.9rem; }
     .timeline-item ul { padding-left: 20px; color: var(--grey-text); font-size: 0.9rem; margin-top: 8px; }
     .timeline-item li { margin-bottom: 4px; }
 
-    /* Checklist */
-    .checklist { list-style: none; padding: 0; }
-    .checklist li {
-      padding: 12px 16px;
-      border-bottom: 1px solid rgba(196,207,209,0.2);
-      font-size: 0.95rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
+    .step-card {
+      background: var(--white);
+      border: 1px solid rgba(196,207,209,0.4);
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 20px;
+      border-left: 5px solid var(--teal);
     }
-    .checklist .answered::before {
-      content: '';
-      display: inline-block;
-      width: 18px;
-      height: 18px;
-      background: var(--green);
-      border: 2px solid var(--green);
-      border-radius: 3px;
-      flex-shrink: 0;
-      margin-top: 2px;
+    .step-card .step-head {
+      display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+      margin-bottom: 6px;
     }
-    .checklist .partial::before {
-      content: '';
-      display: inline-block;
-      width: 18px;
-      height: 18px;
-      background: var(--amber);
-      border: 2px solid var(--amber);
-      border-radius: 3px;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .checklist .pending::before {
-      content: '';
-      display: inline-block;
-      width: 18px;
-      height: 18px;
-      border: 2px solid var(--cool-grey);
-      border-radius: 3px;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .checklist .status-label {
+    .step-card .step-num {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 500;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: var(--teal);
+      color: var(--white);
+      padding: 4px 10px;
+      border-radius: 4px;
+      letter-spacing: 0.08em;
+    }
+    .step-card h3 { font-size: 1.2rem; flex: 1; }
+    .step-card .step-meta {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      margin-left: auto;
-      flex-shrink: 0;
+      color: var(--grey-text);
     }
-    .checklist .status-answered { color: var(--green); }
-    .checklist .status-partial { color: var(--amber); }
-    .checklist .status-pending { color: var(--grey-text); }
+    .step-card ol, .step-card ul { padding-left: 22px; margin-top: 10px; }
+    .step-card ol li, .step-card ul li { margin-bottom: 8px; color: var(--navy); font-size: 0.95rem; }
+    .step-card .sub-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--teal); margin-top: 18px; margin-bottom: 6px; }
+    .step-card code {
+      background: var(--sand);
+      border: 1px solid rgba(196,207,209,0.5);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-family: 'Space Grotesk', monospace;
+      font-size: 0.85rem;
+    }
+    .step-card .deliverable {
+      background: var(--green-light);
+      border-left: 3px solid var(--green);
+      border-radius: 0 6px 6px 0;
+      padding: 12px 16px;
+      margin-top: 16px;
+      font-size: 0.9rem;
+    }
+    .step-card .deliverable strong { color: var(--green); font-family: 'Space Grotesk', sans-serif; }
 
-    /* Footer */
+    .sms-template {
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 16px 0;
+      font-family: 'Roboto', sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      position: relative;
+    }
+    .sms-template::before {
+      content: 'SMS TEMPLATE';
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+
     .doc-footer {
       background: var(--navy);
       color: var(--cool-grey);
@@ -459,23 +344,28 @@
     }
     .doc-footer a { color: var(--teal); text-decoration: none; }
 
-    /* Print */
+    /* TOC */
+    .toc { background: var(--white); border: 1px solid rgba(196,207,209,0.3); border-radius: 12px; padding: 24px 28px; margin: 32px 0; }
+    .toc h4 { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }
+    .toc ol { padding-left: 20px; }
+    .toc li { margin-bottom: 6px; font-size: 0.95rem; }
+    .toc a { color: var(--navy); text-decoration: none; border-bottom: 1px solid transparent; }
+    .toc a:hover { border-bottom-color: var(--teal); color: var(--teal); }
+
     @media print {
       body { font-size: 10pt; background: white; }
       .doc-header { padding: 24px 0; }
       .doc-header h1 { font-size: 1.8rem; }
       .section { page-break-inside: avoid; padding: 32px 0; }
-      .card, .arch-diagram, .cap-card { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; }
-      .tool-card { page-break-inside: avoid; }
+      .card, .arch-diagram, .step-card { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; }
       table { page-break-inside: avoid; }
       .no-print { display: none; }
     }
 
-    /* Responsive */
     @media (max-width: 600px) {
       .doc-header h1 { font-size: 1.75rem; }
       .doc-header .meta { gap: 16px; }
-      .card { padding: 20px; }
+      .card, .step-card { padding: 20px; }
       .arch-box { padding: 14px 20px; }
       .arch-branch { flex-direction: column; align-items: center; }
       .grid-2 { grid-template-columns: 1fr; }
@@ -484,29 +374,82 @@
 </head>
 <body>
 
-  <!-- HEADER -->
   <header class="doc-header">
     <div class="container">
-      <div class="doc-label">Implementation Plan v4.0</div>
+      <div class="doc-label">Implementation Plan v5.0 &mdash; The Lean Pivot</div>
       <h1>Digital Implementation Plan</h1>
-      <p class="subtitle">AroFlo at the centre. 8 AI roles, 13 workflows, 8 pillars &mdash; the full AI Operating System for your plumbing business.</p>
+      <p class="subtitle">AroFlo deferred. Same outcome. A lean stack of tools Beau and Emma already use &mdash; Google, Xero, their phones &mdash; replacing the $3,000 paywall until the business revenue justifies it.</p>
       <div class="meta">
         <div class="meta-item">Prepared for <span>Beau Petterson</span></div>
         <div class="meta-item">Prepared by <span>Dave Calder</span></div>
-        <div class="meta-item">Updated <span>22 April 2026</span></div>
-        <div class="meta-item">Version <span>4.0</span></div>
+        <div class="meta-item">Updated <span>23 April 2026</span></div>
+        <div class="meta-item">Version <span>5.0 (Lean)</span></div>
       </div>
     </div>
   </header>
 
   <main>
 
-    <!-- SECTION 1: WHAT'S ALREADY DONE -->
+    <!-- SECTION 1: WHY WE'RE PIVOTING -->
     <section class="section">
       <div class="container">
         <span class="section-number">Section 01</span>
+        <h2 class="section-title">Why v5.0 &mdash; The Pivot</h2>
+        <p class="section-desc">v4.0 put AroFlo at the centre. Reality check today: AroFlo isn't being used because it's behind a paywall (~$250&ndash;400/mo plus up to $2,900 setup). For a pre-revenue plumbing business, that's the wrong order of operations.</p>
+
+        <div class="callout callout-amber">
+          <h4>The new principle</h4>
+          <p>Tools follow revenue, not the other way around. We build the spine with free or near-free tools Beau and Emma already understand. When revenue justifies AroFlo (target: end of Sprint 8), we migrate. Until then, nothing blocks on a SaaS bill.</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h4>What changes from v4.0</h4>
+            <ul style="padding-left: 20px; color: var(--grey-text); font-size: 0.9rem; margin-top: 8px;">
+              <li>AroFlo removed as Sprint&nbsp;1&ndash;8 dependency</li>
+              <li>8 of 13 workflows ship without it</li>
+              <li>5 workflows wait for AroFlo migration in v6.0</li>
+              <li>Monthly cost drops from ~$300/mo to ~$45/mo</li>
+              <li>No $2,900 setup fee</li>
+              <li>Emma &amp; Beau operate tools they already know</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>What stays the same</h4>
+            <ul style="padding-left: 20px; color: var(--grey-text); font-size: 0.9rem; margin-top: 8px;">
+              <li>Same 8-week timeline, same exit date (Jun 18)</li>
+              <li>Same 3-person team (Beau, Emma, Tim)</li>
+              <li>Same 8 canonical AI roles</li>
+              <li>Website, domain, GBP, Search Console already live</li>
+              <li>Same success metrics</li>
+              <li>Dave's monthly check-in cadence post-Sprint 8</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="toc">
+          <h4>On this page</h4>
+          <ol>
+            <li><a href="#done">What's Already Done</a></li>
+            <li><a href="#arch">The Lean Architecture</a></li>
+            <li><a href="#stack">AroFlo Replacement Stack</a></li>
+            <li><a href="#sprints">8-Sprint Roadmap (Revised)</a></li>
+            <li><a href="#workflows">Workflows &mdash; Ships Now vs Waits</a></li>
+            <li><a href="#today">Today's Live Script (7 Steps)</a></li>
+            <li><a href="#routines">Emma &amp; Beau Routines</a></li>
+            <li><a href="#costs">Costs &mdash; Lean vs AroFlo</a></li>
+            <li><a href="#gate">The AroFlo Decision Gate</a></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: WHAT'S ALREADY DONE -->
+    <section class="section" id="done">
+      <div class="container">
+        <span class="section-number">Section 02</span>
         <h2 class="section-title">What's Already Done</h2>
-        <p class="section-desc">Everything completed on 4 April 2026. The digital foundation is live.</p>
+        <p class="section-desc">The digital foundation from 4 April 2026 &mdash; still live, still correct.</p>
 
         <div class="grid-2">
           <div class="card">
@@ -522,7 +465,7 @@
           <div class="card">
             <h4>Google Business Profile</h4>
             <span class="tag tag-validated">Done</span>
-            <p>GBP created and visible on Google Maps. Pending ownership transfer to Beau's Google account.</p>
+            <p>GBP created and visible on Google Maps. Pending ownership transfer to Beau's Google account &mdash; and ready for a full optimisation pass today (Section 06, Step 1).</p>
           </div>
           <div class="card">
             <h4>Google Search Console</h4>
@@ -543,947 +486,595 @@
       </div>
     </section>
 
-    <!-- SECTION 2: THE ARCHITECTURE -->
-    <section class="section">
+    <!-- SECTION 3: THE ARCHITECTURE -->
+    <section class="section" id="arch">
       <div class="container">
-        <span class="section-number">Section 02</span>
-        <h2 class="section-title">The Architecture</h2>
-        <p class="section-desc">AroFlo is the centre of operations. Everything connects to or through it. We build thin, custom layers on top to remove friction &mdash; never replacing AroFlo, always enhancing it.</p>
+        <span class="section-number">Section 03</span>
+        <h2 class="section-title">The Lean Architecture</h2>
+        <p class="section-desc">No single SaaS at the centre. Instead, a <strong>Google Sheet</strong> is the operational spine, with Xero handling money and Google Calendar handling time. Every human touchpoint runs through tools the team already owns.</p>
 
         <div class="arch-diagram">
           <div class="arch-row">
-            <!-- Customers -->
             <div class="arch-box highlight" style="max-width: 360px;">
               <h4>Customers</h4>
               <p>Property managers, tenants, homeowners, strata</p>
             </div>
-            <div class="arch-connector"><span class="arrow">&darr;</span><span class="label">Find Beau</span></div>
+            <div class="arch-connector"><span class="arrow">&darr;</span><span class="label">Inbound</span></div>
 
-            <!-- Lead channels -->
-            <div class="arch-box" style="max-width: 540px;">
-              <h4>Website + GBP + Socials</h4>
-              <p>coastalwaysplumbing.com &bull; Google Maps &bull; Facebook &bull; Instagram</p>
-            </div>
-            <div class="arch-connector"><span class="arrow">&darr;</span><span class="label">Lead intake</span></div>
-
-            <!-- Branch: Office vs Direct -->
             <div class="arch-branch">
               <div class="arch-branch-col">
-                <div class="arch-box small" style="max-width: 260px;">
-                  <h4>Emma / Tim</h4>
-                  <p>Answer phones, take bookings</p>
-                </div>
-                <div class="arch-connector"><span class="arrow">&darr;</span></div>
-                <div class="arch-box small custom" style="max-width: 260px;">
-                  <h4>Simplified Input Layer</h4>
-                  <p>We build this &mdash; clean form, no AroFlo training needed</p>
-                </div>
-                <div class="arch-connector"><span class="arrow">&darr;</span></div>
+                <div class="arch-box small"><h4>Phone / SMS</h4><p>Beau's mobile</p></div>
               </div>
-              <div class="arch-branch-col" style="justify-content: center; padding-top: 40px;">
-                <div class="arch-box small" style="max-width: 260px;">
-                  <h4>Direct Calls / Emails</h4>
-                  <p>Beau creates job himself in AroFlo</p>
-                </div>
-                <div class="arch-connector"><span class="arrow">&darr;</span></div>
+              <div class="arch-branch-col">
+                <div class="arch-box small"><h4>Website Form</h4><p>Emails Emma</p></div>
+              </div>
+              <div class="arch-branch-col">
+                <div class="arch-box small"><h4>GBP / Socials</h4><p>Messages to Emma</p></div>
               </div>
             </div>
 
-            <!-- AroFlo Centre -->
-            <div class="arch-box primary" style="max-width: 540px;">
-              <h4>AroFlo</h4>
-              <p>Centre of operations &mdash; jobs, quotes, invoices, scheduling, inventory, purchase orders, timesheets, Reece integration</p>
+            <div class="arch-connector"><span class="arrow">&darr;</span><span class="label">Logged in</span></div>
+
+            <div class="arch-box primary" style="max-width: 520px;">
+              <h4>CWP Master &mdash; Google Sheet</h4>
+              <p>Contacts &middot; Jobs &middot; Quotes &middot; Invoices &middot; Reviews &middot; Compliance</p>
             </div>
 
-            <!-- Branch: Field + Accounting -->
-            <div class="arch-branch" style="margin-top: 12px;">
+            <div class="arch-connector"><span class="arrow">&darr;</span><span class="label">Runs through</span></div>
+
+            <div class="arch-branch">
               <div class="arch-branch-col">
-                <div class="arch-connector"><span class="arrow">&darr;</span><span class="label">Field work</span></div>
-                <div class="arch-box small">
-                  <h4>Beau in the Field</h4>
-                  <p>AroFlo Mobile App &mdash; jobs, quotes, photos, signatures</p>
-                </div>
-                <div class="arch-connector"><span class="arrow">&darr;</span></div>
-                <div class="arch-box small custom">
-                  <h4>End-of-Day Helper</h4>
-                  <p>We build this &mdash; speeds up car admin to &lt;2 min</p>
-                </div>
+                <div class="arch-box small"><h4>Google Calendar</h4><p>Scheduling (shared)</p></div>
               </div>
               <div class="arch-branch-col">
-                <div class="arch-connector"><span class="arrow">&darr;</span><span class="label">Accounting</span></div>
-                <div class="arch-box small">
-                  <h4>Xero</h4>
-                  <p>Invoices, payments, BAS, bank feeds &mdash; manual sync from AroFlo</p>
-                </div>
-                <div class="arch-connector"><span class="arrow">&darr;</span><span class="label">Inventory</span></div>
-                <div class="arch-box small custom">
-                  <h4>Stock Alert System</h4>
-                  <p>We build this &mdash; low stock warnings via Telegram</p>
-                </div>
+                <div class="arch-box small"><h4>Xero + Stripe</h4><p>Invoicing &amp; payment</p></div>
               </div>
+              <div class="arch-branch-col">
+                <div class="arch-box small"><h4>Emma's Phone</h4><p>Customer SMS &amp; socials</p></div>
+              </div>
+            </div>
+
+            <div class="arch-connector"><span class="arrow">&darr;</span><span class="label">Signal back</span></div>
+
+            <div class="arch-box custom" style="max-width: 440px;">
+              <h4>GBP &middot; Facebook &middot; Instagram &middot; Reviews</h4>
+              <p>Reputation + traffic loop</p>
             </div>
           </div>
         </div>
 
         <div class="callout">
-          <h4>The key principle</h4>
-          <p>AroFlo is Beau's business platform. It handles jobs, quoting, invoicing, scheduling, inventory, purchase orders, and Reece integration out of the box. We build three thin custom layers on top to remove friction for Emma/Tim, speed up Beau's end-of-day admin, and add stock awareness alerts. Nothing we build replaces AroFlo &mdash; it all connects to AroFlo via API or Zapier.</p>
+          <h4>Why a Google Sheet at the centre?</h4>
+          <p>It's free. Beau and Emma already know it. It syncs across phone + laptop. It exports cleanly when we migrate to AroFlo later. And for a business doing under ~30 jobs/month, a well-structured sheet is not a downgrade &mdash; it's the right tool.</p>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 2.5: THE BIGGER PICTURE (v4.0) -->
-    <section class="section">
-      <div class="container">
-        <span class="section-number">Section 02.5 &middot; New in v4.0</span>
-        <h2 class="section-title">The Bigger Picture: Your AI Operating System</h2>
-        <p class="section-desc">What v3.0 called "three friction layers" is actually the first three pieces of a bigger picture. You're getting a full AI Operating System &mdash; 8 canonical roles, 13 automated workflows, organised around 8 pillars covering every part of running a plumbing business.</p>
-
-        <div class="callout">
-          <h4>What this means in plain English</h4>
-          <p>Think of your AI OS as a small invisible team working alongside Beau, Emma and Tim. Each of the 8 "roles" is a job-shape (like "the person who chases quotes" or "the person who asks for reviews"). Behind each role is an AI agent that does the work, with one of you (Beau, Emma or Tim) reviewing and approving where it matters. The 13 workflows are the actual tasks these roles perform &mdash; from answering a missed call, through chasing a cold quote, to requesting a review after the invoice is paid.</p>
-        </div>
-
-        <h3 style="margin-top: 32px; margin-bottom: 16px;">The 8 pillars &mdash; every part of a plumbing business</h3>
-        <div class="grid-2">
-          <div class="card">
-            <h4>P1 &middot; Local Channel Presence</h4>
-            <p>Website, Google Business Profile, directories (Yellow Pages, HiPages, TrueLocal), social media &mdash; being visible where locals already search.</p>
-          </div>
-          <div class="card">
-            <h4>P2 &middot; Job Intake</h4>
-            <p>Phone call, web form or emergency call &rarr; AroFlo job created. Emma's world &mdash; turning a ringing phone into a scheduled job.</p>
-          </div>
-          <div class="card">
-            <h4>P3 &middot; Quote-to-Close</h4>
-            <p>Site quote delivered &rarr; client decides &rarr; won or lost. The difference between ~40% and ~60% conversion is follow-up.</p>
-          </div>
-          <div class="card">
-            <h4>P4 &middot; On-the-Job</h4>
-            <p>Dispatch, ETA SMS, parts on van, photos, notes captured. Beau's world &mdash; keep the field work frictionless.</p>
-          </div>
-          <div class="card">
-            <h4>P5 &middot; Invoice &amp; Cash</h4>
-            <p>Invoice generation, Stripe links, payment chase, Xero reconciliation. Strata on-invoice, cash on-spot.</p>
-          </div>
-          <div class="card">
-            <h4>P6 &middot; Reputation &amp; Referral</h4>
-            <p>Review request after job &rarr; Google Business Profile, Trustpilot, Facebook. Word-of-mouth made repeatable.</p>
-          </div>
-          <div class="card">
-            <h4>P7 &middot; Compliance &amp; Licensing</h4>
-            <p>Fair Trading NSW, ACMA SMS consent, insurance + ABN/TFN renewals, permit deadlines. Tim's world.</p>
-          </div>
-          <div class="card">
-            <h4>P8 &middot; Signal &amp; Review</h4>
-            <p>Weekly / monthly dashboards &mdash; revenue trend, quote-to-close %, review count, cash-flow flag. Your Monday-morning numbers.</p>
-          </div>
-        </div>
-
-        <div class="callout-amber callout" style="margin-top: 28px;">
-          <h4>Same shape as "real" business departments</h4>
-          <p>This 8-pillar view is the same structure we use for Marketing, Sales, Operations, Finance and Admin in much bigger businesses &mdash; just renamed for a plumbing business. Every workflow you run lines up with exactly one pillar. That's what makes this an <strong>operating system</strong>, not a scrapbook of scripts.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 3: AROFLO CAPABILITIES -->
-    <section class="section">
-      <div class="container">
-        <span class="section-number">Section 03</span>
-        <h2 class="section-title">AroFlo &mdash; What It Does For Beau</h2>
-        <p class="section-desc">AroFlo is purpose-built for trades businesses. Here's every capability relevant to a solo plumber scaling to a small team.</p>
-
-        <div class="grid-2">
-          <div class="cap-card">
-            <h4><span class="cap-icon">J</span> Job Management</h4>
-            <p>Create jobs, assign status, track from enquiry to complete. Office can create jobs via email import or manual entry. Beau sees everything on the mobile app. Full job history for every customer.</p>
-          </div>
-          <div class="cap-card">
-            <h4><span class="cap-icon">Q</span> Quoting</h4>
-            <p>Generate quotes on-site from Beau's phone. Line items with markups, e-signature capture, email direct to customer. When a customer accepts, the quote auto-creates a job &mdash; no double handling.</p>
-          </div>
-          <div class="cap-card">
-            <h4><span class="cap-icon">$</span> Invoicing</h4>
-            <p>Auto-generate invoices from completed jobs in about 30 seconds. Stripe payment links with "Pay Now" on PDF invoices. Payment status tracking. Payments sync to Xero.</p>
-          </div>
-          <div class="cap-card">
-            <h4><span class="cap-icon">C</span> Scheduling</h4>
-            <p>Drag-and-drop calendar. Beau sees tomorrow's jobs on his phone each evening. One-way Google Calendar sync available. Colour-coded by job type or priority.</p>
-          </div>
-          <div class="cap-card">
-            <h4><span class="cap-icon">I</span> Inventory</h4>
-            <p>Track what's on the van. Low stock alerts built in. Barcode scanning. Multi-location support (van, home storage, shed). As materials get used on jobs, stock counts update automatically.</p>
-          </div>
-          <div class="cap-card">
-            <h4><span class="cap-icon">P</span> Purchase Orders</h4>
-            <p>Create POs from Beau's phone. Direct ordering with Reece at live negotiated pricing. Auto invoice import from Reece. Manual PO creation for Walsh Plumbing Supplies and Bunnings.</p>
-          </div>
-        </div>
-
-        <div class="card" style="border-left: 4px solid var(--teal); margin-top: 8px;">
-          <div style="display: flex; align-items: flex-start; gap: 16px;">
-            <span class="cap-icon" style="width: 40px; height: 40px; font-size: 1rem;">R</span>
-            <div>
-              <h4>Reece Integration <span class="tag tag-validated">Killer feature</span></h4>
-              <p>Direct purchase orders with live negotiated pricing. PO instantly dispatched to Reece's system. Auto invoice import back into AroFlo. This is the single most valuable integration for a plumber &mdash; eliminates manual ordering, ensures correct pricing, and keeps paperwork clean.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="grid-2" style="margin-top: 20px;">
-          <div class="cap-card">
-            <h4><span class="cap-icon">M</span> Mobile App</h4>
-            <p>iOS and Android. Offline mode for no-signal sites. Photos, signatures, quotes, invoices, materials &mdash; all from the field. Beau never needs to sit at a computer.</p>
-          </div>
-          <div class="cap-card">
-            <h4><span class="cap-icon">X</span> Xero Integration</h4>
-            <p>Bi-directional but manually triggered. Pushes invoices, payments, and contacts to Xero. Pulls GL codes and bank feed payments back. Keeps accounting clean without auto-sync surprises.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 4: THE THREE FRICTION LAYERS -->
-    <section class="section">
+    <!-- SECTION 4: REPLACEMENT STACK -->
+    <section class="section" id="stack">
       <div class="container">
         <span class="section-number">Section 04</span>
-        <h2 class="section-title">The First Three Workflows We Ship</h2>
-        <p class="section-desc">Of the 13 workflows in the full AI OS, these three ship first because they unblock everything else. Each one maps directly into Beau's day-to-day: Layer 01 is how calls become jobs, Layer 02 is how Beau closes the day, Layer 03 is how the van never runs out of parts.</p>
+        <h2 class="section-title">AroFlo Replacement Stack</h2>
+        <p class="section-desc">One-for-one mapping. Every function AroFlo would've done, mapped to a lean replacement running today.</p>
 
-        <div class="callout">
-          <h4>Why these three first</h4>
-          <p>Layer 01 hydrates three workflows in the spine: <strong>Phone-to-AroFlo intake</strong> (M-W22), <strong>Form-to-AroFlo intake</strong> (M-W25) and optionally <strong>Voice-Receptionist</strong> (M-W26). Layer 02 closes out <strong>ETA / On-Job Customer Updates</strong> (M-W21) and <strong>Quote-to-Close</strong> (M-W61). Layer 03 IS a workflow &mdash; <strong>Stock Alerts &amp; Reece Reorder</strong> (M-W64). Between them, these three Layers move <em>6 of the 13 workflows</em> into "partial" or "built" state. The other 7 follow in Months 2&ndash;3.</p>
-        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>AroFlo Function</th>
+              <th>Lean Replacement</th>
+              <th>Cost</th>
+              <th>Owner</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Job intake</td><td>Website form + GBP messages &rarr; Google Sheet</td><td>Free</td><td>Emma</td></tr>
+            <tr><td>Scheduling &amp; dispatch</td><td>Shared Google Calendar (Beau + Emma)</td><td>Free</td><td>Emma</td></tr>
+            <tr><td>Quote creation</td><td>Google Doc template &rarr; PDF &rarr; email</td><td>Free</td><td>Beau</td></tr>
+            <tr><td>Invoicing</td><td>Xero Starter + Stripe payment link</td><td>$35/mo + 1.75%</td><td>Emma</td></tr>
+            <tr><td>Customer database (CRM)</td><td>"CWP Master" Google Sheet</td><td>Free</td><td>Emma</td></tr>
+            <tr><td>Field/mobile capture</td><td>Telegram bot on Beau's phone &rarr; Sheet</td><td>~$5/mo</td><td>Beau</td></tr>
+            <tr><td>Customer SMS</td><td>Emma's phone + saved templates (no gateway yet)</td><td>Free</td><td>Emma</td></tr>
+            <tr><td>Review requests</td><td>Manual SMS with GBP short link, tracked in Sheet</td><td>Free</td><td>Emma</td></tr>
+            <tr><td>Compliance tracking</td><td>Google Sheet + Calendar reminders</td><td>Free</td><td>Tim</td></tr>
+            <tr><td>Inventory / Reece orders</td><td>Direct phone / Reece app (defer automation)</td><td>Free</td><td>Beau</td></tr>
+            <tr><td>Reporting dashboard</td><td>Sheet &rarr; simple chart, refreshed weekly</td><td>Free</td><td>Dave</td></tr>
+          </tbody>
+        </table>
 
-        <!-- Layer 1 -->
-        <div class="tool-card card">
-          <div class="tool-header">
-            <div>
-              <span class="tool-number">Layer 01</span>
-              <h3>Emma &amp; Tim's Simplified Input</h3>
-            </div>
-            <div class="tool-meta">
-              <span class="tag tag-critical">High priority</span>
-              <span class="tag tag-assumed">Depends on API access</span>
-            </div>
-          </div>
-
-          <div class="callout-amber callout" style="margin-top: 0;">
-            <h4>The problem</h4>
-            <p>AroFlo's UI is complex. Emma and Tim have never used job management software. The learning curve could take weeks and cause frustration. If they give up, Beau is back to doing it all himself.</p>
-          </div>
-
-          <p style="color: var(--grey-text); font-size: 0.95rem; margin-bottom: 16px;"><strong style="color: var(--navy);">What we build:</strong> A clean, simple web form (or Telegram bot) where Emma types naturally and AroFlo gets populated via API or Zapier. She never opens AroFlo's full interface.</p>
-
-          <div class="tool-section">
-            <div class="tool-section-label">User Flow</div>
-            <ol class="flow-steps">
-              <li>Emma gets a call from a property manager: "Blocked drain at 15 Beach Rd Terrigal, tenant available Thursday 2pm"</li>
-              <li>Emma opens our simple form (or types in Telegram)</li>
-              <li>Enters: customer name, address, job type (dropdown), preferred date/time, notes</li>
-              <li>Our tool searches AroFlo for existing client (creates if new), creates the task, creates a schedule entry</li>
-              <li>Beau sees the job appear on his phone in AroFlo</li>
-              <li>Emma never opens AroFlo's full interface</li>
-            </ol>
-          </div>
-
-          <div class="tool-detail-grid">
-            <div class="tool-detail-box">
-              <span class="label">Tech</span>
-              <span class="value">Zapier or AroFlo API</span>
-            </div>
-            <div class="tool-detail-box">
-              <span class="label">API calls per job</span>
-              <span class="value">3&ndash;5</span>
-            </div>
-            <div class="tool-detail-box">
-              <span class="label">Within daily limit</span>
-              <span class="value">2,000/day</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Layer 2 -->
-        <div class="tool-card card">
-          <div class="tool-header">
-            <div>
-              <span class="tool-number">Layer 02</span>
-              <h3>Beau's End-of-Day Helper</h3>
-            </div>
-            <div class="tool-meta">
-              <span class="tag tag-phase">Medium priority</span>
-            </div>
-          </div>
-
-          <div class="callout-amber callout" style="margin-top: 0;">
-            <h4>The problem</h4>
-            <p>Beau spends 5&ndash;10 minutes in the car after each job doing admin. Without office support, it'd be 20&ndash;30 minutes. We want to get it under 2 minutes.</p>
-          </div>
-
-          <p style="color: var(--grey-text); font-size: 0.95rem; margin-bottom: 16px;"><strong style="color: var(--navy);">What we build:</strong> A mobile-friendly tool that pulls today's jobs from AroFlo and prompts Beau to fill in what's missing. One screen, minimal tapping.</p>
-
-          <div class="tool-section">
-            <div class="tool-section-label">User Flow</div>
-            <ol class="flow-steps">
-              <li>Beau finishes his last job, sits in the car</li>
-              <li>Opens the helper tool on his phone</li>
-              <li>Sees a list of today's jobs with status indicators &mdash; green = complete, amber = missing info</li>
-              <li>For each incomplete job: prompted for materials used, time spent, notes, photos</li>
-              <li>One tap submits to AroFlo</li>
-              <li>If cash job: prompted for payment recording</li>
-              <li>Summary: "5 jobs today. 3 invoiced. 2 need follow-up. Tomorrow: 4 jobs starting 7:30am."</li>
-            </ol>
-          </div>
-
-          <div class="tool-detail-grid">
-            <div class="tool-detail-box">
-              <span class="label">Tech</span>
-              <span class="value">AroFlo API + PWA</span>
-            </div>
-            <div class="tool-detail-box">
-              <span class="label">Target time</span>
-              <span class="value">&lt; 2 minutes</span>
-            </div>
-            <div class="tool-detail-box">
-              <span class="label">Notifications</span>
-              <span class="value">Telegram push</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Layer 3 -->
-        <div class="tool-card card">
-          <div class="tool-header">
-            <div>
-              <span class="tool-number">Layer 03</span>
-              <h3>Inventory &amp; Stock Alerts</h3>
-            </div>
-            <div class="tool-meta">
-              <span class="tag tag-phase">Medium priority</span>
-              <span class="tag tag-assumed">Verify AroFloGo inventory</span>
-            </div>
-          </div>
-
-          <div class="callout-amber callout" style="margin-top: 0;">
-            <h4>The problem</h4>
-            <p>Beau's #1 pain point. Showing up to a job without the right parts wastes time &mdash; a trip to Reece or Bunnings mid-job costs 30&ndash;60 minutes. Currently no system to track what's on the van.</p>
-          </div>
-
-          <p style="color: var(--grey-text); font-size: 0.95rem; margin-bottom: 16px;"><strong style="color: var(--navy);">What we build:</strong> A stock awareness layer using AroFlo's inventory module, enhanced with Telegram push notifications for low stock warnings.</p>
-
-          <div class="tool-section">
-            <div class="tool-section-label">How it Works</div>
-            <ol class="flow-steps">
-              <li>Set up AroFlo inventory with Beau's common parts (washers, valves, connectors, fittings, etc.)</li>
-              <li>Assign a "van" stock location in AroFlo</li>
-              <li>As Beau uses materials on jobs (logged in AroFlo), van stock decreases automatically</li>
-              <li>When items drop below threshold &rarr; alert via Telegram: "Low stock: 15mm copper connectors (2 left, reorder level: 5)"</li>
-              <li>One tap creates a Reece purchase order in AroFlo</li>
-              <li>Reece delivers to van pickup point or home</li>
-            </ol>
-          </div>
-
-          <div class="callout" style="margin-top: 16px;">
-            <h4>AroFlo native support</h4>
-            <p>AroFlo's inventory module already has stock alert levels per business unit and per user. Low stock items automatically appear in the next stock order. We enhance this with instant Telegram push notifications so Beau knows the moment stock runs low, not just when he opens AroFlo.</p>
-          </div>
+        <div class="callout callout-green">
+          <h4>All-in monthly cost: ~$45/mo (vs ~$300&ndash;400/mo on AroFlo path)</h4>
+          <p>Plus zero setup fee (vs potential $2,900 AroFlo Full setup). The $250/mo difference is one extra job per month in pocket.</p>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 4.5: YOUR 8 AI ROLES (v4.0) -->
-    <section class="section">
-      <div class="container">
-        <span class="section-number">Section 04.5 &middot; New in v4.0</span>
-        <h2 class="section-title">Your 8 AI Roles</h2>
-        <p class="section-desc">Behind each of the 13 workflows sits one of 8 canonical roles. Each role pairs an AI agent doing the work with a HITL human &mdash; that's you (Beau, Emma, or Tim) &mdash; who approves, reviews, or steps in where judgement matters.</p>
-
-        <div class="grid-2">
-          <div class="card">
-            <h4>CWP-01 &middot; Chief-of-Staff <span class="tag tag-validated" style="margin-left: 8px;">Built</span></h4>
-            <p><strong>What it does:</strong> Runs the Monday-morning dashboard, weekly health checks, keeps the whole system pointed in the right direction.</p>
-            <p style="margin-top: 8px;"><strong>HITL human:</strong> Dave (monthly review).</p>
-          </div>
-          <div class="card">
-            <h4>CWP-02 &middot; Compliance-Watcher <span class="tag tag-validated" style="margin-left: 8px;">Built</span></h4>
-            <p><strong>What it does:</strong> Tracks licences, insurance, ABN/TFN, WorkCover, vehicle registrations. Alerts 30, 14 and 3 days before anything expires.</p>
-            <p style="margin-top: 8px;"><strong>HITL human:</strong> Tim (advisor).</p>
-          </div>
-          <div class="card">
-            <h4>CWP-03 &middot; Job-Notes-Capture <span class="tag tag-phase" style="margin-left: 8px;">Partial</span></h4>
-            <p><strong>What it does:</strong> Voice-to-text for end-of-day notes. Pulls today's jobs, prompts for missing info, captures photos. This is Layer 02.</p>
-            <p style="margin-top: 8px;"><strong>HITL human:</strong> Beau (EOD voice).</p>
-          </div>
-          <div class="card">
-            <h4>CWP-04 &middot; Invoicing-Agent <span class="tag tag-phase" style="margin-left: 8px;">Partial</span></h4>
-            <p><strong>What it does:</strong> Auto-generates invoice on job completion, sends Stripe link, chases unpaid invoices at T+14d / T+30d / T+45d, syncs to Xero.</p>
-            <p style="margin-top: 8px;"><strong>HITL human:</strong> Emma (reviews strata invoices before send).</p>
-          </div>
-          <div class="card">
-            <h4>CWP-05 &middot; Dispatcher <span class="tag tag-phase" style="margin-left: 8px;">Partial</span></h4>
-            <p><strong>What it does:</strong> Turns intake (phone or form) into an AroFlo job. Sends ETA / "on the way" / "arrived" SMS automatically.</p>
-            <p style="margin-top: 8px;"><strong>HITL human:</strong> Emma (approval gate, target &lt;60s).</p>
-          </div>
-          <div class="card">
-            <h4>CWP-06 &middot; Voice-Receptionist <span class="tag tag-assumed" style="margin-left: 8px;">Missing</span></h4>
-            <p><strong>What it does:</strong> When Emma can't pick up, Twilio auto-answers, captures job details, flags emergencies, creates AroFlo draft for Emma to review.</p>
-            <p style="margin-top: 8px;"><strong>HITL human:</strong> Emma (reviews every captured call).</p>
-          </div>
-          <div class="card">
-            <h4>CWP-07 &middot; Quote-Generator <span class="tag tag-assumed" style="margin-left: 8px;">Missing</span></h4>
-            <p><strong>What it does:</strong> Chases quotes through a 48h &rarr; 5d &rarr; 10d &rarr; 14d cascade. At T+14d hands cold quotes to a reactivation sequence.</p>
-            <p style="margin-top: 8px;"><strong>HITL human:</strong> Beau (final price on-site).</p>
-          </div>
-          <div class="card">
-            <h4>CWP-08 &middot; Review-Requester <span class="tag tag-assumed" style="margin-left: 8px;">Missing</span></h4>
-            <p><strong>What it does:</strong> After a paid job, sends SMS review request to Google Business Profile first, Trustpilot / Facebook as backup. Routes 1&ndash;3 star reviews to Beau for private recovery call.</p>
-            <p style="margin-top: 8px;"><strong>HITL human:</strong> Emma (60-second approval per review request).</p>
-          </div>
-        </div>
-
-        <div class="callout-amber callout" style="margin-top: 28px;">
-          <h4>Current score: 2 built, 3 partial, 3 missing</h4>
-          <p>This is where v4.0 is honest about what's real and what's planned. The 3 missing roles (Voice-Receptionist, Quote-Generator, Review-Requester) are load-bearing &mdash; they need to exist for the full OS to work. They're scheduled for Weeks 3&ndash;Month 3. Section 11 shows the full built/partial/missing table.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 5: LEAD WARMING STRATEGY -->
-    <section class="section">
+    <!-- SECTION 5: SPRINT ROADMAP -->
+    <section class="section" id="sprints">
       <div class="container">
         <span class="section-number">Section 05</span>
-        <h2 class="section-title">Lead Warming Strategy</h2>
-        <p class="section-desc">Cold leads are Beau's biggest pain point after inventory. The strategy: build a flywheel where good work generates more work automatically.</p>
-
-        <h3 style="margin-bottom: 16px;">What's already done</h3>
-        <div class="grid-3">
-          <div class="card" style="text-align: center;">
-            <span class="tag tag-validated">Live</span>
-            <h4 style="margin-top: 8px;">Website</h4>
-            <p>6 SEO-targeted service pages ranking for Central Coast plumbing terms</p>
-          </div>
-          <div class="card" style="text-align: center;">
-            <span class="tag tag-validated">Live</span>
-            <h4 style="margin-top: 8px;">Google Business Profile</h4>
-            <p>Visible on Google Maps for "plumber near me" searches</p>
-          </div>
-          <div class="card" style="text-align: center;">
-            <span class="tag tag-validated">Live</span>
-            <h4 style="margin-top: 8px;">Search Console</h4>
-            <p>Sitemap submitted, indexing active, performance tracking on</p>
-          </div>
-        </div>
-
-        <h3 style="margin-top: 32px; margin-bottom: 16px;">What's next</h3>
-
-        <div class="card">
-          <h4>Google Reviews <span class="tag tag-critical">High impact</span></h4>
-          <p>Automated review request after each completed job. Triggered via AroFlo event message or custom tool. This is the single highest-ROI action for local SEO &mdash; more reviews = higher Google ranking = more calls.</p>
-        </div>
-        <div class="card">
-          <h4>Social Presence <span class="tag tag-phase">Beau action</span></h4>
-          <p><strong>Facebook page:</strong> Set up business page, link to website. <strong>Instagram:</strong> Before/after photos of jobs (Beau takes photos, we can help format). Both are free and build trust with local customers.</p>
-        </div>
-        <div class="card">
-          <h4>Local Directory Listings <span class="tag tag-cost">Free</span></h4>
-          <p>Yellow Pages, TrueLocal, HiPages &mdash; free basic listings. Each creates a backlink to the website and another place customers can find Beau. 30 minutes of setup, permanent benefit.</p>
-        </div>
-        <div class="card">
-          <h4>Strata &amp; PM Direct Outreach <span class="tag tag-phase">Month 2+</span></h4>
-          <p>Build a contact list of local property managers and strata companies. Use AroFlo's CRM to track relationships. Targeted outreach with Beau's credentials and testimonials.</p>
-        </div>
-
-        <div class="callout-green callout" style="margin-top: 24px;">
-          <h4>The flywheel</h4>
-          <p>Good work &rarr; review request &rarr; Google review &rarr; higher ranking &rarr; more calls &rarr; more good work. Every job Beau does well feeds the next one. The system compounds.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 6: COMMUNICATION LAYER -->
-    <section class="section">
-      <div class="container">
-        <span class="section-number">Section 06</span>
-        <h2 class="section-title">Communication Layer</h2>
-        <p class="section-desc">60&ndash;70% of Beau's work is strata and real estate. Wrong keys, misaligned times, PMs not responding = wasted hours. AroFlo handles most of this natively.</p>
-
-        <h3 style="margin-bottom: 16px;">What AroFlo already does</h3>
-        <div class="grid-2">
-          <div class="cap-card">
-            <h4>SMS Notifications</h4>
-            <p>"Your plumber is on the way" &mdash; sent automatically when Beau sets job status to travel-to-site. Keeps tenants and PMs informed without Beau making calls.</p>
-          </div>
-          <div class="cap-card">
-            <h4>Staff Arrival Alerts</h4>
-            <p>Arrival time tracking for accountability with PMs. Proof of attendance for strata billing disputes.</p>
-          </div>
-          <div class="cap-card">
-            <h4>Job Status Updates</h4>
-            <p>Automated emails at each stage: booked, on-the-way, completed, invoiced. PMs get visibility without chasing Beau.</p>
-          </div>
-          <div class="cap-card">
-            <h4>Custom Message Templates</h4>
-            <p>Pre-written templates for common scenarios: booking confirmation, quote follow-up, payment reminder, job completion. One tap to send.</p>
-          </div>
-        </div>
-
-        <h3 style="margin-top: 32px; margin-bottom: 16px;">What we can add on top</h3>
-        <div class="card">
-          <h4>Automated PM Status Updates</h4>
-          <p>Via webhook: "Beau has arrived at 15 Beach Rd" &rarr; "Work completed, invoice attached". Property managers get real-time visibility without Beau needing to call or text manually.</p>
-        </div>
-        <div class="card">
-          <h4>Key Tracking</h4>
-          <p>Custom field on AroFlo jobs: which keys are needed, where they're collected from, return status. Solves the "wrong keys" problem that wastes 30+ minutes per incident.</p>
-        </div>
-        <div class="card">
-          <h4>Pre-Job Tenant Confirmation</h4>
-          <p>Automated SMS to tenant the day before: "Your plumber will arrive between 8&ndash;9am tomorrow. Please ensure access to [specific area]." Reduces no-access wasted trips.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 7: AROFLO PRICING DECISION -->
-    <section class="section">
-      <div class="container">
-        <span class="section-number">Section 07</span>
-        <h2 class="section-title">AroFlo Pricing Decision</h2>
-        <p class="section-desc">Start with AroFloGo. Verify the critical unknowns during the 14-day free trial. Upgrade only when triggers are met.</p>
-
-        <div class="grid-2">
-          <div class="card" style="border-top: 4px solid var(--green); text-align: center;">
-            <span class="tag tag-validated">Recommended start</span>
-            <h3 style="margin-top: 8px;">AroFloGo</h3>
-            <p style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 2rem; color: var(--navy); margin: 12px 0;">$39<span style="font-size: 0.9rem; font-weight: 400; color: var(--grey-text);">/month</span></p>
-            <p style="text-align: left;">14-day free trial, no commitment. Covers quoting, scheduling, invoicing, Stripe payments, Xero sync. Mobile app with offline mode. Data carries over if upgrading later.</p>
-          </div>
-          <div class="card" style="border-top: 4px solid var(--cool-grey); text-align: center; opacity: 0.8;">
-            <span class="tag tag-cost">When needed</span>
-            <h3 style="margin-top: 8px;">Full AroFlo</h3>
-            <p style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 2rem; color: var(--navy); margin: 12px 0;">$219+<span style="font-size: 0.9rem; font-weight: 400; color: var(--grey-text);">/month min</span></p>
-            <p style="text-align: left;">Full feature set including compliance forms, advanced reporting, multi-user scheduling, asset management. Only needed when the team grows or commercial compliance becomes a factor.</p>
-          </div>
-        </div>
-
-        <div class="callout-amber callout" style="margin-top: 24px;">
-          <h4>Critical unknowns to verify during trial</h4>
-          <p>These determine whether we can build the three friction layers. All must be checked within the first 48 hours of the trial.</p>
-        </div>
-
-        <table>
-          <thead>
-            <tr>
-              <th style="width: 30%;">Feature</th>
-              <th style="width: 45%;">Why it matters</th>
-              <th style="width: 25%;">Needed for</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>API access</strong></td>
-              <td>Required for all three custom friction layers to connect to AroFlo</td>
-              <td><span class="tag tag-critical">All 3 layers</span></td>
-            </tr>
-            <tr>
-              <td><strong>Reece integration</strong></td>
-              <td>Direct ordering at negotiated pricing, auto invoice import &mdash; critical for a plumber</td>
-              <td><span class="tag tag-critical">Core ops</span></td>
-            </tr>
-            <tr>
-              <td><strong>Zapier integration</strong></td>
-              <td>Fallback connection method if direct API isn't available on Go tier</td>
-              <td><span class="tag tag-assumed">Layer 1</span></td>
-            </tr>
-            <tr>
-              <td><strong>Webhooks / event messages</strong></td>
-              <td>Needed for real-time notifications and PM status updates</td>
-              <td><span class="tag tag-assumed">Layer 2 &amp; 3</span></td>
-            </tr>
-            <tr>
-              <td><strong>Inventory management</strong></td>
-              <td>Stock tracking, van location, low stock alerts &mdash; Beau's #1 pain</td>
-              <td><span class="tag tag-phase">Layer 3</span></td>
-            </tr>
-            <tr>
-              <td><strong>Purchase orders</strong></td>
-              <td>Create Reece POs from phone &mdash; core to the ordering workflow</td>
-              <td><span class="tag tag-phase">Core ops</span></td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div class="callout-red callout" style="margin-top: 16px;">
-          <h4>If AroFloGo lacks API/Zapier</h4>
-          <p><strong>Option A:</strong> Upgrade to Full AroFlo ($219/mo minimum) &mdash; guaranteed API access.<br><strong>Option B:</strong> Use Zapier polling triggers, which may not require direct API access &mdash; less real-time but still functional.<br>We verify within the first 48 hours of the trial and adjust the plan accordingly.</p>
-        </div>
-
-        <h3 style="margin-top: 32px; margin-bottom: 16px;">Upgrade triggers</h3>
-        <div class="grid-3">
-          <div class="card" style="text-align: center;">
-            <h4>First Employee</h4>
-            <p>Multi-user scheduling, GPS tracking, individual timesheets become essential</p>
-          </div>
-          <div class="card" style="text-align: center;">
-            <h4>Compliance Forms</h4>
-            <p>Commercial work requires safety docs, permits, compliance certificates</p>
-          </div>
-          <div class="card" style="text-align: center;">
-            <h4>Maintenance Contracts</h4>
-            <p>Recurring jobs, preventive maintenance schedules, auto-generated tasks</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 8: COST SUMMARY -->
-    <section class="section">
-      <div class="container">
-        <span class="section-number">Section 08</span>
-        <h2 class="section-title">Cost Summary</h2>
-        <p class="section-desc">Total running cost under $70/month. Every custom tool is built pro bono.</p>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Item</th>
-              <th>Monthly</th>
-              <th>Notes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>AroFloGo</strong></td>
-              <td>$39</td>
-              <td>Job management, quoting, invoicing, scheduling, Reece integration</td>
-            </tr>
-            <tr>
-              <td><strong>Xero (Starter)</strong></td>
-              <td>$29</td>
-              <td>Accounting, BAS preparation, bank feeds, GST tracking</td>
-            </tr>
-            <tr>
-              <td><strong>Website hosting</strong></td>
-              <td>$0</td>
-              <td>GitHub Pages &mdash; free forever</td>
-            </tr>
-            <tr>
-              <td><strong>Domain</strong></td>
-              <td>~$1.25</td>
-              <td>$15/year via GoDaddy</td>
-            </tr>
-            <tr>
-              <td><strong>Google Business Profile</strong></td>
-              <td>$0</td>
-              <td>Free &mdash; Google Maps listing, reviews, search presence</td>
-            </tr>
-            <tr>
-              <td><strong>Email (Zoho)</strong></td>
-              <td>$0</td>
-              <td>Free tier &mdash; branded email at coastalwaysplumbing.com</td>
-            </tr>
-            <tr>
-              <td><strong>Custom friction layers</strong></td>
-              <td>$0</td>
-              <td>Built pro bono &mdash; simplified input, end-of-day helper, stock alerts</td>
-            </tr>
-            <tr>
-              <td><strong>Facebook + Instagram</strong></td>
-              <td>$0</td>
-              <td>Free business accounts &mdash; organic reach, before/after photos</td>
-            </tr>
-            <tr style="background: var(--teal-light);">
-              <td><strong style="font-size: 1.05rem;">Total</strong></td>
-              <td><strong style="font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; color: var(--teal);">~$70/mo</strong></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- SECTION 9: IMPLEMENTATION TIMELINE -->
-    <section class="section">
-      <div class="container">
-        <span class="section-number">Section 09</span>
-        <h2 class="section-title">Implementation Timeline</h2>
-        <p class="section-desc">Phased rollout. The foundation is already live. Each phase builds on the last.</p>
+        <h2 class="section-title">8-Sprint Roadmap (Revised)</h2>
+        <p class="section-desc">Same 8 weeks, same exit date. Nothing blocks on a trial activation.</p>
 
         <div class="timeline">
-          <div class="timeline-item done">
-            <h4>Week 1 <span class="tag tag-validated">Complete</span></h4>
+          <div class="timeline-item now">
+            <span class="tag tag-phase">Sprint 1 &mdash; Apr 23&ndash;30</span>
+            <h4>Digital Presence &amp; Revenue Tools &mdash; Today's Session</h4>
+            <p>Optimise GBP, finalise Facebook + Instagram, launch review loop, open Xero, create the CWP Master Google Sheet.</p>
             <ul>
-              <li>Website live at coastalwaysplumbing.com (7 pages, HTTPS, mobile responsive)</li>
-              <li>Domain purchased and connected via GoDaddy</li>
-              <li>Google Business Profile created on Google Maps</li>
-              <li>Google Search Console configured, sitemap submitted</li>
-              <li>6 SEO-targeted service pages published</li>
-              <li>Design tokens and branded business plan delivered</li>
+              <li>GBP: categories, service area, services, photos, posts, Q&amp;A (30 min)</li>
+              <li>Facebook Business Page + Instagram Business, cross-linked, first posts live</li>
+              <li>Linktree as unified link-in-bio</li>
+              <li>Review SMS template loaded on Emma's phone + 3&ndash;5 past-customer asks sent</li>
+              <li>Xero Starter signed up ($35/mo), connected to business bank</li>
+              <li>CWP Master Sheet created with tabs: Contacts, Jobs, Quotes, Invoices, Reviews, Compliance</li>
             </ul>
           </div>
 
           <div class="timeline-item">
-            <h4>Week 2 <span class="tag tag-phase">Next</span></h4>
+            <span class="tag tag-phase">Sprint 2 &mdash; Apr 30&ndash;May 7</span>
+            <h4>Job Flow End-to-End (Manual)</h4>
             <ul>
-              <li>Start AroFloGo 14-day free trial</li>
-              <li>Verify API access, Reece integration, Zapier, inventory, POs (first 48 hours)</li>
-              <li>Set up Xero Starter plan and connect to AroFlo</li>
-              <li>Connect Stripe for "Pay Now" invoice links</li>
-              <li>Configure job types, templates, and custom fields</li>
+              <li>Website booking form &rarr; emails Emma, logged to Sheet</li>
+              <li>Shared Google Calendar with job-naming convention</li>
+              <li>Quote Google Doc template (branded, saves as PDF in 10 sec)</li>
+              <li>Emma shadowed on 2 real inbound calls to validate flow</li>
             </ul>
           </div>
 
           <div class="timeline-item">
-            <h4>Week 3</h4>
+            <span class="tag tag-phase">Sprint 3 &mdash; May 7&ndash;14</span>
+            <h4>Beau's Field Capture</h4>
             <ul>
-              <li>Build Emma/Tim simplified input layer (if API confirmed)</li>
-              <li>Set up AroFlo job type templates for common work</li>
-              <li>Configure SMS notification templates</li>
-              <li>Train Emma on the simplified form</li>
+              <li>Telegram bot on Beau's phone: voice note &rarr; transcript &rarr; job row in Sheet</li>
+              <li>SMS template kit for Emma: ETA, Running Late, On My Way, Job Complete, Review Ask</li>
+              <li>Directory listings submitted (True Local, Yellow Pages, Hotfrog, StartLocal, Oneflare, hipages)</li>
             </ul>
           </div>
 
           <div class="timeline-item">
-            <h4>Month 2</h4>
+            <span class="tag tag-phase">Sprint 4 &mdash; May 14&ndash;21</span>
+            <h4>Cash Flow Automated</h4>
             <ul>
-              <li>Build end-of-day helper tool</li>
-              <li>Set up AroFlo inventory with common van parts</li>
-              <li>Configure Google review request automation</li>
-              <li>Set up Facebook business page</li>
+              <li>Xero invoice template with Stripe "Pay Now" link embedded</li>
+              <li>Payment-chase checklist: T+14 / T+30 / T+45 (manual send, scripted)</li>
+              <li>Quote follow-up cadence: Day 2 / Day 7 / Day 14 (Emma sends)</li>
+              <li><strong>Gate G3:</strong> measure quote-conversion uplift on real jobs</li>
             </ul>
           </div>
 
           <div class="timeline-item">
-            <h4>Month 3+</h4>
+            <span class="tag tag-phase">Sprint 5 &mdash; May 21&ndash;28</span>
+            <h4>Content &amp; Traffic Engine</h4>
             <ul>
-              <li>Build stock alert Telegram notifications</li>
-              <li>Implement PM communication layer (webhooks, key tracking)</li>
-              <li>Local directory listings (Yellow Pages, TrueLocal, HiPages)</li>
-              <li>Begin strata/PM direct outreach via AroFlo CRM</li>
+              <li>Beau's 3-photo-per-job rule &rarr; WhatsApp/Telegram to Emma</li>
+              <li>Emma posts 3x/week (Mon/Wed/Fri) &mdash; IG cross-posts to FB</li>
+              <li>Weekly GBP Post live (offer, tip, or seasonal)</li>
+              <li>First organic inbound from social tracked</li>
             </ul>
           </div>
 
           <div class="timeline-item">
-            <h4>Month 6+</h4>
+            <span class="tag tag-phase">Sprint 6 &mdash; May 28&ndash;Jun 4</span>
+            <h4>Review Cascade + Dashboard</h4>
             <ul>
-              <li>AI quoting from job history data (pattern-based pricing suggestions)</li>
-              <li>Financial dashboard with job profitability metrics</li>
-              <li>Review full system performance and optimise</li>
+              <li>Review SMS sent within 2h of job completion (Emma SOP)</li>
+              <li>Sheet-based Monday dashboard: revenue WoW, jobs, quotes sent/accepted, new reviews, outstanding $</li>
+              <li><strong>Gate G4:</strong> one full job cycle (call &rarr; quote &rarr; invoice &rarr; paid &rarr; review) with zero missed steps</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <span class="tag tag-phase">Sprint 7 &mdash; Jun 4&ndash;11</span>
+            <h4>Revenue Rescue &amp; Emergency SOP</h4>
+            <ul>
+              <li>Stale-quote win-back list: 14-day cold &rarr; Emma SMS from template</li>
+              <li>Emergency routing SOP: keyword list &rarr; Emma's escalation script for Beau</li>
+              <li>Seasonal upsell setup (winter hot water, summer drains)</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <span class="tag tag-phase">Sprint 8 &mdash; Jun 11&ndash;18</span>
+            <h4>Handover &amp; AroFlo Decision</h4>
+            <ul>
+              <li>Runbook PDF delivered (one page per SOP)</li>
+              <li>90-minute team training (Beau + Emma + Tim)</li>
+              <li>Retrospective: what worked, what didn't, what Emma's hour-per-day looks like</li>
+              <li><strong>Gate G6:</strong> Beau &amp; Emma operate independently, without daily Dave involvement</li>
+              <li><strong>AroFlo Decision Gate:</strong> does revenue + job volume justify migration? (see Section 09)</li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 10: OPEN QUESTIONS -->
-    <section class="section">
+    <!-- SECTION 6: WORKFLOWS NOW vs WAITS -->
+    <section class="section" id="workflows">
       <div class="container">
-        <span class="section-number">Section 10</span>
-        <h2 class="section-title">Open Questions for Beau</h2>
-        <p class="section-desc">Answers to these questions shape the build. Green = answered, amber = partially answered, grey = pending.</p>
-
-        <ul class="checklist">
-          <li class="partial">
-            <div>
-              <strong>Walk through a typical job from first contact to getting paid</strong>
-              <p style="color: var(--grey-text); font-size: 0.85rem; margin-top: 4px;">Private and public user stories captured. Need refinement on edge cases (warranty calls, multi-day jobs).</p>
-            </div>
-            <span class="status-label status-partial">Partial</span>
-          </li>
-          <li class="answered">
-            <div>
-              <strong>What takes the most time that ISN'T actual plumbing?</strong>
-              <p style="color: var(--grey-text); font-size: 0.85rem; margin-top: 4px;">Stock management is #1. Admin (invoicing, quoting, scheduling) is #2.</p>
-            </div>
-            <span class="status-label status-answered">Answered</span>
-          </li>
-          <li class="answered">
-            <div>
-              <strong>How do you currently track jobs, schedule, and payments?</strong>
-              <p style="color: var(--grey-text); font-size: 0.85rem; margin-top: 4px;">AroFlo preference confirmed. This is the platform.</p>
-            </div>
-            <span class="status-label status-answered">Answered</span>
-          </li>
-          <li class="answered">
-            <div>
-              <strong>What's the most annoying part of your work week?</strong>
-              <p style="color: var(--grey-text); font-size: 0.85rem; margin-top: 4px;">Cold leads (not enough warm inbound) and stock awareness (turning up without parts).</p>
-            </div>
-            <span class="status-label status-answered">Answered</span>
-          </li>
-          <li class="partial">
-            <div>
-              <strong>How does a typical customer find you right now?</strong>
-              <p style="color: var(--grey-text); font-size: 0.85rem; margin-top: 4px;">Strata/real estate referrals are 60&ndash;70%. Public/direct is 30&ndash;40%. Specific channels TBD.</p>
-            </div>
-            <span class="status-label status-partial">Partial</span>
-          </li>
-          <li class="pending">
-            <div>
-              <strong>What happens when someone calls?</strong>
-              <p style="color: var(--grey-text); font-size: 0.85rem; margin-top: 4px;">Who answers? What info is captured? How is it recorded?</p>
-            </div>
-            <span class="status-label status-pending">Pending</span>
-          </li>
-          <li class="pending">
-            <div>
-              <strong>How do you quote?</strong>
-              <p style="color: var(--grey-text); font-size: 0.85rem; margin-top: 4px;">On-site? Phone estimate? Fixed rates for common jobs? Hourly?</p>
-            </div>
-            <span class="status-label status-pending">Pending</span>
-          </li>
-          <li class="partial">
-            <div>
-              <strong>How do you invoice?</strong>
-              <p style="color: var(--grey-text); font-size: 0.85rem; margin-top: 4px;">Square for private cash jobs. Invoice after completion for strata work. Full process TBD.</p>
-            </div>
-            <span class="status-label status-partial">Partial</span>
-          </li>
-          <li class="pending">
-            <div>
-              <strong>Preferred customer communication method?</strong>
-              <p style="color: var(--grey-text); font-size: 0.85rem; margin-top: 4px;">Call, text, email, app? For bookings, updates, invoices?</p>
-            </div>
-            <span class="status-label status-pending">Pending</span>
-          </li>
-          <li class="pending">
-            <div>
-              <strong>Do you follow up after a job?</strong>
-              <p style="color: var(--grey-text); font-size: 0.85rem; margin-top: 4px;">Review requests, satisfaction checks, warranty reminders?</p>
-            </div>
-            <span class="status-label status-pending">Pending</span>
-          </li>
-          <li class="pending">
-            <div>
-              <strong>What do customers compliment you on most?</strong>
-              <p style="color: var(--grey-text); font-size: 0.85rem; margin-top: 4px;">Useful for testimonials, review prompts, and brand messaging.</p>
-            </div>
-            <span class="status-label status-pending">Pending</span>
-          </li>
-          <li class="pending">
-            <div>
-              <strong>What phone does Beau use?</strong>
-              <p style="color: var(--grey-text); font-size: 0.85rem; margin-top: 4px;">iOS or Android? Determines AroFlo app experience and helper tool design.</p>
-            </div>
-            <span class="status-label status-pending">Pending</span>
-          </li>
-          <li class="pending">
-            <div>
-              <strong>How comfortable is Emma with spreadsheets?</strong>
-              <p style="color: var(--grey-text); font-size: 0.85rem; margin-top: 4px;">Determines how simplified the input layer needs to be.</p>
-            </div>
-            <span class="status-label status-pending">Pending</span>
-          </li>
-          <li class="pending">
-            <div>
-              <strong>Does Beau want maintenance contracts?</strong>
-              <p style="color: var(--grey-text); font-size: 0.85rem; margin-top: 4px;">Recurring revenue from strata buildings. Changes AroFlo setup and pricing tier decisions.</p>
-            </div>
-            <span class="status-label status-pending">Pending</span>
-          </li>
-
-          <li class="pending">
-            <div>
-              <strong>Voice-Receptionist &mdash; open to Twilio auto-answer when Emma can't pick up? <em>(New in v4.0)</em></strong>
-              <p style="color: var(--grey-text); font-size: 0.85rem; margin-top: 4px;">Enables CWP-06 role. When Emma's busy or after-hours, an AI answers, captures name/address/job/urgency, creates AroFlo draft for Emma's review. Cost ~$15/mo (Twilio). Big win on after-hours emergencies.</p>
-            </div>
-            <span class="status-label status-pending">Pending</span>
-          </li>
-
-          <li class="pending">
-            <div>
-              <strong>Review-Requester &mdash; any customer segments to exclude from auto review requests? <em>(New in v4.0)</em></strong>
-              <p style="color: var(--grey-text); font-size: 0.85rem; margin-top: 4px;">Some customers shouldn't get an auto-ask (e.g. a strata PM who only ever reviews via their internal system, or a complaint customer). Who gets a review request automatically vs who needs Beau's judgement call?</p>
-            </div>
-            <span class="status-label status-pending">Pending</span>
-          </li>
-
-          <li class="pending">
-            <div>
-              <strong>Compliance-Watcher &mdash; which NSW licences &amp; certifications to track? <em>(New in v4.0)</em></strong>
-              <p style="color: var(--grey-text); font-size: 0.85rem; margin-top: 4px;">We know about NSW plumbing licence, public liability insurance, ABN/TFN, vehicle registration. What else &mdash; WorkCover, backflow certification, gas-fitting ticket expiry, first aid, any apprentice records?</p>
-            </div>
-            <span class="status-label status-pending">Pending</span>
-          </li>
-
-          <li class="pending">
-            <div>
-              <strong>Monday dashboard &mdash; what numbers do you want to see every Monday? <em>(New in v4.0)</em></strong>
-              <p style="color: var(--grey-text); font-size: 0.85rem; margin-top: 4px;">Default proposal: revenue week-on-week, quote-to-close %, new reviews this week, outstanding invoice $, next-week schedule load. Anything you'd add or drop? Any flags (e.g. "alert me if outstanding invoices &gt; $10K")?</p>
-            </div>
-            <span class="status-label status-pending">Pending</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- SECTION 11: WHAT YOU GET VS WHAT'S BUILT TODAY (v4.0) -->
-    <section class="section">
-      <div class="container">
-        <span class="section-number">Section 11 &middot; New in v4.0</span>
-        <h2 class="section-title">What You Get vs What's Built Today</h2>
-        <p class="section-desc">Honesty over hype. Here's the full 13-workflow spine &mdash; what's live, what's partially in place, what's still to build. No surprises, no spin.</p>
+        <span class="section-number">Section 06</span>
+        <h2 class="section-title">Workflows &mdash; What Ships Now vs What Waits</h2>
+        <p class="section-desc">8 of the original 13 workflows ship in the lean stack. 5 wait for AroFlo because they need its API for full automation.</p>
 
         <div class="grid-2">
           <div class="card">
-            <h4 style="color: #2d7a3f;">Built &mdash; live today</h4>
-            <ul style="margin-left: 18px; margin-top: 12px;">
-              <li><strong>M-W25</strong> Form-to-AroFlo Intake</li>
-              <li><strong>M-W80</strong> GBP / Directory / SEO Health Check</li>
-              <li><strong>M-W63</strong> Compliance Deadline Chaser</li>
-              <li><strong>M-W90</strong> Monday-Morning Dashboard</li>
+            <h4>Ships in v5.0 (Lean)</h4>
+            <span class="tag tag-validated">8 workflows</span>
+            <ul style="padding-left: 20px; color: var(--navy); font-size: 0.9rem; margin-top: 8px;">
+              <li><strong>M-W80</strong> Compliance tracking (Sheet + Calendar reminders)</li>
+              <li><strong>M-W90</strong> Monday dashboard (Sheet chart)</li>
+              <li><strong>M-W62</strong> Review request cascade (manual SMS)</li>
+              <li><strong>M-W61</strong> Quote-to-close follow-up (manual SMS Day 2/7/14)</li>
+              <li><strong>M-W21</strong> ETA &amp; arrival SMS templates (Emma's phone)</li>
+              <li><strong>P1</strong> Presence (website + GBP + directory listings)</li>
+              <li><strong>P6</strong> Reputation loop (reviews &rarr; GBP &rarr; SEO)</li>
+              <li><strong>Layer&nbsp;2</strong> EOD capture via Telegram bot &rarr; Sheet</li>
             </ul>
-            <p style="margin-top: 14px; color: var(--grey-text); font-size: 0.9rem;">These 4 workflows already run. Output is visible in weekly delivery to Beau's email + phone.</p>
           </div>
-
           <div class="card">
-            <h4 style="color: #b8680a;">Partial &mdash; pieces in place</h4>
-            <ul style="margin-left: 18px; margin-top: 12px;">
-              <li><strong>M-W22</strong> Phone-to-AroFlo Intake (Layer 01)</li>
-              <li><strong>M-W21</strong> ETA &amp; On-Job Customer Updates</li>
-              <li><strong>M-W61</strong> Quote-to-Close Follow-up Cascade</li>
-              <li><strong>M-W70</strong> Invoice Generation &amp; Stripe Link</li>
+            <h4>Waits for AroFlo (v6.0)</h4>
+            <span class="tag tag-assumed">5 workflows</span>
+            <ul style="padding-left: 20px; color: var(--navy); font-size: 0.9rem; margin-top: 8px;">
+              <li><strong>M-W70</strong> Auto-invoice on job complete</li>
+              <li><strong>M-W71</strong> Auto payment-chase escalation</li>
+              <li><strong>Layer&nbsp;3</strong> Inventory &amp; Reece auto-alerts</li>
+              <li><strong>CWP-06</strong> Voice receptionist (Twilio + transcription)</li>
+              <li><strong>M-W13</strong> Automated stale-quote win-back sequences</li>
             </ul>
-            <p style="margin-top: 14px; color: var(--grey-text); font-size: 0.9rem;">Tools scoped, skills present, needs AroFlo API verification + Twilio wiring to go live. Weeks 2&ndash;3.</p>
-          </div>
-
-          <div class="card">
-            <h4 style="color: #a83232;">Missing &mdash; next to build</h4>
-            <ul style="margin-left: 18px; margin-top: 12px;">
-              <li><strong>M-W26</strong> Voice-Receptionist &amp; Emergency Routing</li>
-              <li><strong>M-W13</strong> Stale-Quote Win-Back</li>
-              <li><strong>M-W64</strong> Stock Alerts &amp; Reece Reorder (Layer 03)</li>
-              <li><strong>M-W71</strong> Invoice-Aged Payment Chase</li>
-              <li><strong>M-W62</strong> Review-Request for Trades</li>
-            </ul>
-            <p style="margin-top: 14px; color: var(--grey-text); font-size: 0.9rem;">5 workflows scheduled for Month 2&ndash;3. All pending the AroFlo trial + integration checks.</p>
-          </div>
-
-          <div class="card">
-            <h4>Score</h4>
-            <p style="font-size: 2.4rem; font-weight: 700; color: var(--navy); margin: 8px 0;">4 / 4 / 5</p>
-            <p style="color: var(--grey-text); font-size: 0.9rem;">Built / Partial / Missing out of 13 workflows. Target: 8/4/1 by end of Month 2. Target: 11/2/0 by end of Month 3.</p>
+            <p style="margin-top: 12px; font-style: italic;">These still run in v5.0 &mdash; just manually. Emma's time cost: &lt;10 min/day total.</p>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="callout" style="margin-top: 28px;">
-          <h4>What's blocking the "missing" list</h4>
-          <p>Five infrastructure pieces need to land before the missing workflows can ship: (1) Twilio MCP for voice &amp; SMS, (2) Xero chart-of-accounts mapping for invoice sync, (3) Google Business Profile auto-poster, (4) Reece parts API integration for stock alerts + PO creation, (5) n8n workflow templates for orchestration. These are all on Dave's side to build &mdash; nothing Beau needs to action.</p>
+    <!-- SECTION 7: TODAY'S LIVE SCRIPT -->
+    <section class="section" id="today">
+      <div class="container">
+        <span class="section-number">Section 07</span>
+        <h2 class="section-title">Today's Live Script &mdash; 7 Steps</h2>
+        <p class="section-desc">Work through in order. Emma = digital operator (phone + laptop). Beau = approver + photo supplier. Dave = technical bits + direction. Total time: ~2.5 hours.</p>
+
+        <!-- Step 1 -->
+        <div class="step-card">
+          <div class="step-head">
+            <span class="step-num">Step 01</span>
+            <h3>Google Business Profile Optimisation</h3>
+          </div>
+          <div class="step-meta">~30 min &middot; Emma + Beau at laptop &middot; <a href="https://business.google.com" target="_blank">business.google.com</a></div>
+
+          <div class="sub-title">Categories</div>
+          <p style="font-size: 0.95rem;">Primary: <code>Plumber</code>. Additional: <code>Emergency Plumber</code>, <code>Gas Installer</code>, <code>Hot Water System Supplier</code>, <code>Drainage Service</code>. Max 10 &mdash; fill all relevant.</p>
+
+          <div class="sub-title">Service Area</div>
+          <p style="font-size: 0.95rem;">Add every suburb individually: Wyong, Tuggerah, Gosford, Terrigal, The Entrance, Jilliby, Berkeley Vale, Bateau Bay, Long Jetty, Bay Village, Killarney Vale, Shelly Beach, Blue Bay, Toukley, Budgewoi, Woy Woy. More suburbs = more "near me" matches.</p>
+
+          <div class="sub-title">Hours</div>
+          <p style="font-size: 0.95rem;">Mon&ndash;Fri 7am&ndash;5pm. Sat: 8am&ndash;2pm. Sun: Closed. Turn ON <strong>24/7 Emergency service available</strong> attribute if offered.</p>
+
+          <div class="sub-title">Services (each with "from $X")</div>
+          <ul>
+            <li>Leak Detection &mdash; from $150</li>
+            <li>Blocked Drains &mdash; from $180</li>
+            <li>Hot Water System Repair/Install &mdash; from $350</li>
+            <li>Gas Fitting &mdash; from $200</li>
+            <li>Bathroom Renovations &mdash; quote on request</li>
+            <li>Emergency Plumbing 24/7 &mdash; from $250 callout</li>
+          </ul>
+
+          <div class="sub-title">Photos &mdash; 10 minimum today</div>
+          <p style="font-size: 0.95rem;">Beau pulls from phone: van (3 angles), logo, headshot, 3 before/after job sets, 1 tool/equipment shot. Google rewards accounts with 10+ photos with ~30% more views.</p>
+
+          <div class="sub-title">Q&amp;A &mdash; Emma posts 5 herself (allowed)</div>
+          <ul>
+            <li>Do you service [suburb]?</li>
+            <li>Do you do emergency call-outs?</li>
+            <li>Are you licensed and insured? <em>(include licence #)</em></li>
+            <li>Do you do gas fitting?</li>
+            <li>What areas do you cover?</li>
+          </ul>
+
+          <div class="sub-title">Post</div>
+          <p style="font-size: 0.95rem;">Create 1 Offer post: <em>"New customers &mdash; $50 off your first service. Call 0402&nbsp;269&nbsp;088."</em> Valid 30 days.</p>
+
+          <div class="sub-title">Short Name</div>
+          <p style="font-size: 0.95rem;">Claim <code>g.page/coastalwaysplumbing</code> (makes review link shareable).</p>
+
+          <div class="deliverable"><strong>Deliverable:</strong> Review short link <code>g.page/r/[code]/review</code>. Emma saves to her phone as a contact called "Review Link".</div>
         </div>
 
-        <div class="callout-amber callout" style="margin-top: 16px;">
-          <h4>Full internal reference</h4>
-          <p>The full AI OS spec (8 pillars &times; 8 roles &times; 5 architecture layers &times; 13 workflows with detailed step-by-step, KPIs, failure modes and costs per workflow) is maintained by Dave as an internal reference document. The implementation plan you're reading is the client-facing summary. Ask Dave if you want to see the deeper reference &mdash; it's how he's making sure nothing falls through the cracks.</p>
+        <!-- Step 2 -->
+        <div class="step-card">
+          <div class="step-head">
+            <span class="step-num">Step 02</span>
+            <h3>Reviews Loop (Manual)</h3>
+          </div>
+          <div class="step-meta">~15 min setup &middot; Emma owns forever</div>
+
+          <div class="sub-title">SMS template &mdash; save in Emma's Notes</div>
+          <div class="sms-template">
+            Hi [Name], Beau here &mdash; thanks for having us out today. We're growing Coastal Ways Plumbing and Google reviews are huge for small businesses. Would you mind leaving a quick one? Takes 30 seconds: [review link]. Really appreciate it. &mdash; Beau
+          </div>
+
+          <div class="sub-title">The rule</div>
+          <ul>
+            <li>Every completed job &rarr; Emma sends the SMS within 2 hours. Not next day. Within the hour is best.</li>
+            <li>Tracker tab in CWP Master Sheet: Date &middot; Customer &middot; Phone &middot; SMS Sent &middot; Review Received &middot; Stars &middot; Response Needed.</li>
+            <li>Target: first 10 reviews in 30 days. Then the flywheel self-sustains.</li>
+            <li>Response SOP: every review answered in 24h. 5-star: thank + mention the service type (SEO). 3-star or lower: apologise + offer to fix + move offline.</li>
+          </ul>
+
+          <div class="sub-title">Past-customer burst today</div>
+          <p style="font-size: 0.95rem;">Beau pulls his last 10 completed jobs from memory/phone. Emma SMS-blasts all 10 today. Expect 2&ndash;3 reviews in 48 hours.</p>
+
+          <div class="deliverable"><strong>Deliverable:</strong> Review tracker live + 5&ndash;10 past-customer SMS sent.</div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-card">
+          <div class="step-head">
+            <span class="step-num">Step 03</span>
+            <h3>Facebook + Instagram Finalisation</h3>
+          </div>
+          <div class="step-meta">~30 min &middot; Emma on her phone</div>
+
+          <div class="sub-title">Facebook Business Page</div>
+          <ol>
+            <li>About tab &rarr; fill every field: hours, service area, phone, website, email, ABN.</li>
+            <li>Add <strong>Call Now</strong> button as page CTA.</li>
+            <li>Upload 5 photos (reuse from GBP).</li>
+            <li>Post #1: <em>"We're live on the Central Coast. Licensed plumber, 10+ years, residential &amp; emergency. Call Beau on 0402&nbsp;269&nbsp;088."</em> Tag location.</li>
+          </ol>
+
+          <div class="sub-title">Instagram Business</div>
+          <ol>
+            <li>Profile &rarr; Settings &rarr; Switch to Professional &rarr; Business &rarr; Category: Plumbing Service.</li>
+            <li><strong>Connect to Facebook Page</strong> (critical &mdash; enables cross-posting).</li>
+            <li>Bio: <code>Licensed plumber | Central Coast NSW | Emergency 24/7 | 📞 0402&nbsp;269&nbsp;088 ⬇️</code></li>
+            <li>Add website link.</li>
+            <li>Post #1: same content. Hashtags: <code>#centralcoastplumber #wyongplumber #gosfordplumber #emergencyplumber #plumberlife</code></li>
+          </ol>
+
+          <div class="sub-title">Linktree (link-in-bio)</div>
+          <p style="font-size: 0.95rem;">Set up <code>linktr.ee/coastalwaysplumbing</code> (free). Add 5 links: <strong>Call 0402&nbsp;269&nbsp;088</strong> &middot; <strong>Website</strong> &middot; <strong>Book a Job</strong> &middot; <strong>Google Reviews</strong> &middot; <strong>Facebook</strong>. Paste the Linktree URL into IG bio.</p>
+
+          <div class="deliverable"><strong>Deliverable:</strong> FB + IG + Linktree live, first post on each, IG cross-posts to FB automatically from now on.</div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="step-card">
+          <div class="step-head">
+            <span class="step-num">Step 04</span>
+            <h3>Content System &mdash; Socials That Run Themselves</h3>
+          </div>
+          <div class="step-meta">~10 min setup &middot; runs forever</div>
+
+          <div class="sub-title">Beau's rule (written on dashboard)</div>
+          <p style="font-size: 0.95rem;">Every job, 3 shots:</p>
+          <ul>
+            <li><strong>BEFORE</strong> &mdash; the problem</li>
+            <li><strong>DURING</strong> &mdash; you working</li>
+            <li><strong>AFTER</strong> &mdash; finished, clean</li>
+          </ul>
+          <p style="font-size: 0.95rem;">Send all 3 to Emma via WhatsApp or Telegram, 1 line of context: <em>"Hot water replace, Wyong, Tuesday."</em></p>
+
+          <div class="sub-title">Emma's rule</div>
+          <p style="font-size: 0.95rem;">Post 3x/week minimum (Mon/Wed/Fri). Pick one job, use this caption template:</p>
+          <div class="sms-template">
+            [Before &rarr; After] [Service] in [Suburb]. [1-sentence story &mdash; e.g. "Called out to a burst hot water system and had the family back in hot water within 2 hours."] Need a plumber? 📞 0402&nbsp;269&nbsp;088.<br><br>
+            #centralcoastplumber #[suburb]plumber #[service] #plumberlife
+          </div>
+
+          <div class="deliverable"><strong>Deliverable:</strong> Beau's photo rule in place + Emma's first 5 caption templates saved in Notes.</div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="step-card">
+          <div class="step-head">
+            <span class="step-num">Step 05</span>
+            <h3>Website + Traffic Drivers</h3>
+          </div>
+          <div class="step-meta">~20 min &middot; Emma + Dave</div>
+
+          <div class="sub-title">Add website URL everywhere</div>
+          <ul>
+            <li>GBP ✓</li>
+            <li>Facebook page ✓</li>
+            <li>Instagram bio ✓</li>
+            <li>Linktree ✓</li>
+            <li>Email signature (Dave sets up Zoho branded email)</li>
+            <li>Beau's invoice footer + business card</li>
+          </ul>
+
+          <div class="sub-title">Directory listings &mdash; Emma, 10 min each, free</div>
+          <ul>
+            <li>True Local</li>
+            <li>Yellow Pages (free listing)</li>
+            <li>StartLocal</li>
+            <li>Hotfrog</li>
+            <li>Oneflare (free lead listing)</li>
+            <li>hipages (free profile; paid leads optional)</li>
+            <li>Service Seeking</li>
+            <li>Yelp Australia</li>
+          </ul>
+          <p style="font-size: 0.9rem; color: var(--grey-text);"><em>Use the same name/phone/address every time &mdash; NAP consistency is SEO gold.</em></p>
+
+          <div class="sub-title">Dave's jobs (technical)</div>
+          <ul>
+            <li>Submit sitemap to Google Search Console (already done &mdash; verify it's still indexed)</li>
+            <li>Verify LocalBusiness + Service schema markup on all 6 service pages</li>
+            <li>Core Web Vitals pass check</li>
+            <li>Add simple booking form on website &rarr; emails Emma directly</li>
+          </ul>
+
+          <div class="deliverable"><strong>Deliverable:</strong> 8 directory listings submitted or drafted, website linked from every surface, booking form live.</div>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="step-card">
+          <div class="step-head">
+            <span class="step-num">Step 06</span>
+            <h3>Emma's Daily Routine (10 min/day)</h3>
+          </div>
+          <div class="step-meta">Becomes the habit loop from tomorrow</div>
+
+          <div class="sub-title">Morning &mdash; 5 min</div>
+          <ul>
+            <li>Check FB/IG DMs + GBP messages, reply.</li>
+            <li>Glance at CWP Master Sheet &mdash; any quotes ageing past Day 7?</li>
+          </ul>
+
+          <div class="sub-title">After every Beau job &mdash; 2 min</div>
+          <ul>
+            <li>Send review SMS from template.</li>
+            <li>Log in tracker row: Date, Customer, Phone, SMS Sent.</li>
+          </ul>
+
+          <div class="sub-title">Mon/Wed/Fri &mdash; 10 min each</div>
+          <ul>
+            <li>Pick a photo set from Beau.</li>
+            <li>Caption from template.</li>
+            <li>Post to IG (auto cross-posts to FB).</li>
+          </ul>
+
+          <div class="sub-title">Friday &mdash; 15 min (weekly close)</div>
+          <ul>
+            <li>Screenshot GBP Insights (searches, calls, direction requests) &rarr; send to Dave.</li>
+            <li>Count reviews received this week.</li>
+            <li>Check for missed DMs anywhere.</li>
+          </ul>
+        </div>
+
+        <!-- Step 7 -->
+        <div class="step-card">
+          <div class="step-head">
+            <span class="step-num">Step 07</span>
+            <h3>Dave's Weekly Loop (Mondays, 20 min)</h3>
+          </div>
+          <div class="step-meta">Keeps the flywheel tuned</div>
+          <ul>
+            <li>Pull GBP Insights + Search Console numbers into a simple Sheet chart.</li>
+            <li>Post 1 GBP Post (tip, offer, or seasonal).</li>
+            <li>Respond to any reviews Emma hasn't.</li>
+            <li>Friday: 30-min call with Emma/Beau &mdash; adjust + assign next week.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: ROUTINES SUMMARY -->
+    <section class="section" id="routines">
+      <div class="container">
+        <span class="section-number">Section 08</span>
+        <h2 class="section-title">Emma &amp; Beau Routines &mdash; One-Page Summary</h2>
+        <p class="section-desc">Print this. Stick it above Emma's laptop and on Beau's dashboard.</p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h4>Emma &mdash; Digital Operator</h4>
+            <span class="tag tag-owner">Emma</span>
+            <ul style="padding-left: 20px; color: var(--navy); font-size: 0.9rem; margin-top: 8px;">
+              <li><strong>Every morning (5 min):</strong> DMs + GBP messages.</li>
+              <li><strong>After every Beau job (2 min):</strong> review SMS + log in Sheet.</li>
+              <li><strong>Mon/Wed/Fri (10 min):</strong> one social post.</li>
+              <li><strong>Friday (15 min):</strong> GBP insights screenshot to Dave.</li>
+              <li><strong>Monthly:</strong> directory listings refresh, any updates.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>Beau &mdash; Field Operator</h4>
+            <span class="tag tag-owner">Beau</span>
+            <ul style="padding-left: 20px; color: var(--navy); font-size: 0.9rem; margin-top: 8px;">
+              <li><strong>Every job:</strong> 3 photos (Before / During / After) &rarr; WhatsApp to Emma.</li>
+              <li><strong>Job complete:</strong> text Emma "DONE &mdash; [customer name]" so she fires the review SMS.</li>
+              <li><strong>Emergency callouts:</strong> flag to Emma with 1-line context for rapid billing.</li>
+              <li><strong>Weekly:</strong> approve quotes Emma has drafted.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 9: COSTS -->
+    <section class="section" id="costs">
+      <div class="container">
+        <span class="section-number">Section 09</span>
+        <h2 class="section-title">Costs &mdash; Lean vs AroFlo Path</h2>
+        <p class="section-desc">The difference funds ~1 extra job per month, or a tank of fuel for the van each week.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Line Item</th>
+              <th>v5.0 Lean</th>
+              <th>v4.0 AroFlo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Operations platform</td><td>Google Sheet (free)</td><td>AroFloGo $39/user &times; 4 = $156/mo</td></tr>
+            <tr><td>Accounting</td><td>Xero Starter $35/mo</td><td>Xero Starter $35/mo</td></tr>
+            <tr><td>Payments</td><td>Stripe 1.75% + 30c (usage)</td><td>Stripe 1.75% + 30c (usage)</td></tr>
+            <tr><td>Telegram bot + basic tooling</td><td>~$5&ndash;10/mo</td><td>~$50/mo</td></tr>
+            <tr><td>SMS gateway</td><td>$0 &mdash; Emma's phone</td><td>~$30&ndash;50/mo (MessageMedia)</td></tr>
+            <tr><td>Directory / GA4 / misc</td><td>~$5/mo</td><td>~$15/mo</td></tr>
+            <tr><td>Zapier (fallback)</td><td>Not needed</td><td>$30/mo if API blocked</td></tr>
+            <tr><td><strong>Monthly total</strong></td><td><strong>~$45&ndash;50/mo</strong></td><td><strong>~$300&ndash;400/mo</strong></td></tr>
+            <tr><td><strong>Setup fee</strong></td><td><strong>$0</strong></td><td><strong>Up to $2,900 (Full AroFlo)</strong></td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout-green">
+          <h4>Year-1 saving: ~$3,000&ndash;$4,200</h4>
+          <p>That's real cash that stays in CWP's operating account until revenue makes AroFlo obviously worth it.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 10: DECISION GATE -->
+    <section class="section" id="gate">
+      <div class="container">
+        <span class="section-number">Section 10</span>
+        <h2 class="section-title">The AroFlo Decision Gate &mdash; End of Sprint 8</h2>
+        <p class="section-desc">At week 8 exit (Jun&nbsp;18), we evaluate: is the business ready for AroFlo, or do we keep running lean?</p>
+
+        <div class="callout">
+          <h4>Go to AroFlo if ALL of these are true</h4>
+          <p>&bull; Revenue is predictable and covers $400/mo + $2,900 setup within 3 months. &bull; Job volume exceeds 30/month (manual Sheet starts to strain). &bull; Beau is spending &gt;30 min/day on admin. &bull; A team member is being hired and onboarding friction matters.</p>
+        </div>
+
+        <div class="callout callout-amber">
+          <h4>Stay lean if ANY of these are true</h4>
+          <p>&bull; Revenue is still building, or seasonal. &bull; Job volume is under 30/month. &bull; The Sheet + Xero flow is working and Beau/Emma aren't complaining. &bull; Cash is better deployed into marketing, a second van, or a tradie hire.</p>
+        </div>
+
+        <div class="callout callout-green">
+          <h4>Either way, you're not locked in</h4>
+          <p>Google Sheet exports to CSV. CSV imports into AroFlo. The lean stack is a springboard, not a dead end.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 11: SUCCESS METRICS -->
+    <section class="section">
+      <div class="container">
+        <span class="section-number">Section 11</span>
+        <h2 class="section-title">Success Metrics &mdash; Jun 18 Exit State</h2>
+
+        <div class="grid-3">
+          <div class="card"><h4>Reviews</h4><p>10+ Google reviews received, all responded to within 24h.</p></div>
+          <div class="card"><h4>Admin Time</h4><p>Emma &lt;10 min/day on admin. Beau &lt;2 min/job on notes.</p></div>
+          <div class="card"><h4>Visibility</h4><p>GBP ranking top 3 for "plumber [suburb]" in at least 5 local suburbs.</p></div>
+          <div class="card"><h4>Traffic</h4><p>50+ website sessions/week from organic + GBP + socials combined.</p></div>
+          <div class="card"><h4>Conversion</h4><p>Quote-to-close rate tracked weekly; target 40%+ by Sprint 8.</p></div>
+          <div class="card"><h4>Independence</h4><p>Beau &amp; Emma run the OS without daily Dave involvement.</p></div>
         </div>
       </div>
     </section>
 
   </main>
 
-  <!-- FOOTER -->
   <footer class="doc-footer">
     <div class="container">
-      <p>Coastal Ways Plumbing &mdash; Digital Implementation Plan v4.0 &nbsp;|&nbsp; Last updated: 22 April 2026</p>
+      <p>Coastal Ways Plumbing &mdash; Digital Implementation Plan v5.0 (Lean) &middot; Prepared by Dave Calder &middot; Updated 23 April 2026</p>
+      <p style="margin-top: 8px;"><a href="index.html">&larr; Back to site</a></p>
     </div>
   </footer>
 
