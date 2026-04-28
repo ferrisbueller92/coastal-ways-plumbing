@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CWP — Master Sheet & Drive Schema</title>
+<style>
+  :root {
+    --sand: #FBF6F3;
+    --grey: #C4CFD1;
+    --teal: #055A5F;
+    --navy: #10202D;
+    --warn: #C45A11;
+    --good: #2E7D32;
+    --soft: #F0E8E2;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--sand); color: var(--navy); max-width: 1080px; margin: 0 auto; padding: 32px 24px 80px; line-height: 1.6; }
+  header { border-bottom: 3px solid var(--teal); padding-bottom: 16px; margin-bottom: 24px; }
+  .eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: var(--teal); font-weight: 700; }
+  h1 { color: var(--navy); font-size: 30px; margin: 6px 0 8px; line-height: 1.2; }
+  .subtitle { color: #555; font-size: 16px; margin: 0; }
+  h2 { color: var(--teal); font-size: 22px; margin: 36px 0 12px; padding-bottom: 6px; border-bottom: 2px solid var(--grey); }
+  h3 { color: var(--navy); font-size: 17px; margin: 22px 0 8px; }
+  h4 { color: var(--teal); font-size: 13px; margin: 16px 0 6px; text-transform: uppercase; letter-spacing: 1px; }
+  p, li { font-size: 14.5px; }
+  ul, ol { padding-left: 22px; }
+  li { margin-bottom: 5px; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; background: #fff; border-radius: 6px; overflow: hidden; font-size: 13.5px; }
+  th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--grey); vertical-align: top; }
+  th { background: var(--teal); color: var(--sand); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.8px; }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: var(--soft); }
+  code { background: var(--navy); color: var(--sand); padding: 1px 6px; border-radius: 3px; font-size: 12.5px; font-family: ui-monospace, Menlo, monospace; }
+  .callout { background: #fff; border-left: 4px solid var(--teal); padding: 14px 18px; margin: 14px 0; border-radius: 0 6px 6px 0; }
+  .callout.warn { border-left-color: var(--warn); }
+  .callout.good { border-left-color: var(--good); }
+  .callout.dark { background: var(--navy); color: var(--sand); border-left-color: #FFB347; }
+  .callout.dark code { background: var(--sand); color: var(--navy); }
+  .callout-title { font-weight: 700; color: var(--teal); margin-bottom: 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+  .callout.warn .callout-title { color: var(--warn); }
+  .callout.good .callout-title { color: var(--good); }
+  .callout.dark .callout-title { color: #FFB347; }
+  .pill { display: inline-block; padding: 2px 9px; border-radius: 12px; font-size: 11px; font-weight: 700; margin-right: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .pill.live { background: var(--good); color: #fff; }
+  .pill.next { background: var(--warn); color: #fff; }
+  .pill.empty { background: var(--grey); color: var(--navy); }
+  .pill.new { background: var(--teal); color: var(--sand); }
+  .pill.gap { background: #B71C1C; color: #fff; }
+  .who { display: inline-block; padding: 1px 7px; border-radius: 3px; font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; }
+  .who-d { background: var(--teal); color: var(--sand); }
+  .who-b { background: var(--navy); color: var(--sand); }
+  .who-e { background: var(--warn); color: var(--sand); }
+  .who-t { background: #6D4C41; color: var(--sand); }
+  .who-x { background: var(--grey); color: var(--navy); }
+  .who-auto { background: #6A1B9A; color: var(--sand); }
+  .toc { background: #fff; border: 1px solid var(--grey); border-radius: 6px; padding: 14px 22px; margin: 24px 0; }
+  .toc ul { list-style: none; padding-left: 0; columns: 2; gap: 24px; }
+  .toc li { margin-bottom: 4px; font-size: 13.5px; }
+  .toc a { color: var(--teal); text-decoration: none; font-weight: 500; }
+  .toc a:hover { text-decoration: underline; }
+  .principle { background: var(--navy); color: var(--sand); padding: 16px 22px; border-radius: 8px; margin: 16px 0; font-size: 15px; }
+  .principle strong { color: #FFB347; }
+  .updated { color: #888; font-size: 12px; text-align: right; margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--grey); }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 720px) { .grid-2 { grid-template-columns: 1fr; } .toc ul { columns: 1; } }
+  .folder-tree { background: var(--navy); color: var(--sand); padding: 18px 22px; border-radius: 6px; font-family: ui-monospace, Menlo, monospace; font-size: 13px; line-height: 1.7; overflow-x: auto; }
+  .folder-tree .new-item { color: #FFB347; }
+  .folder-tree .comment { color: #8FA3A6; }
+  .layer-card { background: #fff; border: 1px solid var(--grey); border-radius: 8px; padding: 16px 22px; margin: 12px 0; }
+  .layer-card h3 { margin-top: 0; color: var(--teal); }
+  .gate { background: #FFF8EC; border: 1px solid #E8C97A; padding: 10px 14px; border-radius: 6px; margin: 8px 0; font-size: 13px; }
+  .legend { font-size: 12px; color: #555; margin: 4px 0 16px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Coastal Ways Plumbing · Operating System</div>
+  <h1>Master Sheet &amp; Drive — Schema, Data Capture &amp; Automation Readiness</h1>
+  <p class="subtitle">What every column means, who fills it, when, and which automations unlock once it's populated. Written so Beau and Emma can dump their heads into the system and Dave can wire automation on top.</p>
+</header>
+
+<div class="principle">
+  <strong>Operating principle:</strong> Automation only works on data that already exists. Every automation in the roadmap is gated on one or more data fields being populated first. We collect the data manually before we automate anything.
+</div>
+
+<div class="legend">
+  <strong>Legend:</strong>
+  <span class="who who-b">Beau</span>
+  <span class="who who-e">Emma</span>
+  <span class="who who-t">Tim</span>
+  <span class="who who-d">Dave</span>
+  <span class="who who-auto">Auto</span>
+  <span class="who who-x">Shared</span>
+  &nbsp;·&nbsp;
+  <span class="pill live">Live</span>
+  <span class="pill empty">Empty</span>
+  <span class="pill new">New</span>
+  <span class="pill gap">Gap</span>
+</div>
+
+<div class="toc">
+  <strong>Sections:</strong>
+  <ul>
+    <li><a href="#snapshot">1. Live snapshot</a></li>
+    <li><a href="#process">2. What we know about Beau's process</a></li>
+    <li><a href="#layers">3. The 6 data layers</a></li>
+    <li><a href="#tabs">4. Master Sheet — tab by tab</a></li>
+    <li><a href="#newtabs">5. Five new tabs proposed</a></li>
+    <li><a href="#drive">6. Drive folder structure</a></li>
+    <li><a href="#beau-dump">7. What Beau saves down (one-off)</a></li>
+    <li><a href="#emma-rhythm">8. What Emma saves down (daily)</a></li>
+    <li><a href="#automation">9. Automation roadmap</a></li>
+    <li><a href="#access">10. Access matrix</a></li>
+    <li><a href="#decisions">11. Decisions Dave needs</a></li>
+    <li><a href="#sequence">12. Five-day build sequence</a></li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="snapshot">1. Live snapshot — what exists right now</h2>
+
+<table>
+  <tr><th>Asset</th><th>Owner</th><th>Location</th><th>State</th></tr>
+  <tr><td><strong>Coastal Ways Plumbing</strong> (parent folder, 7 subfolders)</td><td>enquire@</td><td>Workspace Drive</td><td><span class="pill live">Structure live</span> — subfolders empty</td></tr>
+  <tr><td>CWP Master — Operations spreadsheet</td><td>davidcalder1703@</td><td>Dave's My Drive (orphan)</td><td><span class="pill live">Live</span> — locale just fixed to AU/Sydney; 6 tabs, 5 empty + Compliance has 7 placeholder rows</td></tr>
+  <tr><td>CWP Social Posts (folder)</td><td>davidcalder1703@</td><td>Dave's My Drive (orphan)</td><td><span class="pill live">Live</span> — needs migration into <code>04 - Brand &amp; Marketing</code></td></tr>
+  <tr><td>Xero Starter</td><td>Beau</td><td>Xero cloud</td><td><span class="pill live">Live and in use</span> — schema below assumes Xero owns invoices</td></tr>
+  <tr><td>Google Workspace + GBP + Website</td><td>enquire@</td><td>Live</td><td><span class="pill live">Live</span></td></tr>
+  <tr><td>Shared Calendar (CWP Operations)</td><td>—</td><td>—</td><td><span class="pill empty">Not yet</span> — Sprint 2 build</td></tr>
+</table>
+
+<div class="callout warn">
+  <div class="callout-title">Two orphan files need migration</div>
+  The Master Sheet and CWP Social Posts folder both live in Dave's personal My Drive, not inside the Coastal Ways Plumbing parent. Once Dave's <code>davidcalder1703@gmail.com</code> is added as Editor on the parent folder, both can be moved into <code>05 - Operations &amp; SOP</code> and <code>04 - Brand &amp; Marketing</code> respectively. Until that move, anyone navigating the Drive structure won't find the live data.
+</div>
+
+<!-- ============================================================ -->
+<h2 id="process">2. What we know about Beau's process — the source notes</h2>
+
+<p>This section pulls from three references that already exist in the vault: the CWP anchor, the T-W01 research, and the implementation plan.</p>
+
+<h3>The 5 ranked pain signals</h3>
+<table>
+  <tr><th>#</th><th>Signal</th><th>Source</th><th>Where it lands in the schema</th></tr>
+  <tr><td>1</td><td>Stock / inventory visibility and replenishment</td><td>Beau-stated #1 pain</td><td><strong>NEW</strong> Materials/Stock tab — currently zero coverage</td></tr>
+  <tr><td>2</td><td>Admin per job: 20–30 min today, target 5–10 min</td><td>Beau-stated</td><td>Existing Jobs + Quotes + Reviews tabs (collapses admin into one Sheet entry)</td></tr>
+  <tr><td>3</td><td>Cold leads — enquiry-to-quote &amp; quote-to-book leakage</td><td>Beau-stated</td><td><strong>NEW</strong> Enquiries tab + existing Quotes follow-up columns</td></tr>
+  <tr><td>4</td><td>Strata / property-manager comms</td><td>Beau-stated</td><td><strong>NEW</strong> Strata Directory tab + Jobs.PM link</td></tr>
+  <tr><td>5</td><td>AroFlo learning-curve overhead</td><td>Team-reported</td><td>Resolved by deferring AroFlo (already decided)</td></tr>
+</table>
+
+<h3>The 5 measurable goals (from T-W01 research)</h3>
+<table>
+  <tr><th>Goal</th><th>Baseline (industry)</th><th>Target</th><th>Measurable from</th></tr>
+  <tr><td>Lead response time (first touch)</td><td>~47hr industry avg</td><td>≤5min auto-ack + ≤2hr human</td><td><strong>NEW</strong> Enquiries tab</td></tr>
+  <tr><td>Missed-call rate</td><td>≥27% (Invoca home services)</td><td>&lt;5%</td><td><strong>NEW</strong> Enquiries tab + iPhone call log</td></tr>
+  <tr><td>After-hours capture rate</td><td>0% today</td><td>100% auto-ack, &lt;15min triage</td><td><strong>NEW</strong> Enquiries tab + auto-responder rule</td></tr>
+  <tr><td>Quote turnaround</td><td>&gt;48hr typical</td><td>≤24hr standard residential</td><td>Existing Quotes tab (Date Sent − Enquiry timestamp)</td></tr>
+  <tr><td>Quote-to-book conversion</td><td>20–35%</td><td>≥40% with 3/7/14-day follow-up</td><td>Existing Quotes tab Status + Accepted Date</td></tr>
+</table>
+
+<h3>Customer mix &amp; channel research (locked from anchor + T-W01)</h3>
+<ul>
+  <li><strong>65% strata / real estate</strong> (B2B2C, repeat, invoice-after) · <strong>35% public residential</strong> (B2C, one-off, often cash-on-spot)</li>
+  <li><strong>Phone is the dominant <em>initiation</em> channel</strong> — 60% of local-services customers call first (BrightLocal). <strong>SMS is the dominant <em>follow-up</em> channel</strong> — 89% prefer text once a relationship exists (ProTexting).</li>
+  <li><strong>NSW regulatory layer:</strong> Spam Act 2003 (auto-replies must include legal name + ABN + STOP option), Surveillance Devices Act 2007 (all-party consent for call recording — affects any AI receptionist), NSW Fair Trading (licence number must appear on all advertising including website + auto-replies).</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2 id="layers">3. The 6 data layers — how data flows through the business</h2>
+
+<p>The Sheet currently starts at L2 (Contacts). The funnel above L2 is invisible. The funnel below L4 (Invoices, Reviews) is fragmented across Xero and the Sheet. This section names the layers explicitly so we know what's missing.</p>
+
+<div class="layer-card">
+  <h3>L1 — Enquiry <span class="pill gap">MISSING</span></h3>
+  <p>Every inbound signal: phone call (answered or missed), website form, GBP message, FB/IG DM, walk-in. Most enquiries don't become customers — but we still need to know they happened, when, and through which channel. Without L1, lead-response-time and missed-call rate cannot be measured.</p>
+  <p><strong>Where it goes:</strong> NEW Enquiries tab.</p>
+</div>
+
+<div class="layer-card">
+  <h3>L2 — Contact <span class="pill empty">Schema live, 0 rows</span></h3>
+  <p>An Enquiry that became a real customer (we have their full name + a way to reach them and they've agreed to engagement). One Contact may have many Jobs over time.</p>
+  <p><strong>Where it goes:</strong> Existing Contacts tab (Master Sheet).</p>
+</div>
+
+<div class="layer-card">
+  <h3>L3 — Quote <span class="pill empty">Schema live, 0 rows</span></h3>
+  <p>A priced scope sent to a Contact. Has a status lifecycle: Draft → Sent → Viewed → Accepted / Rejected / Expired. Drives the quote-to-book metric.</p>
+  <p><strong>Where it goes:</strong> Existing Quotes tab + the Quote Google Doc template lives in <code>05 - Operations &amp; SOP/templates/</code>.</p>
+</div>
+
+<div class="layer-card">
+  <h3>L4 — Job <span class="pill empty">Schema live, 0 rows</span></h3>
+  <p>An accepted Quote that's been scheduled and either is happening / has happened. Status: Scheduled → In Progress → Complete → Invoiced → Paid → Reviewed.</p>
+  <p><strong>Where it goes:</strong> Existing Jobs tab + per-job photo set in <code>01 - Customers/[Customer]/[date-job]/</code>.</p>
+</div>
+
+<div class="layer-card">
+  <h3>L5 — Invoice <span class="pill live">Lives in Xero</span></h3>
+  <p>Xero owns this layer. The Sheet's Invoices tab needs a rethink — three options:</p>
+  <ol>
+    <li><strong>Delete</strong> the Invoices tab — Xero is the source of truth, don't duplicate.</li>
+    <li><strong>Mirror</strong> minimal columns (Invoice # · Job # · Amount · Status) via Xero webhook → Apps Script. Makes the Sheet self-contained for at-a-glance views without Xero login.</li>
+    <li><strong>Replace with a Cash Flow View</strong> tab — pulls Xero outstanding-receivables totals, shows ageing buckets. Different shape from current schema.</li>
+  </ol>
+  <p><strong>Recommendation:</strong> Option 2 for now (mirror) so Emma doesn't need Xero login for the daily glance. Wire via Zapier or Apps Script when we hit Sprint 4. Until then, leave the empty Invoices tab as a placeholder.</p>
+</div>
+
+<div class="layer-card">
+  <h3>L6 — Review <span class="pill empty">Schema live, 0 rows</span></h3>
+  <p>The post-job feedback layer. SMS sent → review received → response posted. Drives GBP ranking.</p>
+  <p><strong>Where it goes:</strong> Existing Reviews tab. Could be derived from Jobs (Review Requested? + Review Received? columns) but a dedicated tab keeps the response cycle visible.</p>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="tabs">4. Master Sheet — tab by tab (existing 6)</h2>
+
+<p>Every column explained. The "Filled by" column tells Emma and Beau what's theirs.</p>
+
+<h3>Tab 1 — Contacts <span class="pill live">Live</span> (11 cols)</h3>
+<table>
+  <tr><th>Col</th><th>Field</th><th>Type</th><th>Filled by</th><th>When</th><th>Why it matters</th></tr>
+  <tr><td>1</td><td>Date Added</td><td>Date</td><td><span class="who who-e">Emma</span></td><td>First contact confirmed</td><td>Cohort tracking; lifetime calculations</td></tr>
+  <tr><td>2</td><td>Full Name</td><td>Text</td><td><span class="who who-e">Emma</span></td><td>First contact</td><td>Identity</td></tr>
+  <tr><td>3</td><td>Suburb</td><td>Text</td><td><span class="who who-e">Emma</span></td><td>First contact</td><td>Service-area heatmap; SEO targeting; referral patterns</td></tr>
+  <tr><td>4</td><td>Phone</td><td>Phone</td><td><span class="who who-e">Emma</span></td><td>First contact</td><td>SMS + callback</td></tr>
+  <tr><td>5</td><td>Email</td><td>Email</td><td><span class="who who-e">Emma</span></td><td>First contact</td><td>Quote + invoice delivery</td></tr>
+  <tr><td>6</td><td>Customer Type</td><td>Dropdown: Residential · Commercial · Strata · Property Manager · Real Estate · Other</td><td><span class="who who-e">Emma</span></td><td>First contact</td><td>Drives 65/35 mix tracking; strata jobs route through PM directory</td></tr>
+  <tr><td>7</td><td>Source</td><td>Dropdown: Website form · GBP · Google Search · Facebook · Instagram · Referral · Walk-in · Repeat customer · Directory · Other</td><td><span class="who who-e">Emma</span></td><td>First contact</td><td>Marketing attribution — proves which channels drive jobs</td></tr>
+  <tr><td>8</td><td>Last Job Date</td><td>Date</td><td><span class="who who-auto">Auto</span> (formula from Jobs)</td><td>Auto</td><td>Re-engagement triggers (e.g. 12mo dormant)</td></tr>
+  <tr><td>9</td><td>Job Count</td><td>Number</td><td><span class="who who-auto">Auto</span> (formula from Jobs)</td><td>Auto</td><td>Loyalty tier; review-blast eligibility</td></tr>
+  <tr><td>10</td><td>Lifetime Spend ($)</td><td>Currency</td><td><span class="who who-auto">Auto</span> (formula from Jobs)</td><td>Auto</td><td>Top-customer identification; LTV trend</td></tr>
+  <tr><td>11</td><td>Notes</td><td>Text</td><td><span class="who who-e">Emma</span></td><td>Anytime</td><td>"Has 2 dogs, side gate code 1234, prefers Beau call ahead 30min"</td></tr>
+</table>
+
+<h3>Tab 2 — Jobs <span class="pill live">Live</span> (14 cols)</h3>
+<table>
+  <tr><th>Col</th><th>Field</th><th>Type</th><th>Filled by</th><th>When</th><th>Why</th></tr>
+  <tr><td>1</td><td>Job #</td><td>Auto-increment from 1001</td><td><span class="who who-e">Emma</span></td><td>Quote accepted</td><td>Stable reference for invoices, photos, comms</td></tr>
+  <tr><td>2</td><td>Date</td><td>Date (job scheduled)</td><td><span class="who who-e">Emma</span></td><td>Booked</td><td>Calendar sync; weekly capacity view</td></tr>
+  <tr><td>3</td><td>Customer Name</td><td>Lookup from Contacts</td><td><span class="who who-e">Emma</span></td><td>Booked</td><td>—</td></tr>
+  <tr><td>4</td><td>Suburb</td><td>Lookup from Contacts</td><td><span class="who who-auto">Auto</span></td><td>Booked</td><td>Routing</td></tr>
+  <tr><td>5</td><td>Phone</td><td>Lookup from Contacts</td><td><span class="who who-auto">Auto</span></td><td>Booked</td><td>Beau's quick-dial on the day</td></tr>
+  <tr><td>6</td><td>Service Type</td><td>Dropdown: Emergency · Blocked drains · Gas fitting · Hot water · Leak detection · Bathroom reno · Other</td><td><span class="who who-e">Emma</span></td><td>Booked</td><td>Service-mix reporting</td></tr>
+  <tr><td>7</td><td>Description</td><td>Text — 1-line scope</td><td><span class="who who-e">Emma</span></td><td>Booked</td><td>Beau context on arrival</td></tr>
+  <tr><td>8</td><td>Status</td><td>Dropdown: Scheduled · In Progress · Complete · Invoiced · Paid · Reviewed</td><td><span class="who who-e">Emma</span></td><td>State change</td><td>Drives every downstream automation</td></tr>
+  <tr><td>9</td><td>Quote ($)</td><td>Currency — accepted quote</td><td><span class="who who-e">Emma</span></td><td>Booked</td><td>Variance tracking against actual invoice</td></tr>
+  <tr><td>10</td><td>Invoice ($)</td><td>Currency — actual</td><td><span class="who who-auto">Auto</span> from Xero (future) / <span class="who who-e">Emma</span> manual now</td><td>Invoiced</td><td>Margin and price-discipline data</td></tr>
+  <tr><td>11</td><td>Paid?</td><td>Boolean</td><td><span class="who who-auto">Auto</span> from Xero (future) / <span class="who who-e">Emma</span> manual now</td><td>Payment received</td><td>Cash flow; chase trigger</td></tr>
+  <tr><td>12</td><td>Review Requested?</td><td>Boolean + Date</td><td><span class="who who-e">Emma</span></td><td>Within 2hr of Status=Complete</td><td>Hard rule for compliance with the 2hr review-SMS protocol</td></tr>
+  <tr><td>13</td><td>Review Received?</td><td>Dropdown: Awaiting · 5★ · 4★ · 3★ · 2★ · 1★ · None received</td><td><span class="who who-e">Emma</span></td><td>Reviewed or 30d after request</td><td>GBP ranking signal</td></tr>
+  <tr><td>14</td><td>Notes</td><td>Text</td><td><span class="who who-b">Beau</span> via voice → <span class="who who-e">Emma</span> typing</td><td>Job complete</td><td>"Replaced HWS, recommended drain rod next visit, $230 in materials"</td></tr>
+</table>
+
+<h3>Tab 3 — Quotes <span class="pill live">Live</span> (13 cols)</h3>
+<p>Driven by the quote-to-book metric. Day 2 / Day 7 / Day 14 columns enforce the follow-up cadence.</p>
+<table>
+  <tr><th>Col</th><th>Field</th><th>Filled by</th><th>Trigger</th></tr>
+  <tr><td>1–7</td><td>Quote # · Date Sent · Customer · Suburb · Phone · Service · Amount</td><td><span class="who who-e">Emma</span> on quote send</td><td>Quote drafted</td></tr>
+  <tr><td>8</td><td>Status (Draft / Sent / Viewed / Accepted / Rejected / Expired)</td><td><span class="who who-e">Emma</span></td><td>State change</td></tr>
+  <tr><td>9</td><td>Day 2 Follow-up (date)</td><td><span class="who who-e">Emma</span></td><td>D+2 reminder fires</td></tr>
+  <tr><td>10</td><td>Day 7 Follow-up (date)</td><td><span class="who who-e">Emma</span></td><td>D+7 reminder fires</td></tr>
+  <tr><td>11</td><td>Day 14 Follow-up (date)</td><td><span class="who who-e">Emma</span></td><td>D+14 reminder fires</td></tr>
+  <tr><td>12</td><td>Accepted Date</td><td><span class="who who-e">Emma</span></td><td>Customer agrees</td></tr>
+  <tr><td>13</td><td>Notes</td><td><span class="who who-e">Emma</span></td><td>Anytime</td></tr>
+</table>
+
+<h3>Tab 4 — Invoices <span class="pill live">Live, 0 rows</span> (12 cols)</h3>
+<p>See L5 above — recommendation is to mirror Xero (Option 2) once Xero webhook is wired in Sprint 4. Until then, stays empty.</p>
+
+<h3>Tab 5 — Reviews <span class="pill live">Live</span> (11 cols)</h3>
+<p>2-hour SMS rule lives here. Every Job with Status = Complete gets a Review row within 2 hours.</p>
+<table>
+  <tr><th>Col</th><th>Field</th><th>Filled by</th></tr>
+  <tr><td>1–4</td><td>Date Job Complete · Customer Name · Phone · SMS Sent Date</td><td><span class="who who-e">Emma</span> within 2hr of "DONE" text from Beau</td></tr>
+  <tr><td>5</td><td>Platform (Google / Facebook / direct)</td><td><span class="who who-e">Emma</span></td></tr>
+  <tr><td>6–7</td><td>Review Received? · Star Rating</td><td><span class="who who-e">Emma</span> on receipt</td></tr>
+  <tr><td>8</td><td>Review Text (paste)</td><td><span class="who who-e">Emma</span></td></tr>
+  <tr><td>9–10</td><td>Response Sent? · Response Date</td><td><span class="who who-e">Emma</span> within 24hr of receipt</td></tr>
+  <tr><td>11</td><td>Notes</td><td><span class="who who-e">Emma</span></td></tr>
+</table>
+
+<h3>Tab 6 — Compliance <span class="pill live">Live, 7 placeholder rows</span> (9 cols)</h3>
+<p>Pre-seeded with 7 standard items. <span class="who who-b">Beau</span> fills the values; <span class="who who-t">Tim</span> watches expiries.</p>
+
+<table>
+  <tr><th>Item (already seeded)</th><th>What Beau fills</th></tr>
+  <tr><td>NSW Plumbing Licence</td><td>Number / Reference · Expiry Date · Renewal Cost</td></tr>
+  <tr><td>Public Liability Insurance</td><td>Policy # · Expiry · Cost · Insurer name (in Notes)</td></tr>
+  <tr><td>Contractor Licence (NSW Fair Trading)</td><td>Number · Expiry · Cost</td></tr>
+  <tr><td>Workers Compensation (icare NSW)</td><td>Policy # · Expiry · Cost · "N/A" if no employees yet</td></tr>
+  <tr><td>Motor Vehicle Registration</td><td>Rego plate · Expiry · Cost</td></tr>
+  <tr><td>ABN Registration</td><td>62 284 909 142 (already filled)</td></tr>
+  <tr><td>Gas Work Authorisation</td><td>Number · Expiry · Cost</td></tr>
+</table>
+
+<div class="callout">
+  <div class="callout-title">Days-to-Expiry formula</div>
+  Once Expiry Date is filled for each row, paste this formula in column 5 (Days to Expiry): <code>=IFERROR(D2-TODAY(),"")</code> dragged down. Now that locale is AU/Sydney this will work correctly. Status column should conditional-format: green &gt;90 days, amber 30–90, red &lt;30. Tim's job is to watch the red rows.
+</div>
+
+<!-- ============================================================ -->
+<h2 id="newtabs">5. Five new tabs proposed</h2>
+
+<p>These close the data gaps that block automation. Each tab is justified by a specific automation it unlocks.</p>
+
+<h3>Tab 7 — Enquiries <span class="pill new">NEW</span> (10 cols) — closes the L1 gap</h3>
+<table>
+  <tr><th>Col</th><th>Field</th><th>Type</th><th>Why</th></tr>
+  <tr><td>1</td><td>Timestamp</td><td>DateTime</td><td>Lead-response-time math</td></tr>
+  <tr><td>2</td><td>Channel</td><td>Dropdown: Phone (answered) · Phone (missed) · SMS · Website form · GBP message · FB DM · IG DM · Email · Walk-in · Referral</td><td>Channel mix; missed-call rate</td></tr>
+  <tr><td>3</td><td>Caller name (or anon)</td><td>Text</td><td>Identification</td></tr>
+  <tr><td>4</td><td>Phone / Email</td><td>Text</td><td>Callback</td></tr>
+  <tr><td>5</td><td>Suburb (if known)</td><td>Text</td><td>In/out of service area</td></tr>
+  <tr><td>6</td><td>Reason / what they want</td><td>Text — 1 line</td><td>Triage</td></tr>
+  <tr><td>7</td><td>Urgency</td><td>Dropdown: Emergency · Same-day · This week · Quote only</td><td>Routing rules</td></tr>
+  <tr><td>8</td><td>First response sent at</td><td>DateTime</td><td>Lead-response-time math (col 8 − col 1)</td></tr>
+  <tr><td>9</td><td>Outcome</td><td>Dropdown: Booked job · Quote sent · Out of area · No-quote (price) · Ghosted · Wrong number · Spam</td><td>Conversion funnel</td></tr>
+  <tr><td>10</td><td>Notes / link to Contact</td><td>Text</td><td>Bridge to L2</td></tr>
+</table>
+
+<h3>Tab 8 — Strata Directory <span class="pill new">NEW</span> (11 cols) — closes pain #4</h3>
+<p>One row per Property Manager / Strata Manager / Real Estate agent. Beau works with 3-4 of these.</p>
+<table>
+  <tr><th>Col</th><th>Field</th><th>Why</th></tr>
+  <tr><td>1</td><td>PM Company Name</td><td>Identity</td></tr>
+  <tr><td>2</td><td>Primary Contact Name</td><td>Day-to-day relationship</td></tr>
+  <tr><td>3</td><td>Phone (mobile preferred)</td><td>Trail-first comms</td></tr>
+  <tr><td>4</td><td>Email</td><td>Quote + invoice routing</td></tr>
+  <tr><td>5</td><td>Buildings Managed (count + suburbs)</td><td>Volume sizing</td></tr>
+  <tr><td>6</td><td>SLA Response Required</td><td>Drives lead-time SLA</td></tr>
+  <tr><td>7</td><td>Payment Terms</td><td>Cash-flow planning</td></tr>
+  <tr><td>8</td><td>Key-collection process</td><td>"Lockbox at #4" / "PM emails code morning of" / etc</td></tr>
+  <tr><td>9</td><td>Approval limits</td><td>"Quote &lt;$500 = approve on-site, &gt;$500 = quote first"</td></tr>
+  <tr><td>10</td><td>Last Job Date</td><td>Re-engagement signal</td></tr>
+  <tr><td>11</td><td>Notes</td><td>Quirks, preferences, history</td></tr>
+</table>
+
+<h3>Tab 9 — Service Pricing <span class="pill new">NEW</span> (8 cols) — feeds Quote template</h3>
+<p>One row per service variant. Beau's prices, in writing, queryable. Emma can quote without Beau's input on standard scopes.</p>
+<table>
+  <tr><th>Col</th><th>Field</th><th>Example</th></tr>
+  <tr><td>1</td><td>Service Category</td><td>Hot Water</td></tr>
+  <tr><td>2</td><td>Variant</td><td>HWS replacement — gas storage 170L</td></tr>
+  <tr><td>3</td><td>From price ($)</td><td>1,800</td></tr>
+  <tr><td>4</td><td>Materials cost band</td><td>900–1,300</td></tr>
+  <tr><td>5</td><td>Typical labour hours</td><td>3–5</td></tr>
+  <tr><td>6</td><td>Public/Strata</td><td>Both</td></tr>
+  <tr><td>7</td><td>Last reviewed</td><td>Date</td></tr>
+  <tr><td>8</td><td>Notes / inclusions</td><td>"Includes disposal of old unit"</td></tr>
+</table>
+
+<h3>Tab 10 — Suppliers <span class="pill new">NEW</span> (9 cols) — pairs with the Drive Suppliers folder</h3>
+<table>
+  <tr><th>Col</th><th>Field</th><th>Why</th></tr>
+  <tr><td>1</td><td>Supplier Name</td><td>Reece, Walsh Plumbing, Bunnings Powerpass</td></tr>
+  <tr><td>2</td><td>Account #</td><td>For phone orders</td></tr>
+  <tr><td>3</td><td>Key Contact + Phone</td><td>Direct line beats hold queue</td></tr>
+  <tr><td>4</td><td>Branch (closest)</td><td>Wyong / Tuggerah / etc</td></tr>
+  <tr><td>5</td><td>Billing cycle</td><td>"End of month, due 30 days" — drives cash-flow forecast</td></tr>
+  <tr><td>6</td><td>Credit limit ($)</td><td>Avoid over-extension</td></tr>
+  <tr><td>7</td><td>Last order date</td><td>Frequency tracking</td></tr>
+  <tr><td>8</td><td>YTD spend ($)</td><td>Negotiating room at year-end</td></tr>
+  <tr><td>9</td><td>Notes</td><td>Discounts, key staff, app login</td></tr>
+</table>
+
+<h3>Tab 11 — Materials/Stock <span class="pill new">NEW</span> (10 cols) — closes pain #1</h3>
+<p>Beau's "always carry" list — 10 to 20 items. Reorder triggers fire from this tab.</p>
+<table>
+  <tr><th>Col</th><th>Field</th><th>Example</th></tr>
+  <tr><td>1</td><td>SKU / Item name</td><td>15mm copper coupling</td></tr>
+  <tr><td>2</td><td>Category</td><td>Fittings / Tools / Consumables / Spec parts</td></tr>
+  <tr><td>3</td><td>Supplier (FK to Suppliers)</td><td>Reece</td></tr>
+  <tr><td>4</td><td>Last cost ($)</td><td>4.20</td></tr>
+  <tr><td>5</td><td>On-hand count</td><td>15</td></tr>
+  <tr><td>6</td><td>Reorder point</td><td>5</td></tr>
+  <tr><td>7</td><td>Reorder quantity</td><td>20</td></tr>
+  <tr><td>8</td><td>Last restocked</td><td>Date</td></tr>
+  <tr><td>9</td><td>Status</td><td>Auto: OK · Reorder · Out (formula on cols 5+6)</td></tr>
+  <tr><td>10</td><td>Notes</td><td>"Van bin 3 — left side"</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="drive">6. Drive folder structure — what goes where</h2>
+
+<p>The 7-folder structure under <code>Coastal Ways Plumbing/</code> already exists in enquire@'s Drive. This section maps every artefact to its home.</p>
+
+<div class="folder-tree">
+Coastal Ways Plumbing/                                     <span class="comment"># enquire@ owns; Beau/Emma Editor; Dave Editor (after share)</span>
+├── 01 - Customers/                                        <span class="comment"># Per-customer subfolders</span>
+│   ├── _Strata Directory.gdoc                             <span class="new-item"># Reference doc — mirrors Strata Directory tab</span>
+│   ├── _Past Customer List.gsheet                         <span class="new-item"># Beau's historical dump (one-off)</span>
+│   └── [Customer Name]/
+│       └── 2026-05-12 Hot Water/
+│           ├── before.jpg
+│           ├── during.jpg
+│           ├── after.jpg
+│           └── notes.txt                                  <span class="comment"># Optional Beau voice-to-text</span>
+├── 02 - Suppliers/
+│   ├── Reece/
+│   │   ├── credit-account.pdf
+│   │   ├── 2026-04 statement.pdf
+│   │   └── catalogue/
+│   ├── Walsh Plumbing/
+│   └── Bunnings Powerpass/
+├── 03 - Compliance/                                       <span class="comment"># Source documents the Compliance Sheet tab references</span>
+│   ├── NSW Plumbing Licence (Beau).pdf
+│   ├── Public Liability COC.pdf
+│   ├── Contractor Licence.pdf
+│   ├── Workers Comp.pdf
+│   ├── Motor Rego.pdf
+│   ├── ABN Reg.pdf
+│   └── Gas Work Authorisation.pdf
+├── 04 - Brand &amp; Marketing/
+│   ├── Logos/                                             <span class="comment"># All variants — black, white, navy, horizontal</span>
+│   ├── Brand Reference.gdoc                               <span class="comment"># Tokens, voice, do/don't</span>
+│   ├── CWP Social Posts/                                  <span class="new-item"># MIGRATE from Dave's My Drive</span>
+│   ├── GBP Photo Library/
+│   └── Caption Templates.gdoc
+├── 05 - Operations &amp; SOP/
+│   ├── CWP Master.gsheet                                  <span class="new-item"># MIGRATE from Dave's My Drive</span>
+│   ├── Templates/
+│   │   ├── Quote — [Customer] — [Date].gdoc              <span class="new-item"># Master quote template</span>
+│   │   ├── Invoice — Xero default                         <span class="comment"># Note: lives in Xero, snapshot here</span>
+│   │   └── SMS Scripts.gdoc                               <span class="new-item"># Review request, payment chase, quote follow-up</span>
+│   └── SOPs/
+│       ├── Daily routines (Beau).gdoc                     <span class="new-item"></span>
+│       ├── Daily routines (Emma).gdoc                     <span class="new-item"></span>
+│       ├── Job-naming convention.gdoc                     <span class="new-item"></span>
+│       └── Short-term plan.html (link to website)
+├── 06 - Financials/                                       <span class="comment"># Restricted: Beau Editor, Tim Viewer, Emma none</span>
+│   ├── Xero exports/
+│   │   └── 2026-04 P&amp;L.pdf
+│   ├── BAS lodgements/
+│   ├── Bank statements/                                   <span class="comment"># Sensitive — Beau only</span>
+│   └── Year-end/
+└── 99 - Archive/
+    └── (jobs &gt;12mo, retired customers, superseded plan versions)
+</div>
+
+<div class="callout warn">
+  <div class="callout-title">Sensitive folder access</div>
+  <strong>06 - Financials</strong> should be restricted: <span class="who who-b">Beau</span> Editor, <span class="who who-t">Tim</span> Viewer, <span class="who who-e">Emma</span> none (she doesn't need bank statements to do her role; principle of least privilege protects both her and the business).
+</div>
+
+<!-- ============================================================ -->
+<h2 id="beau-dump">7. What Beau saves down (one-off historical dump)</h2>
+
+<p>This is the 2-hour evening of "get it out of my head, into the system." Without this, every automation downstream is guessing.</p>
+
+<table>
+  <tr><th>#</th><th>What</th><th>Where</th><th>Time</th><th>Unlocks</th></tr>
+  <tr><td>7.1</td><td><strong>Compliance values:</strong> all 7 row numbers + expiries + last-renewal costs (NSW Plumbing Licence, Public Liability, Contractor Licence, Workers Comp, Vehicle Rego, Gas Work Auth) + insurer name</td><td>Compliance tab + PDFs in <code>03 - Compliance/</code></td><td>15 min</td><td>Tim can audit; auto-expiry alerts; advertising compliance (NSW Fair Trading)</td></tr>
+  <tr><td>7.2</td><td><strong>Past-customer list (last 12mo):</strong> 30–60 names with first name + suburb + mobile + service done. From Beau's phone contacts, AroFloGo trial export, paper invoice book, or memory.</td><td><code>01 - Customers/_Past Customer List.gsheet</code></td><td>30–60 min — biggest single dump</td><td>Review SMS blast (target 10 reviews in 30d); re-engagement campaigns; baseline LTV calculation</td></tr>
+  <tr><td>7.3</td><td><strong>Service pricing matrix:</strong> for each of the 6 GBP services, "from $X" + materials cost band + typical labour hours + scope inclusions/exclusions</td><td>Service Pricing tab + GBP service prices</td><td>20 min</td><td>Emma can quote without asking Beau on standard scopes; quote-turnaround target ≤24hr becomes hittable</td></tr>
+  <tr><td>7.4</td><td><strong>Strata/PM directory:</strong> 3–4 PMs Beau works with — name, mobile, email, buildings managed, payment terms, SLA, key-collection process per PM</td><td>Strata Directory tab</td><td>20 min</td><td>Strata comms templates; SLA-breach alerts; routing rules per PM</td></tr>
+  <tr><td>7.5</td><td><strong>Supplier credentials:</strong> Reece + Walsh + Bunnings — account #, key contact, billing cycle, credit limit, last order date</td><td>Suppliers tab + folders in <code>02 - Suppliers/</code></td><td>15 min</td><td>Materials cost-per-job auto-pulled into quotes; cash-flow forecast accuracy</td></tr>
+  <tr><td>7.6</td><td><strong>Stock baseline:</strong> the 10–20 items Beau always carries in the van. Item name + supplier + reorder point + reorder quantity</td><td>Materials/Stock tab</td><td>15 min</td><td>Reorder triggers; "running low on X" alerts; #1 pain signal addressed</td></tr>
+  <tr><td>7.7</td><td><strong>Vehicle &amp; equipment register:</strong> van rego + last service + insurance + key tools serial #s for warranty</td><td>Compliance tab (extra rows) + <code>03 - Compliance/</code></td><td>5 min</td><td>Loss / theft documentation; depreciation tracking with Tim</td></tr>
+</table>
+
+<div class="callout good">
+  <div class="callout-title">Total time to fully populate: ~2 hours</div>
+  Best done in one Sunday-evening sitting with Emma and a beer. Once down, automation can fire against real data. Without this, the next 8 weeks of build runs on imagination.
+</div>
+
+<!-- ============================================================ -->
+<h2 id="emma-rhythm">8. What Emma saves down (daily / per-event)</h2>
+
+<p>The new habit. Every interaction logged at first touch — no exceptions. The discipline now means the metrics are real later.</p>
+
+<table>
+  <tr><th>Trigger</th><th>What gets saved</th><th>Where</th><th>Time</th></tr>
+  <tr><td>Phone rings (answered or missed)</td><td>Enquiries row: Timestamp + Channel + Caller name (or "anon") + Reason + Urgency + First-response time</td><td>Enquiries tab</td><td>30 sec</td></tr>
+  <tr><td>Website form arrives (email)</td><td>Enquiries row + Contacts row if new</td><td>Enquiries tab + Contacts tab</td><td>1 min</td></tr>
+  <tr><td>FB / IG / GBP message</td><td>Same as above</td><td>Enquiries tab</td><td>1 min</td></tr>
+  <tr><td>Quote sent</td><td>Quotes row: Quote # + Date + Customer + Service + Amount + Status=Sent</td><td>Quotes tab</td><td>1 min (ideally auto-fired by Quote Doc template)</td></tr>
+  <tr><td>Quote accepted</td><td>Quotes status → Accepted; Jobs row created (Status=Scheduled)</td><td>Quotes + Jobs</td><td>2 min</td></tr>
+  <tr><td>Beau texts "DONE — [name]"</td><td>Jobs status → Complete; Reviews row created with SMS Sent within 2hr; Review SMS sent</td><td>Jobs + Reviews tabs + Messages app</td><td>2 min</td></tr>
+  <tr><td>Customer pays</td><td>Jobs.Paid → TRUE (manual until Xero webhook lands)</td><td>Jobs tab</td><td>30 sec</td></tr>
+  <tr><td>Review arrives</td><td>Reviews row: Star rating + Text paste + Response posted within 24hr</td><td>Reviews tab + GBP web</td><td>2 min</td></tr>
+  <tr><td>Friday close</td><td>GBP Insights screenshot to Dave + Reviews count + missed-DM check</td><td>Email/SMS Dave</td><td>15 min</td></tr>
+</table>
+
+<div class="callout">
+  <div class="callout-title">Time budget — Emma's day</div>
+  Per-event entries total about 20–30 min/day across an average 5-job week. Friday close adds 15 min. <strong>Daily total: ~25-35 min</strong>, which matches the 30 min/day estimate from the short-term plan. Drops once Apps Script handles the form-arrival → Enquiries auto-fill step in Sprint 4.
+</div>
+
+<!-- ============================================================ -->
+<h2 id="automation">9. Automation roadmap — gated by data-readiness</h2>
+
+<p>Each automation is listed with its <strong>data preconditions</strong>. If those fields aren't being populated, building the automation is wasted effort. Sequenced by readiness.</p>
+
+<h3>Phase 1 — Manual workflows (Sprint 2 — this week)</h3>
+<table>
+  <tr><th>Workflow</th><th>Data needed</th><th>Status</th></tr>
+  <tr><td>Review SMS within 2hr of "DONE"</td><td>Jobs.Status = Complete + Customer phone</td><td><span class="pill empty">Ready as soon as schema populated</span></td></tr>
+  <tr><td>Quote follow-up Day 2/7/14</td><td>Quotes.Date Sent + Status = Sent</td><td><span class="pill empty">Ready</span></td></tr>
+  <tr><td>Compliance Days-to-Expiry formula</td><td>Compliance.Expiry Date filled</td><td><span class="pill next">Awaits Beau dump 7.1</span></td></tr>
+  <tr><td>Service pricing referenced in quotes</td><td>Service Pricing tab populated</td><td><span class="pill next">Awaits Beau dump 7.3</span></td></tr>
+</table>
+
+<h3>Phase 2 — Light automation (Sprint 3-4 — next 2-3 weeks)</h3>
+<table>
+  <tr><th>Workflow</th><th>Data needed</th><th>Tech</th></tr>
+  <tr><td>Form submission → auto-create Enquiries row</td><td>Formsubmit.co webhook → Apps Script</td><td>Apps Script (free)</td></tr>
+  <tr><td>Calendar event created → auto-create Jobs row</td><td>Calendar API + naming convention</td><td>Apps Script (free)</td></tr>
+  <tr><td>Xero invoice paid → Jobs.Paid = TRUE</td><td>Xero webhook → Apps Script</td><td>Zapier ($) or Apps Script</td></tr>
+  <tr><td>Stock low alert (item below reorder point)</td><td>Materials/Stock tab populated + Beau updates on-hand counts</td><td>Apps Script + email/SMS to Beau</td></tr>
+  <tr><td>Compliance 30/60/90-day expiry alerts</td><td>Compliance.Expiry Date filled</td><td>Apps Script + email to Tim</td></tr>
+</table>
+
+<h3>Phase 3 — Heavier automation (Sprint 5+ — month 2)</h3>
+<table>
+  <tr><th>Workflow</th><th>Data needed</th><th>Tech</th></tr>
+  <tr><td>Telegram bot field capture (Beau voice → Sheet row)</td><td>Beau on Telegram + bot deployed</td><td>Custom bot (~$5/mo)</td></tr>
+  <tr><td>Strata SLA breach alert</td><td>Strata Directory + Jobs link</td><td>Apps Script + email to PM</td></tr>
+  <tr><td>Cash flow forecast (incoming Xero + outgoing supplier)</td><td>Suppliers billing cycles + Xero AR</td><td>Sheets formula + Xero API</td></tr>
+  <tr><td>Re-engagement: 12mo dormant customers</td><td>Contacts.Last Job Date populated</td><td>Apps Script + SMS template</td></tr>
+  <tr><td>AI receptionist (after-hours triage)</td><td>NSW recording-consent flow + service catalogue</td><td>ServiceM8 / Rosie / Goodcall — gated on AroFlo decision</td></tr>
+</table>
+
+<h3>Phase 4 — Decided at AroFlo gate (end of Sprint 8 — 18 Jun)</h3>
+<p>Migration to AroFlo or continuation of lean stack. Data preconditions: 30+ jobs/month, predictable revenue, &gt;30min/day Beau admin pain. Decided in 8 weeks.</p>
+
+<!-- ============================================================ -->
+<h2 id="access">10. Access matrix</h2>
+
+<table>
+  <tr><th>Asset</th><th>enquire@</th><th>Beau (personal Gmail)</th><th>Emma (personal Gmail)</th><th>Tim (personal Gmail)</th><th>Dave (davidcalder1703@)</th></tr>
+  <tr><td>Coastal Ways Plumbing parent folder</td><td>Owner</td><td>Editor</td><td>Editor</td><td>Viewer</td><td>Editor (transfer-out target)</td></tr>
+  <tr><td>01 - Customers</td><td>Inherit</td><td>Editor</td><td>Editor</td><td>—</td><td>Editor</td></tr>
+  <tr><td>02 - Suppliers</td><td>Inherit</td><td>Editor</td><td>Editor</td><td>Viewer</td><td>Editor</td></tr>
+  <tr><td>03 - Compliance</td><td>Inherit</td><td>Editor</td><td>—</td><td><strong>Editor</strong></td><td>Editor</td></tr>
+  <tr><td>04 - Brand &amp; Marketing</td><td>Inherit</td><td>Viewer</td><td>Editor</td><td>—</td><td>Editor</td></tr>
+  <tr><td>05 - Operations &amp; SOP (incl Master Sheet)</td><td>Inherit</td><td>Editor</td><td>Editor</td><td>Viewer</td><td>Editor</td></tr>
+  <tr><td><strong>06 - Financials</strong> (sensitive)</td><td>Inherit</td><td><strong>Editor</strong></td><td>—</td><td>Viewer</td><td>Editor (until handover)</td></tr>
+  <tr><td>99 - Archive</td><td>Inherit</td><td>Viewer</td><td>Viewer</td><td>Viewer</td><td>Editor</td></tr>
+  <tr><td>Master Sheet (after migration)</td><td>Inherit from 05</td><td>Editor</td><td>Editor</td><td>Viewer (Compliance tab focus)</td><td>Editor</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="decisions">11. Decisions Dave needs to make before I build</h2>
+
+<div class="callout dark">
+  <div class="callout-title">Decision register — answer to unblock build</div>
+  <ol>
+    <li><strong>Folder share:</strong> share <code>Coastal Ways Plumbing</code> from enquire@ with <code>davidcalder1703@gmail.com</code> as Editor? <em>(Required for me to migrate orphans, build sub-structure, set permissions.)</em></li>
+    <li><strong>Five new tabs:</strong> Enquiries / Strata Directory / Service Pricing / Suppliers / Materials/Stock — go ahead with all five, or pick a subset?</li>
+    <li><strong>Invoices tab disposition:</strong> mirror Xero (Option 2, recommended), delete it (Option 1), or replace with Cash Flow View (Option 3)?</li>
+    <li><strong>Job photos location:</strong> per-customer subfolders (Option A, recommended) or separate Jobs root folder (Option B)?</li>
+    <li><strong>Beau's account:</strong> use his personal Gmail as Editor on the parent folder, or provision <code>beau@coastalwaysplumbing.com</code> as a second Workspace seat ($7/mo extra)?</li>
+    <li><strong>Emma's account:</strong> personal Gmail or new <code>emma@coastalwaysplumbing.com</code> seat ($7/mo)?</li>
+    <li><strong>Tim's role lockdown:</strong> Viewer on Compliance + Suppliers + 99-Archive + Financials only, or wider?</li>
+    <li><strong>Past-customer dump format:</strong> Beau exports from AroFloGo (if trial active), photographs his paper invoice book, or just types out from memory? Affects how 7.2 happens.</li>
+    <li><strong>Strata Directory privacy:</strong> PM contact details often sensitive. Keep in Sheet (Editor-only) or move to a separate restricted Doc?</li>
+    <li><strong>Sheet ownership transfer:</strong> when does Master Sheet ownership move from <code>davidcalder1703@</code> to <code>enquire@</code>? Recommend: same day as folder migration to avoid two transfer events.</li>
+  </ol>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="sequence">12. Five-day build sequence</h2>
+
+<p>Assumes folder share happens today. If a decision in Section 11 lands later, dependent steps shift.</p>
+
+<table>
+  <tr><th>Day</th><th>Action</th><th>Owner</th><th>Duration</th></tr>
+  <tr><td>Wed 29 Apr (today)</td><td>✅ Sheet locale fixed to AU/Sydney</td><td><span class="who who-d">Dave</span></td><td>Done</td></tr>
+  <tr><td>Wed 29 Apr</td><td>Share parent folder with davidcalder1703@</td><td><span class="who who-d">Dave</span></td><td>30 sec</td></tr>
+  <tr><td>Wed 29 Apr</td><td>Schema deliverable shipped + this guide live at <code>/guides/master-sheet-schema.html</code></td><td><span class="who who-d">Dave</span></td><td>—</td></tr>
+  <tr><td>Thu 30 Apr</td><td>Migrate orphan Master Sheet → <code>05 - Operations &amp; SOP/</code></td><td><span class="who who-d">Dave</span> (script)</td><td>5 min</td></tr>
+  <tr><td>Thu 30 Apr</td><td>Migrate orphan CWP Social Posts → <code>04 - Brand &amp; Marketing/</code></td><td><span class="who who-d">Dave</span> (script)</td><td>5 min</td></tr>
+  <tr><td>Thu 30 Apr</td><td>Add Beau + Emma personal Gmails as Editors on Sheet + folder tree</td><td><span class="who who-d">Dave</span></td><td>10 min</td></tr>
+  <tr><td>Thu 30 Apr</td><td>Add 5 new tabs (Enquiries · Strata Directory · Service Pricing · Suppliers · Materials/Stock) with headers + dropdowns + conditional formatting</td><td><span class="who who-d">Dave</span> (script)</td><td>20 min</td></tr>
+  <tr><td>Thu 30 Apr</td><td>Compliance tab Days-to-Expiry formula + status conditional-format</td><td><span class="who who-d">Dave</span></td><td>5 min</td></tr>
+  <tr><td>Fri 1 May</td><td>Beau's data dump session (Sections 7.1–7.7, ~2 hours, ideally evening)</td><td><span class="who who-b">Beau</span> + <span class="who who-e">Emma</span></td><td>2 hours</td></tr>
+  <tr><td>Fri 1 May</td><td>Quote Google Doc template in <code>05/Templates/</code> + SMS Scripts doc</td><td><span class="who who-d">Dave</span></td><td>30 min</td></tr>
+  <tr><td>Fri 1 May</td><td>Shared Calendar created + invitations to Beau + Emma + Tim</td><td><span class="who who-d">Dave</span> (script)</td><td>10 min</td></tr>
+  <tr><td>Mon 4 May</td><td>Sheet ownership transfer enquire@ + Tim onboarding (15-min call)</td><td><span class="who who-d">Dave</span> + <span class="who who-t">Tim</span></td><td>20 min</td></tr>
+  <tr><td>Tue 5 May</td><td>End-to-end dry run with one synthetic job: Enquiry → Contact → Quote → Job → Invoice → Review</td><td><span class="who who-x">All</span></td><td>30 min</td></tr>
+</table>
+
+<p class="updated">Last updated: 2026-04-28 AEST · Schema version 1.0 · Pairs with implementation-plan.html v5.1.1 + short-term-plan.html v1.0</p>
+
+</body>
+</html>
