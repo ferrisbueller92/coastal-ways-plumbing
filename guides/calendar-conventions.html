@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CWP — Calendar &amp; Job-Naming Conventions</title>
+<style>
+  :root { --sand:#FBF6F3; --grey:#C4CFD1; --teal:#055A5F; --navy:#10202D; --warn:#C45A11; --good:#2E7D32; --soft:#F0E8E2; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--sand); color: var(--navy); max-width: 920px; margin: 0 auto; padding: 32px 24px 80px; line-height: 1.6; }
+  header { border-bottom: 3px solid var(--teal); padding-bottom: 16px; margin-bottom: 24px; }
+  .eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: var(--teal); font-weight: 700; }
+  h1 { color: var(--navy); font-size: 30px; margin: 6px 0 8px; line-height: 1.2; }
+  .subtitle { color: #555; font-size: 16px; margin: 0; }
+  h2 { color: var(--teal); font-size: 22px; margin: 36px 0 12px; padding-bottom: 6px; border-bottom: 2px solid var(--grey); }
+  h3 { color: var(--navy); font-size: 17px; margin: 22px 0 8px; }
+  p, li { font-size: 15px; }
+  ul, ol { padding-left: 22px; }
+  li { margin-bottom: 5px; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; background: #fff; border-radius: 6px; overflow: hidden; font-size: 14px; }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--grey); vertical-align: top; }
+  th { background: var(--teal); color: var(--sand); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.8px; }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: var(--soft); }
+  code { background: var(--navy); color: var(--sand); padding: 1px 6px; border-radius: 3px; font-size: 13px; font-family: ui-monospace, Menlo, monospace; }
+  .callout { background: #fff; border-left: 4px solid var(--teal); padding: 14px 18px; margin: 14px 0; border-radius: 0 6px 6px 0; }
+  .callout.warn { border-left-color: var(--warn); }
+  .callout.good { border-left-color: var(--good); }
+  .callout-title { font-weight: 700; color: var(--teal); margin-bottom: 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+  .callout.warn .callout-title { color: var(--warn); }
+  .callout.good .callout-title { color: var(--good); }
+  .principle { background: var(--navy); color: var(--sand); padding: 16px 22px; border-radius: 8px; margin: 16px 0; font-size: 15px; }
+  .principle strong { color: #FFB347; }
+  .convention-box { background: var(--navy); color: var(--sand); padding: 16px 22px; border-radius: 8px; margin: 14px 0; font-family: ui-monospace, Menlo, monospace; font-size: 14px; line-height: 1.7; }
+  .convention-box .accent { color: #FFB347; }
+  .colour-swatch { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: middle; margin-right: 6px; border: 1px solid rgba(0,0,0,0.1); }
+  kbd { background: var(--navy); color: var(--sand); padding: 2px 8px; border-radius: 4px; font-size: 13px; font-family: ui-monospace, Menlo, monospace; }
+  .updated { color: #888; font-size: 12px; text-align: right; margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--grey); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Coastal Ways Plumbing · Operations</div>
+  <h1>Calendar &amp; Job-Naming Conventions</h1>
+  <p class="subtitle">One shared calendar. One naming pattern for every job. Done right, the calendar becomes the single source of "what's on this week" for Beau, Emma, and Tim.</p>
+</header>
+
+<div class="principle">
+  <strong>The rule:</strong> if a job isn't on the shared calendar, it didn't happen. The calendar is the source of truth for capacity, scheduling, and the Jobs tab. Quotes accepted but not in the calendar = not booked.
+</div>
+
+<!-- ============================================================ -->
+<h2>1. The shared calendar — what + why</h2>
+
+<p><strong>Name:</strong> <code>CWP Operations</code></p>
+<p><strong>Owned by:</strong> <code>enquire@coastalwaysplumbing.com</code> (the company, not a person)</p>
+<p><strong>Shared with:</strong> Beau (Editor), Emma (Editor), Tim (Viewer)</p>
+<p><strong>Visible on:</strong> Beau's iPhone Calendar app, Emma's phone + laptop, anyone signed in as enquire@</p>
+
+<div class="callout">
+  <div class="callout-title">Why a separate calendar (not just enquire@'s default)?</div>
+  Three reasons:
+  <ul>
+    <li><strong>Subscribable</strong> — Beau's iPhone Calendar can subscribe to it without him logging into Workspace. He just sees CWP jobs alongside his personal calendar.</li>
+    <li><strong>Filterable</strong> — Emma can hide it when she's off the clock, show it during office hours.</li>
+    <li><strong>Owner-stable</strong> — owned by the company email, not a person. Survives team changes.</li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<h2>2. Setup — 5 minutes, done by Dave on 1 May (handover bundle)</h2>
+
+<p>Bundled with the other ownership transfers (GBP primary owner, Master Sheet ownership, Search Console). Single 15-min sitting on Friday 1 May.</p>
+
+<ol>
+  <li>Sign into Google as <code>enquire@coastalwaysplumbing.com</code> in a fresh browser window</li>
+  <li>Go to <a href="https://calendar.google.com" target="_blank">calendar.google.com</a></li>
+  <li>Left sidebar → <strong>Other calendars</strong> → <strong>+</strong> → <strong>Create new calendar</strong></li>
+  <li>Name: <code>CWP Operations</code> · Description: <code>Coastal Ways Plumbing — booked jobs, quotes pending, blocks. The single source of truth for what's on.</code> · Time zone: <strong>Australia/Sydney</strong></li>
+  <li>Click <strong>Create calendar</strong></li>
+  <li>Find <code>CWP Operations</code> in the left sidebar → hover → 3-dot menu → <strong>Settings and sharing</strong></li>
+  <li>Under <strong>Share with specific people</strong>:
+    <ul>
+      <li>Add Beau's email (the one he uses on his iPhone) — permission: <strong>Make changes to events</strong></li>
+      <li>Add Emma's email — permission: <strong>Make changes to events</strong></li>
+      <li>Add Tim's email — permission: <strong>See all event details</strong></li>
+    </ul>
+  </li>
+  <li>Under <strong>Event notifications</strong>: <strong>1 day before</strong> + <strong>1 hour before</strong> for all events (so reminders fire on phones)</li>
+  <li>Beau on his iPhone: open Calendar app → it should auto-sync if his email is the one shared with. If not, Settings → Calendar → Accounts → add Google account</li>
+</ol>
+
+<!-- ============================================================ -->
+<h2>3. The job-naming convention</h2>
+
+<div class="convention-box">
+<span class="accent">YYYY-MM-DD</span> · <span class="accent">Suburb</span> · <span class="accent">Customer surname</span> · <span class="accent">Job type</span>
+</div>
+
+<p><strong>Examples:</strong></p>
+<ul>
+  <li><code>2026-05-02 · Wyong · Anderson · Hot water</code></li>
+  <li><code>2026-05-03 · Tuggerah · Strata #47 · Blocked drain</code></li>
+  <li><code>2026-05-05 · Terrigal · Patel · Bathroom roughin (Day 1 of 3)</code></li>
+  <li><code>2026-05-07 · The Entrance · Vincent Realty · Leak detection</code></li>
+</ul>
+
+<div class="callout">
+  <div class="callout-title">Why this format</div>
+  <ul>
+    <li><strong>Date first</strong> — sorts cleanly when you scroll back through history.</li>
+    <li><strong>Suburb second</strong> — Beau scans for routing. Two Wyong jobs same day = chain them. Wyong + Bateau Bay split = plan around it.</li>
+    <li><strong>Customer name third</strong> — instant recall on the day. Strata jobs use building name or PM name (e.g. "Strata #47" or "Vincent Realty").</li>
+    <li><strong>Job type last</strong> — pulled from the same dropdown as the Master Sheet's Service Type column, so Sheet and Calendar match.</li>
+  </ul>
+</div>
+
+<h3>Service type — use exactly these strings (matches Master Sheet dropdown)</h3>
+<ul>
+  <li><code>Emergency</code></li>
+  <li><code>Blocked drain</code></li>
+  <li><code>Gas fitting</code></li>
+  <li><code>Hot water</code></li>
+  <li><code>Leak detection</code></li>
+  <li><code>Bathroom reno</code></li>
+  <li><code>Other</code> (only if none of the above fit)</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2>4. Event colours (Google Calendar default colour assignment)</h2>
+
+<p>Use colour to make the week scannable at a glance. Set per-event when creating.</p>
+
+<table>
+  <tr><th>Colour</th><th>Use for</th></tr>
+  <tr><td><span class="colour-swatch" style="background:#7986CB"></span> Blueberry</td><td><strong>Confirmed jobs</strong> — quote accepted, customer locked in</td></tr>
+  <tr><td><span class="colour-swatch" style="background:#FFCA28"></span> Banana</td><td><strong>Tentative</strong> — quote sent, awaiting confirmation</td></tr>
+  <tr><td><span class="colour-swatch" style="background:#E67C73"></span> Flamingo</td><td><strong>Emergency</strong> — same-day callouts, after-hours</td></tr>
+  <tr><td><span class="colour-swatch" style="background:#33B679"></span> Sage</td><td><strong>Strata / Property Manager</strong> — overrides confirmed colour for these jobs (visual flag)</td></tr>
+  <tr><td><span class="colour-swatch" style="background:#8E24AA"></span> Grape</td><td><strong>Subcontract day</strong> — Beau working at AMPS Sydney (3 days/week year 1)</td></tr>
+  <tr><td><span class="colour-swatch" style="background:#616161"></span> Graphite</td><td><strong>Personal block</strong> — sick day, family commitment, holiday. Marks Beau as not bookable.</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>5. Event details — what to put in the description</h2>
+
+<p>The event title follows the naming convention above. The <strong>description field</strong> is where the working detail lives:</p>
+
+<div class="convention-box">
+<strong style="color:#FFB347">Customer:</strong> [Full name + phone]
+<br><strong style="color:#FFB347">Address:</strong> [Street, suburb]
+<br><strong style="color:#FFB347">Job #:</strong> [from Master Sheet Jobs tab — e.g. 1042]
+<br><strong style="color:#FFB347">Quote $:</strong> [accepted amount]
+<br><strong style="color:#FFB347">Scope:</strong> [1-line — what Beau is doing]
+<br><strong style="color:#FFB347">Materials:</strong> [list of items to bring / pre-order from Reece]
+<br><strong style="color:#FFB347">Access:</strong> [gate code, key location, "PM emails morning of", "ring doorbell"]
+<br><strong style="color:#FFB347">Notes:</strong> [dogs, parking, customer preferences]
+</div>
+
+<p>Beau opens the event on his phone the morning of the job — every detail he needs is in one tap.</p>
+
+<!-- ============================================================ -->
+<h2>6. Time blocks — when Beau is and isn't bookable</h2>
+
+<table>
+  <tr><th>Time</th><th>State</th><th>What goes here</th></tr>
+  <tr><td>Mon–Fri 7am–5pm</td><td>Bookable</td><td>Standard residential, strata jobs, quotes</td></tr>
+  <tr><td>Sat 8am–2pm</td><td>Bookable (limited)</td><td>Saturday-only customers, non-emergency catch-up</td></tr>
+  <tr><td>Sat 2pm – Sun all day</td><td>Emergency only</td><td>24/7 line stays on for floods / gas / no water</td></tr>
+  <tr><td>Mon/Wed/Fri (year 1)</td><td>Subcontract</td><td>AMPS Sydney — 3 days/week. Block as <span class="colour-swatch" style="background:#8E24AA"></span>Grape so Emma doesn't double-book.</td></tr>
+  <tr><td>Beau's chosen evenings</td><td>Family / personal</td><td>Block as <span class="colour-swatch" style="background:#616161"></span>Graphite — keeps Emma honest about boundaries</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>7. Emma's calendar workflow — the daily rhythm</h2>
+
+<h3>When Emma adds a new job (2 min)</h3>
+<ol>
+  <li>Quote accepted → open <code>CWP Operations</code> calendar</li>
+  <li>Click the time slot → use the convention: <code>YYYY-MM-DD · Suburb · Customer · Service</code></li>
+  <li>Set duration (default 1 hour for standard, 2-3 for HWS, 4+ for renos)</li>
+  <li>Add description fields (Customer / Address / Job # / Quote $ / Scope / Materials / Access / Notes)</li>
+  <li>Pick colour: Blueberry confirmed, Sage if strata, Flamingo if emergency</li>
+  <li>Send invite to Beau and (if external) the customer</li>
+  <li>Cross-check: open Master Sheet → Jobs tab → add a row matching the calendar entry. Calendar and Sheet stay in sync.</li>
+</ol>
+
+<h3>When a job needs rescheduling</h3>
+<ul>
+  <li>Drag the calendar event to the new slot — it'll prompt to notify guests, click <strong>Send</strong></li>
+  <li>Update the Jobs tab → Date column on the same row</li>
+  <li>SMS the customer using script #11 (Job Booking Confirmation, with new time)</li>
+</ul>
+
+<h3>When a job is complete</h3>
+<ul>
+  <li>Don't delete the past event — it's the audit trail</li>
+  <li>Edit the title to prepend <code>[DONE]</code> — e.g. <code>[DONE] 2026-05-02 · Wyong · Anderson · Hot water</code></li>
+  <li>Update Jobs tab → Status = Complete · Review Requested = TRUE · timestamp</li>
+  <li>Send review SMS within 2 hours (script #2)</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2>8. Beau's calendar workflow — the absolute minimum</h2>
+
+<div class="callout good">
+  <div class="callout-title">Beau's only calendar duty</div>
+  Read it. He doesn't fill it. Emma owns the writes.
+</div>
+
+<p>If Beau wants to add something himself (e.g. blocks an evening, adds a memo), he can — but the discipline is: <strong>Emma is the calendar admin</strong>. Beau telling Emma "block out Thursday 2pm onwards, going to school sports" beats Beau opening Calendar himself. Less risk of double-bookings, less context-switching for him.</p>
+
+<!-- ============================================================ -->
+<h2>9. The phone alerts — what fires and when</h2>
+
+<table>
+  <tr><th>Trigger</th><th>Who gets pinged</th><th>How</th></tr>
+  <tr><td>1 day before any event</td><td>Beau + Emma</td><td>Calendar push notification (set in calendar settings, default for all events)</td></tr>
+  <tr><td>1 hour before any event</td><td>Beau + Emma</td><td>Calendar push</td></tr>
+  <tr><td>Emergency event created</td><td>Beau immediately</td><td>Calendar push + Emma calls/texts to confirm he's seen it</td></tr>
+  <tr><td>Subcontract day starts</td><td>Beau</td><td>Calendar push — keeps him honest about the AMPS Sydney commute</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>10. Common questions Emma will ask in the first month</h2>
+
+<table>
+  <tr><th>Question</th><th>Answer</th></tr>
+  <tr><td>"Customer wants Tuesday morning, Beau already has 2 jobs that morning"</td><td>Look at the suburbs — if all 3 are within 15min of each other, chain them. If not, offer afternoon or Wednesday.</td></tr>
+  <tr><td>"Two PMs both want Thursday"</td><td>The PM with the firmer SLA wins (check Strata Directory tab → SLA Response Required). The other gets a courtesy SMS offering Friday or next week.</td></tr>
+  <tr><td>"Customer wants Saturday 3pm"</td><td>Outside Saturday window — offer next available Mon morning, or upcharge if it's truly an emergency.</td></tr>
+  <tr><td>"Beau says don't book me Friday"</td><td>Block the day Graphite. No questions asked.</td></tr>
+  <tr><td>"I can't tell if a slot is free"</td><td>Switch to Week view. Empty = free. Don't trust Day view alone — it can hide subcontract blocks.</td></tr>
+</table>
+
+<p class="updated">Last updated: 2026-04-28 AEST · Pairs with master-sheet-schema.html v1.0 + short-term-plan.html v1.0</p>
+
+</body>
+</html>
