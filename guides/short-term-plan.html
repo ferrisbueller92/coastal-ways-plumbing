@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coastal Ways Plumbing — Short-Term Plan (29 Apr – 12 May 2026)</title>
+<style>
+  :root {
+    --sand: #FBF6F3;
+    --grey: #C4CFD1;
+    --teal: #055A5F;
+    --navy: #10202D;
+    --warn: #C45A11;
+    --good: #2E7D32;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--sand); color: var(--navy); max-width: 920px; margin: 0 auto; padding: 32px 24px 80px; line-height: 1.6; }
+  header { border-bottom: 3px solid var(--teal); padding-bottom: 16px; margin-bottom: 24px; }
+  .eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: var(--teal); font-weight: 700; }
+  h1 { color: var(--navy); font-size: 32px; margin: 6px 0 8px; line-height: 1.2; }
+  .subtitle { color: #555; font-size: 17px; margin: 0; }
+  h2 { color: var(--teal); font-size: 22px; margin: 36px 0 12px; padding-bottom: 6px; border-bottom: 2px solid var(--grey); }
+  h3 { color: var(--navy); font-size: 17px; margin: 22px 0 8px; }
+  h4 { color: var(--teal); font-size: 14px; margin: 16px 0 6px; text-transform: uppercase; letter-spacing: 1px; }
+  p, li { font-size: 15px; }
+  ul, ol { padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  .callout { background: #fff; border-left: 4px solid var(--teal); padding: 14px 18px; margin: 14px 0; border-radius: 0 6px 6px 0; }
+  .callout.warn { border-left-color: var(--warn); }
+  .callout.good { border-left-color: var(--good); }
+  .callout-title { font-weight: 700; color: var(--teal); margin-bottom: 4px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+  .callout.warn .callout-title { color: var(--warn); }
+  .callout.good .callout-title { color: var(--good); }
+  .principle { background: var(--navy); color: var(--sand); padding: 18px 22px; border-radius: 8px; margin: 18px 0; font-size: 16px; }
+  .principle strong { color: #FFB347; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; background: #fff; border-radius: 6px; overflow: hidden; }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--grey); font-size: 14px; vertical-align: top; }
+  th { background: var(--teal); color: var(--sand); font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+  tr:last-child td { border-bottom: none; }
+  .who { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-right: 6px; }
+  .who-dave { background: var(--teal); color: var(--sand); }
+  .who-beau { background: var(--navy); color: var(--sand); }
+  .who-emma { background: var(--warn); color: var(--sand); }
+  .who-tim { background: #6D4C41; color: var(--sand); }
+  .who-shared { background: var(--grey); color: var(--navy); }
+  .week-card { background: #fff; border: 1px solid var(--grey); border-radius: 8px; padding: 20px 24px; margin: 14px 0; }
+  .week-card h3 { margin-top: 0; color: var(--teal); }
+  .ql { background: #FFF8EC; border: 1px solid #E8C97A; padding: 12px 16px; border-radius: 6px; margin: 10px 0; }
+  .ql-num { display: inline-block; background: var(--warn); color: var(--sand); width: 22px; height: 22px; border-radius: 50%; text-align: center; line-height: 22px; font-size: 12px; font-weight: 700; margin-right: 8px; }
+  code { background: var(--navy); color: var(--sand); padding: 2px 8px; border-radius: 4px; font-size: 13px; font-family: ui-monospace, Menlo, monospace; }
+  .checkbox { display: inline-block; width: 14px; height: 14px; border: 2px solid var(--teal); border-radius: 3px; margin-right: 8px; vertical-align: middle; }
+  .updated { color: #888; font-size: 12px; text-align: right; margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--grey); }
+  .toc { background: #fff; border: 1px solid var(--grey); border-radius: 6px; padding: 14px 22px; margin: 24px 0; }
+  .toc ul { list-style: none; padding-left: 0; columns: 2; }
+  .toc li { margin-bottom: 4px; }
+  .toc a { color: var(--teal); text-decoration: none; font-weight: 500; }
+  .toc a:hover { text-decoration: underline; }
+  .pill { display: inline-block; background: var(--grey); color: var(--navy); padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; margin-right: 6px; }
+  .pill.live { background: var(--good); color: #fff; }
+  .pill.next { background: var(--warn); color: #fff; }
+  .pill.blocked { background: var(--navy); color: var(--sand); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Coastal Ways Plumbing · Operating Plan</div>
+  <h1>Short-Term Plan — 29 Apr to 12 May 2026</h1>
+  <p class="subtitle">Two weeks. Sprint 1 carryover finished, Sprint 2 (Job Flow) shipped, Sprint 3 (Field Capture) pre-staged. No big interview required — works from what's already decided in the implementation plan v5.1.1.</p>
+</header>
+
+<div class="principle">
+  <strong>Operating principle:</strong> Tools follow revenue. We replace AroFlo with Google Sheets + Calendar + Xero + Beau and Emma's phones for the next 8 weeks. Manual workflows first, automation only when the manual version proves the workflow.
+</div>
+
+<div class="toc">
+  <strong>Jump to:</strong>
+  <ul>
+    <li><a href="#status">1. Where we are right now</a></li>
+    <li><a href="#assumptions">2. Assumptions (challenge these)</a></li>
+    <li><a href="#questions">3. Blocking questions</a></li>
+    <li><a href="#week1">4. This week (29 Apr – 5 May)</a></li>
+    <li><a href="#week2">5. Next week (6 – 12 May)</a></li>
+    <li><a href="#dave-builds">6. What Dave is building</a></li>
+    <li><a href="#beau">7. Beau's actions</a></li>
+    <li><a href="#emma">8. Emma's actions</a></li>
+    <li><a href="#tim">9. Tim's onboarding</a></li>
+    <li><a href="#gates">10. What success looks like</a></li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="status">1. Where we are right now</h2>
+
+<p>Sprint 1 (23–30 Apr) is effectively complete. The digital storefront is live and findable. The next two sprints turn that storefront into a working business — quotes go out, jobs get done, invoices get paid, reviews come back.</p>
+
+<table>
+  <tr><th>Layer</th><th>Status</th><th>Notes</th></tr>
+  <tr><td>Website + domain + HTTPS</td><td><span class="pill live">Live</span></td><td>coastalwaysplumbing.com, GitHub Pages, 7 pages, GA4 wired</td></tr>
+  <tr><td>Google Workspace email</td><td><span class="pill live">Live</span></td><td>enquire@coastalwaysplumbing.com, DKIM/SPF/DMARC clean</td></tr>
+  <tr><td>Google Business Profile</td><td><span class="pill live">Live</span></td><td>10+ photos, 6 services, 5 Q&amp;As — 7-day owner seasoning until 1 May</td></tr>
+  <tr><td>Facebook + Instagram</td><td><span class="pill live">Live</span></td><td>Cross-post enabled, first IG post published</td></tr>
+  <tr><td>CWP Master Sheet</td><td><span class="pill live">Live</span></td><td>6 tabs — needs Beau's compliance data filled in</td></tr>
+  <tr><td>Email signatures</td><td><span class="pill live">Live</span></td><td>Beau + Emma at <code>/guides/email-signatures.html</code></td></tr>
+  <tr><td>Job intake → quote → invoice flow</td><td><span class="pill next">Sprint 2</span></td><td>This is what we build this week</td></tr>
+  <tr><td>Shared calendar + job naming</td><td><span class="pill next">Sprint 2</span></td><td>This is what we build this week</td></tr>
+  <tr><td>Xero + Stripe</td><td><span class="pill blocked">Beau action</span></td><td>Bank account + ABN needed at sign-up</td></tr>
+  <tr><td>Field capture (Beau's phone → Sheet)</td><td><span class="pill next">Sprint 3</span></td><td>Pre-staged next week</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="assumptions">2. Assumptions (challenge any of these)</h2>
+
+<p>These are the calls being made without a fresh interview. If any are wrong, the plan needs adjusting — flag back to Dave.</p>
+
+<div class="callout">
+  <div class="callout-title">A1 — Beau is the only field person right now</div>
+  No second plumber on the books. Job scheduling assumes 1 calendar lane, 1 vehicle, 1 capacity ceiling.
+</div>
+
+<div class="callout">
+  <div class="callout-title">A2 — Emma works office hours from home, not in the field</div>
+  Phone-based, laptop or phone for Sheet/Gmail/Outlook. Not on-site. SMS sent from her personal mobile until/unless we add a business SMS number later.
+</div>
+
+<div class="callout">
+  <div class="callout-title">A3 — Tim's involvement is light-touch advisory + compliance oversight</div>
+  Not daily ops. He owns the Compliance tab in the Master Sheet (licence renewals, insurance dates) and provides 40+ years of business sanity-check. He does not need Workspace email, just Sheet view-access.
+</div>
+
+<div class="callout">
+  <div class="callout-title">A4 — Beau prefers voice + photos over typing</div>
+  All field capture leans toward voice notes (Telegram bot in Sprint 3) and photo-trigger workflows. Don't ask Beau to fill in forms while on a job.
+</div>
+
+<div class="callout">
+  <div class="callout-title">A5 — Emma is comfortable with Google Sheets and Gmail</div>
+  Not a Sheets power user, but can copy-paste, fill rows, follow templates. No formulas she has to author. Templates we build do the heavy lifting.
+</div>
+
+<div class="callout">
+  <div class="callout-title">A6 — Customer payment is mostly card or bank transfer</div>
+  Cash-on-spot is real for emergency public callouts (~30–40% of work) but most strata/PM jobs get invoiced and paid by EFT. Stripe link covers the card path. No need for EFTPOS hardware yet.
+</div>
+
+<div class="callout">
+  <div class="callout-title">A7 — Quote turnaround target is 24 hours</div>
+  Beau gives Emma the scope (voice + photos + 1-line context). Emma drafts in the Quote template within the same day. Beau approves. Quote out same-day or next-morning.
+</div>
+
+<!-- ============================================================ -->
+<h2 id="questions">3. Blocking questions — need answers before this ships</h2>
+
+<p>These are the items that gate downstream work. Without answers we either fabricate or stall.</p>
+
+<div class="ql"><span class="ql-num">Q1</span><strong>Xero Starter — has Beau signed up?</strong> Sprint 1 listed it as a deliverable. The audit doesn't confirm it. <em>If yes:</em> share access with enquire@. <em>If no:</em> Beau needs ABN + business bank login + 15 minutes to sign up at xero.com/au.</div>
+
+<div class="ql"><span class="ql-num">Q2</span><strong>Stripe — has Beau signed up?</strong> Same status as Xero. Stripe links into Xero invoices for the "Pay Now" button. <em>If no:</em> 10-min sign-up at dashboard.stripe.com — needs ABN, ID, business bank for payouts.</div>
+
+<div class="ql"><span class="ql-num">Q3</span><strong>Beau's licence numbers + insurance details</strong> — needed to populate the Compliance tab in the Master Sheet. NSW plumbing licence number, expiry, public liability insurance certificate of currency (provider, policy number, expiry). One-page from Beau's existing paperwork.</div>
+
+<div class="ql"><span class="ql-num">Q4</span><strong>10 past-customer names + numbers</strong> for the review SMS blast. Beau picks the 10 most likely to leave a 5-star review. Highest-ROI single action in Sprint 1's backlog. Without this list Emma can't fire the blast.</div>
+
+<div class="ql"><span class="ql-num">Q5</span><strong>Emma's phone — does she have Gmail app set up for enquire@?</strong> Or is she checking enquire@ on a laptop only? Affects how fast she sees inbound emails (push notification on phone vs checking once a day on desktop).</div>
+
+<div class="ql"><span class="ql-num">Q6</span><strong>Outlook → Gmail forwarding</strong> — has Beau set up forwarding from coastalwaysplumbing@outlook.com to enquire@coastalwaysplumbing.com yet? This consolidates legacy enquiries into one inbox. 5-min Outlook web setting.</div>
+
+<div class="ql"><span class="ql-num">Q7</span><strong>Past unpaid invoices</strong> — does Beau have any open invoices from before this rebuild? If yes, they need importing into Xero day 1 so the payment-chase scripts apply consistently.</div>
+
+<div class="ql"><span class="ql-num">Q8</span><strong>Job-naming convention preference</strong> — Dave's default proposal: <code>YYYY-MM-DD · Suburb · Customer surname · Job type</code> (e.g. <code>2026-05-02 · Wyong · Anderson · Hot water</code>). Confirm or counter before Calendar lockdown.</div>
+
+<div class="ql"><span class="ql-num">Q9</span><strong>Average job value bands</strong> — for the Quote template defaults. Plan currently uses placeholder pricing on GBP ("from $X"). Need Beau's real "from" prices for the 6 service categories or we keep the placeholders and override per quote.</div>
+
+<div class="ql"><span class="ql-num">Q10</span><strong>Tim's email + best contact method</strong> — to share Compliance tab view-access and walk him through it. 15-min phone call max.</div>
+
+<!-- ============================================================ -->
+<h2 id="week1">4. This week — 29 Apr to 5 May (Wed–Tue)</h2>
+
+<p>Two parallel tracks: <strong>finish Sprint 1 loose ends</strong> + <strong>build the Sprint 2 job-flow spine</strong>.</p>
+
+<div class="week-card">
+  <h3>Track A — Sprint 1 close-out</h3>
+  <table>
+    <tr><th>Item</th><th>Owner</th><th>Window</th></tr>
+    <tr><td>DKIM green-tick verification (Workspace Admin → Apps → Gmail → Authenticate email)</td><td><span class="who who-dave">Dave</span></td><td>Wed 29 Apr</td></tr>
+    <tr><td>GBP primary owner transfer to enquire@; remove Dave's personal Gmail from GBP, Business Manager, Search Console</td><td><span class="who who-dave">Dave</span></td><td>Fri 1 May (after 7-day seasoning lifts)</td></tr>
+    <tr><td>Add Facebook + Instagram URLs to GBP under Edit Profile → Contact → Social</td><td><span class="who who-dave">Dave</span></td><td>Fri 1 May (post-seasoning)</td></tr>
+    <tr><td>Compliance tab populated (licence # + expiry + insurance details — answers Q3)</td><td><span class="who who-beau">Beau</span></td><td>Wed–Thu 29–30 Apr</td></tr>
+    <tr><td>Past-customer review SMS blast — 10 names from Beau, Emma sends from template (Q4)</td><td><span class="who who-beau">Beau</span> <span class="who who-emma">Emma</span></td><td>Beau provides Wed; Emma sends Thu–Fri</td></tr>
+    <tr><td>Outlook → Gmail forwarding rule on coastalwaysplumbing@outlook.com (Q6)</td><td><span class="who who-beau">Beau</span></td><td>Wed 29 Apr (10 min)</td></tr>
+    <tr><td>Email signatures installed in Gmail + Outlook (use new <code>/guides/email-signatures.html</code> page)</td><td><span class="who who-beau">Beau</span> <span class="who who-emma">Emma</span></td><td>Wed 29 Apr</td></tr>
+    <tr><td>Directory listings — submit to True Local + Yellow Pages + hipages first 3</td><td><span class="who who-emma">Emma</span></td><td>Thu–Fri 30 Apr–1 May</td></tr>
+  </table>
+</div>
+
+<div class="week-card">
+  <h3>Track B — Sprint 2 build (Job Flow End-to-End)</h3>
+  <table>
+    <tr><th>Item</th><th>Owner</th><th>Window</th></tr>
+    <tr><td><strong>Shared "CWP Operations" Google Calendar</strong> — created on enquire@, shared write-access with Beau personal Gmail and Emma personal Gmail; published to Beau's iPhone calendar app</td><td><span class="who who-dave">Dave</span></td><td>Wed 29 Apr</td></tr>
+    <tr><td>Job-naming convention reference card (depends on Q8)</td><td><span class="who who-dave">Dave</span></td><td>Wed 29 Apr</td></tr>
+    <tr><td><strong>Quote Google Doc template</strong> — branded, header with logo + ABN, scope + materials + labour + total + terms; saved in shared Drive folder</td><td><span class="who who-dave">Dave</span></td><td>Thu 30 Apr</td></tr>
+    <tr><td><strong>Xero Starter sign-up</strong> (or confirmation it's done) + share access with enquire@ + Dave</td><td><span class="who who-beau">Beau</span></td><td>Fri 1 May</td></tr>
+    <tr><td><strong>Stripe sign-up</strong> + connect to Xero + test "Pay Now" link</td><td><span class="who who-beau">Beau</span></td><td>Fri 1 May</td></tr>
+    <tr><td>Xero invoice template — branded with logo, "Pay Now" Stripe link, terms (7-day strata / on-spot public)</td><td><span class="who who-dave">Dave</span></td><td>Mon 4 May</td></tr>
+    <tr><td>Review-request SMS template — &lt;160 chars, GBP short link, signed "Beau, Coastal Ways"</td><td><span class="who who-dave">Dave</span></td><td>Wed 29 Apr</td></tr>
+    <tr><td>Payment-chase SMS scripts — T+14 friendly, T+30 firm, T+45 final (manual send, scripted)</td><td><span class="who who-dave">Dave</span></td><td>Mon 4 May</td></tr>
+    <tr><td>Test the full flow: dummy enquiry → calendar entry → quote → invoice → review SMS</td><td><span class="who who-shared">All</span></td><td>Tue 5 May</td></tr>
+  </table>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="week2">5. Next week — 6 to 12 May (Wed–Tue)</h2>
+
+<p>Sprint 2 hardens. Sprint 3 (Field Capture) pre-stages so Beau can start using it the following Monday.</p>
+
+<div class="week-card">
+  <h3>Sprint 2 hardening</h3>
+  <ul>
+    <li><span class="who who-emma">Emma</span> Run 5+ real jobs through the new flow; flag friction points to Dave</li>
+    <li><span class="who who-emma">Emma</span> Daily morning routine (5 min): Gmail + Outlook + GBP DMs + IG/FB DMs check</li>
+    <li><span class="who who-emma">Emma</span> Send 3+ Instagram posts using new captions template (cross-posts to FB)</li>
+    <li><span class="who who-beau">Beau</span> Take 3 photos per job (BEFORE / DURING / AFTER) — text or WhatsApp to Emma with 1-line context</li>
+    <li><span class="who who-beau">Beau</span> "DONE" text to Emma when job complete — triggers her to send review SMS within 2 hours</li>
+    <li><span class="who who-emma">Emma</span> Continue directory listings — finish remaining 5 (Oneflare, StartLocal, Hotfrog, Service Seeking, Yelp AU)</li>
+    <li><span class="who who-dave">Dave</span> Weekly Friday review with Emma (15 min) — what worked, what didn't, friction list</li>
+  </ul>
+</div>
+
+<div class="week-card">
+  <h3>Sprint 3 pre-stage (Field Capture)</h3>
+  <ul>
+    <li><span class="who who-dave">Dave</span> Telegram bot scoping: voice note → transcript → pre-filled Sheet row. Provider research + cost confirmation</li>
+    <li><span class="who who-dave">Dave</span> Telegram setup guide for Beau's iPhone</li>
+    <li><span class="who who-beau">Beau</span> Install Telegram on phone (free, 2 min)</li>
+    <li><span class="who who-shared">Tim</span> Onboarding session — 15 min phone walkthrough of Compliance tab (depends on Q10)</li>
+    <li><span class="who who-dave">Dave</span> Master Sheet weekly dashboard view — count of jobs, quotes, invoices, reviews per week (Beau + Emma can read at a glance)</li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="dave-builds">6. What Dave is building (artefacts shipping to /guides/)</h2>
+
+<p>Each of these will live on the CWP website at coastalwaysplumbing.com/guides/X so they're shareable, version-controlled, and update in place. None are in random Google Docs that get lost.</p>
+
+<table>
+  <tr><th>Artefact</th><th>URL slug</th><th>Status</th></tr>
+  <tr><td>This plan</td><td><code>/guides/short-term-plan.html</code></td><td><span class="pill live">Now</span></td></tr>
+  <tr><td>Email signatures (Beau + Emma)</td><td><code>/guides/email-signatures.html</code></td><td><span class="pill live">Live</span></td></tr>
+  <tr><td>Quote Google Doc template (markdown source + paste-into-Google-Doc instructions)</td><td><code>/guides/quote-template.html</code></td><td><span class="pill next">This week</span></td></tr>
+  <tr><td>Job-naming convention + Calendar setup walkthrough</td><td><code>/guides/calendar-conventions.html</code></td><td><span class="pill next">This week</span></td></tr>
+  <tr><td>SMS scripts library (review request + payment chase + quote follow-up)</td><td><code>/guides/sms-scripts.html</code></td><td><span class="pill next">This week</span></td></tr>
+  <tr><td>Directory listings standardised NAP block (so all 8 directories say the same thing)</td><td><code>/guides/directory-nap.html</code></td><td><span class="pill next">This week</span></td></tr>
+  <tr><td>Tim's compliance walkthrough</td><td><code>/guides/tim-compliance.html</code></td><td><span class="pill blocked">After Q3 + Q10</span></td></tr>
+  <tr><td>Telegram field-capture setup (Sprint 3)</td><td><code>/guides/telegram-setup.html</code></td><td><span class="pill blocked">Next week</span></td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="beau">7. Beau's actions — checklist for the next 14 days</h2>
+
+<div class="callout warn">
+  <div class="callout-title">Time budget — about 90 minutes total over 2 weeks</div>
+  Most items are 5–15 min one-off configurations. The ongoing daily rhythm (3 photos + DONE text) costs &lt;2 min per job.
+</div>
+
+<h4>Wed 29 Apr (one-off, ~30 min)</h4>
+<ul>
+  <li><span class="checkbox"></span> Install Gmail signature (paste from <code>/guides/email-signatures.html</code>)</li>
+  <li><span class="checkbox"></span> Set up Outlook → enquire@ forwarding (Q6 — 5 min, settings → forward all mail)</li>
+  <li><span class="checkbox"></span> Send Dave: licence numbers + expiry + insurance certificate of currency (Q3)</li>
+  <li><span class="checkbox"></span> Send Dave: 10 past-customer names + mobile numbers for review blast (Q4)</li>
+  <li><span class="checkbox"></span> Confirm: <code>Average prices for 6 services</code> for Quote template (Q9)</li>
+</ul>
+
+<h4>Fri 1 May (one-off, ~30 min)</h4>
+<ul>
+  <li><span class="checkbox"></span> Sign up Xero Starter ($35/mo, 15 min, needs ABN + bank login) (Q1)</li>
+  <li><span class="checkbox"></span> Sign up Stripe (free to start, 10 min, needs ID + bank for payouts) (Q2)</li>
+  <li><span class="checkbox"></span> Connect Stripe ↔ Xero in Xero settings (5 min)</li>
+  <li><span class="checkbox"></span> Add enquire@ + davidcalder1703@ as Xero users (admin level)</li>
+  <li><span class="checkbox"></span> Import any open unpaid invoices to Xero (Q7)</li>
+</ul>
+
+<h4>Daily rhythm — every working day from 30 Apr</h4>
+<ul>
+  <li><span class="checkbox"></span> Take 3 photos per job (BEFORE / DURING / AFTER), send to Emma with 1-line context</li>
+  <li><span class="checkbox"></span> Text Emma <code>DONE — [customer name]</code> when job finishes</li>
+  <li><span class="checkbox"></span> Flag emergencies to Emma immediately for rapid billing</li>
+  <li><span class="checkbox"></span> Approve quotes Emma drafts (target same-day approval)</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2 id="emma">8. Emma's actions — checklist for the next 14 days</h2>
+
+<div class="callout warn">
+  <div class="callout-title">Time budget — about 30 min/day in week 1, dropping to 20 min/day in week 2</div>
+  As templates land and routines settle, the per-day load drops fast. The Friday close is the only "bigger" weekly block at 15 min.
+</div>
+
+<h4>Wed–Fri 29 Apr – 1 May (one-off setup, ~60 min spread)</h4>
+<ul>
+  <li><span class="checkbox"></span> Install Gmail signature (Q5 also — confirm enquire@ is on her phone)</li>
+  <li><span class="checkbox"></span> Send past-customer review SMS blast (Beau gives the 10 names; Emma uses template Dave provides)</li>
+  <li><span class="checkbox"></span> Submit first 3 directory listings: True Local, Yellow Pages, hipages</li>
+  <li><span class="checkbox"></span> Test the new shared CWP Operations Calendar — accept invite, install on phone</li>
+  <li><span class="checkbox"></span> Read <code>/guides/calendar-conventions.html</code> + <code>/guides/sms-scripts.html</code></li>
+</ul>
+
+<h4>Mon 4 – Tue 5 May (Sprint 2 dry-run)</h4>
+<ul>
+  <li><span class="checkbox"></span> Walk through one full dummy job with Dave: enquiry → calendar → quote → invoice → review SMS</li>
+  <li><span class="checkbox"></span> Save the Quote Google Doc template to her Google Drive (one-click duplicate per quote)</li>
+</ul>
+
+<h4>Daily rhythm — every working day from 30 Apr</h4>
+<ul>
+  <li><span class="checkbox"></span> Morning (5 min): Gmail + Outlook + GBP messages + FB/IG DMs check; reply all; log new enquiries to Contacts tab</li>
+  <li><span class="checkbox"></span> Per Beau "DONE" text (2 min): update Jobs tab → Complete; send review SMS within 2 hours; log in Reviews tab</li>
+  <li><span class="checkbox"></span> Mon/Wed/Fri (10 min): pick photo set → caption from template → post to Instagram (auto cross-posts to FB)</li>
+</ul>
+
+<h4>Friday weekly close (15 min)</h4>
+<ul>
+  <li><span class="checkbox"></span> Screenshot GBP Insights → send to Dave</li>
+  <li><span class="checkbox"></span> Count reviews received this week, reply to any unanswered</li>
+  <li><span class="checkbox"></span> Friction list: anything that wasted time this week</li>
+</ul>
+
+<h4>Week 2 additions</h4>
+<ul>
+  <li><span class="checkbox"></span> Finish remaining 5 directory listings</li>
+  <li><span class="checkbox"></span> Run real jobs through the system, flag friction</li>
+  <li><span class="checkbox"></span> Optional: switch website contact form from Outlook → enquire@ once mailbox feels solid for a week</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2 id="tim">9. Tim's onboarding — light-touch, compliance owner</h2>
+
+<p>Tim Bridge sits outside daily ops but owns the Compliance tab — the one place where missing a date kills the business (licence expiring, insurance lapsing, BAS missed). 40+ years of business experience makes him the right person to flag risks.</p>
+
+<table>
+  <tr><th>What Tim does</th><th>What Tim does NOT do</th></tr>
+  <tr>
+    <td>
+      <ul>
+        <li>Watches Compliance tab for upcoming expiries</li>
+        <li>Flags Beau 30 days before any licence/insurance/BAS deadline</li>
+        <li>Sanity-checks pricing decisions when asked</li>
+        <li>Reviews monthly the cash-flow trend on Sheet</li>
+      </ul>
+    </td>
+    <td>
+      <ul>
+        <li>Daily inbox or DM checks (that's Emma)</li>
+        <li>Quote drafting (that's Emma + Beau)</li>
+        <li>Customer comms (that's Emma)</li>
+        <li>Field decisions (that's Beau)</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<div class="callout">
+  <div class="callout-title">Tim's onboarding — 15-min phone call, depends on Q10</div>
+  <ol>
+    <li>Send him view-access to Compliance tab via his Gmail (need Q10 answered)</li>
+    <li>Walk through the 4 columns: Item / Renewal date / 30-day flag / Notes</li>
+    <li>Show him how to add a comment if he sees something off</li>
+    <li>Agree the cadence: Tim glances Mondays, flags anything, otherwise no action</li>
+  </ol>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="gates">10. What success looks like at end of week 2 (Tue 12 May)</h2>
+
+<div class="callout good">
+  <div class="callout-title">Quantitative gates</div>
+  <ul>
+    <li><strong>5+ real jobs</strong> have run through the new flow end-to-end</li>
+    <li><strong>3+ Google reviews</strong> have landed (target 10 within 30 days from review-blast start)</li>
+    <li><strong>All 8 directory listings</strong> submitted</li>
+    <li><strong>0 missed expiry dates</strong> on the Compliance tab</li>
+    <li><strong>1 Xero invoice</strong> sent + paid via Stripe link (proves the end-to-end works)</li>
+    <li><strong>3 Instagram posts</strong> live, cross-posted to Facebook</li>
+  </ul>
+</div>
+
+<div class="callout">
+  <div class="callout-title">Qualitative gates</div>
+  <ul>
+    <li>Beau is taking 3 photos per job without prompting</li>
+    <li>Emma can run a full job cycle (enquiry → invoice → review) without asking Dave for help</li>
+    <li>Tim has flagged at least one upcoming compliance date proactively</li>
+    <li>Friction list from Friday-1 + Friday-2 reviews has &lt;5 items each (signals system is settling)</li>
+  </ul>
+</div>
+
+<div class="callout warn">
+  <div class="callout-title">If we miss these gates</div>
+  Sprint 3 (Field Capture / Telegram bot) shifts back a week. We hold Sprint 2 until the manual flow is bulletproof — automation amplifies whatever's already working, so it must be working manually first.
+</div>
+
+<p class="updated">Last updated: 2026-04-28 AEST · Plan version 1.0 · Pairs with implementation-plan.html v5.1.1</p>
+
+</body>
+</html>
