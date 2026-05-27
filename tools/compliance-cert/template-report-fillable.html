@@ -6,36 +6,16 @@
 <title>Water Efficiency Inspection Report · Coastal Ways Plumbing</title>
 <!--
   ============================================================================
-  COASTAL WAYS PLUMBING · Water Efficiency Inspection Report (companion to cert)
+  COASTAL WAYS PLUMBING · Water Efficiency Inspection Report (FILLABLE)
   ============================================================================
+  Companion to the cert. Same brand. Single A4 page.
+  Per-fixture + summary rows use REAL PDF checkboxes (/FT /Btn) — tap to tick
+  in Preview / Acrobat / any standard viewer.
 
-  FILLABLE VERSION — each {{placeholder}} replaced by a form <input>/<textarea>
-  so this HTML renders as a fillable AcroForm PDF when passed through
-  tools/html_to_fillable_pdf.py.
-
-  Static A4 portrait template. The {{placeholders}} below are replaced with
-  per-job values via tools (search-and-replace OR the form-input version).
-
-  PLACEHOLDERS (per job)
-    {{property}}         full property address
-    {{inspection_date}}  e.g. 27 May 2026
-    {{issue_date}}       e.g. 27 May 2026
-    {{owner_name}}       contact name
-    {{owner_company}}    agency name (or "Private owner")
-    {{owner_address}}    postal address
-    {{taps_NN_loc}}      tap fixture location, NN = 1..4
-    {{taps_NN_result}}   Pass / Fail / N/A
-    {{shower_NN_loc}}    shower head location, NN = 1..3
-    {{shower_NN_result}} Pass / Fail / N/A
-    {{toilet_NN_loc}}    toilet location, NN = 1..2
-    {{toilet_NN_result}} Pass / Fail / N/A
-    {{sum_taps}}         summary Pass/Fail — all cold taps + mixers ≤ 9 L/min
-    {{sum_showers}}      summary Pass/Fail — all shower heads ≤ 9 L/min
-    {{sum_leaks}}        summary Pass/Fail — no leaking taps or toilets
-    {{sum_toilets}}      summary Pass/Fail — all toilets dual-flush 3-star WELS
-    {{sum_metered}}      summary Pass/Fail — property individually metered
-    {{overall_result}}   overall Pass/Fail
-    {{notes}}            failed items, repairs done, anything noteworthy
+  Field naming convention:
+    {section}_{n}_{result}  e.g. taps_01_pass, taps_01_fail, taps_01_na
+    sum_{category}_{yn}     e.g. sum_taps_yes, sum_taps_no
+    overall_pass / overall_fail
   ============================================================================
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,39 +23,26 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Roboto:wght@300;400;500&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper:        #FFFFFF;
-    --ink:          #10202D;
-    --ink-soft:     #384850;
-    --slate:        #536268;
-    --cool-grey:    #C4CFD1;
-    --light-stone:  #E3E0DF;
-    --teal:         #055A5F;
-    --pass:         #2D9D5A;
-    --pass-bg:      #E8F5EE;
-    --fail:         #C84A2D;
-    --fail-bg:      #FBEAE5;
-    --hairline:     rgba(16,32,45,0.10);
-    --hairline-mid: rgba(16,32,45,0.18);
+    --paper:#FFFFFF; --ink:#10202D; --ink-soft:#384850; --slate:#536268;
+    --cool-grey:#C4CFD1; --teal:#055A5F;
+    --pass:#2D9D5A; --fail:#C84A2D;
+    --hairline:rgba(16,32,45,0.10);
+    --hairline-mid:rgba(16,32,45,0.18);
   }
-
   @page { size: A4 portrait; margin: 0; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body {
     background: #EEEFF0;
     color: var(--ink);
-    font-family: 'Space Grotesk', 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
   .page {
-    width: 210mm;
-    height: 297mm;
-    margin: 20px auto;
-    background: var(--paper);
-    color: var(--ink);
-    position: relative;
-    overflow: hidden;
+    width: 210mm; height: 297mm; margin: 20px auto;
+    background: var(--paper); color: var(--ink);
+    position: relative; overflow: hidden;
     box-shadow: 0 8px 32px rgba(16,32,45,0.10);
   }
   @media print {
@@ -83,278 +50,117 @@
     .page { margin: 0; box-shadow: none; width: 210mm; height: 297mm; }
   }
 
-  /* ========== LETTERHEAD ========== */
   .letterhead-bar {
-    background: var(--ink);
-    color: #fff;
-    padding: 8mm 14mm;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 24mm;
+    background: var(--ink); color: #fff;
+    padding: 7mm 14mm;
+    display: flex; align-items: center; justify-content: space-between;
+    min-height: 22mm;
   }
-  .letterhead-bar__mark { height: 18mm; width: auto; display: block; }
+  .letterhead-bar__mark { height: 16mm; width: auto; display: block; }
   .letterhead-bar__doctype {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 11px;
-    font-weight: 400;
-    letter-spacing: 0.36em;
-    text-transform: uppercase;
-    color: #fff;
-    opacity: 0.85;
-    text-align: right;
-    line-height: 1.5;
+    font-family: 'Space Grotesk', sans-serif; font-size: 11px;
+    font-weight: 400; letter-spacing: 0.36em; text-transform: uppercase;
+    color: #fff; opacity: 0.85; text-align: right; line-height: 1.5;
   }
   .letterhead-bar__doctype b { display: block; color: #fff; font-weight: 500; opacity: 1; margin-top: 2px; }
 
   .contact-strip {
-    padding: 5mm 14mm;
+    padding: 4mm 14mm;
     border-bottom: 1px solid var(--hairline);
     font-family: 'Roboto Mono', ui-monospace, monospace;
-    font-size: 9px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--slate);
-    text-align: center;
+    font-size: 8.5px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--slate); text-align: center;
   }
   .contact-strip a { color: var(--slate); text-decoration: none; }
-  .contact-strip .dot { color: var(--cool-grey); margin: 0 8px; }
+  .contact-strip .dot { color: var(--cool-grey); margin: 0 7px; }
 
-  /* ========== BODY ========== */
-  .body-area { padding: 0 16mm 26mm; }
+  .body-area { padding: 0 14mm 22mm; }
 
-  /* Title */
-  .title-area { margin-top: 5mm; }
+  .title-area { margin-top: 4mm; }
   .eyebrow {
     font-family: 'Roboto Mono', ui-monospace, monospace;
-    font-size: 9px;
-    letter-spacing: 0.26em;
-    text-transform: uppercase;
-    color: var(--teal);
-    margin-bottom: 3mm;
+    font-size: 8.5px; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 2.5mm;
     display: flex; align-items: center; gap: 10px;
   }
   .eyebrow::before { content: ''; width: 22px; height: 1.5px; background: var(--teal); }
   h1 {
     font-family: 'Space Grotesk', sans-serif;
-    font-weight: 400;
-    font-size: 26px;
-    letter-spacing: -0.025em;
-    line-height: 1.05;
-    color: var(--ink);
-    text-transform: uppercase;
+    font-weight: 400; font-size: 24px;
+    letter-spacing: -0.025em; line-height: 1.05;
+    color: var(--ink); text-transform: uppercase;
   }
   h1 em { font-style: normal; color: var(--teal); font-weight: 500; }
 
-  /* Property + Plumber grid */
   .issued-grid {
-    margin-top: 6mm;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10mm;
+    margin-top: 5mm;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 9mm;
   }
   .block-label {
     font-family: 'Roboto Mono', ui-monospace, monospace;
-    font-size: 8.5px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--slate);
-    margin-bottom: 4px;
-    padding-bottom: 3px;
-    border-bottom: 1px solid var(--hairline-mid);
+    font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--slate); margin-bottom: 3px;
+    padding-bottom: 2px; border-bottom: 1px solid var(--hairline-mid);
   }
   .block dl {
-    display: grid;
-    grid-template-columns: 24mm 1fr;
-    row-gap: 3px;
-    column-gap: 6px;
-    margin-top: 5px;
-    font-size: 10.5px;
+    display: grid; grid-template-columns: 22mm 1fr;
+    row-gap: 2px; column-gap: 5px; margin-top: 4px; font-size: 10px;
   }
   .block dt {
     font-family: 'Roboto Mono', ui-monospace, monospace;
-    font-size: 8px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--slate);
-    padding-top: 1px;
+    font-size: 7.5px; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--slate); padding-top: 1px;
   }
   .block dd {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 11px;
-    color: var(--ink);
-    font-weight: 400;
-    line-height: 1.35;
+    font-size: 10.5px; color: var(--ink); font-weight: 400; line-height: 1.3;
   }
-  .block dd.mono { font-family: 'Roboto Mono', ui-monospace, monospace; font-size: 10.5px; }
+  .block dd.mono { font-family: 'Roboto Mono', ui-monospace, monospace; font-size: 10px; }
 
-  /* ========== INSPECTION TABLE ========== */
-  .inspection { margin-top: 7mm; }
-  .inspection__section { margin-bottom: 4mm; }
+  .inspection { margin-top: 5mm; }
+  .inspection__section { margin-bottom: 3mm; }
   .inspection__section-head {
-    background: var(--ink);
-    color: #fff;
-    padding: 3px 10px;
+    background: var(--ink); color: #fff;
+    padding: 3px 8px;
     font-family: 'Roboto Mono', ui-monospace, monospace;
-    font-size: 9px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    font-size: 8.5px; letter-spacing: 0.16em; text-transform: uppercase;
     display: flex; justify-content: space-between; align-items: center;
   }
   .inspection__section-head .threshold {
-    color: var(--cool-grey);
-    font-weight: 400;
-    letter-spacing: 0.08em;
-    font-size: 8px;
+    color: var(--cool-grey); font-weight: 400;
+    letter-spacing: 0.06em; font-size: 7.5px;
   }
-  table.inspection__rows {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1px;
-  }
-  table.inspection__rows td {
-    padding: 3px 10px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 10.5px;
-    color: var(--ink);
-    border-bottom: 1px dotted var(--hairline);
-    line-height: 1.35;
-  }
-  table.inspection__rows td:last-child {
-    width: 22mm;
-    text-align: center;
+  .inspection__col-head {
+    display: grid;
+    grid-template-columns: 1fr 16mm 16mm 16mm;
+    padding: 2px 8px;
     font-family: 'Roboto Mono', ui-monospace, monospace;
-    font-size: 9px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-  .result-pass { background: var(--pass-bg); color: var(--pass); font-weight: 500; }
-  .result-fail { background: var(--fail-bg); color: var(--fail); font-weight: 500; }
-
-  /* ========== SUMMARY ========== */
-  .summary {
-    margin-top: 6mm;
-    padding: 5mm 7mm;
+    font-size: 7.5px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--slate);
+    border-bottom: 1px solid var(--hairline);
     background: #FAFBFB;
-    border-left: 2.5px solid var(--teal);
-    border-radius: 3px;
   }
-  .summary__head {
-    font-family: 'Roboto Mono', ui-monospace, monospace;
-    font-size: 9px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--slate);
-    margin-bottom: 4mm;
-  }
-  .summary__list {
+  .inspection__col-head > div:not(:first-child) { text-align: center; }
+  .inspection__row {
     display: grid;
-    grid-template-columns: 1fr 28mm;
-    row-gap: 3px;
-    column-gap: 8px;
-    font-size: 10.5px;
+    grid-template-columns: 1fr 16mm 16mm 16mm;
+    padding: 2px 8px;
+    border-bottom: 1px dotted var(--hairline);
+    align-items: center;
+    min-height: 6.5mm;
   }
-  .summary__list .label {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 10.5px;
-    color: var(--ink-soft);
-    font-weight: 400;
-  }
-  .summary__list .value {
-    font-family: 'Roboto Mono', ui-monospace, monospace;
-    font-size: 9.5px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    text-align: center;
-    padding: 1px 4px;
-    border-radius: 2px;
-  }
-  .summary__overall {
-    margin-top: 5mm;
-    padding-top: 5mm;
-    border-top: 1px solid var(--hairline-mid);
-    display: flex; justify-content: space-between; align-items: baseline;
-  }
-  .summary__overall .label {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 500;
-    font-size: 13px;
-    color: var(--ink);
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-  }
-  .summary__overall .value {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-    letter-spacing: 0.04em;
-    padding: 2px 12px;
-    border-radius: 3px;
-    text-transform: uppercase;
-  }
+  .inspection__row > .loc { padding-right: 6px; }
+  .inspection__row > .cell { display: flex; justify-content: center; align-items: center; }
 
-  /* ========== NOTES ========== */
-  .notes { margin-top: 5mm; }
-  .notes__inner {
-    font-family: 'Roboto', sans-serif;
-    font-size: 10px;
-    line-height: 1.5;
-    color: var(--ink-soft);
-    font-weight: 300;
-    padding-left: 10px;
-    border-left: 2px solid var(--cool-grey);
-    margin-top: 3px;
-    min-height: 18mm;
-  }
-
-  /* ========== SIGNATURE ========== */
-  .signature {
-    margin-top: 7mm;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14mm;
-    align-items: start;
-  }
-  .sig-line {
-    border-bottom: 1.2px solid var(--ink);
-    height: 12mm;
-    position: relative;
-    margin-bottom: 3px;
-  }
-  .sig-line__hint {
-    position: absolute; bottom: -12px; left: 0;
-    font-family: 'Roboto Mono', ui-monospace, monospace;
-    font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--slate);
-  }
-  .sig-meta { margin-top: 14px; font-family: 'Space Grotesk', sans-serif; font-size: 10.5px; color: var(--ink); line-height: 1.4; }
-  .sig-meta b { font-weight: 500; }
-  .sig-meta__small { margin-top: 2px; font-family: 'Roboto Mono', ui-monospace, monospace; font-size: 9px; color: var(--slate); letter-spacing: 0.04em; }
-
-  /* ========== FOOTER ========== */
-  footer {
-    position: absolute; bottom: 8mm; left: 16mm; right: 16mm;
-    padding-top: 3mm;
-    border-top: 1px solid var(--hairline);
-    display: flex; justify-content: space-between; align-items: baseline;
-    font-family: 'Roboto Mono', ui-monospace, monospace;
-    font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--slate);
-  }
-
-  /* ========== FORM FIELDS (fillable-pdf-builder conventions) ========== */
   .ff-input, .ff-textarea {
     border: none;
     background: rgba(5, 90, 95, 0.07);
     outline: none;
-    padding: 2px 4px;
+    padding: 1px 4px;
     margin: 0;
-    font: inherit;
-    color: inherit;
-    letter-spacing: inherit;
-    line-height: inherit;
-    width: 100%;
-    box-sizing: border-box;
+    font: inherit; color: inherit;
+    letter-spacing: inherit; line-height: inherit;
+    width: 100%; box-sizing: border-box;
     border-bottom: 1px solid rgba(5, 90, 95, 0.25);
     border-radius: 2px;
   }
@@ -362,67 +168,166 @@
   .ff-input:focus, .ff-textarea:focus { border-bottom-color: var(--teal); background: rgba(5, 90, 95, 0.13); }
   .ff-input::placeholder, .ff-textarea::placeholder { color: rgba(83, 98, 104, 0.45); font-style: italic; }
   .ff-textarea { resize: none; min-height: 1.5em; overflow: hidden; }
-  /* Signature field — visible signing zone */
+
+  /* Checkbox visual (HTML rendering — the PDF widget is created from the underlying <input>) */
+  input[type="checkbox"].ff-check {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 4.2mm; height: 4.2mm;
+    border: 1.2px solid var(--ink);
+    background: rgba(5, 90, 95, 0.05);
+    border-radius: 2px;
+    margin: 0;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+  }
+  input[type="checkbox"].ff-check:checked { background: var(--teal); border-color: var(--teal); }
+  input[type="checkbox"].ff-check:checked::after {
+    content: '✓';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff; font-size: 9px; font-weight: 700; line-height: 1;
+  }
+  @media print { input[type="checkbox"].ff-check { background: transparent; } }
+
   .ff-signature {
     border: none;
     border-bottom: 1.2px solid var(--ink);
-    height: 12mm;
-    width: 100%;
+    height: 12mm; width: 100%;
     background: rgba(5, 90, 95, 0.04);
-    font: inherit;
-    color: inherit;
-    padding: 0;
-    margin: 0;
+    font: inherit; color: inherit; padding: 0; margin: 0;
   }
   .ff-signature:focus { outline: none; background: rgba(5, 90, 95, 0.10); }
-
   .ff-sig {
     border: none;
     border-bottom: 1.2px solid var(--ink);
-    height: 12mm;
-    width: 100%;
+    height: 12mm; width: 100%;
     background: rgba(5, 90, 95, 0.04);
-    font: inherit;
-    color: inherit;
-    padding: 0 4px;
-    margin: 0;
+    font: inherit; color: inherit; padding: 0 4px; margin: 0;
   }
   .ff-sig:focus { outline: none; background: rgba(5, 90, 95, 0.10); }
-  @media print { .ff-sig { background: transparent; } }
-  /* Print: hide field shading so the saved doc looks clean */
+
   @media print {
     .ff-input, .ff-textarea { border-bottom-color: transparent; background: transparent; }
-    .ff-signature { background: transparent; }
+    .ff-signature, .ff-sig { background: transparent; }
     .ff-input::placeholder, .ff-textarea::placeholder { color: transparent; }
   }
 
+  .summary {
+    margin-top: 4mm;
+    padding: 4mm 6mm;
+    background: #FAFBFB;
+    border-left: 2.5px solid var(--teal);
+    border-radius: 3px;
+  }
+  .summary__head {
+    font-family: 'Roboto Mono', ui-monospace, monospace;
+    font-size: 8.5px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--slate); margin-bottom: 3mm;
+  }
+  .summary__col-head {
+    display: grid;
+    grid-template-columns: 1fr 14mm 14mm;
+    padding-bottom: 3px;
+    border-bottom: 1px solid var(--hairline-mid);
+    margin-bottom: 3px;
+    font-family: 'Roboto Mono', ui-monospace, monospace;
+    font-size: 7.5px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--slate);
+  }
+  .summary__col-head > div:not(:first-child) { text-align: center; }
+  .summary__row {
+    display: grid;
+    grid-template-columns: 1fr 14mm 14mm;
+    align-items: center;
+    padding: 2px 0;
+    font-size: 10px;
+    border-bottom: 1px dotted var(--hairline);
+  }
+  .summary__row:last-of-type { border-bottom: none; }
+  .summary__row > .label {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--ink-soft); font-weight: 400;
+  }
+  .summary__row > .cell { display: flex; justify-content: center; align-items: center; }
+
+  .summary__overall {
+    margin-top: 4mm;
+    padding-top: 4mm;
+    border-top: 1px solid var(--hairline-mid);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .summary__overall .label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500; font-size: 12px;
+    color: var(--ink); text-transform: uppercase; letter-spacing: 0.02em;
+  }
+  .summary__overall .checks { display: flex; gap: 16px; }
+  .summary__overall .checks > label {
+    display: flex; align-items: center; gap: 6px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500; font-size: 12px; letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .summary__overall .pass-label { color: var(--pass); }
+  .summary__overall .fail-label { color: var(--fail); }
+
+  .notes { margin-top: 4mm; }
+  .notes__inner {
+    font-family: 'Roboto', sans-serif;
+    font-size: 9.5px; line-height: 1.45;
+    color: var(--ink-soft); font-weight: 300;
+    padding-left: 9px; border-left: 2px solid var(--cool-grey);
+    margin-top: 3px; min-height: 14mm;
+  }
+
+  .signature {
+    margin-top: 5mm;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14mm;
+    align-items: start;
+  }
+  .sig-line {
+    border-bottom: 1.2px solid var(--ink);
+    height: 11mm; position: relative; margin-bottom: 3px;
+  }
+  .sig-line__hint {
+    position: absolute; bottom: -11px; left: 0;
+    font-family: 'Roboto Mono', ui-monospace, monospace;
+    font-size: 7.5px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--slate);
+  }
+  .sig-meta { margin-top: 12px; font-family: 'Space Grotesk', sans-serif; font-size: 10px; color: var(--ink); line-height: 1.4; }
+  .sig-meta b { font-weight: 500; }
+  .sig-meta__small { margin-top: 1px; font-family: 'Roboto Mono', ui-monospace, monospace; font-size: 8.5px; color: var(--slate); letter-spacing: 0.04em; }
+
+  footer {
+    position: absolute; bottom: 7mm; left: 14mm; right: 14mm;
+    padding-top: 3mm; border-top: 1px solid var(--hairline);
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: 'Roboto Mono', ui-monospace, monospace;
+    font-size: 8.5px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--slate);
+  }
 </style>
 </head>
 <body>
 
 <div class="page">
 
-  <!-- LETTERHEAD -->
   <header class="letterhead-bar">
     <img class="letterhead-bar__mark"
          src="https://coastalwaysplumbing.com/assets/logo-white.png"
          alt="Coastal Ways Plumbing">
-    <div class="letterhead-bar__doctype">
-      <b>Coastal Ways Plumbing</b>
-    </div>
+    <div class="letterhead-bar__doctype"><b>Coastal Ways Plumbing</b></div>
   </header>
   <div class="contact-strip">
     Jilliby NSW 2259
-    <span class="dot">·</span>
-    0402 269 088
-    <span class="dot">·</span>
-    <a href="mailto:coastalwaysplumbing@outlook.com">coastalwaysplumbing@outlook.com</a>
-    <span class="dot">·</span>
-    <a href="https://coastalwaysplumbing.com.au">coastalwaysplumbing.com.au</a>
-    <span class="dot">·</span>
-    Licence 468634C
-    <span class="dot">·</span>
-    ABN 62 284 909 142
+    <span class="dot">·</span> 0402 269 088
+    <span class="dot">·</span> <a href="mailto:coastalwaysplumbing@outlook.com">coastalwaysplumbing@outlook.com</a>
+    <span class="dot">·</span> <a href="https://coastalwaysplumbing.com.au">coastalwaysplumbing.com.au</a>
+    <span class="dot">·</span> Licence 468634C
+    <span class="dot">·</span> ABN 62 284 909 142
   </div>
 
   <div class="body-area">
@@ -437,7 +342,7 @@
         <div class="block-label">Property inspected</div>
         <dl>
           <dt>Address</dt><dd><input class="ff-input" type="text" name="property_address" placeholder="e.g. 26 Belyando Crescent, Blue Haven NSW 2262"></dd>
-          <dt>Inspected</dt><dd><input class="ff-input mono" type="text" name="inspection_date" placeholder="DD Mmm YYYY" style="font-family:'Roboto Mono',ui-monospace,monospace;font-size:10.5px;"></dd>
+          <dt>Inspected</dt><dd><input class="ff-input mono" type="text" name="inspection_date" placeholder="DD Mmm YYYY" style="font-family:'Roboto Mono',ui-monospace,monospace;font-size:10px;"></dd>
           <dt>Owner / agent</dt><dd><input class="ff-input" type="text" name="owner_name" placeholder="Contact name"><br><input class="ff-input" type="text" name="owner_company" placeholder="Agency / company (or Private owner)"></dd>
           <dt>Owner address</dt><dd><input class="ff-input" type="text" name="owner_address" placeholder="Owner / agent postal address"></dd>
         </dl>
@@ -449,69 +354,135 @@
           <dt>Business</dt><dd>Coastal Ways Plumbing</dd>
           <dt>NSW Licence</dt><dd class="mono">468634C</dd>
           <dt>ABN</dt><dd class="mono">62 284 909 142</dd>
-          <dt>Issued</dt><dd><input class="ff-input mono" type="text" name="issue_date" placeholder="DD Mmm YYYY" style="font-family:'Roboto Mono',ui-monospace,monospace;font-size:10.5px;"></dd>
+          <dt>Issued</dt><dd><input class="ff-input mono" type="text" name="issue_date" placeholder="DD Mmm YYYY" style="font-family:'Roboto Mono',ui-monospace,monospace;font-size:10px;"></dd>
         </dl>
       </div>
     </section>
 
     <section class="inspection">
-      <!-- Cold water taps + mixers -->
+
       <div class="inspection__section">
         <div class="inspection__section-head">
           <span>Internal cold water taps + single mixer taps</span>
-          <span class="threshold">≤ 9 L/min  ·  RT Reg 2019 cl 10(c)</span>
+          <span class="threshold">≤ 9 L/min  ·  Reg 10(c)</span>
         </div>
-        <table class="inspection__rows">
-          <tr><td><input class="ff-input" type="text" name="taps_01_loc" placeholder="Kitchen sink mixer" style="padding: 1px 2px;"></td><td><input class="ff-input" type="text" name="taps_01_result" placeholder="Pass / Fail / N/A" style="text-align:center;padding:1px 2px;font-family:'Roboto Mono',ui-monospace,monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;"></td></tr>
-          <tr><td><input class="ff-input" type="text" name="taps_02_loc" placeholder="Main bathroom hand basin mixer" style="padding: 1px 2px;"></td><td><input class="ff-input" type="text" name="taps_02_result" placeholder="Pass / Fail / N/A" style="text-align:center;padding:1px 2px;font-family:'Roboto Mono',ui-monospace,monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;"></td></tr>
-          <tr><td><input class="ff-input" type="text" name="taps_03_loc" placeholder="Ensuite hand basin mixer" style="padding: 1px 2px;"></td><td><input class="ff-input" type="text" name="taps_03_result" placeholder="Pass / Fail / N/A" style="text-align:center;padding:1px 2px;font-family:'Roboto Mono',ui-monospace,monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;"></td></tr>
-          <tr><td><input class="ff-input" type="text" name="taps_04_loc" placeholder="Laundry tub tap" style="padding: 1px 2px;"></td><td><input class="ff-input" type="text" name="taps_04_result" placeholder="Pass / Fail / N/A" style="text-align:center;padding:1px 2px;font-family:'Roboto Mono',ui-monospace,monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;"></td></tr>
-        </table>
+        <div class="inspection__col-head">
+          <div>Location</div><div>Pass</div><div>Fail</div><div>N/A</div>
+        </div>
+        <div class="inspection__row">
+          <div class="loc"><input class="ff-input" type="text" name="taps_01_loc" placeholder="Kitchen sink mixer"></div>
+          <div class="cell"><input type="checkbox" class="ff-check" name="taps_01_pass"></div>
+          <div class="cell"><input type="checkbox" class="ff-check" name="taps_01_fail"></div>
+          <div class="cell"><input type="checkbox" class="ff-check" name="taps_01_na"></div>
+        </div>
+        <div class="inspection__row">
+          <div class="loc"><input class="ff-input" type="text" name="taps_02_loc" placeholder="Main bathroom hand basin mixer"></div>
+          <div class="cell"><input type="checkbox" class="ff-check" name="taps_02_pass"></div>
+          <div class="cell"><input type="checkbox" class="ff-check" name="taps_02_fail"></div>
+          <div class="cell"><input type="checkbox" class="ff-check" name="taps_02_na"></div>
+        </div>
+        <div class="inspection__row">
+          <div class="loc"><input class="ff-input" type="text" name="taps_03_loc" placeholder="Ensuite hand basin mixer"></div>
+          <div class="cell"><input type="checkbox" class="ff-check" name="taps_03_pass"></div>
+          <div class="cell"><input type="checkbox" class="ff-check" name="taps_03_fail"></div>
+          <div class="cell"><input type="checkbox" class="ff-check" name="taps_03_na"></div>
+        </div>
+        <div class="inspection__row">
+          <div class="loc"><input class="ff-input" type="text" name="taps_04_loc" placeholder="Laundry tub tap"></div>
+          <div class="cell"><input type="checkbox" class="ff-check" name="taps_04_pass"></div>
+          <div class="cell"><input type="checkbox" class="ff-check" name="taps_04_fail"></div>
+          <div class="cell"><input type="checkbox" class="ff-check" name="taps_04_na"></div>
+        </div>
       </div>
 
-      <!-- Shower heads -->
       <div class="inspection__section">
         <div class="inspection__section-head">
           <span>Shower heads</span>
-          <span class="threshold">≤ 9 L/min  ·  RT Reg 2019 cl 10(a)</span>
+          <span class="threshold">≤ 9 L/min  ·  Reg 10(a)</span>
         </div>
-        <table class="inspection__rows">
-          <tr><td><input class="ff-input" type="text" name="shower_01_loc" placeholder="Main bathroom shower head" style="padding: 1px 2px;"></td><td><input class="ff-input" type="text" name="shower_01_result" placeholder="Pass / Fail / N/A" style="text-align:center;padding:1px 2px;font-family:'Roboto Mono',ui-monospace,monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;"></td></tr>
-          <tr><td><input class="ff-input" type="text" name="shower_02_loc" placeholder="Ensuite shower head" style="padding: 1px 2px;"></td><td><input class="ff-input" type="text" name="shower_02_result" placeholder="Pass / Fail / N/A" style="text-align:center;padding:1px 2px;font-family:'Roboto Mono',ui-monospace,monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;"></td></tr>
-          <tr><td><input class="ff-input" type="text" name="shower_03_loc" placeholder="Additional shower head" style="padding: 1px 2px;"></td><td><input class="ff-input" type="text" name="shower_03_result" placeholder="Pass / Fail / N/A" style="text-align:center;padding:1px 2px;font-family:'Roboto Mono',ui-monospace,monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;"></td></tr>
-        </table>
+        <div class="inspection__col-head">
+          <div>Location</div><div>Pass</div><div>Fail</div><div>N/A</div>
+        </div>
+        <div class="inspection__row">
+          <div class="loc"><input class="ff-input" type="text" name="shower_01_loc" placeholder="Main bathroom shower head"></div>
+          <div class="cell"><input type="checkbox" class="ff-check" name="shower_01_pass"></div>
+          <div class="cell"><input type="checkbox" class="ff-check" name="shower_01_fail"></div>
+          <div class="cell"><input type="checkbox" class="ff-check" name="shower_01_na"></div>
+        </div>
+        <div class="inspection__row">
+          <div class="loc"><input class="ff-input" type="text" name="shower_02_loc" placeholder="Ensuite shower head"></div>
+          <div class="cell"><input type="checkbox" class="ff-check" name="shower_02_pass"></div>
+          <div class="cell"><input type="checkbox" class="ff-check" name="shower_02_fail"></div>
+          <div class="cell"><input type="checkbox" class="ff-check" name="shower_02_na"></div>
+        </div>
+        <div class="inspection__row">
+          <div class="loc"><input class="ff-input" type="text" name="shower_03_loc" placeholder="Additional shower head"></div>
+          <div class="cell"><input type="checkbox" class="ff-check" name="shower_03_pass"></div>
+          <div class="cell"><input type="checkbox" class="ff-check" name="shower_03_fail"></div>
+          <div class="cell"><input type="checkbox" class="ff-check" name="shower_03_na"></div>
+        </div>
       </div>
 
-      <!-- Toilets -->
       <div class="inspection__section">
         <div class="inspection__section-head">
           <span>Toilets</span>
-          <span class="threshold">Dual-flush, min 3-star WELS  ·  RT Reg 2019 cl 10(b)</span>
+          <span class="threshold">Dual-flush, min 3-star WELS  ·  Reg 10(b)</span>
         </div>
-        <table class="inspection__rows">
-          <tr><td><input class="ff-input" type="text" name="toilet_01_loc" placeholder="Main toilet" style="padding: 1px 2px;"></td><td><input class="ff-input" type="text" name="toilet_01_result" placeholder="Pass / Fail / N/A" style="text-align:center;padding:1px 2px;font-family:'Roboto Mono',ui-monospace,monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;"></td></tr>
-          <tr><td><input class="ff-input" type="text" name="toilet_02_loc" placeholder="Ensuite toilet / Separate WC" style="padding: 1px 2px;"></td><td><input class="ff-input" type="text" name="toilet_02_result" placeholder="Pass / Fail / N/A" style="text-align:center;padding:1px 2px;font-family:'Roboto Mono',ui-monospace,monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;"></td></tr>
-        </table>
+        <div class="inspection__col-head">
+          <div>Location</div><div>Pass</div><div>Fail</div><div>N/A</div>
+        </div>
+        <div class="inspection__row">
+          <div class="loc"><input class="ff-input" type="text" name="toilet_01_loc" placeholder="Main toilet"></div>
+          <div class="cell"><input type="checkbox" class="ff-check" name="toilet_01_pass"></div>
+          <div class="cell"><input type="checkbox" class="ff-check" name="toilet_01_fail"></div>
+          <div class="cell"><input type="checkbox" class="ff-check" name="toilet_01_na"></div>
+        </div>
+        <div class="inspection__row">
+          <div class="loc"><input class="ff-input" type="text" name="toilet_02_loc" placeholder="Ensuite toilet / Separate WC"></div>
+          <div class="cell"><input type="checkbox" class="ff-check" name="toilet_02_pass"></div>
+          <div class="cell"><input type="checkbox" class="ff-check" name="toilet_02_fail"></div>
+          <div class="cell"><input type="checkbox" class="ff-check" name="toilet_02_na"></div>
+        </div>
       </div>
+
     </section>
 
     <section class="summary">
       <div class="summary__head">Summary — RT Regulation 2019, clause 10</div>
-      <div class="summary__list">
+      <div class="summary__col-head">
+        <div>Statutory requirement</div><div>Yes</div><div>No</div>
+      </div>
+      <div class="summary__row">
         <div class="label">All internal cold water taps + mixers ≤ 9 L/min</div>
-        <div class="value"><input class="ff-input" type="text" name="sum_taps" placeholder="Pass / Fail" style="text-align:center;padding:0 2px;font-family:'Roboto Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:0.06em;text-transform:uppercase;"></div>
+        <div class="cell"><input type="checkbox" class="ff-check" name="sum_taps_yes"></div>
+        <div class="cell"><input type="checkbox" class="ff-check" name="sum_taps_no"></div>
+      </div>
+      <div class="summary__row">
         <div class="label">All shower heads ≤ 9 L/min</div>
-        <div class="value"><input class="ff-input" type="text" name="sum_showers" placeholder="Pass / Fail" style="text-align:center;padding:0 2px;font-family:'Roboto Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:0.06em;text-transform:uppercase;"></div>
+        <div class="cell"><input type="checkbox" class="ff-check" name="sum_showers_yes"></div>
+        <div class="cell"><input type="checkbox" class="ff-check" name="sum_showers_no"></div>
+      </div>
+      <div class="summary__row">
         <div class="label">No leaking taps or toilets at the premises</div>
-        <div class="value"><input class="ff-input" type="text" name="sum_leaks" placeholder="Pass / Fail" style="text-align:center;padding:0 2px;font-family:'Roboto Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:0.06em;text-transform:uppercase;"></div>
+        <div class="cell"><input type="checkbox" class="ff-check" name="sum_leaks_yes"></div>
+        <div class="cell"><input type="checkbox" class="ff-check" name="sum_leaks_no"></div>
+      </div>
+      <div class="summary__row">
         <div class="label">All toilets dual-flush, min 3-star WELS</div>
-        <div class="value"><input class="ff-input" type="text" name="sum_toilets" placeholder="Pass / Fail" style="text-align:center;padding:0 2px;font-family:'Roboto Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:0.06em;text-transform:uppercase;"></div>
+        <div class="cell"><input type="checkbox" class="ff-check" name="sum_toilets_yes"></div>
+        <div class="cell"><input type="checkbox" class="ff-check" name="sum_toilets_no"></div>
+      </div>
+      <div class="summary__row">
         <div class="label">Property supplied by individually metered water service</div>
-        <div class="value"><input class="ff-input" type="text" name="sum_metered" placeholder="Pass / Fail" style="text-align:center;padding:0 2px;font-family:'Roboto Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:0.06em;text-transform:uppercase;"></div>
+        <div class="cell"><input type="checkbox" class="ff-check" name="sum_metered_yes"></div>
+        <div class="cell"><input type="checkbox" class="ff-check" name="sum_metered_no"></div>
       </div>
       <div class="summary__overall">
         <span class="label">Overall result</span>
-        <span class="value"><input class="ff-input" type="text" name="overall_result" placeholder="Pass / Fail" style="text-align:center;padding:0 6px;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;letter-spacing:0.04em;text-transform:uppercase;width:18ch;"></span>
+        <div class="checks">
+          <label><input type="checkbox" class="ff-check" name="overall_pass"> <span class="pass-label">Pass</span></label>
+          <label><input type="checkbox" class="ff-check" name="overall_fail"> <span class="fail-label">Fail</span></label>
+        </div>
       </div>
     </section>
 
