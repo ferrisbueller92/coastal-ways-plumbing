@@ -13,17 +13,15 @@
 
   Print-ready A4 portrait template, brand-locked.
 
-  STATIC INFO (pre-filled from coastalwaysplumbing.com extract 2026-05-27)
+  STATIC INFO (pre-filled, no setup remaining)
     Business:  Coastal Ways Plumbing
     Plumber:   Beau Petterson
+    Licence:   468634C  (NSW Plumbing Licence under Home Building Act 1989)
     ABN:       62 284 909 142
     Phone:     0402 269 088
     Email:     coastalwaysplumbing@outlook.com
     Address:   Jilliby NSW 2259
     Web:       coastalwaysplumbing.com.au
-
-  ONE remaining setup item — search for [SETUP::LIC] below and replace with
-  Beau's NSW Plumbing Licence number (not published on the website).
 
   PLACEHOLDERS (search-and-replace per job)
     CWP-WEC-2026-0002          e.g. CWP-WEC-2026-0001
@@ -35,13 +33,15 @@
     27 May 2026  e.g. 26 May 2026
     Kitchen — sink mixer · Main bathroom — hand-basin mixer, shower head, dual-flush toilet · Laundry — tub tap    cleaned-up itemised list (use the ChatGPT prompt)
     Leaking tap identified during inspection and repaired on site by the certifying plumber. Following the repair, all fixtures satisfy the prescribed water efficiency measures as at the inspection date.            optional — anything noteworthy or "Nil"
+
+  Date signed is intentionally left BLANK — Beau handwrites or types it
+  on the printed copy at the moment of signing.
   ============================================================================
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Roboto:wght@300;400;500&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  /* -------- BRAND TOKENS (locked) -------- */
   :root {
     --paper:        #FFFFFF;
     --ink:          #10202D;
@@ -50,7 +50,6 @@
     --cool-grey:    #C4CFD1;
     --light-stone:  #E3E0DF;
     --teal:         #055A5F;
-    --teal-deep:    #044A4E;
     --hairline:     rgba(16,32,45,0.10);
     --hairline-mid: rgba(16,32,45,0.18);
   }
@@ -68,7 +67,6 @@
     -webkit-print-color-adjust: exact;
   }
 
-  /* A4 page wrapper */
   .page {
     width: 210mm;
     min-height: 297mm;
@@ -77,56 +75,72 @@
     color: var(--ink);
     position: relative;
     box-shadow: 0 8px 32px rgba(16,32,45,0.10);
-    padding: 16mm 18mm 12mm;
     display: flex;
     flex-direction: column;
   }
   @media print {
     html, body { background: #fff; }
-    .page { margin: 0; box-shadow: none; width: 210mm; min-height: 297mm; padding: 16mm 18mm 12mm; }
+    .page { margin: 0; box-shadow: none; width: 210mm; min-height: 297mm; }
   }
 
-  /* ========== LETTERHEAD ========== */
-  .letterhead {
-    text-align: center;
-    padding-bottom: 7mm;
-    border-bottom: 1.2px solid var(--ink);
+  /* ========== LETTERHEAD (navy bar + contact strip) ========== */
+  .letterhead-bar {
+    background: var(--ink);
+    color: #fff;
+    padding: 8mm 14mm;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 24mm;
   }
-  .wordmark {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 300;
-    font-size: 62px;
-    letter-spacing: -0.04em;
-    line-height: 0.95;
-    color: var(--ink);
-    text-transform: lowercase;
-  }
-  .wordmark__sub {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    letter-spacing: 0.6em;
-    text-transform: uppercase;
-    color: var(--ink);
-    margin-top: 5px;
-    /* compensate for trailing letter-spacing so it stays optically centred */
-    padding-left: 0.6em;
+  .letterhead-bar__mark {
+    height: 18mm;
+    width: auto;
     display: block;
   }
-  .letterhead__contact {
-    margin-top: 6mm;
+  .letterhead-bar__doctype {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    color: #fff;
+    opacity: 0.85;
+    text-align: right;
+    line-height: 1.5;
+  }
+  .letterhead-bar__doctype b {
+    display: block;
+    color: #fff;
+    font-weight: 500;
+    opacity: 1;
+    margin-top: 2px;
+  }
+
+  .contact-strip {
+    padding: 5mm 14mm;
+    border-bottom: 1px solid var(--hairline);
     font-family: 'Roboto Mono', ui-monospace, monospace;
     font-size: 9px;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--slate);
+    text-align: center;
   }
-  .letterhead__contact a { color: var(--slate); text-decoration: none; }
-  .letterhead__contact .dot { color: var(--cool-grey); margin: 0 10px; }
+  .contact-strip a { color: var(--slate); text-decoration: none; }
+  .contact-strip .dot { color: var(--cool-grey); margin: 0 8px; }
 
-  /* Cert ID + issue date — small line above the cert title */
+  /* ========== BODY ========== */
+  .body-area {
+    padding: 0 18mm;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  /* Cert meta strip (small line above title) */
   .cert-meta-line {
-    margin-top: 8mm;
+    margin-top: 9mm;
     font-family: 'Roboto Mono', ui-monospace, monospace;
     font-size: 9.5px;
     letter-spacing: 0.18em;
@@ -143,10 +157,8 @@
     margin-left: 8px;
   }
 
-  /* ========== TITLE AREA ========== */
-  .title-area {
-    margin-top: 6mm;
-  }
+  /* Title */
+  .title-area { margin-top: 6mm; }
   .eyebrow {
     font-family: 'Roboto Mono', ui-monospace, monospace;
     font-size: 9.5px;
@@ -189,7 +201,7 @@
     max-width: 95%;
   }
 
-  /* ========== ISSUED + PLUMBER GRID ========== */
+  /* Issued grid */
   .issued-grid {
     margin-top: 8mm;
     display: grid;
@@ -235,7 +247,7 @@
     letter-spacing: 0.02em;
   }
 
-  /* ========== DECLARATION ========== */
+  /* Declaration */
   .declaration {
     margin-top: 8mm;
     padding: 7mm 8mm;
@@ -300,10 +312,8 @@
   }
   .declaration__citation b { color: var(--ink); font-weight: 500; }
 
-  /* ========== FIXTURES ========== */
-  .fixtures {
-    margin-top: 6mm;
-  }
+  /* Fixtures */
+  .fixtures { margin-top: 6mm; }
   .fixtures__inner {
     font-family: 'Roboto', sans-serif;
     font-size: 10.5px;
@@ -315,7 +325,7 @@
     margin-top: 4px;
   }
 
-  /* ========== SIGNATURE (lots of breathing room) ========== */
+  /* Signature */
   .signature {
     margin-top: 14mm;
     display: grid;
@@ -325,7 +335,7 @@
   }
   .sig-line {
     border-bottom: 1.2px solid var(--ink);
-    height: 20mm;
+    height: 22mm;
     position: relative;
     margin-bottom: 3px;
   }
@@ -355,10 +365,10 @@
     letter-spacing: 0.04em;
   }
 
-  /* ========== FOOTER ========== */
+  /* Footer — pushed to very bottom with breathing room */
   footer {
-    margin-top: auto;
-    padding-top: 8mm;
+    margin: 22mm 18mm 14mm;
+    padding-top: 6mm;
     border-top: 1px solid var(--hairline);
     display: flex;
     justify-content: space-between;
@@ -369,9 +379,6 @@
     text-transform: uppercase;
     color: var(--slate);
   }
-  footer a { color: var(--slate); text-decoration: none; }
-  footer a:hover { color: var(--teal); }
-  .footer__left b { color: var(--ink); font-weight: 500; }
   .footer__right { font-variant-numeric: tabular-nums; }
 
 </style>
@@ -380,97 +387,105 @@
 
 <div class="page">
 
-  <!-- ==================== LETTERHEAD ==================== -->
-  <header class="letterhead">
-    <h1 class="wordmark">coastal ways</h1>
-    <span class="wordmark__sub">PLUMBING</span>
-    <div class="letterhead__contact">
-      Jilliby NSW 2259
-      <span class="dot">·</span>
-      0402 269 088
-      <span class="dot">·</span>
-      <a href="mailto:coastalwaysplumbing@outlook.com">coastalwaysplumbing@outlook.com</a>
-      <span class="dot">·</span>
-      <a href="https://coastalwaysplumbing.com.au">coastalwaysplumbing.com.au</a>
-      <span class="dot">·</span>
-      ABN 62 284 909 142
+  <!-- ==================== NAVY LETTERHEAD BAR ==================== -->
+  <header class="letterhead-bar">
+    <img class="letterhead-bar__mark"
+         src="https://coastalwaysplumbing.com/assets/logo-white.png"
+         alt="Coastal Ways Plumbing">
+    <div class="letterhead-bar__doctype">
+      Coastal Ways Plumbing
+      <b>Water Efficiency Compliance Certificate</b>
     </div>
   </header>
 
-  <!-- Cert meta strip (small, just above the cert title) -->
-  <div class="cert-meta-line">
-    <span>Certificate №<b>CWP-WEC-2026-0002</b></span>
-    <span>Issued<b>27 May 2026</b></span>
+  <!-- Contact strip under the bar -->
+  <div class="contact-strip">
+    Jilliby NSW 2259
+    <span class="dot">·</span>
+    0402 269 088
+    <span class="dot">·</span>
+    <a href="mailto:coastalwaysplumbing@outlook.com">coastalwaysplumbing@outlook.com</a>
+    <span class="dot">·</span>
+    <a href="https://coastalwaysplumbing.com.au">coastalwaysplumbing.com.au</a>
+    <span class="dot">·</span>
+    Licence 468634C
+    <span class="dot">·</span>
+    ABN 62 284 909 142
   </div>
 
-  <!-- ==================== TITLE ==================== -->
-  <div class="title-area">
-    <div class="eyebrow">NSW Residential Tenancies Act 2010 · Reg 10, RT Regulation 2019</div>
-    <h1>Water Efficiency <em>Compliance</em> Certificate</h1>
-    <p class="sub-title">Issued to confirm that the property identified below satisfies the prescribed water efficiency measures, permitting the landlord to pass water usage charges to the tenant in accordance with section 39(1)(b) of the Residential Tenancies Act 2010 (NSW).</p>
+  <!-- ==================== BODY ==================== -->
+  <div class="body-area">
+
+    <div class="cert-meta-line">
+      <span>Certificate №<b>CWP-WEC-2026-0002</b></span>
+      <span>Issued<b>27 May 2026</b></span>
+    </div>
+
+    <div class="title-area">
+      <div class="eyebrow">NSW Residential Tenancies Act 2010 · Reg 10, RT Regulation 2019</div>
+      <h1>Water Efficiency <em>Compliance</em> Certificate</h1>
+      <p class="sub-title">Issued to confirm that the property identified below satisfies the prescribed water efficiency measures, permitting the landlord to pass water usage charges to the tenant in accordance with section 39(1)(b) of the Residential Tenancies Act 2010 (NSW).</p>
+    </div>
+
+    <section class="issued-grid">
+      <div class="block">
+        <div class="block-label">Property certified</div>
+        <dl>
+          <dt>Address</dt><dd>11A Kaye Avenue, Kanwal NSW 2259</dd>
+          <dt>Inspected</dt><dd class="mono">27 May 2026</dd>
+          <dt>Owner / agent</dt><dd>Managing Agent<br>Brand Real Estate</dd>
+          <dt>Owner address</dt><dd>301 Main Road, Toukley NSW 2263</dd>
+        </dl>
+      </div>
+      <div class="block">
+        <div class="block-label">Certifying plumber</div>
+        <dl>
+          <dt>Plumber</dt><dd>Beau Petterson</dd>
+          <dt>Business</dt><dd>Coastal Ways Plumbing</dd>
+          <dt>NSW Licence</dt><dd class="mono">468634C</dd>
+          <dt>ABN</dt><dd class="mono">62 284 909 142</dd>
+          <dt>Issued under</dt><dd>Home Building Act 1989 (NSW)</dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="declaration">
+      <p class="declaration__lede">
+        <b>I, Beau Petterson</b>, holding a plumbing licence under the Home Building Act 1989 (NSW) (Licence No. <b>468634C</b>), certify that on <b>27 May 2026</b> I attended <b>11A Kaye Avenue, Kanwal NSW 2259</b> and inspected the plumbing fixtures at the property. I confirm that, as at the inspection date:
+      </p>
+      <ol class="declaration__list">
+        <li><span>All <b>shower heads</b> at the property have a maximum flow rate of <b>9 litres per minute</b>.</span></li>
+        <li><span>All <b>internal cold water taps and single mixer taps</b> serving kitchen sinks and bathroom hand basins have a maximum flow rate of <b>9 litres per minute</b>.</span></li>
+        <li><span>All <b>toilets</b> at the property are dual-flush with a minimum <b>3-star WELS rating</b>, in accordance with the Water Efficiency Labelling and Standards Act 2005 (Cth).</span></li>
+        <li><span>There are <b>no leaking taps or toilets</b> at the property.</span></li>
+        <li><span>The property is supplied by an <b>individually metered</b> water service.</span></li>
+      </ol>
+      <p class="declaration__citation">
+        The property therefore <b>satisfies the water efficiency measures prescribed by clause 10</b> of the <b>Residential Tenancies Regulation 2019 (NSW)</b> for the purposes of <b>section 39(1)(b)</b> of the <b>Residential Tenancies Act 2010 (NSW)</b>.
+      </p>
+    </section>
+
+    <section class="fixtures">
+      <div class="block-label">Fixtures inspected</div>
+      <div class="fixtures__inner">Kitchen — sink mixer · Main bathroom — hand-basin mixer, shower head, dual-flush toilet · Laundry — tub tap</div>
+    </section>
+
+    <section class="signature">
+      <div>
+        <div class="sig-line"><span class="sig-line__hint">Plumber signature</span></div>
+        <div class="sig-meta"><b>Beau Petterson</b> &nbsp;·&nbsp; Coastal Ways Plumbing</div>
+        <div class="sig-meta__small">Licence 468634C &nbsp;·&nbsp; ABN 62 284 909 142</div>
+      </div>
+      <div>
+        <div class="sig-line"><span class="sig-line__hint">Date signed</span></div>
+        <div class="sig-meta">&nbsp;</div>
+        <div class="sig-meta__small">Notes: Leaking tap identified during inspection and repaired on site by the certifying plumber. Following the repair, all fixtures satisfy the prescribed water efficiency measures as at the inspection date.</div>
+      </div>
+    </section>
+
   </div>
 
-  <!-- ==================== ISSUED TO + PLUMBER ==================== -->
-  <section class="issued-grid">
-    <div class="block">
-      <div class="block-label">Property certified</div>
-      <dl>
-        <dt>Address</dt><dd>11A Kaye Avenue, Kanwal NSW 2259</dd>
-        <dt>Inspected</dt><dd class="mono">27 May 2026</dd>
-        <dt>Owner / agent</dt><dd>Managing Agent<br>Brand Real Estate</dd>
-        <dt>Owner address</dt><dd>301 Main Road, Toukley NSW 2263</dd>
-      </dl>
-    </div>
-    <div class="block">
-      <div class="block-label">Certifying plumber</div>
-      <dl>
-        <dt>Plumber</dt><dd>Beau Petterson</dd>
-        <dt>Business</dt><dd>Coastal Ways Plumbing</dd>
-        <dt>NSW Licence</dt><dd class="mono">[SETUP::LIC]</dd>
-        <dt>ABN</dt><dd class="mono">62 284 909 142</dd>
-        <dt>Issued under</dt><dd>Home Building Act 1989 (NSW)</dd>
-      </dl>
-    </div>
-  </section>
-
-  <!-- ==================== DECLARATION ==================== -->
-  <section class="declaration">
-    <p class="declaration__lede">
-      <b>I, Beau Petterson</b>, holding a plumbing licence under the Home Building Act 1989 (NSW) (Licence No. <b>[SETUP::LIC]</b>), certify that on <b>27 May 2026</b> I attended <b>11A Kaye Avenue, Kanwal NSW 2259</b> and inspected the plumbing fixtures at the property. I confirm that, as at the inspection date:
-    </p>
-    <ol class="declaration__list">
-      <li><span>All <b>shower heads</b> at the property have a maximum flow rate of <b>9 litres per minute</b>.</span></li>
-      <li><span>All <b>internal cold water taps and single mixer taps</b> serving kitchen sinks and bathroom hand basins have a maximum flow rate of <b>9 litres per minute</b>.</span></li>
-      <li><span>All <b>toilets</b> at the property are dual-flush with a minimum <b>3-star WELS rating</b>, in accordance with the Water Efficiency Labelling and Standards Act 2005 (Cth).</span></li>
-      <li><span>There are <b>no leaking taps or toilets</b> at the property.</span></li>
-      <li><span>The property is supplied by an <b>individually metered</b> water service.</span></li>
-    </ol>
-    <p class="declaration__citation">
-      The property therefore <b>satisfies the water efficiency measures prescribed by clause 10</b> of the <b>Residential Tenancies Regulation 2019 (NSW)</b> for the purposes of <b>section 39(1)(b)</b> of the <b>Residential Tenancies Act 2010 (NSW)</b>.
-    </p>
-  </section>
-
-  <!-- ==================== FIXTURES ==================== -->
-  <section class="fixtures">
-    <div class="block-label">Fixtures inspected</div>
-    <div class="fixtures__inner">Kitchen — sink mixer · Main bathroom — hand-basin mixer, shower head, dual-flush toilet · Laundry — tub tap</div>
-  </section>
-
-  <!-- ==================== SIGNATURE ==================== -->
-  <section class="signature">
-    <div>
-      <div class="sig-line"><span class="sig-line__hint">Plumber signature</span></div>
-      <div class="sig-meta"><b>Beau Petterson</b> &nbsp;·&nbsp; Coastal Ways Plumbing</div>
-      <div class="sig-meta__small">Licence [SETUP::LIC] &nbsp;·&nbsp; ABN 62 284 909 142</div>
-    </div>
-    <div>
-      <div class="sig-line"><span class="sig-line__hint">Date signed</span></div>
-      <div class="sig-meta"><b>27 May 2026</b></div>
-      <div class="sig-meta__small">Notes: Leaking tap identified during inspection and repaired on site by the certifying plumber. Following the repair, all fixtures satisfy the prescribed water efficiency measures as at the inspection date.</div>
-    </div>
-  </section>
-
-  <!-- ==================== FOOTER (minimal — contact now in letterhead) ==================== -->
+  <!-- ==================== FOOTER ==================== -->
   <footer>
     <div class="footer__left">Coastal Ways Plumbing &nbsp;·&nbsp; Water Efficiency Compliance Certificate</div>
     <div class="footer__right">CWP-WEC-2026-0002 &nbsp;·&nbsp; Page 1 of 1</div>
