@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Water Compliance Cert Tool · Coastal Ways Plumbing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Roboto+Mono:wght@400;500&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sand: #FBF6F3;
+  --warm-mist: #F2EDEB;
+  --cool-grey: #C4CFD1;
+  --coastal-teal: #055A5F;
+  --teal-deep: #044A4E;
+  --dark-navy: #10202D;
+  --slate: #536268;
+  --hairline: rgba(16,32,45,0.10);
+  --hairline-strong: rgba(16,32,45,0.22);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--warm-mist); color: var(--dark-navy); font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; }
+body { padding: 40px 24px 96px; }
+.container { max-width: 880px; margin: 0 auto; }
+
+/* HEADER */
+header { display: flex; align-items: center; gap: 14px; margin-bottom: 32px; padding-bottom: 22px; border-bottom: 1px solid var(--hairline); }
+.brand__mark { width: 48px; height: 48px; flex-shrink: 0; }
+.brand__lockup { display: flex; flex-direction: column; line-height: 1; }
+.brand__name { font-size: 20px; font-weight: 400; letter-spacing: -0.02em; }
+.brand__name b { font-weight: 500; }
+.brand__tag { font-family: 'Roboto Mono', ui-monospace, monospace; font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--slate); margin-top: 6px; }
+
+/* INTRO */
+.eyebrow { font-family: 'Roboto Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--coastal-teal); margin-bottom: 14px; display: flex; align-items: center; gap: 12px; }
+.eyebrow::before { content: ''; width: 26px; height: 1.5px; background: var(--coastal-teal); display: inline-block; }
+h1 { font-size: 38px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.05; margin-bottom: 16px; text-transform: uppercase; }
+h1 em { font-style: normal; color: var(--coastal-teal); }
+.lead { font-family: 'Roboto', sans-serif; font-weight: 300; font-size: 16px; line-height: 1.55; color: var(--slate); max-width: 70ch; }
+
+/* STEP CARDS */
+.steps { display: grid; gap: 14px; margin-top: 40px; }
+.step { background: #fff; border: 1px solid var(--hairline); border-left: 3px solid var(--coastal-teal); border-radius: 6px; padding: 22px 24px; display: grid; grid-template-columns: 36px 1fr; gap: 18px; align-items: start; }
+.step__num { font-family: 'Roboto Mono', ui-monospace, monospace; font-size: 11px; font-weight: 700; color: var(--coastal-teal); background: rgba(5,90,95,0.08); border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; letter-spacing: 0.04em; }
+.step__title { font-size: 17px; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 6px; }
+.step__body { font-family: 'Roboto', sans-serif; font-weight: 300; font-size: 14.5px; line-height: 1.55; color: var(--slate); }
+.step__body b { color: var(--dark-navy); font-weight: 500; }
+.step__body a { color: var(--coastal-teal); text-decoration: none; border-bottom: 1px solid currentColor; font-weight: 500; }
+
+/* PROMPT BLOCK */
+.prompt-section { margin-top: 44px; }
+.section-label { font-family: 'Roboto Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--slate); margin-bottom: 12px; }
+.prompt-card { background: var(--dark-navy); color: var(--sand); border-radius: 10px; overflow: hidden; }
+.prompt-card__head { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background: rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.08); }
+.prompt-card__head h3 { font-size: 13px; font-weight: 500; letter-spacing: 0.02em; color: var(--sand); }
+.copy-btn { background: var(--coastal-teal); color: var(--sand); border: none; font-family: 'Roboto Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; padding: 9px 16px; border-radius: 4px; cursor: pointer; font-weight: 500; transition: background 150ms; }
+.copy-btn:hover { background: var(--teal-deep); }
+.copy-btn.copied { background: #2D9D5A; }
+.prompt-card__body { font-family: 'Roboto Mono', ui-monospace, monospace; font-size: 12px; line-height: 1.6; color: var(--cool-grey); padding: 22px 24px; max-height: 420px; overflow-y: auto; white-space: pre-wrap; word-wrap: break-word; }
+.prompt-card__body b { color: var(--sand); font-weight: 500; }
+
+/* CTA BUTTONS */
+.cta-row { margin-top: 36px; display: flex; gap: 12px; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 6px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 0.01em; text-decoration: none; transition: all 150ms; cursor: pointer; border: none; }
+.btn--primary { background: var(--coastal-teal); color: var(--sand); }
+.btn--primary:hover { background: var(--teal-deep); }
+.btn--ghost { background: transparent; color: var(--dark-navy); border: 1.5px solid var(--dark-navy); }
+.btn--ghost:hover { background: var(--dark-navy); color: var(--sand); }
+.btn svg { width: 14px; height: 14px; }
+
+/* COMPARISON */
+.compare { margin-top: 56px; }
+.compare h2 { font-size: 22px; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 14px; }
+.compare-intro { font-family: 'Roboto', sans-serif; font-size: 14px; line-height: 1.55; color: var(--slate); font-weight: 300; margin-bottom: 18px; }
+table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; border: 1px solid var(--hairline); }
+th, td { padding: 12px 16px; text-align: left; font-family: 'Roboto', sans-serif; font-size: 13.5px; font-weight: 300; color: var(--dark-navy); }
+th { background: var(--dark-navy); color: var(--sand); font-family: 'Roboto Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; }
+tr { border-bottom: 1px solid var(--hairline); }
+tr:last-child { border-bottom: none; }
+.tick { color: #2D9D5A; font-weight: 500; }
+.cross { color: #C84A2D; }
+.warn { color: #E6A817; }
+
+/* FOOTER */
+footer { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--hairline); font-family: 'Roboto Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--slate); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
+footer a { color: var(--coastal-teal); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <header>
+    <svg class="brand__mark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="Coastal Ways Plumbing">
+      <defs>
+        <clipPath id="cClip">
+          <path d="M50,8 A42,42 0 1,0 92,50 L78,50 A28,28 0 1,1 50,22 Z"/>
+        </clipPath>
+      </defs>
+      <path d="M50,8 A42,42 0 1,0 92,50 L78,50 A28,28 0 1,1 50,22 Z" fill="#10202D"/>
+      <g clip-path="url(#cClip)" stroke="#C4CFD1" stroke-width="2.4" fill="none" stroke-linecap="round">
+        <path d="M14 58 Q24 53 34 58 T54 58 T78 58"/>
+        <path d="M14 66 Q24 61 34 66 T54 66 T78 66"/>
+        <path d="M14 74 Q24 69 34 74 T54 74 T78 74"/>
+      </g>
+      <g transform="translate(64 50)">
+        <path d="M0,-12 C7,-2 11,4 11,11 A11,11 0 0,1 -11,11 C-11,4 -7,-2 0,-12 Z" fill="#C4CFD1"/>
+        <path d="M0,-12 C-3,-7 -7,-2 -9,3 A11,11 0 0,1 0,-12 Z" fill="#10202D"/>
+      </g>
+    </svg>
+    <div class="brand__lockup">
+      <span class="brand__name">coastal <b>ways</b></span>
+      <span class="brand__tag">PLUMBING · INTERNAL TOOL</span>
+    </div>
+  </header>
+
+  <!-- INTRO -->
+  <div class="eyebrow">NSW Residential Tenancies Act 2010 · Reg 10</div>
+  <h1>Water Compliance <em>Cert Tool</em></h1>
+  <p class="lead">Issue a branded, statutory-complete Water Efficiency Compliance Certificate for any rental property job. ~30 seconds per cert from job-finish to PDF-in-landlord's-inbox.</p>
+
+  <!-- STEPS -->
+  <div class="steps">
+    <div class="step">
+      <div class="step__num">1</div>
+      <div>
+        <div class="step__title">Copy the ChatGPT prompt below</div>
+        <div class="step__body">One-click copy. Paste it into a new <a href="https://chat.openai.com" target="_blank" rel="noopener">ChatGPT chat</a> (any model — GPT-5, GPT-5-mini, GPT-4o all fine). The prompt has all of Coastal Ways' static info baked in.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step__num">2</div>
+      <div>
+        <div class="step__title">Answer ChatGPT's 6 questions about the job</div>
+        <div class="step__body">It'll ask you, one at a time: <b>property address · inspection date · owner/agent · fixtures inspected · notable items · cert number</b>. Plain language is fine — ChatGPT cleans it up.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step__num">3</div>
+      <div>
+        <div class="step__title">Copy the values block ChatGPT gives back</div>
+        <div class="step__body">It'll output a single code block with 9 fields. Each maps to a <code>{{placeholder}}</code> in the certificate template.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step__num">4</div>
+      <div>
+        <div class="step__title">Open the certificate template + paste the values</div>
+        <div class="step__body">Open <a href="template.html" target="_blank">template.html</a> in your browser, use Cmd+F → Replace (or open the file in any text editor) to swap each <code>{{...}}</code> for the value ChatGPT gave you. Save.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step__num">5</div>
+      <div>
+        <div class="step__title">Print to PDF → send to the landlord/agent</div>
+        <div class="step__body">In your browser: <b>File → Print → "Save as PDF" → A4 portrait</b>. Email or AirDrop the PDF. Done.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROMPT BLOCK -->
+  <div class="prompt-section">
+    <div class="section-label">Step 1 — ChatGPT prompt (click to copy)</div>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <h3>Coastal Ways · Water Compliance Cert · ChatGPT interview prompt</h3>
+        <button class="copy-btn" id="copyBtn" onclick="copyPrompt()">Copy prompt</button>
+      </div>
+      <div class="prompt-card__body" id="promptBody">You are helping Beau Petterson at Coastal Ways Plumbing issue a Water Efficiency Compliance Certificate for a NSW rental property under section 39(1)(b) of the Residential Tenancies Act 2010 (NSW) and clause 10 of the Residential Tenancies Regulation 2019 (NSW).
+
+Your job is to interview me (one question at a time, wait for my answer before asking the next), then output a single code block with all the values needed to fill out the certificate template. Do not invent or change the statutory wording — only fill in the per-job details.
+
+STATIC INFO (already baked into the template — do not output):
+- Business: Coastal Ways Plumbing
+- Licensed plumber: Beau Petterson
+- NSW Plumbing Licence: (already on the template)
+- ABN: 62 284 909 142
+- Phone: 0402 269 088
+- Email: coastalwaysplumbing@outlook.com
+- Address: Jilliby NSW 2259
+- Web: coastalwaysplumbing.com.au
+
+ASK ME THESE QUESTIONS, ONE AT A TIME, WAITING FOR MY ANSWER BETWEEN EACH:
+
+Q1. Property address — the rental property being certified. Just street, suburb, state, postcode.
+
+Q2. Inspection date — the day Beau actually did the inspection. (If today, just say "today" and use today's date.)
+
+Q3. Owner or managing agent — who's the certificate for? Give me: (a) name of the person/agent, (b) name of the agency or company (or "Private owner" if it's a landlord direct), (c) their postal address. If I don't know one of these, I'll say "unknown".
+
+Q4. Fixtures inspected — give me a quick rundown room by room. Just plain language is fine — e.g. "kitchen sink mixer, ensuite mixer + shower head, main bathroom hand basin + shower head + dual-flush toilet, laundry tap, second toilet dual-flush". You don't need to format it — I'll clean it up.
+
+Q5. Anything notable — any leaks fixed during the visit? Any fixtures replaced? Anything the landlord should know? If nothing, just say "nil".
+
+Q6. Certificate number — Coastal Ways' running cert number for the year. If you want me to suggest one, I'll use the format CWP-WEC-YYYY-NNNN where NNNN is whatever you tell me (or "auto" and I'll pick 0001 if you haven't started yet).
+
+AFTER I'VE ANSWERED ALL SIX, output EXACTLY this — nothing else, no preamble, no explanation, just the code block:
+
+══════════════════════════════════════════════════════════════
+COPY-PASTE VALUES — Coastal Ways Water Compliance Cert
+══════════════════════════════════════════════════════════════
+
+{{cert_id}}          →  [your suggested cert number, e.g. CWP-WEC-2026-0001]
+{{issue_date}}       →  [today's date in "27 May 2026" format]
+{{property}}         →  [the property address, properly capitalised]
+{{owner_name}}       →  [owner/agent contact name]
+{{owner_company}}    →  [agency/company name, or "Private owner" if direct]
+{{owner_address}}    →  [owner/agent postal address]
+{{inspection_date}}  →  [inspection date in "26 May 2026" format]
+{{fixtures_list}}    →  [cleaned-up itemised list, see formatting below]
+{{notes}}            →  [the notable items, or "Nil"]
+
+══════════════════════════════════════════════════════════════
+
+FORMATTING RULES FOR {{fixtures_list}}:
+Convert my plain-language rundown into a clean room-by-room list with bullets, separating rooms with a · symbol on one continuous line. Example:
+"Kitchen — sink mixer · Ensuite — hand-basin mixer, shower head, dual-flush toilet · Main bathroom — hand-basin mixer, shower head, dual-flush toilet · Laundry — tub tap · Separate WC — dual-flush toilet"
+
+If I forget to mention a category that's likely on a rental (e.g. I mention kitchen + bathroom but skip toilet/laundry), ASK ME a follow-up before outputting — don't assume.
+
+IMPORTANT RULES:
+- Never modify the declaration text in the template. The 5-point statutory declaration is locked.
+- Never invent a licence number, ABN, plumber name, or any static field.
+- If I give you a date as "today", convert to today's actual date in "D Mmm YYYY" format (e.g. "27 May 2026" — no leading zero on day, three-letter month, full year).
+- If I give you a property address in lowercase or sloppy formatting, clean it: "28 spring valley ave gorokan" → "28 Spring Valley Avenue, Gorokan NSW 2263". Look up the postcode if I forgot it — but only if you're confident; otherwise ask.
+- If the owner/agent details are partial (e.g. only company name, no contact), use what I gave you and leave the rest blank.
+- Cert numbers count up sequentially within a year. If I told you the last one issued, increment by 1.
+
+Start with Q1. Ask one question at a time.</div>
+    </div>
+  </div>
+
+  <!-- CTA BUTTONS -->
+  <div class="cta-row">
+    <a class="btn btn--primary" href="https://chat.openai.com" target="_blank" rel="noopener">
+      Open ChatGPT
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3 L11 8 L6 13"/></svg>
+    </a>
+    <a class="btn btn--ghost" href="template.html" target="_blank">
+      Open certificate template
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3 L11 8 L6 13"/></svg>
+    </a>
+  </div>
+
+  <!-- COMPARISON -->
+  <div class="compare">
+    <h2>What's covered (vs the typical plumber-issued cert)</h2>
+    <p class="compare-intro">This template uses the exact statutory wording from clause 10 of the Residential Tenancies Regulation 2019 (NSW). Most plumber-issued certs miss several of these items — leaving the landlord exposed if a tenant later disputes water usage charges at NCAT.</p>
+    <table>
+      <thead>
+        <tr><th>Statutory requirement</th><th>Typical plumber cert</th><th>This template</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Shower heads ≤ 9 L/min</td><td class="cross">often missed</td><td class="tick">✓</td></tr>
+        <tr><td>Cold taps + mixers (kitchen + bathroom) ≤ 9 L/min</td><td class="warn">vague</td><td class="tick">✓ specific</td></tr>
+        <tr><td>Dual-flush toilets, min 3-star WELS (mandatory since 23 Mar 2025)</td><td class="cross">often missed</td><td class="tick">✓</td></tr>
+        <tr><td>No leaking taps or toilets (statutory phrase)</td><td class="warn">"good working order"</td><td class="tick">✓ exact phrase</td></tr>
+        <tr><td>Individually metered water service (s 39(1)(a))</td><td class="cross">often missed</td><td class="tick">✓</td></tr>
+        <tr><td>Correct Act + Regulation citation</td><td class="cross">often wrong year</td><td class="tick">✓ Act 2010 + Reg 2019 cl 10</td></tr>
+        <tr><td>Plumber licence cited under Home Building Act 1989 (NSW)</td><td class="warn">just number</td><td class="tick">✓ act named</td></tr>
+        <tr><td>Owner/agent block (filable by property)</td><td class="cross">missed</td><td class="tick">✓</td></tr>
+        <tr><td>Cert serial number</td><td class="cross">missed</td><td class="tick">✓ CWP-WEC-YYYY-NNNN</td></tr>
+        <tr><td>Itemised fixtures inspected</td><td class="cross">missed</td><td class="tick">✓</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>Coastal Ways Plumbing · Internal tool · Not indexed</div>
+    <div><a href="https://coastalwaysplumbing.com.au">coastalwaysplumbing.com.au</a></div>
+  </footer>
+
+</div>
+
+<script>
+function copyPrompt() {
+  const text = document.getElementById('promptBody').innerText;
+  const btn = document.getElementById('copyBtn');
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy prompt';
+      btn.classList.remove('copied');
+    }, 2000);
+  }).catch(() => {
+    // Fallback for older browsers
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent = '✓ Copied';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy prompt';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
+</body>
+</html>
