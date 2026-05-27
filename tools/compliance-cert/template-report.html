@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Water Efficiency Inspection Report · Coastal Ways Plumbing</title>
+<!--
+  ============================================================================
+  COASTAL WAYS PLUMBING · Water Efficiency Inspection Report (companion to cert)
+  ============================================================================
+
+  Static A4 portrait template. The {{placeholders}} below are replaced with
+  per-job values via tools (search-and-replace OR the form-input version).
+
+  PLACEHOLDERS (per job)
+    {{property}}         full property address
+    {{inspection_date}}  e.g. 27 May 2026
+    {{issue_date}}       e.g. 27 May 2026
+    {{owner_name}}       contact name
+    {{owner_company}}    agency name (or "Private owner")
+    {{owner_address}}    postal address
+    {{taps_NN_loc}}      tap fixture location, NN = 1..4
+    {{taps_NN_result}}   Pass / Fail / N/A
+    {{shower_NN_loc}}    shower head location, NN = 1..3
+    {{shower_NN_result}} Pass / Fail / N/A
+    {{toilet_NN_loc}}    toilet location, NN = 1..2
+    {{toilet_NN_result}} Pass / Fail / N/A
+    {{sum_taps}}         summary Pass/Fail — all cold taps + mixers ≤ 9 L/min
+    {{sum_showers}}      summary Pass/Fail — all shower heads ≤ 9 L/min
+    {{sum_leaks}}        summary Pass/Fail — no leaking taps or toilets
+    {{sum_toilets}}      summary Pass/Fail — all toilets dual-flush 3-star WELS
+    {{sum_metered}}      summary Pass/Fail — property individually metered
+    {{overall_result}}   overall Pass/Fail
+    {{notes}}            failed items, repairs done, anything noteworthy
+  ============================================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Roboto:wght@300;400;500&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:        #FFFFFF;
+    --ink:          #10202D;
+    --ink-soft:     #384850;
+    --slate:        #536268;
+    --cool-grey:    #C4CFD1;
+    --light-stone:  #E3E0DF;
+    --teal:         #055A5F;
+    --pass:         #2D9D5A;
+    --pass-bg:      #E8F5EE;
+    --fail:         #C84A2D;
+    --fail-bg:      #FBEAE5;
+    --hairline:     rgba(16,32,45,0.10);
+    --hairline-mid: rgba(16,32,45,0.18);
+  }
+
+  @page { size: A4 portrait; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: #EEEFF0;
+    color: var(--ink);
+    font-family: 'Space Grotesk', 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .page {
+    width: 210mm;
+    height: 297mm;
+    margin: 20px auto;
+    background: var(--paper);
+    color: var(--ink);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(16,32,45,0.10);
+  }
+  @media print {
+    html, body { background: #fff; }
+    .page { margin: 0; box-shadow: none; width: 210mm; height: 297mm; }
+  }
+
+  /* ========== LETTERHEAD ========== */
+  .letterhead-bar {
+    background: var(--ink);
+    color: #fff;
+    padding: 8mm 14mm;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 24mm;
+  }
+  .letterhead-bar__mark { height: 18mm; width: auto; display: block; }
+  .letterhead-bar__doctype {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    color: #fff;
+    opacity: 0.85;
+    text-align: right;
+    line-height: 1.5;
+  }
+  .letterhead-bar__doctype b { display: block; color: #fff; font-weight: 500; opacity: 1; margin-top: 2px; }
+
+  .contact-strip {
+    padding: 5mm 14mm;
+    border-bottom: 1px solid var(--hairline);
+    font-family: 'Roboto Mono', ui-monospace, monospace;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--slate);
+    text-align: center;
+  }
+  .contact-strip a { color: var(--slate); text-decoration: none; }
+  .contact-strip .dot { color: var(--cool-grey); margin: 0 8px; }
+
+  /* ========== BODY ========== */
+  .body-area { padding: 0 16mm 26mm; }
+
+  /* Title */
+  .title-area { margin-top: 5mm; }
+  .eyebrow {
+    font-family: 'Roboto Mono', ui-monospace, monospace;
+    font-size: 9px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 3mm;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .eyebrow::before { content: ''; width: 22px; height: 1.5px; background: var(--teal); }
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 400;
+    font-size: 26px;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    color: var(--ink);
+    text-transform: uppercase;
+  }
+  h1 em { font-style: normal; color: var(--teal); font-weight: 500; }
+
+  /* Property + Plumber grid */
+  .issued-grid {
+    margin-top: 6mm;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10mm;
+  }
+  .block-label {
+    font-family: 'Roboto Mono', ui-monospace, monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin-bottom: 4px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid var(--hairline-mid);
+  }
+  .block dl {
+    display: grid;
+    grid-template-columns: 24mm 1fr;
+    row-gap: 3px;
+    column-gap: 6px;
+    margin-top: 5px;
+    font-size: 10.5px;
+  }
+  .block dt {
+    font-family: 'Roboto Mono', ui-monospace, monospace;
+    font-size: 8px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--slate);
+    padding-top: 1px;
+  }
+  .block dd {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    color: var(--ink);
+    font-weight: 400;
+    line-height: 1.35;
+  }
+  .block dd.mono { font-family: 'Roboto Mono', ui-monospace, monospace; font-size: 10.5px; }
+
+  /* ========== INSPECTION TABLE ========== */
+  .inspection { margin-top: 7mm; }
+  .inspection__section { margin-bottom: 4mm; }
+  .inspection__section-head {
+    background: var(--ink);
+    color: #fff;
+    padding: 3px 10px;
+    font-family: 'Roboto Mono', ui-monospace, monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .inspection__section-head .threshold {
+    color: var(--cool-grey);
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    font-size: 8px;
+  }
+  table.inspection__rows {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1px;
+  }
+  table.inspection__rows td {
+    padding: 3px 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10.5px;
+    color: var(--ink);
+    border-bottom: 1px dotted var(--hairline);
+    line-height: 1.35;
+  }
+  table.inspection__rows td:last-child {
+    width: 22mm;
+    text-align: center;
+    font-family: 'Roboto Mono', ui-monospace, monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .result-pass { background: var(--pass-bg); color: var(--pass); font-weight: 500; }
+  .result-fail { background: var(--fail-bg); color: var(--fail); font-weight: 500; }
+
+  /* ========== SUMMARY ========== */
+  .summary {
+    margin-top: 6mm;
+    padding: 5mm 7mm;
+    background: #FAFBFB;
+    border-left: 2.5px solid var(--teal);
+    border-radius: 3px;
+  }
+  .summary__head {
+    font-family: 'Roboto Mono', ui-monospace, monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin-bottom: 4mm;
+  }
+  .summary__list {
+    display: grid;
+    grid-template-columns: 1fr 28mm;
+    row-gap: 3px;
+    column-gap: 8px;
+    font-size: 10.5px;
+  }
+  .summary__list .label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10.5px;
+    color: var(--ink-soft);
+    font-weight: 400;
+  }
+  .summary__list .value {
+    font-family: 'Roboto Mono', ui-monospace, monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 1px 4px;
+    border-radius: 2px;
+  }
+  .summary__overall {
+    margin-top: 5mm;
+    padding-top: 5mm;
+    border-top: 1px solid var(--hairline-mid);
+    display: flex; justify-content: space-between; align-items: baseline;
+  }
+  .summary__overall .label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .summary__overall .value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    padding: 2px 12px;
+    border-radius: 3px;
+    text-transform: uppercase;
+  }
+
+  /* ========== NOTES ========== */
+  .notes { margin-top: 5mm; }
+  .notes__inner {
+    font-family: 'Roboto', sans-serif;
+    font-size: 10px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    font-weight: 300;
+    padding-left: 10px;
+    border-left: 2px solid var(--cool-grey);
+    margin-top: 3px;
+    min-height: 18mm;
+  }
+
+  /* ========== SIGNATURE ========== */
+  .signature {
+    margin-top: 7mm;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14mm;
+    align-items: start;
+  }
+  .sig-line {
+    border-bottom: 1.2px solid var(--ink);
+    height: 12mm;
+    position: relative;
+    margin-bottom: 3px;
+  }
+  .sig-line__hint {
+    position: absolute; bottom: -12px; left: 0;
+    font-family: 'Roboto Mono', ui-monospace, monospace;
+    font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--slate);
+  }
+  .sig-meta { margin-top: 14px; font-family: 'Space Grotesk', sans-serif; font-size: 10.5px; color: var(--ink); line-height: 1.4; }
+  .sig-meta b { font-weight: 500; }
+  .sig-meta__small { margin-top: 2px; font-family: 'Roboto Mono', ui-monospace, monospace; font-size: 9px; color: var(--slate); letter-spacing: 0.04em; }
+
+  /* ========== FOOTER ========== */
+  footer {
+    position: absolute; bottom: 8mm; left: 16mm; right: 16mm;
+    padding-top: 3mm;
+    border-top: 1px solid var(--hairline);
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: 'Roboto Mono', ui-monospace, monospace;
+    font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--slate);
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- LETTERHEAD -->
+  <header class="letterhead-bar">
+    <img class="letterhead-bar__mark"
+         src="https://coastalwaysplumbing.com/assets/logo-white.png"
+         alt="Coastal Ways Plumbing">
+    <div class="letterhead-bar__doctype">
+      <b>Coastal Ways Plumbing</b>
+    </div>
+  </header>
+  <div class="contact-strip">
+    Jilliby NSW 2259
+    <span class="dot">·</span>
+    0402 269 088
+    <span class="dot">·</span>
+    <a href="mailto:coastalwaysplumbing@outlook.com">coastalwaysplumbing@outlook.com</a>
+    <span class="dot">·</span>
+    <a href="https://coastalwaysplumbing.com.au">coastalwaysplumbing.com.au</a>
+    <span class="dot">·</span>
+    Licence 468634C
+    <span class="dot">·</span>
+    ABN 62 284 909 142
+  </div>
+
+  <div class="body-area">
+
+    <div class="title-area">
+      <div class="eyebrow">NSW Residential Tenancies Act 2010 · Reg 10, RT Regulation 2019</div>
+      <h1>Water Efficiency <em>Inspection</em> Report</h1>
+    </div>
+
+    <section class="issued-grid">
+      <div class="block">
+        <div class="block-label">Property inspected</div>
+        <dl>
+          <dt>Address</dt><dd>{{property}}</dd>
+          <dt>Inspected</dt><dd class="mono">{{inspection_date}}</dd>
+          <dt>Owner / agent</dt><dd>{{owner_name}}<br>{{owner_company}}</dd>
+          <dt>Owner address</dt><dd>{{owner_address}}</dd>
+        </dl>
+      </div>
+      <div class="block">
+        <div class="block-label">Inspecting plumber</div>
+        <dl>
+          <dt>Plumber</dt><dd>Beau Petterson</dd>
+          <dt>Business</dt><dd>Coastal Ways Plumbing</dd>
+          <dt>NSW Licence</dt><dd class="mono">468634C</dd>
+          <dt>ABN</dt><dd class="mono">62 284 909 142</dd>
+          <dt>Issued</dt><dd class="mono">{{issue_date}}</dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="inspection">
+      <!-- Cold water taps + mixers -->
+      <div class="inspection__section">
+        <div class="inspection__section-head">
+          <span>Internal cold water taps + single mixer taps</span>
+          <span class="threshold">≤ 9 L/min  ·  RT Reg 2019 cl 10(c)</span>
+        </div>
+        <table class="inspection__rows">
+          <tr><td>{{taps_01_loc}}</td><td>{{taps_01_result}}</td></tr>
+          <tr><td>{{taps_02_loc}}</td><td>{{taps_02_result}}</td></tr>
+          <tr><td>{{taps_03_loc}}</td><td>{{taps_03_result}}</td></tr>
+          <tr><td>{{taps_04_loc}}</td><td>{{taps_04_result}}</td></tr>
+        </table>
+      </div>
+
+      <!-- Shower heads -->
+      <div class="inspection__section">
+        <div class="inspection__section-head">
+          <span>Shower heads</span>
+          <span class="threshold">≤ 9 L/min  ·  RT Reg 2019 cl 10(a)</span>
+        </div>
+        <table class="inspection__rows">
+          <tr><td>{{shower_01_loc}}</td><td>{{shower_01_result}}</td></tr>
+          <tr><td>{{shower_02_loc}}</td><td>{{shower_02_result}}</td></tr>
+          <tr><td>{{shower_03_loc}}</td><td>{{shower_03_result}}</td></tr>
+        </table>
+      </div>
+
+      <!-- Toilets -->
+      <div class="inspection__section">
+        <div class="inspection__section-head">
+          <span>Toilets</span>
+          <span class="threshold">Dual-flush, min 3-star WELS  ·  RT Reg 2019 cl 10(b)</span>
+        </div>
+        <table class="inspection__rows">
+          <tr><td>{{toilet_01_loc}}</td><td>{{toilet_01_result}}</td></tr>
+          <tr><td>{{toilet_02_loc}}</td><td>{{toilet_02_result}}</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section class="summary">
+      <div class="summary__head">Summary — RT Regulation 2019, clause 10</div>
+      <div class="summary__list">
+        <div class="label">All internal cold water taps + mixers ≤ 9 L/min</div>
+        <div class="value">{{sum_taps}}</div>
+        <div class="label">All shower heads ≤ 9 L/min</div>
+        <div class="value">{{sum_showers}}</div>
+        <div class="label">No leaking taps or toilets at the premises</div>
+        <div class="value">{{sum_leaks}}</div>
+        <div class="label">All toilets dual-flush, min 3-star WELS</div>
+        <div class="value">{{sum_toilets}}</div>
+        <div class="label">Property supplied by individually metered water service</div>
+        <div class="value">{{sum_metered}}</div>
+      </div>
+      <div class="summary__overall">
+        <span class="label">Overall result</span>
+        <span class="value">{{overall_result}}</span>
+      </div>
+    </section>
+
+    <section class="notes">
+      <div class="block-label">Notes · failed items · repairs done</div>
+      <div class="notes__inner">{{notes}}</div>
+    </section>
+
+    <section class="signature">
+      <div>
+        <div class="sig-line"><span class="sig-line__hint">Plumber signature</span></div>
+        <div class="sig-meta"><b>Beau Petterson</b> &nbsp;·&nbsp; Coastal Ways Plumbing</div>
+        <div class="sig-meta__small">Licence 468634C &nbsp;·&nbsp; ABN 62 284 909 142</div>
+      </div>
+      <div>
+        <div class="sig-line"><span class="sig-line__hint">Date signed</span></div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <div>Coastal Ways Plumbing &nbsp;·&nbsp; Water Efficiency Inspection Report</div>
+    <div>Page 1 of 1</div>
+  </footer>
+
+</div>
+
+</body>
+</html>
