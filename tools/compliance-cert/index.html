@@ -134,7 +134,7 @@ footer a { color: var(--coastal-teal); text-decoration: none; }
       <div class="step__num">2</div>
       <div>
         <div class="step__title">Answer ChatGPT's 6 questions about the job</div>
-        <div class="step__body">It'll ask you, one at a time: <b>property address · inspection date · owner/agent · fixtures inspected · notable items · cert number</b>. Plain language is fine — ChatGPT cleans it up.</div>
+        <div class="step__body">It'll ask you, one at a time: <b>property address · inspection date · owner/agent · fixtures inspected · notable items</b>. Plain language is fine — ChatGPT cleans it up.</div>
       </div>
     </div>
     <div class="step">
@@ -194,15 +194,12 @@ Q4. Fixtures inspected — give me a quick rundown room by room. Just plain lang
 
 Q5. Anything notable — any leaks fixed during the visit? Any fixtures replaced? Anything the landlord should know? If nothing, just say "nil".
 
-Q6. Certificate number — Coastal Ways' running cert number for the year. If you want me to suggest one, I'll use the format CWP-WEC-YYYY-NNNN where NNNN is whatever you tell me (or "auto" and I'll pick 0001 if you haven't started yet).
-
-AFTER I'VE ANSWERED ALL SIX, output EXACTLY this — nothing else, no preamble, no explanation, just the code block:
+AFTER I'VE ANSWERED ALL FIVE, output EXACTLY this — nothing else, no preamble, no explanation, just the code block:
 
 ══════════════════════════════════════════════════════════════
 COPY-PASTE VALUES — Coastal Ways Water Compliance Cert
 ══════════════════════════════════════════════════════════════
 
-{{cert_id}}          →  [your suggested cert number, e.g. CWP-WEC-2026-0001]
 {{issue_date}}       →  [today's date in "27 May 2026" format]
 {{property}}         →  [the property address, properly capitalised]
 {{owner_name}}       →  [owner/agent contact name]
@@ -272,7 +269,6 @@ Start with Q1. Ask one question at a time.</div>
         <tr><td>Correct Act + Regulation citation</td><td class="cross">often wrong year</td><td class="tick">✓ Act 2010 + Reg 2019 cl 10</td></tr>
         <tr><td>Plumber licence cited under Home Building Act 1989 (NSW)</td><td class="warn">just number</td><td class="tick">✓ act named</td></tr>
         <tr><td>Owner/agent block (filable by property)</td><td class="cross">missed</td><td class="tick">✓</td></tr>
-        <tr><td>Cert serial number</td><td class="cross">missed</td><td class="tick">✓ CWP-WEC-YYYY-NNNN</td></tr>
         <tr><td>Itemised fixtures inspected</td><td class="cross">missed</td><td class="tick">✓</td></tr>
       </tbody>
     </table>

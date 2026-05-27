@@ -419,18 +419,27 @@
     overflow: hidden;
   }
   /* Sig-line variant: tall, solid line for handwritten or typed signature dates */
-  .ff-sig {
+  .ff-sig,
+  .ff-signature {
     border: none;
     border-bottom: 1.2px solid var(--ink);
     height: 14mm;
     width: 100%;
-    background: transparent;
+    background: rgba(5, 90, 95, 0.04);  /* faint tint to show this is a signing area */
     font: inherit;
     color: inherit;
     padding: 0;
     margin: 0;
   }
-  .ff-sig:focus { outline: none; background: rgba(5, 90, 95, 0.04); }
+  .ff-sig:focus,
+  .ff-signature:focus { outline: none; background: rgba(5, 90, 95, 0.10); }
+  /* Make the signature affordance hint clearly readable above the line */
+  .signature .sig-line { position: relative; }
+  .signature .sig-line__hint { z-index: 1; }
+  /* When PRINTING, hide the tinted backgrounds — final signed doc looks clean */
+  @media print {
+    .ff-sig, .ff-signature { background: transparent; }
+  }
   @media print {
     .ff-input, .ff-textarea {
       border-bottom-color: transparent;
@@ -500,7 +509,6 @@
           <dt>Business</dt><dd>Coastal Ways Plumbing</dd>
           <dt>NSW Licence</dt><dd class="mono">468634C</dd>
           <dt>ABN</dt><dd class="mono">62 284 909 142</dd>
-          <dt>Cert №</dt><dd><input class="ff-input mono" type="text" name="cert_id" value="CWP-WEC-2026-" placeholder="0000" style="font-family:'Roboto Mono',ui-monospace,monospace;font-size:11px;letter-spacing:0.02em;"></dd>
           <dt>Issued</dt><dd><input class="ff-input mono" type="text" name="issue_date" placeholder="DD Mmm YYYY" style="font-family:'Roboto Mono',ui-monospace,monospace;font-size:11px;letter-spacing:0.02em;"></dd>
         </dl>
       </div>
@@ -529,13 +537,12 @@
 
     <section class="signature">
       <div>
-        <div class="sig-line"><span class="sig-line__hint">Plumber signature</span></div>
+        <div class="sig-line"><input class="ff-signature" type="text" name="plumber_signature" data-pdf-field-type="signature" placeholder="" aria-label="Plumber signature"><span class="sig-line__hint">Plumber signature</span></div>
         <div class="sig-meta"><b>Beau Petterson</b> &nbsp;·&nbsp; Coastal Ways Plumbing</div>
         <div class="sig-meta__small">Licence 468634C &nbsp;·&nbsp; ABN 62 284 909 142</div>
       </div>
       <div>
         <div class="sig-line"><input class="ff-sig" type="text" name="date_signed" placeholder=""></div><span class="sig-line__hint" style="position: relative; bottom: auto; display: block; margin-top: 4px;">Date signed</span>
-        <div class="sig-meta__small" style="margin-top: 14px;">Notes: <input class="ff-input" type="text" name="notes" placeholder="anything noteworthy or Nil" style="display:inline-block;width:60%;min-width:24ch;"></div>
       </div>
     </section>
 
