@@ -386,9 +386,9 @@
   .ff-input,
   .ff-textarea {
     border: none;
-    background: transparent;
+    background: rgba(5, 90, 95, 0.07);  /* subtle teal tint — signals fillable */
     outline: none;
-    padding: 0 1px;
+    padding: 2px 4px;
     margin: 0;
     font: inherit;
     color: inherit;
@@ -396,12 +396,17 @@
     line-height: inherit;
     width: 100%;
     box-sizing: border-box;
-    border-bottom: 1px dotted rgba(16, 32, 45, 0.28);
+    border-bottom: 1px solid rgba(5, 90, 95, 0.25);
+    border-radius: 2px;
+  }
+  .ff-input:hover,
+  .ff-textarea:hover {
+    background: rgba(5, 90, 95, 0.10);
   }
   .ff-input:focus,
   .ff-textarea:focus {
     border-bottom-color: var(--teal);
-    background: rgba(5, 90, 95, 0.04);
+    background: rgba(5, 90, 95, 0.13);
   }
   .ff-input::placeholder,
   .ff-textarea::placeholder {
@@ -472,11 +477,6 @@
   <!-- ==================== BODY ==================== -->
   <div class="body-area">
 
-    <div class="cert-meta-line">
-      <span>Certificate №<input class="ff-input" type="text" name="cert_id" value="CWP-WEC-2026-" placeholder="0000" style="display:inline-block;width:auto;min-width:18ch;font:inherit;color:inherit;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;"></span>
-      <span>Issued<input class="ff-input" type="text" name="issue_date" placeholder="27 May 2026" style="display:inline-block;width:auto;min-width:12ch;font:inherit;color:inherit;font-weight:700;letter-spacing:0.06em;"></span>
-    </div>
-
     <div class="title-area">
       <div class="eyebrow">NSW Residential Tenancies Act 2010 · Reg 10, RT Regulation 2019</div>
       <h1>Water Efficiency <em>Compliance</em> Certificate</h1>
@@ -500,7 +500,8 @@
           <dt>Business</dt><dd>Coastal Ways Plumbing</dd>
           <dt>NSW Licence</dt><dd class="mono">468634C</dd>
           <dt>ABN</dt><dd class="mono">62 284 909 142</dd>
-          <dt>Issued under</dt><dd>Home Building Act 1989 (NSW)</dd>
+          <dt>Cert №</dt><dd><input class="ff-input mono" type="text" name="cert_id" value="CWP-WEC-2026-" placeholder="0000" style="font-family:'Roboto Mono',ui-monospace,monospace;font-size:11px;letter-spacing:0.02em;"></dd>
+          <dt>Issued</dt><dd><input class="ff-input mono" type="text" name="issue_date" placeholder="DD Mmm YYYY" style="font-family:'Roboto Mono',ui-monospace,monospace;font-size:11px;letter-spacing:0.02em;"></dd>
         </dl>
       </div>
     </section>
