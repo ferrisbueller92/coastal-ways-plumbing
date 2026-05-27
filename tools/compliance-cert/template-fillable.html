@@ -9,7 +9,10 @@
   COASTAL WAYS PLUMBING · Water Efficiency Compliance Certificate
   ============================================================================
 
-  Print-ready A4 portrait template, brand-locked.
+  Print-ready A4 portrait template, brand-locked. FILLABLE VERSION:
+  each {{placeholder}} below is replaced by an <input>/<textarea>
+  form field, so this HTML renders as a fillable AcroForm PDF when
+  passed through tools/html_to_fillable_pdf.py.
 
   STATIC INFO (pre-filled, no setup remaining)
     Business:  Coastal Ways Plumbing
@@ -378,6 +381,63 @@
   }
   .footer__right { font-variant-numeric: tabular-nums; }
 
+
+  /* ========== FORM FIELDS (fillable-pdf-builder conventions) ========== */
+  .ff-input,
+  .ff-textarea {
+    border: none;
+    background: transparent;
+    outline: none;
+    padding: 0 1px;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    letter-spacing: inherit;
+    line-height: inherit;
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: 1px dotted rgba(16, 32, 45, 0.28);
+  }
+  .ff-input:focus,
+  .ff-textarea:focus {
+    border-bottom-color: var(--teal);
+    background: rgba(5, 90, 95, 0.04);
+  }
+  .ff-input::placeholder,
+  .ff-textarea::placeholder {
+    color: rgba(83, 98, 104, 0.45);
+    font-style: italic;
+  }
+  .ff-textarea {
+    resize: none;
+    min-height: 1.5em;
+    overflow: hidden;
+  }
+  /* Sig-line variant: tall, solid line for handwritten or typed signature dates */
+  .ff-sig {
+    border: none;
+    border-bottom: 1.2px solid var(--ink);
+    height: 14mm;
+    width: 100%;
+    background: transparent;
+    font: inherit;
+    color: inherit;
+    padding: 0;
+    margin: 0;
+  }
+  .ff-sig:focus { outline: none; background: rgba(5, 90, 95, 0.04); }
+  @media print {
+    .ff-input, .ff-textarea {
+      border-bottom-color: transparent;
+    }
+    .ff-input:focus, .ff-textarea:focus, .ff-sig:focus {
+      background: transparent;
+    }
+    .ff-input::placeholder, .ff-textarea::placeholder {
+      color: transparent;
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -413,8 +473,8 @@
   <div class="body-area">
 
     <div class="cert-meta-line">
-      <span>Certificate №<b>{{cert_id}}</b></span>
-      <span>Issued<b>{{issue_date}}</b></span>
+      <span>Certificate №<input class="ff-input" type="text" name="cert_id" value="CWP-WEC-2026-" placeholder="0000" style="display:inline-block;width:auto;min-width:18ch;font:inherit;color:inherit;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;"></span>
+      <span>Issued<input class="ff-input" type="text" name="issue_date" placeholder="27 May 2026" style="display:inline-block;width:auto;min-width:12ch;font:inherit;color:inherit;font-weight:700;letter-spacing:0.06em;"></span>
     </div>
 
     <div class="title-area">
@@ -427,10 +487,10 @@
       <div class="block">
         <div class="block-label">Property certified</div>
         <dl>
-          <dt>Address</dt><dd>{{property}}</dd>
-          <dt>Inspected</dt><dd class="mono">{{inspection_date}}</dd>
-          <dt>Owner / agent</dt><dd>{{owner_name}}<br>{{owner_company}}</dd>
-          <dt>Owner address</dt><dd>{{owner_address}}</dd>
+          <dt>Address</dt><dd><input class="ff-input" type="text" name="property_address" placeholder="e.g. 26 Belyando Crescent, Blue Haven NSW 2262"></dd>
+          <dt>Inspected</dt><dd><input class="ff-input mono" type="text" name="inspection_date" placeholder="DD Mmm YYYY" style="font-family: 'Roboto Mono', ui-monospace, monospace; font-size: 11px;"></dd>
+          <dt>Owner / agent</dt><dd><input class="ff-input" type="text" name="owner_name" placeholder="Contact name (e.g. Managing Agent)"><br><input class="ff-input" type="text" name="owner_company" placeholder="Agency / company (or Private owner)"></dd>
+          <dt>Owner address</dt><dd><input class="ff-input" type="text" name="owner_address" placeholder="Owner / agent postal address"></dd>
         </dl>
       </div>
       <div class="block">
@@ -463,7 +523,7 @@
 
     <section class="fixtures">
       <div class="block-label">Fixtures inspected</div>
-      <div class="fixtures__inner">{{fixtures_list}}</div>
+      <div class="fixtures__inner"><textarea class="ff-textarea" name="fixtures_list" rows="2" placeholder="Kitchen — sink mixer · Main bathroom — hand-basin mixer, shower head, dual-flush toilet · Laundry — tub tap · (extend with ensuite / 2nd bathroom / separate WC if applicable)"></textarea></div>
     </section>
 
     <section class="signature">
@@ -473,9 +533,8 @@
         <div class="sig-meta__small">Licence 468634C &nbsp;·&nbsp; ABN 62 284 909 142</div>
       </div>
       <div>
-        <div class="sig-line"><span class="sig-line__hint">Date signed</span></div>
-        <div class="sig-meta">&nbsp;</div>
-        <div class="sig-meta__small">Notes: {{notes}}</div>
+        <div class="sig-line"><input class="ff-sig" type="text" name="date_signed" placeholder=""></div><span class="sig-line__hint" style="position: relative; bottom: auto; display: block; margin-top: 4px;">Date signed</span>
+        <div class="sig-meta__small" style="margin-top: 14px;">Notes: <input class="ff-input" type="text" name="notes" placeholder="anything noteworthy or Nil" style="display:inline-block;width:60%;min-width:24ch;"></div>
       </div>
     </section>
 
