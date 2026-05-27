@@ -11,7 +11,7 @@
   COASTAL WAYS PLUMBING · Water Efficiency Compliance Certificate
   ============================================================================
 
-  Print-ready A4 portrait template, locked to brand tokens.
+  Print-ready A4 portrait template, brand-locked.
 
   STATIC INFO (pre-filled from coastalwaysplumbing.com extract 2026-05-27)
     Business:  Coastal Ways Plumbing
@@ -23,45 +23,36 @@
     Web:       coastalwaysplumbing.com.au
 
   ONE remaining setup item — search for [SETUP::LIC] below and replace with
-  Beau's NSW Plumbing Licence number (not published on the website). Once
-  set, this file is locked-and-loaded for repeat use.
-
-  PER-JOB (every cert, ~30 sec):
-    1. Open the companion ChatGPT prompt
-       (chatgpt-prompt-water-compliance-cert.md), answer Emma's questions
-       in ChatGPT, paste the returned values into the {{...}} placeholders
-       below (Cmd+F search-and-replace is fastest).
-    2. Print to PDF (Cmd+P → "Save as PDF" → A4 portrait).
-    3. Email/AirDrop to the landlord/agent.
+  Beau's NSW Plumbing Licence number (not published on the website).
 
   PLACEHOLDERS (search-and-replace per job)
-    CWP-WEC-2026-0002        e.g. CWP-WEC-2026-0001
-    27 May 2026     e.g. 27 May 2026
-    11A Kaye Avenue, Kanwal NSW 2259       e.g. 28 Spring Valley Avenue, Gorokan NSW 2263
-    Managing Agent     e.g. Jane Smith  (or managing agent name)
-    Brand Real Estate  e.g. Ray White Tuggerah  (blank if private owner)
-    301 Main Road, Toukley NSW 2263  e.g. 1/123 Pacific Hwy, Tuggerah NSW 2259
+    CWP-WEC-2026-0002          e.g. CWP-WEC-2026-0001
+    27 May 2026       e.g. 27 May 2026
+    11A Kaye Avenue, Kanwal NSW 2259         e.g. 28 Spring Valley Avenue, Gorokan NSW 2263
+    Managing Agent       e.g. Jane Smith
+    Brand Real Estate    e.g. Ray White Tuggerah  (or "Private owner")
+    301 Main Road, Toukley NSW 2263    e.g. 1/123 Pacific Hwy, Tuggerah NSW 2259
     27 May 2026  e.g. 26 May 2026
-    Beau Petterson   e.g. Beau Petterson   (usually static, override if different tradie)
-    Kitchen — sink mixer · Main bathroom — hand-basin mixer, shower head, dual-flush toilet · Laundry — tub tap  see ChatGPT prompt — itemised bullet list of what was checked
-    Leaking tap identified during inspection and repaired on site by the certifying plumber. Following the repair, all fixtures satisfy the prescribed water efficiency measures as at the inspection date.          optional — anything noteworthy (or "Nil")
+    Kitchen — sink mixer · Main bathroom — hand-basin mixer, shower head, dual-flush toilet · Laundry — tub tap    cleaned-up itemised list (use the ChatGPT prompt)
+    Leaking tap identified during inspection and repaired on site by the certifying plumber. Following the repair, all fixtures satisfy the prescribed water efficiency measures as at the inspection date.            optional — anything noteworthy or "Nil"
   ============================================================================
 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Roboto:wght@300;400;500&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  /* -------- TOKENS (Coastal Ways brand — locked) -------- */
+  /* -------- BRAND TOKENS (locked) -------- */
   :root {
-    --sand:        #FBF6F3;
-    --warm-mist:   #F2EDEB;
-    --light-stone: #E3E0DF;
-    --cool-grey:   #C4CFD1;
-    --coastal-teal:#055A5F;
-    --teal-deep:   #044A4E;
-    --dark-navy:   #10202D;
-    --dark-water:  #223238;
-    --slate:       #536268;
-    --ink-soft:    #384850;
-    --hairline:    rgba(16,32,45,0.12);
-    --hairline-strong: rgba(16,32,45,0.22);
+    --paper:        #FFFFFF;
+    --ink:          #10202D;
+    --ink-soft:     #384850;
+    --slate:        #536268;
+    --cool-grey:    #C4CFD1;
+    --light-stone:  #E3E0DF;
+    --teal:         #055A5F;
+    --teal-deep:    #044A4E;
+    --hairline:     rgba(16,32,45,0.10);
+    --hairline-mid: rgba(16,32,45,0.18);
   }
 
   @page { size: A4 portrait; margin: 0; }
@@ -69,252 +60,249 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   html, body {
-    background: #e6e3df;
-    color: var(--dark-navy);
+    background: #EEEFF0;
+    color: var(--ink);
     font-family: 'Space Grotesk', 'Inter', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
 
-  /* Page wrapper that mirrors A4 ratio on-screen */
+  /* A4 page wrapper */
   .page {
     width: 210mm;
-    height: 297mm;
+    min-height: 297mm;
     margin: 20px auto;
-    background: var(--sand);
-    color: var(--dark-navy);
+    background: var(--paper);
+    color: var(--ink);
     position: relative;
-    overflow: hidden;
-    box-shadow: 0 8px 32px rgba(16,32,45,0.12);
+    box-shadow: 0 8px 32px rgba(16,32,45,0.10);
+    padding: 16mm 18mm 12mm;
     display: flex;
     flex-direction: column;
   }
   @media print {
     html, body { background: #fff; }
-    .page { margin: 0; box-shadow: none; width: 210mm; height: 297mm; }
+    .page { margin: 0; box-shadow: none; width: 210mm; min-height: 297mm; padding: 16mm 18mm 12mm; }
   }
 
-  /* ============= HEADER ============= */
-  header {
-    padding: 22mm 18mm 14mm;
+  /* ========== LETTERHEAD ========== */
+  .letterhead {
+    text-align: center;
+    padding-bottom: 7mm;
+    border-bottom: 1.2px solid var(--ink);
+  }
+  .wordmark {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 300;
+    font-size: 62px;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    color: var(--ink);
+    text-transform: lowercase;
+  }
+  .wordmark__sub {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.6em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-top: 5px;
+    /* compensate for trailing letter-spacing so it stays optically centred */
+    padding-left: 0.6em;
+    display: block;
+  }
+  .letterhead__contact {
+    margin-top: 6mm;
+    font-family: 'Roboto Mono', ui-monospace, monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+  .letterhead__contact a { color: var(--slate); text-decoration: none; }
+  .letterhead__contact .dot { color: var(--cool-grey); margin: 0 10px; }
+
+  /* Cert ID + issue date — small line above the cert title */
+  .cert-meta-line {
+    margin-top: 8mm;
+    font-family: 'Roboto Mono', ui-monospace, monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--slate);
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    border-bottom: 1px solid var(--hairline);
   }
-
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-  .brand__mark { width: 56px; height: 56px; flex-shrink: 0; }
-  .brand__lockup { display: flex; flex-direction: column; line-height: 1; }
-  .brand__name {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 400;
-    font-size: 22px;
-    letter-spacing: -0.02em;
-    color: var(--dark-navy);
-  }
-  .brand__name b { font-weight: 500; }
-  .brand__tag {
-    font-family: 'Roboto Mono', ui-monospace, monospace;
-    font-size: 9.5px;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: var(--slate);
-    margin-top: 6px;
-  }
-
-  .meta-block {
-    text-align: right;
-    font-family: 'Roboto Mono', ui-monospace, monospace;
-    font-size: 9.5px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--slate);
-    line-height: 1.65;
-  }
-  .meta-block .meta-block__label {
-    color: var(--cool-grey);
-    color: var(--slate);
-    opacity: 0.65;
-    font-size: 8.5px;
-    letter-spacing: 0.16em;
-  }
-  .meta-block .meta-block__val {
-    color: var(--dark-navy);
+  .cert-meta-line b {
+    color: var(--ink);
     font-weight: 700;
-    font-size: 11px;
-    letter-spacing: 0.04em;
     font-variant-numeric: tabular-nums;
+    letter-spacing: 0.06em;
+    margin-left: 8px;
   }
 
-  /* ============= TITLE ============= */
+  /* ========== TITLE AREA ========== */
   .title-area {
-    padding: 14mm 18mm 0;
+    margin-top: 6mm;
   }
   .eyebrow {
     font-family: 'Roboto Mono', ui-monospace, monospace;
-    font-size: 10px;
-    letter-spacing: 0.32em;
+    font-size: 9.5px;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: var(--coastal-teal);
-    margin-bottom: 10mm;
+    color: var(--teal);
+    margin-bottom: 5mm;
     display: flex;
     align-items: center;
     gap: 12px;
   }
   .eyebrow::before {
     content: '';
-    width: 28px;
+    width: 26px;
     height: 1.5px;
-    background: var(--coastal-teal);
-    display: inline-block;
+    background: var(--teal);
   }
   h1 {
     font-family: 'Space Grotesk', sans-serif;
-    font-weight: 500;
-    font-size: 38px;
+    font-weight: 400;
+    font-size: 32px;
     letter-spacing: -0.025em;
-    line-height: 1.04;
-    color: var(--dark-navy);
+    line-height: 1.08;
+    color: var(--ink);
     text-transform: uppercase;
-    max-width: 70%;
+    max-width: 78%;
   }
   h1 em {
     font-style: normal;
-    color: var(--coastal-teal);
+    color: var(--teal);
     font-weight: 500;
   }
   .sub-title {
-    margin-top: 8mm;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 13px;
+    margin-top: 5mm;
+    font-family: 'Roboto', sans-serif;
+    font-size: 11.5px;
     color: var(--slate);
     font-weight: 300;
-    line-height: 1.5;
-    max-width: 70%;
+    line-height: 1.55;
+    max-width: 95%;
   }
 
-  /* ============= ISSUED TO + PLUMBER GRID ============= */
+  /* ========== ISSUED + PLUMBER GRID ========== */
   .issued-grid {
-    padding: 12mm 18mm 0;
+    margin-top: 8mm;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 14mm;
   }
   .block-label {
     font-family: 'Roboto Mono', ui-monospace, monospace;
-    font-size: 9px;
+    font-size: 8.5px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--slate);
-    margin-bottom: 6px;
-    padding-bottom: 4px;
-    border-bottom: 1px solid var(--hairline-strong);
+    margin-bottom: 4px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid var(--hairline-mid);
   }
   .block dl {
     display: grid;
-    grid-template-columns: 28mm 1fr;
-    row-gap: 5px;
+    grid-template-columns: 26mm 1fr;
+    row-gap: 4px;
     column-gap: 8px;
-    margin-top: 8px;
+    margin-top: 6px;
     font-size: 11px;
   }
   .block dt {
     font-family: 'Roboto Mono', ui-monospace, monospace;
-    font-size: 9px;
+    font-size: 8.5px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--slate);
-    padding-top: 2px;
+    padding-top: 1px;
   }
   .block dd {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 12px;
-    color: var(--dark-navy);
+    font-size: 11.5px;
+    color: var(--ink);
     font-weight: 400;
-    line-height: 1.4;
+    line-height: 1.35;
   }
   .block dd.mono {
     font-family: 'Roboto Mono', ui-monospace, monospace;
-    font-size: 11.5px;
+    font-size: 11px;
     letter-spacing: 0.02em;
   }
 
-  /* ============= DECLARATION ============= */
+  /* ========== DECLARATION ========== */
   .declaration {
-    margin: 14mm 18mm 0;
-    padding: 10mm 11mm;
-    background: #fff;
-    border-left: 3px solid var(--coastal-teal);
-    border-radius: 4px;
+    margin-top: 8mm;
+    padding: 7mm 8mm;
+    background: #FAFBFB;
+    border-left: 2.5px solid var(--teal);
+    border-radius: 3px;
   }
   .declaration__lede {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 12.5px;
+    font-size: 11.5px;
     line-height: 1.55;
-    color: var(--dark-navy);
-    margin-bottom: 7mm;
+    color: var(--ink);
+    margin-bottom: 5mm;
   }
-  .declaration__lede b {
-    font-weight: 500;
-  }
+  .declaration__lede b { font-weight: 500; }
   .declaration__list {
     list-style: none;
     counter-reset: dec;
     display: grid;
-    gap: 5mm;
+    gap: 3.5mm;
   }
   .declaration__list li {
     counter-increment: dec;
     display: grid;
-    grid-template-columns: 22px 1fr;
+    grid-template-columns: 20px 1fr;
     gap: 8px;
     align-items: start;
-    font-family: 'Roboto', 'Space Grotesk', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: 300;
-    font-size: 11px;
+    font-size: 10.5px;
     line-height: 1.5;
     color: var(--ink-soft);
   }
   .declaration__list li::before {
     content: counter(dec);
     font-family: 'Roboto Mono', ui-monospace, monospace;
-    font-size: 9.5px;
+    font-size: 9px;
     letter-spacing: 0.05em;
-    color: var(--coastal-teal);
+    color: var(--teal);
     background: rgba(5, 90, 95, 0.08);
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 700;
   }
   .declaration__list b {
-    color: var(--dark-navy);
+    color: var(--ink);
     font-weight: 500;
   }
   .declaration__citation {
-    margin-top: 7mm;
-    padding-top: 5mm;
+    margin-top: 5mm;
+    padding-top: 4mm;
     border-top: 1px dashed var(--hairline);
     font-family: 'Roboto', sans-serif;
-    font-size: 10.5px;
+    font-size: 10px;
     line-height: 1.5;
     font-weight: 300;
     color: var(--slate);
   }
-  .declaration__citation b { color: var(--dark-navy); font-weight: 500; }
+  .declaration__citation b { color: var(--ink); font-weight: 500; }
 
-  /* ============= FIXTURES INSPECTED ============= */
+  /* ========== FIXTURES ========== */
   .fixtures {
-    margin: 8mm 18mm 0;
+    margin-top: 6mm;
   }
   .fixtures__inner {
     font-family: 'Roboto', sans-serif;
@@ -322,148 +310,107 @@
     line-height: 1.55;
     color: var(--ink-soft);
     font-weight: 300;
-    padding-left: 14px;
+    padding-left: 12px;
     border-left: 2px solid var(--cool-grey);
     margin-top: 4px;
   }
 
-  /* ============= SIGNATURE ============= */
+  /* ========== SIGNATURE (lots of breathing room) ========== */
   .signature {
-    margin: 10mm 18mm 0;
+    margin-top: 14mm;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 14mm;
+    gap: 18mm;
     align-items: end;
   }
   .sig-line {
-    border-bottom: 1.5px solid var(--dark-navy);
-    height: 16mm;
+    border-bottom: 1.2px solid var(--ink);
+    height: 20mm;
     position: relative;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
   }
   .sig-line__hint {
     position: absolute;
-    bottom: -16px;
+    bottom: -14px;
     left: 0;
     font-family: 'Roboto Mono', ui-monospace, monospace;
-    font-size: 8.5px;
-    letter-spacing: 0.16em;
+    font-size: 8px;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--slate);
   }
+  .sig-meta {
+    margin-top: 16px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .sig-meta b { font-weight: 500; }
+  .sig-meta__small {
+    margin-top: 2px;
+    font-family: 'Roboto Mono', ui-monospace, monospace;
+    font-size: 9.5px;
+    color: var(--slate);
+    letter-spacing: 0.04em;
+  }
 
-  /* ============= FOOTER ============= */
+  /* ========== FOOTER ========== */
   footer {
     margin-top: auto;
-    background: var(--dark-navy);
-    color: var(--cool-grey);
-    padding: 8mm 18mm 7mm;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 14mm;
-    align-items: end;
-  }
-  .footer-left {
+    padding-top: 8mm;
+    border-top: 1px solid var(--hairline);
     display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .footer-pillars {
-    display: flex;
-    gap: 14px;
-    font-family: 'Roboto Mono', ui-monospace, monospace;
-    font-size: 8.5px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--cool-grey);
-    opacity: 0.7;
-  }
-  .footer-pillars span:not(:last-child)::after {
-    content: '·';
-    margin-left: 14px;
-    opacity: 0.5;
-  }
-  .footer-contact {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 12.5px;
-    color: var(--sand);
-    font-weight: 300;
-    letter-spacing: -0.005em;
-  }
-  .footer-contact b { font-weight: 500; }
-  .footer-contact a { color: var(--sand); text-decoration: none; border-bottom: 1px solid rgba(251,246,243,0.25); }
-
-  .footer-right {
-    text-align: right;
+    justify-content: space-between;
+    align-items: baseline;
     font-family: 'Roboto Mono', ui-monospace, monospace;
     font-size: 9px;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--cool-grey);
-    line-height: 1.7;
-    opacity: 0.85;
+    color: var(--slate);
   }
-  .footer-right b {
-    color: var(--sand);
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    font-size: 10px;
-  }
+  footer a { color: var(--slate); text-decoration: none; }
+  footer a:hover { color: var(--teal); }
+  .footer__left b { color: var(--ink); font-weight: 500; }
+  .footer__right { font-variant-numeric: tabular-nums; }
 
-  /* ============= SUBTLE WATER MOTIF ============= */
-  .water-motif {
-    position: absolute;
-    right: -40mm;
-    top: 35mm;
-    width: 120mm;
-    opacity: 0.05;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* keep all content above motif */
-  header, .title-area, .issued-grid, .declaration, .fixtures, .signature, footer { position: relative; z-index: 1; }
 </style>
 </head>
 <body>
 
 <div class="page">
 
-  <!-- Decorative water motif (recreated logomark waves, very subtle) -->
-  <svg class="water-motif" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g fill="none" stroke="#055A5F" stroke-width="3" stroke-linecap="round">
-      <path d="M20 150 Q70 120 120 150 T220 150 T320 150 T380 150"/>
-      <path d="M20 200 Q70 170 120 200 T220 200 T320 200 T380 200"/>
-      <path d="M20 250 Q70 220 120 250 T220 250 T320 250 T380 250"/>
-    </g>
-  </svg>
-
-  <!-- ============= HEADER ============= -->
-  <header>
-    <div class="brand">
-      <!-- Real horizontal logo, absolute URL so the cert still renders the
-           brand mark when Emma downloads the file and edits it locally. -->
-      <img src="https://coastalwaysplumbing.com/assets/logo-horizontal-dark.png"
-           alt="Coastal Ways Plumbing"
-           style="height: 56px; width: auto; display: block;">
-    </div>
-
-    <div class="meta-block">
-      <div><span class="meta-block__label">Certificate №</span></div>
-      <div><span class="meta-block__val">CWP-WEC-2026-0002</span></div>
-      <div style="margin-top:6px"><span class="meta-block__label">Issued</span></div>
-      <div><span class="meta-block__val">27 May 2026</span></div>
+  <!-- ==================== LETTERHEAD ==================== -->
+  <header class="letterhead">
+    <h1 class="wordmark">coastal ways</h1>
+    <span class="wordmark__sub">PLUMBING</span>
+    <div class="letterhead__contact">
+      Jilliby NSW 2259
+      <span class="dot">·</span>
+      0402 269 088
+      <span class="dot">·</span>
+      <a href="mailto:coastalwaysplumbing@outlook.com">coastalwaysplumbing@outlook.com</a>
+      <span class="dot">·</span>
+      <a href="https://coastalwaysplumbing.com.au">coastalwaysplumbing.com.au</a>
+      <span class="dot">·</span>
+      ABN 62 284 909 142
     </div>
   </header>
 
-  <!-- ============= TITLE ============= -->
+  <!-- Cert meta strip (small, just above the cert title) -->
+  <div class="cert-meta-line">
+    <span>Certificate №<b>CWP-WEC-2026-0002</b></span>
+    <span>Issued<b>27 May 2026</b></span>
+  </div>
+
+  <!-- ==================== TITLE ==================== -->
   <div class="title-area">
     <div class="eyebrow">NSW Residential Tenancies Act 2010 · Reg 10, RT Regulation 2019</div>
     <h1>Water Efficiency <em>Compliance</em> Certificate</h1>
     <p class="sub-title">Issued to confirm that the property identified below satisfies the prescribed water efficiency measures, permitting the landlord to pass water usage charges to the tenant in accordance with section 39(1)(b) of the Residential Tenancies Act 2010 (NSW).</p>
   </div>
 
-  <!-- ============= ISSUED TO + CERTIFYING PLUMBER ============= -->
+  <!-- ==================== ISSUED TO + PLUMBER ==================== -->
   <section class="issued-grid">
     <div class="block">
       <div class="block-label">Property certified</div>
@@ -486,7 +433,7 @@
     </div>
   </section>
 
-  <!-- ============= DECLARATION ============= -->
+  <!-- ==================== DECLARATION ==================== -->
   <section class="declaration">
     <p class="declaration__lede">
       <b>I, Beau Petterson</b>, holding a plumbing licence under the Home Building Act 1989 (NSW) (Licence No. <b>[SETUP::LIC]</b>), certify that on <b>27 May 2026</b> I attended <b>11A Kaye Avenue, Kanwal NSW 2259</b> and inspected the plumbing fixtures at the property. I confirm that, as at the inspection date:
@@ -503,41 +450,30 @@
     </p>
   </section>
 
-  <!-- ============= FIXTURES INSPECTED ============= -->
+  <!-- ==================== FIXTURES ==================== -->
   <section class="fixtures">
     <div class="block-label">Fixtures inspected</div>
     <div class="fixtures__inner">Kitchen — sink mixer · Main bathroom — hand-basin mixer, shower head, dual-flush toilet · Laundry — tub tap</div>
   </section>
 
-  <!-- ============= SIGNATURE ============= -->
+  <!-- ==================== SIGNATURE ==================== -->
   <section class="signature">
     <div>
       <div class="sig-line"><span class="sig-line__hint">Plumber signature</span></div>
-      <div style="margin-top: 22px; font-family: 'Space Grotesk',sans-serif; font-size: 11.5px; color: var(--dark-navy)"><b>Beau Petterson</b> &nbsp;·&nbsp; Coastal Ways Plumbing</div>
-      <div style="font-family: 'Roboto Mono',monospace; font-size: 10px; color: var(--slate); letter-spacing: 0.04em; margin-top: 2px;">Licence [SETUP::LIC] &nbsp;·&nbsp; ABN 62 284 909 142</div>
+      <div class="sig-meta"><b>Beau Petterson</b> &nbsp;·&nbsp; Coastal Ways Plumbing</div>
+      <div class="sig-meta__small">Licence [SETUP::LIC] &nbsp;·&nbsp; ABN 62 284 909 142</div>
     </div>
     <div>
       <div class="sig-line"><span class="sig-line__hint">Date signed</span></div>
-      <div style="margin-top: 22px; font-family: 'Roboto Mono',monospace; font-size: 11px; color: var(--dark-navy); letter-spacing: 0.04em">27 May 2026</div>
-      <div style="font-family: 'Roboto Mono',monospace; font-size: 10px; color: var(--slate); letter-spacing: 0.04em; margin-top: 2px;">Notes: Leaking tap identified during inspection and repaired on site by the certifying plumber. Following the repair, all fixtures satisfy the prescribed water efficiency measures as at the inspection date.</div>
+      <div class="sig-meta"><b>27 May 2026</b></div>
+      <div class="sig-meta__small">Notes: Leaking tap identified during inspection and repaired on site by the certifying plumber. Following the repair, all fixtures satisfy the prescribed water efficiency measures as at the inspection date.</div>
     </div>
   </section>
 
-  <!-- ============= FOOTER ============= -->
+  <!-- ==================== FOOTER (minimal — contact now in letterhead) ==================== -->
   <footer>
-    <div class="footer-left">
-      <div class="footer-pillars">
-        <span>Reliable</span><span>Friendly</span><span>Trustworthy</span><span>Committed</span>
-      </div>
-      <div class="footer-contact">
-        <b>Coastal Ways Plumbing</b> · 0402 269 088 · <a href="mailto:coastalwaysplumbing@outlook.com">coastalwaysplumbing@outlook.com</a> · <a href="https://coastalwaysplumbing.com.au">coastalwaysplumbing.com.au</a>
-      </div>
-    </div>
-    <div class="footer-right">
-      <div><b>CWP-WEC-2026-0002</b></div>
-      <div>Valid as at inspection date</div>
-      <div>Re-issue after any plumbing works</div>
-    </div>
+    <div class="footer__left">Coastal Ways Plumbing &nbsp;·&nbsp; Water Efficiency Compliance Certificate</div>
+    <div class="footer__right">CWP-WEC-2026-0002 &nbsp;·&nbsp; Page 1 of 1</div>
   </footer>
 
 </div>
