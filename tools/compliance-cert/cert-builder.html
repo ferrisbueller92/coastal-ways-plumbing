@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Water Efficiency Compliance Certificate — Builder · Coastal Ways Plumbing</title>
+<!--
+  O-W65 "Report Builder" — CERTIFICATE variant. Same client-side, no-server,
+  open→fill→Save-as-PDF model as report-builder.html, for the 1-page Water
+  Efficiency Compliance Certificate. Auto-grow fields + signature pad. The cert
+  is fixed-length and few-field, so the static fillable PDF is also valid here
+  (per the skill's graduation criterion) — this variant is offered for a
+  consistent builder experience across both Coastal Ways documents.
+
+  Declaration wording is copied verbatim from the shipped cert template — do not
+  alter legal text without the customer / their adviser signing off.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Roboto:wght@300;400;500&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF; --ink:#10202D; --ink-soft:#384850; --slate:#536268;
+    --cool-grey:#C4CFD1; --teal:#055A5F;
+    --hairline:rgba(16,32,45,0.10); --hairline-mid:rgba(16,32,45,0.18);
+    --field-bg:rgba(5,90,95,0.05); --field-focus:rgba(5,90,95,0.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#E7EAEB;color:var(--ink);
+    font-family:'Space Grotesk','Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;
+    print-color-adjust:exact;-webkit-print-color-adjust:exact}
+
+  .app-bar{position:sticky;top:0;z-index:50;background:var(--ink);color:#fff;display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:12px 22px;box-shadow:0 2px 10px rgba(16,32,45,.18)}
+  .app-bar .brand{font-weight:500;font-size:15px}
+  .app-bar .brand span{color:var(--cool-grey);font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;display:block;margin-top:1px}
+  .app-bar .spacer{margin-left:auto}
+  .btn{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:13.5px;cursor:pointer;border:1.5px solid transparent;border-radius:8px;padding:9px 18px;display:inline-flex;align-items:center;gap:8px;transition:.12s}
+  .btn-primary{background:var(--teal);color:#fff}.btn-primary:hover{background:#06484c;transform:translateY(-1px)}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+  .btn-sm{font-size:12px;padding:6px 12px;border-radius:6px}
+  .hint-bar{background:#FBF6EE;border-bottom:1px solid var(--hairline);color:var(--ink-soft);font-size:12.5px;line-height:1.5;padding:9px 22px;text-align:center}
+  .hint-bar b{color:var(--ink)}
+  .workspace{padding:26px 16px 80px;display:flex;justify-content:center}
+
+  .sheet{width:210mm;max-width:100%;background:var(--paper);color:var(--ink);box-shadow:0 10px 40px rgba(16,32,45,.14);border-radius:2px;overflow:hidden}
+  .letterhead{background:var(--ink);color:#fff;padding:7mm 12mm;min-height:20mm;display:flex;align-items:center;justify-content:space-between}
+  .letterhead img{height:13mm;width:auto;display:block}
+  .letterhead .doctype{font-size:10px;letter-spacing:.34em;text-transform:uppercase;opacity:.92;text-align:right}
+  .letterhead .doctype b{display:block;font-weight:500;opacity:1}
+  .contact-strip{padding:3mm 12mm;border-bottom:1px solid var(--hairline);font-family:'Roboto Mono',ui-monospace,monospace;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);text-align:center}
+  .contact-strip .dot{color:var(--cool-grey);margin:0 5px}
+  .body-area{padding:6mm 12mm 10mm}
+
+  .eyebrow{font-family:'Roboto Mono',ui-monospace,monospace;font-size:8px;letter-spacing:.24em;text-transform:uppercase;color:var(--teal);margin-bottom:2mm;display:flex;align-items:center;gap:9px}
+  .eyebrow::before{content:'';width:20px;height:1.5px;background:var(--teal)}
+  h1{font-weight:400;font-size:23px;letter-spacing:-.025em;line-height:1.05;text-transform:uppercase;margin-bottom:2.5mm}
+  h1 em{font-style:normal;color:var(--teal);font-weight:500}
+  .sub-title{font-family:'Roboto',sans-serif;font-size:10px;font-weight:300;line-height:1.55;color:var(--ink-soft);max-width:165mm;margin-bottom:5mm}
+
+  .issued{display:grid;grid-template-columns:1fr 1fr;gap:8mm;margin-bottom:5mm}
+  .block-label{font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin-bottom:2mm;padding-bottom:1.5mm;border-bottom:1.5px solid var(--teal)}
+  dl{display:grid;grid-template-columns:28mm 1fr;gap:2mm 3mm;align-items:start}
+  dt{font-size:10px;color:var(--slate);padding-top:1px}
+  dd{font-size:11px;color:var(--ink);font-weight:500}
+  dd.mono{font-family:'Roboto Mono',monospace;font-size:9.5px}
+  .fld{font:inherit;font-size:11px;color:var(--ink);width:100%;border:none;background:var(--field-bg);border-bottom:1px solid var(--hairline-mid);border-radius:3px 3px 0 0;padding:2px 5px;resize:none;line-height:1.4;display:block}
+  .fld::placeholder{color:var(--slate);opacity:.7;font-weight:300;font-style:italic}
+  .fld:focus{outline:none;background:var(--field-focus);border-bottom-color:var(--teal)}
+  .fld.mono{font-family:'Roboto Mono',monospace;font-size:9.5px}
+  textarea.fld{overflow:hidden;min-height:1.5em}
+  .fld+.fld{margin-top:1.5mm}
+
+  .declaration{background:rgba(5,90,95,0.035);border:1px solid var(--hairline);border-left:3px solid var(--teal);border-radius:4px;padding:5mm 6mm;margin-bottom:4mm}
+  .declaration .lede{font-family:'Roboto',sans-serif;font-size:10px;line-height:1.6;font-weight:300;color:var(--ink-soft);margin-bottom:3mm}
+  .declaration .lede b{font-weight:500;color:var(--ink)}
+  .declaration ol{list-style:none;counter-reset:d;padding:0;margin:0 0 3mm}
+  .declaration li{counter-increment:d;position:relative;padding:1.5mm 0 1.5mm 8mm;font-family:'Roboto',sans-serif;font-size:10px;line-height:1.5;font-weight:300;color:var(--ink-soft);border-top:1px dashed var(--hairline)}
+  .declaration li:first-child{border-top:none}
+  .declaration li::before{content:counter(d);position:absolute;left:0;top:1.5mm;width:5mm;height:5mm;background:var(--teal);color:#fff;border-radius:50%;font-family:'Roboto Mono',monospace;font-size:8px;display:flex;align-items:center;justify-content:center}
+  .declaration li b{font-weight:500;color:var(--ink)}
+  .declaration .cite{font-family:'Roboto',sans-serif;font-size:9.5px;line-height:1.55;color:var(--ink-soft);padding-top:3mm;border-top:1px solid var(--hairline)}
+  .declaration .cite b{color:var(--ink);font-weight:500}
+
+  .blk-label{font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin:0 0 2mm}
+  .signature{display:grid;grid-template-columns:1fr 1fr;gap:8mm;margin-top:5mm;align-items:end}
+  .sig-pad-wrap{position:relative}
+  .sig-pad{width:100%;height:24mm;border:1px solid var(--hairline-mid);border-radius:5px;background:#fff;display:block;touch-action:none;cursor:crosshair}
+  .sig-clear{position:absolute;top:4px;right:6px;font-family:'Roboto Mono',monospace;font-size:8px;color:var(--slate);background:rgba(255,255,255,.9);border:1px solid var(--hairline);border-radius:4px;padding:2px 6px;cursor:pointer}
+  .sig-upload{position:absolute;top:4px;left:6px;font-family:'Roboto Mono',monospace;font-size:8px;color:var(--teal);background:rgba(255,255,255,.92);border:1px solid var(--hairline);border-radius:4px;padding:2px 6px;cursor:pointer}
+  .sig-upload:hover{border-color:var(--teal)}
+  .sig-cap{font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);margin-top:1.5mm}
+  .sig-cap b{color:var(--ink)}
+  .date-row{display:flex;flex-direction:column;gap:1.5mm}
+  .date-row label{font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
+
+  footer{padding:4mm 12mm;border-top:1px solid var(--hairline);display:flex;justify-content:space-between;font-family:'Roboto Mono',monospace;font-size:7.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--slate)}
+  .req-warn{color:#C84A2D;font-family:'Roboto Mono',monospace;font-size:8px;margin-top:1mm;display:none}
+  .req-warn.show{display:block}
+
+  @media print{
+    @page{size:A4;margin:12mm 11mm 16mm}
+    html,body{background:#fff}
+    .app-bar,.hint-bar,.no-print,.sig-clear{display:none!important}
+    .workspace{padding:0;display:block}
+    .sheet{width:auto;max-width:none;box-shadow:none;border-radius:0;overflow:visible}
+    .letterhead,.contact-strip{margin:0 -1mm}
+    .body-area{padding:5mm 0 0}
+    .fld,.sig-cap input{background:transparent!important;border-bottom-color:transparent!important}
+    .fld::placeholder{color:transparent!important}
+    .declaration,.signature{break-inside:avoid}
+    .req-warn{display:none!important}
+    footer{position:fixed;bottom:0;left:0;right:0;border-top:1px solid var(--hairline);padding:3mm 0;background:#fff}
+  }
+</style>
+</head>
+<body>
+
+<div class="app-bar no-print">
+  <div class="brand"><b>Certificate Builder</b><span>Coastal Ways · Water Efficiency Compliance</span></div>
+  <div class="spacer"></div>
+  <button class="btn btn-ghost btn-sm" id="clearBtn" type="button">Start blank</button>
+  <button class="btn btn-primary" id="saveBtn" type="button">⤓ &nbsp;Save as PDF</button>
+</div>
+<div class="hint-bar no-print">
+  Fill the details, sign in the box, then click <b>Save as PDF</b> and choose <b>“Save as PDF”</b> as the Destination (Margins: <b>Default</b>). Your work auto-saves in this browser.
+</div>
+
+<div class="workspace">
+  <div class="sheet" id="sheet">
+
+    <header class="letterhead">
+      <img src="https://coastalwaysplumbing.com/assets/logo-white.png" alt="Coastal Ways Plumbing" onerror="this.style.display='none'">
+      <div class="doctype">Water Efficiency<b>Compliance Certificate</b></div>
+    </header>
+    <div class="contact-strip">
+      Jilliby NSW 2259 <span class="dot">·</span> 0402 269 088
+      <span class="dot">·</span> coastalwaysplumbing@outlook.com
+      <span class="dot">·</span> coastalwaysplumbing.com.au
+      <span class="dot">·</span> Licence 468634C <span class="dot">·</span> ABN 62 284 909 142
+    </div>
+
+    <div class="body-area">
+      <div class="eyebrow">NSW Residential Tenancies Act 2010 · Reg 10, RT Regulation 2019</div>
+      <h1>Water Efficiency <em>Compliance</em> Certificate</h1>
+      <p class="sub-title">Issued to confirm that the property identified below satisfies the prescribed water efficiency measures, permitting the landlord to pass water usage charges to the tenant in accordance with section 39(1)(b) of the Residential Tenancies Act 2010 (NSW).</p>
+
+      <section class="issued">
+        <div class="block">
+          <div class="block-label">Property certified</div>
+          <dl>
+            <dt>Address</dt>
+            <dd><textarea class="fld grow" name="property_address" rows="1" placeholder="e.g. 26 Belyando Crescent, Blue Haven NSW 2262"></textarea>
+                <div class="req-warn" id="addrWarn">Add the property address before saving</div></dd>
+            <dt>Inspected</dt><dd><input class="fld mono" name="inspection_date" placeholder="DD Mmm YYYY"></dd>
+            <dt>Owner / agent</dt>
+            <dd><input class="fld" name="owner_name" placeholder="Contact name (e.g. Managing Agent)">
+                <input class="fld" name="owner_company" placeholder="Agency / company (or Private owner)"></dd>
+            <dt>Owner address</dt><dd><textarea class="fld grow" name="owner_address" rows="1" placeholder="Owner / agent postal address"></textarea></dd>
+          </dl>
+        </div>
+        <div class="block">
+          <div class="block-label">Certifying plumber</div>
+          <dl>
+            <dt>Plumber</dt><dd>Beau Petterson</dd>
+            <dt>Business</dt><dd>Coastal Ways Plumbing</dd>
+            <dt>NSW Licence</dt><dd class="mono">468634C</dd>
+            <dt>ABN</dt><dd class="mono">62 284 909 142</dd>
+            <dt>Issued</dt><dd><input class="fld mono" name="issue_date" placeholder="DD Mmm YYYY"></dd>
+          </dl>
+        </div>
+      </section>
+
+      <section class="declaration">
+        <p class="lede"><b>I, Beau Petterson</b>, holding a plumbing licence under the Home Building Act 1989 (NSW) (Licence No. <b>468634C</b>), certify that on the inspection date specified above I attended the property identified above and inspected the plumbing fixtures at the property. I confirm that, as at the inspection date:</p>
+        <ol>
+          <li>All <b>shower heads</b> at the property have a maximum flow rate of <b>9 litres per minute</b>.</li>
+          <li>All <b>internal cold water taps and single mixer taps</b> serving kitchen sinks and bathroom hand basins have a maximum flow rate of <b>9 litres per minute</b>.</li>
+          <li>All <b>toilets</b> at the property are dual-flush with a minimum <b>3-star WELS rating</b>, in accordance with the Water Efficiency Labelling and Standards Act 2005 (Cth).</li>
+          <li>There are <b>no leaking taps or toilets</b> at the property.</li>
+          <li>The property is supplied by an <b>individually metered</b> water service.</li>
+        </ol>
+        <p class="cite">The property therefore <b>satisfies the water efficiency measures prescribed by clause 10</b> of the <b>Residential Tenancies Regulation 2019 (NSW)</b> for the purposes of <b>section 39(1)(b)</b> of the <b>Residential Tenancies Act 2010 (NSW)</b>.</p>
+      </section>
+
+      <div class="blk-label">Fixtures inspected</div>
+      <textarea class="fld grow" name="fixtures_list" rows="2"
+        placeholder="Kitchen — sink mixer · Main bathroom — hand-basin mixer, shower head, dual-flush toilet · Laundry — tub tap · (extend with ensuite / 2nd bathroom / separate WC if applicable)"></textarea>
+
+      <section class="signature">
+        <div class="sig">
+          <div class="blk-label">Plumber signature</div>
+          <div class="sig-pad-wrap">
+            <canvas class="sig-pad" id="sigPad"></canvas>
+            <button class="sig-upload no-print" id="sigUploadBtn" type="button">⤒ upload</button>
+            <button class="sig-clear no-print" id="sigClear" type="button">clear</button>
+            <input type="file" id="sigUpload" accept="image/*" hidden>
+          </div>
+          <div class="sig-cap"><b>Beau Petterson</b> · Coastal Ways Plumbing · Licence 468634C</div>
+        </div>
+        <div class="date-row">
+          <label>Date signed</label>
+          <input class="fld mono" name="date_signed" placeholder="DD Mmm YYYY">
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <div>Coastal Ways Plumbing &nbsp;·&nbsp; Water Efficiency Compliance Certificate</div>
+      <div>coastalwaysplumbing.com.au</div>
+    </footer>
+
+  </div>
+</div>
+
+<script>
+"use strict";
+const LS_KEY="cwp-cert-builder-v1";
+const $=(s,el=document)=>el.querySelector(s);
+let state={fields:{},sig:""};
+let saveTimer=null;
+function save(){clearTimeout(saveTimer);saveTimer=setTimeout(()=>{try{localStorage.setItem(LS_KEY,JSON.stringify(state));}catch(e){}},300);}
+function load(){try{const r=localStorage.getItem(LS_KEY);if(!r)return;const s=JSON.parse(r);if(s&&typeof s==="object"){state.fields=s.fields||{};state.sig=s.sig||"";}}catch(e){}}
+function autoGrow(el){el.style.height="auto";el.style.height=el.scrollHeight+"px";}
+function bindFields(){
+  document.querySelectorAll("[name]").forEach(el=>{
+    const n=el.name;
+    if(state.fields[n]!=null)el.value=state.fields[n];
+    el.addEventListener("input",()=>{state.fields[n]=el.value;if(el.classList.contains("grow"))autoGrow(el);validate();save();});
+    if(el.classList.contains("grow"))autoGrow(el);
+  });
+}
+function validate(){const empty=!(state.fields.property_address||"").trim();$("#addrWarn").classList.toggle("show",empty);return !empty;}
+function initSig(){
+  const cv=$("#sigPad"),ctx=cv.getContext("2d");
+  function fit(){const r=cv.getBoundingClientRect(),dpr=window.devicePixelRatio||1,data=state.sig;
+    cv.width=Math.round(r.width*dpr);cv.height=Math.round(r.height*dpr);ctx.scale(dpr,dpr);
+    ctx.lineWidth=1.8;ctx.lineCap="round";ctx.lineJoin="round";ctx.strokeStyle="#10202D";
+    if(data){const im=new Image();im.onload=()=>ctx.drawImage(im,0,0,r.width,r.height);im.src=data;}}
+  let drawing=false,last=null;
+  const pos=e=>{const r=cv.getBoundingClientRect(),t=e.touches?e.touches[0]:e;return{x:t.clientX-r.left,y:t.clientY-r.top};};
+  cv.addEventListener("pointerdown",e=>{drawing=true;last=pos(e);e.preventDefault();});
+  cv.addEventListener("pointermove",e=>{if(!drawing)return;const p=pos(e);ctx.beginPath();ctx.moveTo(last.x,last.y);ctx.lineTo(p.x,p.y);ctx.stroke();last=p;e.preventDefault();});
+  window.addEventListener("pointerup",()=>{if(!drawing)return;drawing=false;try{state.sig=cv.toDataURL("image/png");save();}catch(e){}});
+  $("#sigClear").addEventListener("click",()=>{const r=cv.getBoundingClientRect();ctx.clearRect(0,0,r.width,r.height);state.sig="";save();});
+  setTimeout(fit,60);window.addEventListener("resize",()=>setTimeout(fit,60));
+}
+function placeImageOnPad(file){
+  const cv=document.getElementById("sigPad"); if(!cv) return;
+  const ctx=cv.getContext("2d"); const r=cv.getBoundingClientRect();
+  const url=URL.createObjectURL(file); const img=new Image();
+  img.onload=()=>{ URL.revokeObjectURL(url);
+    ctx.clearRect(0,0,r.width,r.height);
+    const pad=6, mw=r.width-pad*2, mh=r.height-pad*2;
+    const s=Math.min(mw/img.naturalWidth, mh/img.naturalHeight);
+    const w=img.naturalWidth*s, h=img.naturalHeight*s;
+    ctx.drawImage(img,(r.width-w)/2,(r.height-h)/2,w,h);
+    try{ state.sig=cv.toDataURL("image/png"); save(); }catch(e){}
+  };
+  img.onerror=()=>URL.revokeObjectURL(url);
+  img.src=url;
+}
+function syncHeights(){document.querySelectorAll("textarea.grow").forEach(autoGrow);}
+function init(){
+  load();bindFields();initSig();validate();
+  $("#sigUploadBtn").addEventListener("click",()=>$("#sigUpload").click());
+  $("#sigUpload").addEventListener("change",e=>{if(e.target.files[0])placeImageOnPad(e.target.files[0]);e.target.value="";});
+  $("#saveBtn").addEventListener("click",()=>{document.activeElement&&document.activeElement.blur();syncHeights();window.print();});
+  $("#clearBtn").addEventListener("click",()=>{
+    if(confirm("Start a blank certificate? This clears everything in this browser.")){
+      localStorage.removeItem(LS_KEY);state={fields:{},sig:""};
+      document.querySelectorAll("[name]").forEach(el=>el.value="");
+      const cv=$("#sigPad");cv.getContext("2d").clearRect(0,0,cv.width,cv.height);
+      bindFields();validate();
+    }
+  });
+  window.addEventListener("beforeprint",syncHeights);
+}
+document.addEventListener("DOMContentLoaded",init);
+</script>
+</body>
+</html>
