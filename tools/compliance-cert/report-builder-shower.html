@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Shower Leak Test Report — Builder · Coastal Ways Plumbing</title>
+<!--
+  ============================================================================
+  COASTAL WAYS PLUMBING · Shower Leak Test Report — REPORT BUILDER
+  ============================================================================
+  Browser authoring tool (client-side only, no server, no build step).
+  Emma opens this page, fills auto-growing fields, records moisture readings &
+  Pass/Fail results, adds site photos (adaptive frames — whole photo, no crop),
+  then "Save as PDF" → branded multi-page PDF via the browser's print-to-PDF.
+
+  Built to match report-builder.html (Water Efficiency) as a matched set.
+  Anchored to: AS 3740:2021 · NCC 2022 (Vol Two Part 10.2) · Home Building
+  Act 1989 (NSW) s18E. NOT a statutory certificate — a professional diagnostic
+  report. Disclaimers pre-filled (editable) from regulatory research.
+  ============================================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Roboto:wght@300;400;500&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF; --ink:#10202D; --ink-soft:#384850; --slate:#536268;
+    --cool-grey:#C4CFD1; --teal:#055A5F;
+    --pass:#2D9D5A; --pass-bg:#E8F5EE;
+    --fail:#C84A2D; --fail-bg:#FBEAE5;
+    --warn:#B6802A; --warn-bg:#FBF2E1;
+    --na:#7A8890;   --na-bg:#EEF1F2;
+    --hairline:rgba(16,32,45,0.10);
+    --hairline-mid:rgba(16,32,45,0.18);
+    --field-bg:rgba(5,90,95,0.05);
+    --field-focus:rgba(5,90,95,0.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{
+    background:#E7EAEB; color:var(--ink);
+    font-family:'Space Grotesk','Inter',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased; print-color-adjust:exact; -webkit-print-color-adjust:exact;
+  }
+
+  /* ===================== APP SHELL (screen only) ===================== */
+  .app-bar{
+    position:sticky; top:0; z-index:50;
+    background:var(--ink); color:#fff;
+    display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+    padding:12px 22px; box-shadow:0 2px 10px rgba(16,32,45,.18);
+  }
+  .app-bar .brand{font-weight:500;letter-spacing:.02em;font-size:15px}
+  .app-bar .brand b{color:#fff}
+  .app-bar .brand span{color:var(--cool-grey);font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;display:block;margin-top:1px}
+  .app-bar .spacer{margin-left:auto}
+  .btn{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:13.5px;cursor:pointer;
+    border:1.5px solid transparent;border-radius:8px;padding:9px 18px;display:inline-flex;align-items:center;gap:8px;transition:.12s}
+  .btn-primary{background:var(--teal);color:#fff}
+  .btn-primary:hover{background:#06484c;transform:translateY(-1px)}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+  .btn-sm{font-size:12px;padding:6px 12px;border-radius:6px}
+
+  .hint-bar{background:#FBF6EE;border-bottom:1px solid var(--hairline);
+    color:var(--ink-soft);font-size:12.5px;line-height:1.5;padding:9px 22px;text-align:center}
+  .hint-bar b{color:var(--ink)}
+
+  .workspace{padding:26px 16px 80px; display:flex; justify-content:center}
+
+  /* ===================== SHEET (the document / printed paper) ===================== */
+  .sheet{
+    width:210mm; max-width:100%; background:var(--paper); color:var(--ink);
+    box-shadow:0 10px 40px rgba(16,32,45,.14); border-radius:2px; overflow:hidden;
+  }
+
+  .letterhead{background:var(--ink);color:#fff;padding:7mm 12mm;min-height:20mm;
+    display:flex;align-items:center;justify-content:space-between}
+  .letterhead img{height:13mm;width:auto;display:block}
+  .letterhead .doctype{font-size:10px;font-weight:400;letter-spacing:.34em;text-transform:uppercase;opacity:.92;text-align:right}
+  .letterhead .doctype b{display:block;font-weight:500;opacity:1}
+  .contact-strip{padding:3mm 12mm;border-bottom:1px solid var(--hairline);
+    font-family:'Roboto Mono',ui-monospace,monospace;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);text-align:center}
+  .contact-strip .dot{color:var(--cool-grey);margin:0 5px}
+
+  .body-area{padding:6mm 12mm 10mm}
+
+  .eyebrow{font-family:'Roboto Mono',ui-monospace,monospace;font-size:8px;letter-spacing:.20em;
+    text-transform:uppercase;color:var(--teal);margin-bottom:2mm;display:flex;align-items:center;gap:9px}
+  .eyebrow::before{content:'';width:20px;height:1.5px;background:var(--teal);flex:0 0 auto}
+  h1{font-weight:400;font-size:23px;letter-spacing:-.025em;line-height:1.05;text-transform:uppercase;margin-bottom:5mm}
+  h1 em{font-style:normal;color:var(--teal);font-weight:500}
+
+  /* Issued grid */
+  .issued{display:grid;grid-template-columns:1fr 1fr;gap:8mm;margin-bottom:6mm}
+  .block-label{font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--teal);margin-bottom:2mm;padding-bottom:1.5mm;border-bottom:1.5px solid var(--teal)}
+  dl{display:grid;grid-template-columns:28mm 1fr;gap:2mm 3mm;align-items:start}
+  dt{font-size:10px;color:var(--slate);font-weight:400;padding-top:2px}
+  dd{font-size:11px;color:var(--ink);font-weight:500}
+  dd.mono{font-family:'Roboto Mono',monospace;font-size:9.5px}
+
+  /* Editable fields */
+  .fld{font:inherit;font-size:11px;color:var(--ink);width:100%;border:none;background:var(--field-bg);
+    border-bottom:1px solid var(--hairline-mid);border-radius:3px 3px 0 0;padding:2px 5px;resize:none;line-height:1.4;display:block}
+  .fld::placeholder{color:var(--slate);opacity:.7;font-weight:300;font-style:italic}
+  .fld:focus{outline:none;background:var(--field-focus);border-bottom-color:var(--teal)}
+  .fld.mono{font-family:'Roboto Mono',monospace;font-size:9.5px}
+  textarea.fld{overflow:hidden;min-height:1.5em}
+  .fld + .fld{margin-top:1.5mm}
+  select.fld{appearance:none;-webkit-appearance:none;cursor:pointer;
+    background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23536268' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 5px center;padding-right:16px}
+
+  /* Section heading */
+  .sec-head{display:flex;justify-content:space-between;align-items:baseline;
+    border-left:2.5px solid var(--teal);padding:1mm 0 1mm 8px;margin:6mm 0 2.5mm}
+  .sec-head .t{font-size:12px;font-weight:500;color:var(--ink)}
+  .sec-head .th{font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.08em;color:var(--slate);text-transform:uppercase}
+
+  .blk-label{font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin:5mm 0 2mm}
+
+  /* Detail grids (shower details, etc.) */
+  .dgrid{display:grid;grid-template-columns:1fr 1fr;gap:2mm 8mm}
+  .dgrid .f label{font-family:'Roboto Mono',monospace;font-size:7.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);display:block;margin-bottom:.5mm}
+
+  /* Repeatable multi-column tables */
+  .tbl{margin-top:1mm}
+  .tbl-head,.tbl-row{display:grid;align-items:center;gap:6px}
+  .tbl-head{font-family:'Roboto Mono',monospace;font-size:7.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--slate);
+    padding:0 26px 1.5mm 2px;border-bottom:1px solid var(--hairline-mid)}
+  .tbl-row{padding:1.2mm 0;border-top:1px dashed var(--hairline)}
+  .tbl-row:first-of-type{border-top:none}
+  .tbl-row input{border:none;background:transparent;font:inherit;font-size:10px;color:var(--ink);width:100%;padding:1px 3px;border-radius:3px}
+  .tbl-row input:focus{outline:none;background:var(--field-bg)}
+  .tbl-row .delta{font-size:9.5px;font-family:'Roboto Mono',monospace;color:var(--slate);padding-left:3px}
+  .tbl-row .delta.up{color:var(--fail)}
+  .row-x{border:none;background:transparent;color:var(--cool-grey);cursor:pointer;font-size:15px;line-height:1;padding:0 2px;justify-self:end}
+  .row-x:hover{color:var(--fail)}
+  /* column templates */
+  .cols-pretest{grid-template-columns:1fr 22mm 26mm 18px}
+  .cols-obs{grid-template-columns:20mm 1fr 18px}
+  .cols-moist{grid-template-columns:1fr 20mm 20mm 24mm 18px}
+
+  .add-row{margin-top:1.5mm;font-family:'Roboto Mono',monospace;font-size:9px;letter-spacing:.06em;
+    color:var(--teal);background:none;border:1px dashed var(--cool-grey);border-radius:5px;padding:3px 9px;cursor:pointer}
+  .add-row:hover{border-color:var(--teal);background:var(--field-bg)}
+
+  /* Areas Pass/Fail rows */
+  .insp-row{display:flex;align-items:center;gap:8px;padding:1.4mm 0;border-top:1px dashed var(--hairline)}
+  .insp-row:first-of-type{border-top:none}
+  .insp-row .loc{flex:1}
+  .insp-row .loc input{border:none;background:transparent;font:inherit;font-size:10.5px;color:var(--ink);width:100%;padding:1px 2px}
+  .insp-row .loc input:focus{outline:none;background:var(--field-bg);border-radius:3px}
+
+  /* Segmented controls */
+  .seg{display:inline-flex;border:1px solid var(--hairline-mid);border-radius:6px;overflow:hidden;flex:0 0 auto}
+  .seg label{position:relative;cursor:pointer}
+  .seg input{position:absolute;opacity:0;width:0;height:0}
+  .seg span{display:block;font-family:'Roboto Mono',monospace;font-size:8.5px;letter-spacing:.05em;text-transform:uppercase;
+    padding:3px 9px;color:var(--slate);border-left:1px solid var(--hairline);background:#fff;transition:.1s}
+  .seg label:first-child span{border-left:none}
+  .seg .p input:checked + span{background:var(--pass-bg);color:var(--pass);font-weight:500;box-shadow:inset 0 0 0 1.5px var(--pass)}
+  .seg .f input:checked + span{background:var(--fail-bg);color:var(--fail);font-weight:500;box-shadow:inset 0 0 0 1.5px var(--fail)}
+  .seg .w input:checked + span{background:var(--warn-bg);color:var(--warn);font-weight:500;box-shadow:inset 0 0 0 1.5px var(--warn)}
+  .seg .n input:checked + span{background:var(--na-bg);color:var(--na);font-weight:500;box-shadow:inset 0 0 0 1.5px var(--na)}
+  .seg.lg span{font-size:9.5px;padding:5px 14px}
+
+  /* Checklists */
+  .checks{display:grid;grid-template-columns:1fr 1fr;gap:1mm 6mm;margin-top:1mm}
+  .chk{display:flex;align-items:flex-start;gap:6px;font-size:10.5px;color:var(--ink);cursor:pointer;padding:.6mm 0}
+  .chk input{appearance:none;-webkit-appearance:none;width:13px;height:13px;border:1.5px solid var(--hairline-mid);border-radius:3px;
+    margin-top:1px;flex:0 0 auto;cursor:pointer;position:relative;background:#fff}
+  .chk input:checked{background:var(--teal);border-color:var(--teal)}
+  .chk input:checked::after{content:'';position:absolute;left:3.5px;top:1px;width:3.5px;height:7px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+
+  /* Severity + major-defect summary */
+  .judge{display:grid;grid-template-columns:1fr 1fr;gap:8mm;margin-top:2mm;align-items:start}
+  .judge .q{font-size:10px;color:var(--slate);margin-bottom:1.5mm}
+  .judge .note{font-family:'Roboto',sans-serif;font-size:8.5px;line-height:1.5;font-weight:300;color:var(--ink-soft);margin-top:1.5mm}
+
+  /* Reference key (collapsible) */
+  details.ref{margin-top:2mm;border:1px solid var(--hairline);border-radius:6px;background:var(--na-bg);overflow:hidden}
+  details.ref summary{cursor:pointer;list-style:none;font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--teal);padding:2mm 3mm}
+  details.ref summary::-webkit-details-marker{display:none}
+  details.ref[open] summary{border-bottom:1px solid var(--hairline)}
+  details.ref .ref-body{padding:2mm 3mm;font-family:'Roboto',sans-serif;font-size:9px;line-height:1.55;color:var(--ink-soft)}
+  details.ref .ref-body b{color:var(--ink)}
+
+  /* Signature */
+  .summary{display:grid;grid-template-columns:1fr 1fr;gap:8mm;margin-top:4mm;align-items:end}
+  .sig-pad-wrap{position:relative}
+  .sig-pad{width:100%;height:24mm;border:1px solid var(--hairline-mid);border-radius:5px;background:#fff;display:block;touch-action:none;cursor:crosshair}
+  .sig-clear{position:absolute;top:4px;right:6px;font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.05em;
+    color:var(--slate);background:rgba(255,255,255,.9);border:1px solid var(--hairline);border-radius:4px;padding:2px 6px;cursor:pointer}
+  .sig-upload{position:absolute;top:4px;left:6px;font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.05em;
+    color:var(--teal);background:rgba(255,255,255,.92);border:1px solid var(--hairline);border-radius:4px;padding:2px 6px;cursor:pointer}
+  .sig-upload:hover{border-color:var(--teal)}
+  .sig-cap{font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin-top:1.5mm;display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .sig-cap input{border:none;border-bottom:1px solid var(--hairline-mid);background:transparent;font-family:'Roboto Mono',monospace;font-size:9px;color:var(--ink);padding:1px 3px}
+
+  /* Photos */
+  .photos-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:6mm 0 2mm}
+  .photos-head .blk-label{margin:0}
+  .photo-intro{font-family:'Roboto',sans-serif;font-size:9.5px;line-height:1.5;font-weight:300;color:var(--ink-soft);
+    margin-bottom:3mm;padding-left:8px;border-left:2.5px solid var(--teal)}
+  .dropzone{border:1.6px dashed var(--cool-grey);border-radius:6px;background:var(--field-bg);
+    padding:7mm;text-align:center;color:var(--slate);font-size:11px;cursor:pointer;transition:.12s;margin-bottom:3mm}
+  .dropzone.drag{border-color:var(--teal);background:var(--field-focus);color:var(--teal)}
+  .dropzone b{color:var(--teal)}
+  .photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:6mm 7mm}
+  .photo-card{display:flex;flex-direction:column;gap:2mm}
+  .photo-frame{position:relative;border:1px solid var(--hairline-mid);border-radius:5px;overflow:hidden;background:var(--na-bg)}
+  /* frame grows to each photo's own shape (no crop, no zoom); object-fit:contain
+     only kicks in as a safety net when a very tall image hits the max-height cap */
+  .photo-frame img{width:100%;height:auto;max-height:120mm;object-fit:contain;display:block}
+  .photo-ctrls{position:absolute;top:4px;right:4px;display:flex;gap:3px}
+  .photo-ctrls button{width:20px;height:20px;border:none;border-radius:4px;background:rgba(16,32,45,.72);color:#fff;
+    font-size:12px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .photo-ctrls button:hover{background:var(--ink)}
+  .photo-ctrls .del:hover{background:var(--fail)}
+  .photo-cap{font-size:9px;line-height:1.4}
+  .photo-empty{grid-column:1/-1;color:var(--slate);font-size:10.5px;font-style:italic;text-align:center;padding:4mm 0}
+
+  /* Disclaimer block */
+  .disclaimer{margin-top:5mm;border:1px solid var(--hairline);border-radius:6px;background:#FBFBFA;padding:3mm 4mm}
+  .disclaimer .blk-label{margin:0 0 2mm}
+  .disclaimer textarea{font-family:'Roboto',sans-serif;font-size:8.5px;line-height:1.55;color:var(--ink-soft);width:100%;
+    border:none;background:transparent;resize:none;overflow:hidden;display:block}
+  .disclaimer textarea:focus{outline:none;background:var(--field-bg);border-radius:3px}
+
+  footer{padding:4mm 12mm;border-top:1px solid var(--hairline);display:flex;justify-content:space-between;
+    font-family:'Roboto Mono',monospace;font-size:7.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--slate)}
+
+  .req-warn{color:var(--fail);font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.05em;margin-top:1mm;display:none}
+  .req-warn.show{display:block}
+
+  /* ===================== PRINT ===================== */
+  @media print{
+    @page{size:A4;margin:12mm 11mm 16mm}
+    html,body{background:#fff}
+    .app-bar,.hint-bar,.no-print,.dropzone,.add-row,.row-x,.photo-ctrls,.sig-clear{display:none!important}
+    .workspace{padding:0;display:block}
+    .sheet{width:auto;max-width:none;box-shadow:none;border-radius:0;overflow:visible}
+    .letterhead{border-radius:0}
+    .body-area{padding:5mm 0 0}
+    .letterhead,.contact-strip{margin:0 -1mm}
+    .fld,.tbl-row input,.insp-row .loc input,.sig-cap input,.disclaimer textarea{background:transparent!important;border-bottom-color:transparent!important}
+    .fld::placeholder,.tbl-row input::placeholder,.insp-row .loc input::placeholder,.sig-cap input::placeholder{color:transparent!important}
+    select.fld{background-image:none}
+    .fld:placeholder-shown{min-height:0}
+    details.ref{background:#fff}
+    details.ref[open] summary{border-bottom:1px solid var(--hairline)}
+    .sec-block,.photo-card,.summary,.issued,.judge,.disclaimer{break-inside:avoid}
+    .sec-head{break-after:avoid}
+    .req-warn{display:none!important}
+    footer{position:fixed;bottom:0;left:0;right:0;border-top:1px solid var(--hairline);
+      padding:3mm 0;background:#fff}
+  }
+</style>
+</head>
+<body>
+
+<div class="app-bar no-print">
+  <div class="brand"><b>Report Builder</b><span>Coastal Ways · Shower Leak Test</span></div>
+  <div class="spacer"></div>
+  <button class="btn btn-ghost btn-sm" id="clearBtn" type="button">Start blank</button>
+  <button class="btn btn-primary" id="saveBtn" type="button">⤓ &nbsp;Save as PDF</button>
+</div>
+<div class="hint-bar no-print">
+  Fill it in below — boxes grow as you type, add rows &amp; photos as needed. When ready, click <b>Save as PDF</b> and choose <b>“Save as PDF”</b> as the Destination (Margins: <b>Default</b>). Your work auto-saves in this browser.
+</div>
+
+<div class="workspace">
+  <div class="sheet" id="sheet">
+
+    <header class="letterhead">
+      <img src="https://coastalwaysplumbing.com/assets/logo-white.png" alt="Coastal Ways Plumbing"
+           onerror="this.style.display='none'">
+      <div class="doctype">Shower Leak<b>Test Report</b></div>
+    </header>
+    <div class="contact-strip">
+      Jilliby NSW 2259 <span class="dot">·</span> 0402 269 088
+      <span class="dot">·</span> coastalwaysplumbing@outlook.com
+      <span class="dot">·</span> coastalwaysplumbing.com.au
+      <span class="dot">·</span> Licence 468634C <span class="dot">·</span> ABN 62 284 909 142
+    </div>
+
+    <div class="body-area">
+      <div class="eyebrow">AS 3740:2021 · NCC 2022 Vol Two Pt 10.2 · Home Building Act 1989 (NSW)</div>
+      <h1>Shower Leak <em>Test</em> Report</h1>
+
+      <section class="issued">
+        <div class="block">
+          <div class="block-label">Property inspected</div>
+          <dl>
+            <dt>Address</dt>
+            <dd><textarea class="fld grow" name="property_address" rows="1" placeholder="e.g. 26 Belyando Crescent, Blue Haven NSW 2262"></textarea>
+                <div class="req-warn" id="addrWarn">Add the property address before saving</div></dd>
+            <dt>Lot / Unit</dt>
+            <dd><input class="fld" name="lot_unit" placeholder="Lot / unit no. (if strata)"></dd>
+            <dt>Strata plan</dt>
+            <dd><input class="fld mono" name="strata_no" placeholder="SP_____ (if applicable)"></dd>
+            <dt>Client</dt>
+            <dd><input class="fld" name="client_name" placeholder="Client name">
+                <input class="fld" name="client_role" placeholder="Owner / landlord / tenant / agent / strata mgr / buyer"></dd>
+            <dt>Contact</dt>
+            <dd><input class="fld" name="client_contact" placeholder="Phone / email"></dd>
+            <dt>Purpose</dt>
+            <dd><select class="fld" name="purpose">
+                <option value="" disabled selected>Select purpose…</option>
+                <option>Investigation of reported leak</option>
+                <option>Waterproofing integrity test</option>
+                <option>Defect assessment</option>
+                <option>Insurance investigation</option>
+                <option>Pre-handover inspection</option>
+                <option>Pre-sale / pre-purchase</option>
+                <option>Tenancy / landlord pre-repair</option>
+                <option>Other</option>
+              </select></dd>
+          </dl>
+        </div>
+        <div class="block">
+          <div class="block-label">Inspecting plumber</div>
+          <dl>
+            <dt>Plumber</dt><dd>Beau Petterson</dd>
+            <dt>Business</dt><dd>Coastal Ways Plumbing</dd>
+            <dt>NSW Licence</dt><dd class="mono">468634C</dd>
+            <dt>ABN</dt><dd class="mono">62 284 909 142</dd>
+            <dt>Report no.</dt><dd><input class="fld mono" name="report_no" placeholder="CWP-SLT-2026-____"></dd>
+            <dt>Inspected</dt><dd><input class="fld mono" name="inspection_date" placeholder="DD Mmm YYYY"></dd>
+            <dt>Issued</dt><dd><input class="fld mono" name="issue_date" placeholder="DD Mmm YYYY"></dd>
+          </dl>
+        </div>
+      </section>
+
+      <!-- 3. Shower details -->
+      <div class="sec-head"><span class="t">Shower details</span><span class="th">Recess inspected</span></div>
+      <div class="dgrid">
+        <div class="f"><label>Bathroom location</label><input class="fld" name="sd_location" placeholder="Ensuite / main bathroom / level"></div>
+        <div class="f"><label>Shower type</label><input class="fld" name="sd_type" placeholder="Tiled recess / framed / semi-frameless / frameless / prefab base"></div>
+        <div class="f"><label>Floor finish</label><input class="fld" name="sd_floor" placeholder="Tiles / stone / other"></div>
+        <div class="f"><label>Wall finish</label><input class="fld" name="sd_wall" placeholder="Tiles / panels / other"></div>
+        <div class="f"><label>Drain / waste type</label><input class="fld" name="sd_drain" placeholder="Floor waste / linear / hob"></div>
+        <div class="f"><label>Approx. age of install</label><input class="fld" name="sd_age" placeholder="e.g. ~8 years / unknown"></div>
+      </div>
+
+      <!-- 4. Test method -->
+      <div class="sec-head"><span class="t">Test method</span><span class="th">Procedure used</span></div>
+      <div class="checks" id="methodChecks"></div>
+      <div class="dgrid" style="margin-top:2.5mm">
+        <div class="f"><label>Test duration</label><input class="fld" name="tm_duration" placeholder="e.g. 30 minutes continuous / 24 h flood"></div>
+        <div class="f"><label>Water source</label><input class="fld" name="tm_source" placeholder="e.g. shower outlet / hose"></div>
+      </div>
+      <div class="blk-label">Areas tested &amp; procedure</div>
+      <textarea class="fld grow" name="tm_narrative" rows="2"
+        placeholder="e.g. The shower enclosure was isolated and subjected to a controlled water test. Water was continuously applied to the floor, wall junctions, corners, screen channels, penetrations and waste outlet for [duration]. Adjacent rooms and lower levels were monitored for moisture ingress."></textarea>
+
+      <!-- 5. Pre-test conditions -->
+      <div class="sec-head"><span class="t">Pre-test conditions</span><span class="th">Baseline before testing</span></div>
+      <div class="tbl">
+        <div class="tbl-head cols-pretest"><span>Location</span><span>Moisture %</span><span>Condition</span><span></span></div>
+        <div id="preTestRows"></div>
+      </div>
+      <button class="add-row no-print" id="addPreTest" type="button">+ add baseline reading</button>
+      <div class="blk-label">Existing damage / defects noted</div>
+      <textarea class="fld grow" name="pre_notes" rows="2"
+        placeholder="Existing staining, cracked/missing grout, loose silicone, mould, prior repairs, visible cracks… or Nil"></textarea>
+
+      <!-- 6. Test results -->
+      <div class="sec-head"><span class="t">Test results</span><span class="th">By area · Pass / Fail</span></div>
+      <div id="areas"></div>
+      <button class="add-row no-print" id="addArea" type="button">+ add area</button>
+      <div class="blk-label">Timed observations during test</div>
+      <div class="tbl">
+        <div class="tbl-head cols-obs"><span>Time</span><span>Observation</span><span></span></div>
+        <div id="obsRows"></div>
+      </div>
+      <button class="add-row no-print" id="addObs" type="button">+ add observation</button>
+
+      <!-- 7. Moisture assessment -->
+      <div class="sec-head"><span class="t">Moisture assessment</span><span class="th">Before vs after</span></div>
+      <div class="tbl">
+        <div class="tbl-head cols-moist"><span>Location</span><span>Before %</span><span>After %</span><span>Change</span><span></span></div>
+        <div id="moistRows"></div>
+      </div>
+      <button class="add-row no-print" id="addMoist" type="button">+ add location</button>
+
+      <!-- 8. Defects identified -->
+      <div class="sec-head"><span class="t">Defects identified</span><span class="th">Tick all that apply</span></div>
+      <div class="checks" id="defectChecks"></div>
+      <textarea class="fld grow" name="defect_notes" rows="1" style="margin-top:2mm" placeholder="Further detail on defects / location…"></textarea>
+
+      <!-- 9. Severity & major-defect characterisation -->
+      <div class="sec-head"><span class="t">Severity &amp; classification</span><span class="th">Home Building Act s18E</span></div>
+      <div class="judge">
+        <div>
+          <div class="q">Overall severity</div>
+          <div class="seg" role="radiogroup" aria-label="Severity">
+            <label class="n"><input type="radio" name="severity" value="minor"><span>Minor</span></label>
+            <label class="w"><input type="radio" name="severity" value="moderate"><span>Moderate</span></label>
+            <label class="f"><input type="radio" name="severity" value="significant"><span>Significant</span></label>
+          </div>
+          <div class="note">Minor = cosmetic / localised sealant · Moderate = active leak, limited spread · Significant = active leak with damage to structure or adjacent areas.</div>
+        </div>
+        <div>
+          <div class="q">Consistent with a <b>major defect</b> (habitability / structural consequence)?</div>
+          <div class="seg" role="radiogroup" aria-label="Major defect">
+            <label class="f"><input type="radio" name="major_defect" value="yes"><span>Yes</span></label>
+            <label class="p"><input type="radio" name="major_defect" value="no"><span>No</span></label>
+            <label class="n"><input type="radio" name="major_defect" value="uncertain"><span>Uncertain</span></label>
+          </div>
+          <div class="note">Waterproofing is a “major element” (s18E) but a leak is only a <b>major defect</b> if it also causes a habitability or structural consequence — which drives the 6-yr vs 2-yr warranty period. Not a legal determination.</div>
+        </div>
+      </div>
+      <details class="ref no-print-open">
+        <summary>Reference · what makes a waterproofing leak a “major defect”</summary>
+        <div class="ref-body">
+          Two-stage test under <b>Home Building Act 1989 (NSW) s18E</b>: (1) the defect must affect a <b>major element</b> — waterproofing qualifies; AND (2) it must cause, or be likely to cause, an inability to inhabit/use the building, destruction, or threat of structural collapse. NCAT case law (<b>Vella v Mir</b>; <b>Ashton v Stevenson</b>) confirms a waterproofing failure is <b>not</b> automatically a major defect without a proven consequence. Major defects carry a <b>6-year</b> warranty; others <b>2 years</b>.
+        </div>
+      </details>
+
+      <!-- Photos -->
+      <div class="photos-head">
+        <div class="blk-label">Photographic evidence</div>
+        <button class="btn btn-primary btn-sm no-print" id="addPhotoBtn" type="button">+ Add photos</button>
+      </div>
+      <div class="photo-intro">Recommended: overall shower before testing · water test in progress · each moisture-meter reading location · thermal anomalies (if used) · any area showing leakage or damage. Add as many as you need; they flow onto extra pages.</div>
+      <div class="dropzone no-print" id="dropzone">Drag photos here, or <b>click to choose</b> from your device</div>
+      <input type="file" id="fileInput" accept="image/*" multiple hidden>
+      <div class="photo-grid" id="photoGrid"></div>
+
+      <!-- 10. Conclusion -->
+      <div class="sec-head"><span class="t">Conclusion</span><span class="th">Result at time of inspection</span></div>
+      <div class="blk-label">Overall result</div>
+      <div class="seg lg" role="radiogroup" aria-label="Overall result">
+        <label class="p"><input type="radio" name="overall" value="pass"><span>Pass</span></label>
+        <label class="f"><input type="radio" name="overall" value="fail"><span>Fail</span></label>
+        <label class="n"><input type="radio" name="overall" value="inconclusive"><span>Inconclusive</span></label>
+      </div>
+      <textarea class="fld grow" name="conclusion" rows="2" style="margin-top:2.5mm"
+        placeholder="e.g. The shower enclosure was subjected to a 30-minute water test. No water ingress, elevated moisture readings or leakage was detected. The shower passed at the time of inspection.  — OR —  Water ingress was detected within the adjacent wall cavity; moisture readings increased significantly, indicating failure of the waterproofing system or associated components. Further investigation and rectification are recommended."></textarea>
+
+      <!-- 11. Recommendations -->
+      <div class="sec-head"><span class="t">Recommendations</span><span class="th">Suggested next steps</span></div>
+      <div class="checks" id="recChecks"></div>
+      <textarea class="fld grow" name="rec_notes" rows="1" style="margin-top:2mm" placeholder="Further detail / scope of works / urgency…"></textarea>
+
+      <!-- Declaration + signature -->
+      <section class="summary">
+        <div class="decl">
+          <div class="blk-label">Inspector declaration</div>
+          <div style="font-family:'Roboto',sans-serif;font-size:9px;line-height:1.5;color:var(--ink-soft)">
+            I certify that this inspection was carried out by me, and that this report accurately reflects my findings at the time of inspection.
+          </div>
+        </div>
+        <div class="sig">
+          <div class="blk-label">Plumber signature</div>
+          <div class="sig-pad-wrap">
+            <canvas class="sig-pad" id="sigPad"></canvas>
+            <button class="sig-upload no-print" id="sigUploadBtn" type="button">⤒ upload</button>
+            <button class="sig-clear no-print" id="sigClear" type="button">clear</button>
+            <input type="file" id="sigUpload" accept="image/*" hidden>
+          </div>
+          <div class="sig-cap">
+            <span>Beau Petterson · Lic. 468634C</span>
+            <label>Date <input class="mono" name="date_signed" placeholder="DD Mmm YYYY" style="width:24mm"></label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Scope & disclaimers -->
+      <div class="disclaimer">
+        <div class="blk-label">Scope &amp; disclaimers</div>
+        <textarea class="grow" name="disclaimer" rows="6"></textarea>
+      </div>
+
+    </div>
+
+    <footer>
+      <div>Coastal Ways Plumbing &nbsp;·&nbsp; Shower Leak Test Report</div>
+      <div>coastalwaysplumbing.com.au</div>
+    </footer>
+
+  </div>
+</div>
+
+<script>
+"use strict";
+const LS_KEY = "cwp-shower-builder-v1";
+const $ = (s,el=document)=>el.querySelector(s);
+const uid = ()=>Math.random().toString(36).slice(2,9);
+
+const METHODS = ["Flood / water-hold test","Moisture meter survey","Thermal imaging","Dye test","Visual inspection","Pipe pressure test"];
+const DEFECTS = ["Failed waterproof membrane","Cracked / missing grout","Missing / failed silicone sealant","Leaking shower screen channel","Failed waste flange connection","Water escaping beneath tiles","Migration through wall penetrations","Inadequate floor fall to waste"];
+const RECS = ["Regrout affected areas","Replace silicone sealant","Waterproof membrane repairs","Remove tiles & inspect substrate","Engage licensed waterproofing contractor","Retest by flood test after rectification","Cease shower use pending repair","Invasive investigation to confirm membrane"];
+
+const DEFAULT_DISCLAIMER =
+"This report is limited to the areas and systems inspected on the inspection date and reflects conditions at that time only; intermittent leaks may not manifest during a single test. "+
+"Flood testing and moisture-meter readings are indicative diagnostic methods. The waterproofing membrane beneath tiled surfaces cannot be directly inspected without removal of finishes — findings are based on observed symptoms and test results only, and root cause may require invasive investigation. "+
+"This report is not a statutory inspection or certificate of compliance under any Act, regulation or standard; statutory warranty rights under the Home Building Act 1989 (NSW) are determined by a court or tribunal, not by this report. In strata schemes the waterproofing membrane is generally common property while surface finishes are generally lot-owner responsibility — the registered strata plan and by-laws should be checked. "+
+"This report is prepared for the named client and stated purpose; any third party who relies on it does so at their own risk. Coastal Ways Plumbing holds current public liability and professional indemnity insurance.";
+
+function defaultPreTest(){return [
+  {id:uid(),loc:"Shower wall — low",reading:"",cond:""},
+  {id:uid(),loc:"Bathroom floor",reading:"",cond:""},
+  {id:uid(),loc:"Adjacent room wall",reading:"",cond:""},
+];}
+function defaultAreas(){return [
+  {id:uid(),name:"Shower base",result:""},
+  {id:uid(),name:"Wall / floor junction",result:""},
+  {id:uid(),name:"Waste connection",result:""},
+  {id:uid(),name:"Screen channel",result:""},
+  {id:uid(),name:"Mixer penetration",result:""},
+];}
+function defaultObs(){return [{id:uid(),time:"",obs:""}];}
+function defaultMoist(){return [
+  {id:uid(),loc:"Adjacent wall",before:"",after:""},
+  {id:uid(),loc:"Room below ceiling",before:"",after:""},
+];}
+
+let state = {fields:{}, checks:{}, preTest:defaultPreTest(), areas:defaultAreas(), obs:defaultObs(), moist:defaultMoist(), photos:[], sig:""};
+
+/* ---------- persistence ---------- */
+let saveTimer=null;
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer=setTimeout(()=>{ try{ localStorage.setItem(LS_KEY, JSON.stringify(state)); }catch(e){} },300);
+}
+function load(){
+  try{
+    const raw=localStorage.getItem(LS_KEY); if(!raw) return;
+    const s=JSON.parse(raw);
+    if(s && typeof s==="object"){
+      state.fields=s.fields||{}; state.checks=s.checks||{};
+      state.preTest=Array.isArray(s.preTest)&&s.preTest.length?s.preTest:defaultPreTest();
+      state.areas=Array.isArray(s.areas)&&s.areas.length?s.areas:defaultAreas();
+      state.obs=Array.isArray(s.obs)&&s.obs.length?s.obs:defaultObs();
+      state.moist=Array.isArray(s.moist)&&s.moist.length?s.moist:defaultMoist();
+      state.photos=Array.isArray(s.photos)?s.photos:[];
+      state.sig=s.sig||"";
+    }
+  }catch(e){}
+}
+
+/* ---------- simple named fields ---------- */
+function bindFields(){
+  document.querySelectorAll("[name]").forEach(el=>{
+    const n=el.name;
+    if(el.type==="radio"){
+      el.checked = state.fields[n]===el.value;
+      el.addEventListener("change",()=>{ if(el.checked){state.fields[n]=el.value; save();} });
+    }else{
+      if(state.fields[n]!=null) el.value=state.fields[n];
+      el.addEventListener("input",()=>{ state.fields[n]=el.value; if(el.classList.contains("grow"))autoGrow(el); validate(); save(); });
+      el.addEventListener("change",()=>{ state.fields[n]=el.value; save(); });
+      if(el.classList.contains("grow")) autoGrow(el);
+    }
+  });
+}
+function autoGrow(el){ el.style.height="auto"; el.style.height=(el.scrollHeight)+"px"; }
+function escapeHTML(s){return String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
+function escapeAttr(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+
+/* ---------- checklists ---------- */
+function renderChecks(hostId, items, group){
+  const host=$("#"+hostId); host.innerHTML="";
+  items.forEach(label=>{
+    const key=group+"::"+label;
+    const id="c_"+uid();
+    const wrap=document.createElement("label"); wrap.className="chk";
+    wrap.innerHTML=`<input type="checkbox" id="${id}" ${state.checks[key]?"checked":""}><span>${escapeHTML(label)}</span>`;
+    wrap.querySelector("input").addEventListener("change",e=>{ state.checks[key]=e.target.checked; save(); });
+    host.appendChild(wrap);
+  });
+}
+
+/* ---------- areas (Pass/Fail) ---------- */
+function segHTML(rowId, result){
+  const opt=(v,cls,label)=>`<label class="${cls}"><input type="radio" name="a_${rowId}" value="${v}" ${result===v?"checked":""}><span>${label}</span></label>`;
+  return `<div class="seg" role="radiogroup">${opt("pass","p","Pass")}${opt("fail","f","Fail")}${opt("na","n","N/A")}</div>`;
+}
+function renderAreas(){
+  const host=$("#areas"); host.innerHTML="";
+  state.areas.forEach(row=>{
+    const r=document.createElement("div"); r.className="insp-row";
+    r.innerHTML=`<div class="loc"><input value="${escapeAttr(row.name)}" placeholder="Area tested"></div>
+      ${segHTML(row.id,row.result)}
+      <button class="row-x no-print" title="Remove" aria-label="Remove">×</button>`;
+    r.querySelector(".loc input").addEventListener("input",e=>{row.name=e.target.value;save();});
+    r.querySelectorAll(`input[name="a_${row.id}"]`).forEach(ri=>ri.addEventListener("change",()=>{row.result=ri.value;save();}));
+    r.querySelector(".row-x").addEventListener("click",()=>{state.areas=state.areas.filter(x=>x.id!==row.id);renderAreas();save();});
+    host.appendChild(r);
+  });
+}
+
+/* ---------- generic table rows ---------- */
+function makeInput(val,ph,oninput){
+  const i=document.createElement("input"); i.value=val||""; i.placeholder=ph||"";
+  i.addEventListener("input",()=>oninput(i.value)); return i;
+}
+function renderPreTest(){
+  const host=$("#preTestRows"); host.innerHTML="";
+  state.preTest.forEach(row=>{
+    const r=document.createElement("div"); r.className="tbl-row cols-pretest";
+    r.appendChild(makeInput(row.loc,"Location",v=>{row.loc=v;save();}));
+    r.appendChild(makeInput(row.reading,"e.g. 12%",v=>{row.reading=v;save();}));
+    r.appendChild(makeInput(row.cond,"Normal / elevated",v=>{row.cond=v;save();}));
+    const x=document.createElement("button"); x.className="row-x no-print"; x.textContent="×"; x.title="Remove";
+    x.addEventListener("click",()=>{state.preTest=state.preTest.filter(p=>p.id!==row.id);renderPreTest();save();});
+    r.appendChild(x); host.appendChild(r);
+  });
+}
+function renderObs(){
+  const host=$("#obsRows"); host.innerHTML="";
+  state.obs.forEach(row=>{
+    const r=document.createElement("div"); r.className="tbl-row cols-obs";
+    r.appendChild(makeInput(row.time,"e.g. 10 min",v=>{row.time=v;save();}));
+    r.appendChild(makeInput(row.obs,"Observation",v=>{row.obs=v;save();}));
+    const x=document.createElement("button"); x.className="row-x no-print"; x.textContent="×"; x.title="Remove";
+    x.addEventListener("click",()=>{state.obs=state.obs.filter(p=>p.id!==row.id);renderObs();save();});
+    r.appendChild(x); host.appendChild(r);
+  });
+}
+function deltaLabel(before,after){
+  const b=parseFloat(before), a=parseFloat(after);
+  if(isNaN(b)||isNaN(a)) return {txt:"—",up:false};
+  const d=a-b; const sign=d>0?"+":"";
+  return {txt:`${sign}${d.toFixed(0)}%`, up:d>=5};
+}
+function renderMoist(){
+  const host=$("#moistRows"); host.innerHTML="";
+  state.moist.forEach(row=>{
+    const r=document.createElement("div"); r.className="tbl-row cols-moist";
+    r.appendChild(makeInput(row.loc,"Location",v=>{row.loc=v;save();}));
+    const upd=()=>{const d=deltaLabel(row.before,row.after);del.textContent=d.txt;del.className="delta"+(d.up?" up":"");};
+    r.appendChild(makeInput(row.before,"%",v=>{row.before=v;upd();save();}));
+    r.appendChild(makeInput(row.after,"%",v=>{row.after=v;upd();save();}));
+    const del=document.createElement("span"); del.className="delta";
+    r.appendChild(del); upd();
+    const x=document.createElement("button"); x.className="row-x no-print"; x.textContent="×"; x.title="Remove";
+    x.addEventListener("click",()=>{state.moist=state.moist.filter(p=>p.id!==row.id);renderMoist();save();});
+    r.appendChild(x); host.appendChild(r);
+  });
+}
+
+/* ---------- photos (adaptive frames — whole photo, no crop) ---------- */
+function downscale(file,maxEdge,quality){
+  return new Promise(res=>{
+    const url=URL.createObjectURL(file); const img=new Image();
+    img.onload=()=>{ URL.revokeObjectURL(url);
+      let w=img.naturalWidth,h=img.naturalHeight;
+      const sc=Math.min(1,maxEdge/Math.max(w,h)); w=Math.round(w*sc); h=Math.round(h*sc);
+      const c=document.createElement("canvas"); c.width=w; c.height=h;
+      c.getContext("2d").drawImage(img,0,0,w,h);
+      try{ res(c.toDataURL("image/jpeg",quality)); }catch(e){ res(null); }
+    };
+    img.onerror=()=>{URL.revokeObjectURL(url);res(null);};
+    img.src=url;
+  });
+}
+async function addFiles(files){
+  const imgs=[...files].filter(f=>f.type.startsWith("image/"));
+  for(const f of imgs){ const src=await downscale(f,1600,0.82); if(src) state.photos.push({id:uid(),src,caption:""}); }
+  renderPhotos(); save();
+}
+function renderPhotos(){
+  const g=$("#photoGrid"); g.innerHTML="";
+  if(!state.photos.length){
+    g.innerHTML='<div class="photo-empty no-print">No photos yet — drag images onto the box above or click “+ Add photos”.</div>';
+    return;
+  }
+  state.photos.forEach((p,i)=>{
+    const card=document.createElement("div"); card.className="photo-card";
+    card.innerHTML=`<div class="photo-frame"><img src="${p.src}" alt="Site photo ${i+1}">
+        <div class="photo-ctrls no-print">
+          <button class="up" title="Move up" ${i===0?"disabled":""}>↑</button>
+          <button class="dn" title="Move down" ${i===state.photos.length-1?"disabled":""}>↓</button>
+          <button class="del" title="Remove">×</button>
+        </div></div>
+      <textarea class="fld grow photo-cap" rows="1" placeholder="Caption — e.g. Moisture detected in adjacent wall · 28%">${escapeHTML(p.caption)}</textarea>`;
+    const cap=card.querySelector(".photo-cap");
+    cap.addEventListener("input",()=>{p.caption=cap.value;autoGrow(cap);save();});
+    autoGrow(cap);
+    card.querySelector(".up").addEventListener("click",()=>{if(i>0){[state.photos[i-1],state.photos[i]]=[state.photos[i],state.photos[i-1]];renderPhotos();save();}});
+    card.querySelector(".dn").addEventListener("click",()=>{if(i<state.photos.length-1){[state.photos[i+1],state.photos[i]]=[state.photos[i],state.photos[i+1]];renderPhotos();save();}});
+    card.querySelector(".del").addEventListener("click",()=>{state.photos.splice(i,1);renderPhotos();save();});
+    g.appendChild(card);
+  });
+}
+
+/* ---------- signature pad ---------- */
+function initSig(){
+  const cv=$("#sigPad"); const ctx=cv.getContext("2d");
+  function fit(){
+    const r=cv.getBoundingClientRect(); const dpr=window.devicePixelRatio||1; const data=state.sig;
+    cv.width=Math.round(r.width*dpr); cv.height=Math.round(r.height*dpr);
+    ctx.scale(dpr,dpr); ctx.lineWidth=1.8; ctx.lineCap="round"; ctx.lineJoin="round"; ctx.strokeStyle="#10202D";
+    if(data){ const im=new Image(); im.onload=()=>ctx.drawImage(im,0,0,r.width,r.height); im.src=data; }
+  }
+  let drawing=false,last=null;
+  const pos=e=>{const r=cv.getBoundingClientRect();const t=e.touches?e.touches[0]:e;return{x:t.clientX-r.left,y:t.clientY-r.top};};
+  function start(e){drawing=true;last=pos(e);e.preventDefault();}
+  function move(e){ if(!drawing)return; const p=pos(e); ctx.beginPath();ctx.moveTo(last.x,last.y);ctx.lineTo(p.x,p.y);ctx.stroke(); last=p; e.preventDefault(); }
+  function end(){ if(!drawing)return; drawing=false; try{state.sig=cv.toDataURL("image/png");save();}catch(e){} }
+  cv.addEventListener("pointerdown",start); cv.addEventListener("pointermove",move); window.addEventListener("pointerup",end);
+  $("#sigClear").addEventListener("click",()=>{const r=cv.getBoundingClientRect();ctx.clearRect(0,0,r.width,r.height);state.sig="";save();});
+  setTimeout(fit,60); window.addEventListener("resize",()=>setTimeout(fit,60));
+}
+function placeImageOnPad(file){
+  const cv=$("#sigPad"); if(!cv) return; const ctx=cv.getContext("2d"); const r=cv.getBoundingClientRect();
+  const url=URL.createObjectURL(file); const img=new Image();
+  img.onload=()=>{ URL.revokeObjectURL(url);
+    ctx.clearRect(0,0,r.width,r.height);
+    const pad=6, mw=r.width-pad*2, mh=r.height-pad*2;
+    const s=Math.min(mw/img.naturalWidth, mh/img.naturalHeight);
+    const w=img.naturalWidth*s, h=img.naturalHeight*s;
+    ctx.drawImage(img,(r.width-w)/2,(r.height-h)/2,w,h);
+    try{ state.sig=cv.toDataURL("image/png"); save(); }catch(e){}
+  };
+  img.onerror=()=>URL.revokeObjectURL(url); img.src=url;
+}
+
+/* ---------- validation ---------- */
+function validate(){ const empty=!(state.fields.property_address||"").trim(); $("#addrWarn").classList.toggle("show",empty); return !empty; }
+
+/* ---------- wire up ---------- */
+function init(){
+  load();
+  if(state.fields.disclaimer==null) state.fields.disclaimer=DEFAULT_DISCLAIMER;
+  renderChecks("methodChecks",METHODS,"method");
+  renderChecks("defectChecks",DEFECTS,"defect");
+  renderChecks("recChecks",RECS,"rec");
+  bindFields();
+  renderAreas(); renderPreTest(); renderObs(); renderMoist(); renderPhotos(); initSig(); validate();
+
+  $("#addPreTest").addEventListener("click",()=>{state.preTest.push({id:uid(),loc:"",reading:"",cond:""});renderPreTest();save();});
+  $("#addArea").addEventListener("click",()=>{state.areas.push({id:uid(),name:"",result:""});renderAreas();save();});
+  $("#addObs").addEventListener("click",()=>{state.obs.push({id:uid(),time:"",obs:""});renderObs();save();});
+  $("#addMoist").addEventListener("click",()=>{state.moist.push({id:uid(),loc:"",before:"",after:""});renderMoist();save();});
+
+  $("#addPhotoBtn").addEventListener("click",()=>$("#fileInput").click());
+  $("#dropzone").addEventListener("click",()=>$("#fileInput").click());
+  $("#fileInput").addEventListener("change",e=>{addFiles(e.target.files);e.target.value="";});
+  const dz=$("#dropzone");
+  ["dragenter","dragover"].forEach(ev=>dz.addEventListener(ev,e=>{e.preventDefault();dz.classList.add("drag");}));
+  ["dragleave","drop"].forEach(ev=>dz.addEventListener(ev,e=>{e.preventDefault();dz.classList.remove("drag");}));
+  dz.addEventListener("drop",e=>{ if(e.dataTransfer&&e.dataTransfer.files) addFiles(e.dataTransfer.files); });
+  window.addEventListener("dragover",e=>e.preventDefault());
+  window.addEventListener("drop",e=>{ if(e.target.closest&&!e.target.closest("#dropzone")&&e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files.length){e.preventDefault();addFiles(e.dataTransfer.files);} });
+
+  $("#sigUploadBtn").addEventListener("click",()=>$("#sigUpload").click());
+  $("#sigUpload").addEventListener("change",e=>{ if(e.target.files[0]) placeImageOnPad(e.target.files[0]); e.target.value=""; });
+  $("#saveBtn").addEventListener("click",()=>{ document.activeElement&&document.activeElement.blur(); syncHeights(); window.print(); });
+  $("#clearBtn").addEventListener("click",()=>{
+    if(confirm("Start a blank report? This clears everything in this browser.")){
+      localStorage.removeItem(LS_KEY);
+      state={fields:{disclaimer:DEFAULT_DISCLAIMER},checks:{},preTest:defaultPreTest(),areas:defaultAreas(),obs:defaultObs(),moist:defaultMoist(),photos:[],sig:""};
+      document.querySelectorAll("[name]").forEach(el=>{if(el.type==="radio")el.checked=false;else if(el.name!=="disclaimer")el.value="";});
+      $('[name="disclaimer"]').value=DEFAULT_DISCLAIMER;
+      renderChecks("methodChecks",METHODS,"method");renderChecks("defectChecks",DEFECTS,"defect");renderChecks("recChecks",RECS,"rec");
+      renderAreas();renderPreTest();renderObs();renderMoist();renderPhotos();
+      const cv=$("#sigPad"); cv.getContext("2d").clearRect(0,0,cv.width,cv.height);
+      syncHeights(); validate();
+    }
+  });
+  window.addEventListener("beforeprint",syncHeights);
+}
+function syncHeights(){ document.querySelectorAll("textarea.grow").forEach(autoGrow); }
+
+document.addEventListener("DOMContentLoaded",init);
+</script>
+</body>
+</html>

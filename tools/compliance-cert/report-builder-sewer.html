@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Sewer &amp; Drain CCTV Condition Report — Builder · Coastal Ways Plumbing</title>
+<!--
+  ============================================================================
+  COASTAL WAYS PLUMBING · Sewer & Drain CCTV Condition Inspection Report — BUILDER
+  ============================================================================
+  Browser authoring tool (client-side only, no server, no build step).
+  Emma/Beau open this page, fill auto-growing fields, log observations by
+  chainage + clock position with WSA defect codes & severity, grade the asset,
+  add CCTV stills (adaptive frames — whole image, no crop), then "Save as PDF".
+
+  Matched set with report-builder.html (Water) + report-builder-shower.html.
+  Aligned to WSA 05-2020 v4.1 (Conduit Inspection Reporting Code of Australia)
+  conventions; references AS/NZS 3500.2 & the Plumbing and Drainage Act 2011
+  (NSW). NOT a Certificate of Compliance — a professional condition report.
+  Disclaimers pre-filled (editable) from regulatory research.
+  ============================================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Roboto:wght@300;400;500&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF; --ink:#10202D; --ink-soft:#384850; --slate:#536268;
+    --cool-grey:#C4CFD1; --teal:#055A5F;
+    --pass:#2D9D5A; --pass-bg:#E8F5EE;
+    --fail:#C84A2D; --fail-bg:#FBEAE5;
+    --warn:#B6802A; --warn-bg:#FBF2E1;
+    --crit:#8E2E18; --crit-bg:#F6E0DA;
+    --na:#7A8890;   --na-bg:#EEF1F2;
+    --hairline:rgba(16,32,45,0.10);
+    --hairline-mid:rgba(16,32,45,0.18);
+    --field-bg:rgba(5,90,95,0.05);
+    --field-focus:rgba(5,90,95,0.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{
+    background:#E7EAEB; color:var(--ink);
+    font-family:'Space Grotesk','Inter',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased; print-color-adjust:exact; -webkit-print-color-adjust:exact;
+  }
+
+  /* ===================== APP SHELL (screen only) ===================== */
+  .app-bar{position:sticky;top:0;z-index:50;background:var(--ink);color:#fff;
+    display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:12px 22px;box-shadow:0 2px 10px rgba(16,32,45,.18)}
+  .app-bar .brand{font-weight:500;letter-spacing:.02em;font-size:15px}
+  .app-bar .brand b{color:#fff}
+  .app-bar .brand span{color:var(--cool-grey);font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;display:block;margin-top:1px}
+  .app-bar .spacer{margin-left:auto}
+  .btn{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:13.5px;cursor:pointer;
+    border:1.5px solid transparent;border-radius:8px;padding:9px 18px;display:inline-flex;align-items:center;gap:8px;transition:.12s}
+  .btn-primary{background:var(--teal);color:#fff}
+  .btn-primary:hover{background:#06484c;transform:translateY(-1px)}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+  .btn-sm{font-size:12px;padding:6px 12px;border-radius:6px}
+
+  .hint-bar{background:#FBF6EE;border-bottom:1px solid var(--hairline);
+    color:var(--ink-soft);font-size:12.5px;line-height:1.5;padding:9px 22px;text-align:center}
+  .hint-bar b{color:var(--ink)}
+
+  .workspace{padding:26px 16px 80px;display:flex;justify-content:center}
+
+  /* ===================== SHEET ===================== */
+  .sheet{width:210mm;max-width:100%;background:var(--paper);color:var(--ink);
+    box-shadow:0 10px 40px rgba(16,32,45,.14);border-radius:2px;overflow:hidden}
+  .letterhead{background:var(--ink);color:#fff;padding:7mm 12mm;min-height:20mm;display:flex;align-items:center;justify-content:space-between}
+  .letterhead img{height:13mm;width:auto;display:block}
+  .letterhead .doctype{font-size:10px;font-weight:400;letter-spacing:.30em;text-transform:uppercase;opacity:.92;text-align:right}
+  .letterhead .doctype b{display:block;font-weight:500;opacity:1}
+  .contact-strip{padding:3mm 12mm;border-bottom:1px solid var(--hairline);
+    font-family:'Roboto Mono',ui-monospace,monospace;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);text-align:center}
+  .contact-strip .dot{color:var(--cool-grey);margin:0 5px}
+  .body-area{padding:6mm 12mm 10mm}
+  .eyebrow{font-family:'Roboto Mono',ui-monospace,monospace;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);margin-bottom:2mm;display:flex;align-items:center;gap:9px}
+  .eyebrow::before{content:'';width:20px;height:1.5px;background:var(--teal);flex:0 0 auto}
+  h1{font-weight:400;font-size:22px;letter-spacing:-.025em;line-height:1.05;text-transform:uppercase;margin-bottom:5mm}
+  h1 em{font-style:normal;color:var(--teal);font-weight:500}
+
+  .issued{display:grid;grid-template-columns:1fr 1fr;gap:8mm;margin-bottom:6mm}
+  .block-label{font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin-bottom:2mm;padding-bottom:1.5mm;border-bottom:1.5px solid var(--teal)}
+  dl{display:grid;grid-template-columns:28mm 1fr;gap:2mm 3mm;align-items:start}
+  dt{font-size:10px;color:var(--slate);font-weight:400;padding-top:2px}
+  dd{font-size:11px;color:var(--ink);font-weight:500}
+  dd.mono{font-family:'Roboto Mono',monospace;font-size:9.5px}
+
+  .fld{font:inherit;font-size:11px;color:var(--ink);width:100%;border:none;background:var(--field-bg);
+    border-bottom:1px solid var(--hairline-mid);border-radius:3px 3px 0 0;padding:2px 5px;resize:none;line-height:1.4;display:block}
+  .fld::placeholder{color:var(--slate);opacity:.7;font-weight:300;font-style:italic}
+  .fld:focus{outline:none;background:var(--field-focus);border-bottom-color:var(--teal)}
+  .fld.mono{font-family:'Roboto Mono',monospace;font-size:9.5px}
+  textarea.fld{overflow:hidden;min-height:1.5em}
+  .fld + .fld{margin-top:1.5mm}
+  select.fld{appearance:none;-webkit-appearance:none;cursor:pointer;
+    background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23536268' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 5px center;padding-right:16px}
+
+  .sec-head{display:flex;justify-content:space-between;align-items:baseline;border-left:2.5px solid var(--teal);padding:1mm 0 1mm 8px;margin:6mm 0 2.5mm}
+  .sec-head .t{font-size:12px;font-weight:500;color:var(--ink)}
+  .sec-head .th{font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.08em;color:var(--slate);text-transform:uppercase}
+  .blk-label{font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin:5mm 0 2mm}
+
+  .dgrid{display:grid;grid-template-columns:1fr 1fr;gap:2mm 8mm}
+  .dgrid .f label{font-family:'Roboto Mono',monospace;font-size:7.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);display:block;margin-bottom:.5mm}
+
+  /* Observation log rows (flex, fixed widths) */
+  .log-head{display:flex;gap:5px;font-family:'Roboto Mono',monospace;font-size:7.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--slate);padding:0 24px 1.5mm 2px;border-bottom:1px solid var(--hairline-mid)}
+  .log-row{display:flex;align-items:center;gap:5px;padding:1.3mm 0;border-top:1px dashed var(--hairline)}
+  .log-row:first-of-type{border-top:none}
+  .log-row input{border:none;background:transparent;font:inherit;font-size:10px;color:var(--ink);padding:1px 3px;border-radius:3px}
+  .log-row input:focus{outline:none;background:var(--field-bg)}
+  .w-ch{width:15mm;flex:0 0 15mm} .w-ck{width:13mm;flex:0 0 13mm} .w-cd{width:15mm;flex:0 0 15mm} .w-ob{flex:1;min-width:0}
+  .row-x{border:none;background:transparent;color:var(--cool-grey);cursor:pointer;font-size:15px;line-height:1;padding:0 2px;flex:0 0 auto}
+  .row-x:hover{color:var(--fail)}
+  .add-row{margin-top:1.5mm;font-family:'Roboto Mono',monospace;font-size:9px;letter-spacing:.06em;color:var(--teal);background:none;border:1px dashed var(--cool-grey);border-radius:5px;padding:3px 9px;cursor:pointer}
+  .add-row:hover{border-color:var(--teal);background:var(--field-bg)}
+
+  /* Defect rows: label + distance + severity */
+  .def-row{display:flex;align-items:center;gap:6px;padding:1.3mm 0;border-top:1px dashed var(--hairline)}
+  .def-row:first-of-type{border-top:none}
+  .def-row .dn{flex:1;min-width:0}
+  .def-row .dn input{border:none;background:transparent;font:inherit;font-size:10.5px;color:var(--ink);width:100%;padding:1px 2px}
+  .def-row .dn input:focus{outline:none;background:var(--field-bg);border-radius:3px}
+  .def-row .dist{width:18mm;flex:0 0 18mm}
+  .def-row .dist input{border:none;background:transparent;font:inherit;font-size:10px;color:var(--ink);width:100%;padding:1px 3px;font-family:'Roboto Mono',monospace}
+  .def-row .dist input:focus{outline:none;background:var(--field-bg);border-radius:3px}
+
+  /* Segmented controls */
+  .seg{display:inline-flex;border:1px solid var(--hairline-mid);border-radius:6px;overflow:hidden;flex:0 0 auto}
+  .seg label{position:relative;cursor:pointer}
+  .seg input{position:absolute;opacity:0;width:0;height:0}
+  .seg span{display:block;font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.03em;text-transform:uppercase;
+    padding:3px 7px;color:var(--slate);border-left:1px solid var(--hairline);background:#fff;transition:.1s;white-space:nowrap}
+  .seg label:first-child span{border-left:none}
+  .seg .p input:checked + span{background:var(--pass-bg);color:var(--pass);font-weight:500;box-shadow:inset 0 0 0 1.5px var(--pass)}
+  .seg .w input:checked + span{background:var(--warn-bg);color:var(--warn);font-weight:500;box-shadow:inset 0 0 0 1.5px var(--warn)}
+  .seg .f input:checked + span{background:var(--fail-bg);color:var(--fail);font-weight:500;box-shadow:inset 0 0 0 1.5px var(--fail)}
+  .seg .x input:checked + span{background:var(--crit-bg);color:var(--crit);font-weight:600;box-shadow:inset 0 0 0 1.5px var(--crit)}
+  .seg .n input:checked + span{background:var(--na-bg);color:var(--na);font-weight:500;box-shadow:inset 0 0 0 1.5px var(--na)}
+  .seg .g input:checked + span{background:var(--field-focus);color:var(--teal);font-weight:600;box-shadow:inset 0 0 0 1.5px var(--teal)}
+  .seg.lg span{font-size:9px;padding:5px 11px}
+
+  /* Grades + rating */
+  .grades{display:grid;grid-template-columns:1fr 1fr;gap:5mm 8mm;margin-top:2mm;align-items:center}
+  .grades .grow-lbl{font-size:10px;color:var(--slate);margin-bottom:1.2mm}
+  .rating-row{margin-top:1mm}
+
+  /* Checklists */
+  .checks{display:grid;grid-template-columns:1fr 1fr;gap:1mm 6mm;margin-top:1mm}
+  .chk{display:flex;align-items:flex-start;gap:6px;font-size:10.5px;color:var(--ink);cursor:pointer;padding:.6mm 0}
+  .chk input{appearance:none;-webkit-appearance:none;width:13px;height:13px;border:1.5px solid var(--hairline-mid);border-radius:3px;margin-top:1px;flex:0 0 auto;cursor:pointer;position:relative;background:#fff}
+  .chk input:checked{background:var(--teal);border-color:var(--teal)}
+  .chk input:checked::after{content:'';position:absolute;left:3.5px;top:1px;width:3.5px;height:7px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+
+  /* Reference key */
+  details.ref{margin-top:2mm;border:1px solid var(--hairline);border-radius:6px;background:var(--na-bg);overflow:hidden}
+  details.ref summary{cursor:pointer;list-style:none;font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);padding:2mm 3mm}
+  details.ref summary::-webkit-details-marker{display:none}
+  details.ref[open] summary{border-bottom:1px solid var(--hairline)}
+  details.ref .ref-body{padding:2mm 3mm;font-family:'Roboto',sans-serif;font-size:9px;line-height:1.6;color:var(--ink-soft)}
+  details.ref .ref-body b{color:var(--ink)} details.ref .ref-body code{font-family:'Roboto Mono',monospace;font-size:8.5px;background:#fff;border:1px solid var(--hairline);padding:0 3px;border-radius:3px}
+
+  /* Signature */
+  .summary{display:grid;grid-template-columns:1fr 1fr;gap:8mm;margin-top:4mm;align-items:end}
+  .sig-pad-wrap{position:relative}
+  .sig-pad{width:100%;height:24mm;border:1px solid var(--hairline-mid);border-radius:5px;background:#fff;display:block;touch-action:none;cursor:crosshair}
+  .sig-clear{position:absolute;top:4px;right:6px;font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.05em;color:var(--slate);background:rgba(255,255,255,.9);border:1px solid var(--hairline);border-radius:4px;padding:2px 6px;cursor:pointer}
+  .sig-upload{position:absolute;top:4px;left:6px;font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.05em;color:var(--teal);background:rgba(255,255,255,.92);border:1px solid var(--hairline);border-radius:4px;padding:2px 6px;cursor:pointer}
+  .sig-upload:hover{border-color:var(--teal)}
+  .sig-cap{font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin-top:1.5mm;display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .sig-cap input{border:none;border-bottom:1px solid var(--hairline-mid);background:transparent;font-family:'Roboto Mono',monospace;font-size:9px;color:var(--ink);padding:1px 3px}
+
+  /* Photos */
+  .photos-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:6mm 0 2mm}
+  .photos-head .blk-label{margin:0}
+  .photo-intro{font-family:'Roboto',sans-serif;font-size:9.5px;line-height:1.5;font-weight:300;color:var(--ink-soft);margin-bottom:3mm;padding-left:8px;border-left:2.5px solid var(--teal)}
+  .dropzone{border:1.6px dashed var(--cool-grey);border-radius:6px;background:var(--field-bg);padding:7mm;text-align:center;color:var(--slate);font-size:11px;cursor:pointer;transition:.12s;margin-bottom:3mm}
+  .dropzone.drag{border-color:var(--teal);background:var(--field-focus);color:var(--teal)}
+  .dropzone b{color:var(--teal)}
+  .photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:6mm 7mm}
+  .photo-card{display:flex;flex-direction:column;gap:2mm}
+  .photo-frame{position:relative;border:1px solid var(--hairline-mid);border-radius:5px;overflow:hidden;background:var(--na-bg)}
+  /* frame grows to each photo's own shape (no crop, no zoom); contain is a safety net at the cap */
+  .photo-frame img{width:100%;height:auto;max-height:120mm;object-fit:contain;display:block}
+  .photo-ctrls{position:absolute;top:4px;right:4px;display:flex;gap:3px}
+  .photo-ctrls button{width:20px;height:20px;border:none;border-radius:4px;background:rgba(16,32,45,.72);color:#fff;font-size:12px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .photo-ctrls button:hover{background:var(--ink)}
+  .photo-ctrls .del:hover{background:var(--fail)}
+  .photo-cap{font-size:9px;line-height:1.4}
+  .photo-empty{grid-column:1/-1;color:var(--slate);font-size:10.5px;font-style:italic;text-align:center;padding:4mm 0}
+
+  .disclaimer{margin-top:5mm;border:1px solid var(--hairline);border-radius:6px;background:#FBFBFA;padding:3mm 4mm}
+  .disclaimer .blk-label{margin:0 0 2mm}
+  .disclaimer textarea{font-family:'Roboto',sans-serif;font-size:8.5px;line-height:1.55;color:var(--ink-soft);width:100%;border:none;background:transparent;resize:none;overflow:hidden;display:block}
+  .disclaimer textarea:focus{outline:none;background:var(--field-bg);border-radius:3px}
+
+  footer{padding:4mm 12mm;border-top:1px solid var(--hairline);display:flex;justify-content:space-between;font-family:'Roboto Mono',monospace;font-size:7.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--slate)}
+  .req-warn{color:var(--fail);font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.05em;margin-top:1mm;display:none}
+  .req-warn.show{display:block}
+
+  @media print{
+    @page{size:A4;margin:12mm 11mm 16mm}
+    html,body{background:#fff}
+    .app-bar,.hint-bar,.no-print,.dropzone,.add-row,.row-x,.photo-ctrls,.sig-clear{display:none!important}
+    .workspace{padding:0;display:block}
+    .sheet{width:auto;max-width:none;box-shadow:none;border-radius:0;overflow:visible}
+    .letterhead{border-radius:0}
+    .body-area{padding:5mm 0 0}
+    .letterhead,.contact-strip{margin:0 -1mm}
+    .fld,.log-row input,.def-row .dn input,.def-row .dist input,.sig-cap input,.disclaimer textarea{background:transparent!important;border-bottom-color:transparent!important}
+    .fld::placeholder,.log-row input::placeholder,.def-row input::placeholder,.sig-cap input::placeholder{color:transparent!important}
+    select.fld{background-image:none}
+    .fld:placeholder-shown{min-height:0}
+    details.ref{background:#fff}
+    .sec-block,.photo-card,.summary,.issued,.grades,.disclaimer{break-inside:avoid}
+    .sec-head{break-after:avoid}
+    .req-warn{display:none!important}
+    footer{position:fixed;bottom:0;left:0;right:0;border-top:1px solid var(--hairline);padding:3mm 0;background:#fff}
+  }
+</style>
+</head>
+<body>
+
+<div class="app-bar no-print">
+  <div class="brand"><b>Report Builder</b><span>Coastal Ways · Sewer &amp; Drain CCTV</span></div>
+  <div class="spacer"></div>
+  <button class="btn btn-ghost btn-sm" id="clearBtn" type="button">Start blank</button>
+  <button class="btn btn-primary" id="saveBtn" type="button">⤓ &nbsp;Save as PDF</button>
+</div>
+<div class="hint-bar no-print">
+  Log observations by <b>chainage</b> (distance from the upstream access point) and <b>clock position</b>, with a WSA defect code &amp; severity. When ready, click <b>Save as PDF</b> (Destination: <b>“Save as PDF”</b>, Margins: <b>Default</b>). Your work auto-saves in this browser.
+</div>
+
+<div class="workspace">
+  <div class="sheet" id="sheet">
+
+    <header class="letterhead">
+      <img src="https://coastalwaysplumbing.com/assets/logo-white.png" alt="Coastal Ways Plumbing"
+           onerror="this.style.display='none'">
+      <div class="doctype">Sewer &amp; Drain CCTV<b>Condition Report</b></div>
+    </header>
+    <div class="contact-strip">
+      Jilliby NSW 2259 <span class="dot">·</span> 0402 269 088
+      <span class="dot">·</span> coastalwaysplumbing@outlook.com
+      <span class="dot">·</span> coastalwaysplumbing.com.au
+      <span class="dot">·</span> Licence 468634C <span class="dot">·</span> ABN 62 284 909 142
+    </div>
+
+    <div class="body-area">
+      <div class="eyebrow">WSA 05-2020 v4.1 aligned · AS/NZS 3500.2 · Plumbing &amp; Drainage Act 2011 (NSW)</div>
+      <h1>Sewer &amp; Drain <em>CCTV</em> Condition Inspection Report</h1>
+
+      <section class="issued">
+        <div class="block">
+          <div class="block-label">Property &amp; engagement</div>
+          <dl>
+            <dt>Address</dt>
+            <dd><textarea class="fld grow" name="property_address" rows="1" placeholder="e.g. 26 Belyando Crescent, Blue Haven NSW 2262"></textarea>
+                <div class="req-warn" id="addrWarn">Add the property address before saving</div></dd>
+            <dt>Lot / DP</dt>
+            <dd><input class="fld mono" name="lot_dp" placeholder="Lot / DP (if known)"></dd>
+            <dt>Client</dt>
+            <dd><input class="fld" name="client_name" placeholder="Client name">
+                <input class="fld" name="client_role" placeholder="Owner / buyer / agent / other"></dd>
+            <dt>Contact</dt>
+            <dd><input class="fld" name="client_contact" placeholder="Phone / email"></dd>
+            <dt>Purpose</dt>
+            <dd><select class="fld" name="purpose">
+                <option value="" disabled selected>Select purpose…</option>
+                <option>Pre-purchase inspection</option>
+                <option>Blockage investigation</option>
+                <option>Condition assessment</option>
+                <option>Insurance claim</option>
+                <option>Maintenance inspection</option>
+                <option>Post-repair verification</option>
+                <option>Build-over / near sewer</option>
+                <option>Other</option>
+              </select></dd>
+          </dl>
+        </div>
+        <div class="block">
+          <div class="block-label">Inspecting drainer</div>
+          <dl>
+            <dt>Drainer</dt><dd>Beau Petterson</dd>
+            <dt>Business</dt><dd>Coastal Ways Plumbing</dd>
+            <dt>NSW Licence</dt><dd class="mono">468634C</dd>
+            <dt>ABN</dt><dd class="mono">62 284 909 142</dd>
+            <dt>Report no.</dt><dd><input class="fld mono" name="report_no" placeholder="CWP-CCTV-2026-____"></dd>
+            <dt>Inspected</dt><dd><input class="fld mono" name="inspection_date" placeholder="DD Mmm YYYY"></dd>
+            <dt>Issued</dt><dd><input class="fld mono" name="issue_date" placeholder="DD Mmm YYYY"></dd>
+          </dl>
+        </div>
+      </section>
+
+      <!-- Asset & survey details -->
+      <div class="sec-head"><span class="t">Asset &amp; survey details</span><span class="th">The line inspected</span></div>
+      <div class="dgrid">
+        <div class="f"><label>Drain system</label><select class="fld" name="as_system"><option value="" disabled selected>Select…</option><option>Sanitary sewer</option><option>Stormwater</option><option>Combined</option></select></div>
+        <div class="f"><label>Pipe material</label><select class="fld" name="as_material"><option value="" disabled selected>Select…</option><option>Vitrified clay (VC)</option><option>PVC</option><option>HDPE / PE</option><option>Concrete</option><option>Cast iron</option><option>Asbestos cement (AC)</option><option>Earthenware</option><option>Unknown</option></select></div>
+        <div class="f"><label>Nominal diameter (mm)</label><input class="fld mono" name="as_diameter" placeholder="e.g. 100"></div>
+        <div class="f"><label>Length surveyed (m)</label><input class="fld mono" name="as_length" placeholder="e.g. 42.60"></div>
+        <div class="f"><label>Upstream access point</label><input class="fld" name="as_upstream" placeholder="e.g. IS-1 / IO / cleanout @ rear"></div>
+        <div class="f"><label>Downstream access point</label><input class="fld" name="as_downstream" placeholder="e.g. MH-2 / boundary shaft / sewer main"></div>
+        <div class="f"><label>Survey direction</label><select class="fld" name="as_direction"><option value="" disabled selected>Select…</option><option>Upstream → downstream</option><option>Downstream → upstream</option></select></div>
+        <div class="f"><label>Camera make / model</label><input class="fld" name="as_camera" placeholder="CCTV crawler / push-rod make &amp; model"></div>
+        <div class="f"><label>Sonde location used</label><select class="fld" name="as_sonde"><option value="" disabled selected>Select…</option><option>Yes</option><option>No</option></select></div>
+        <div class="f"><label>Pipe pre-cleaned</label><select class="fld" name="as_cleaned"><option value="" disabled selected>Select…</option><option>Yes — jetted</option><option>No</option></select></div>
+        <div class="f"><label>Flow level at inspection</label><input class="fld" name="as_flow" placeholder="e.g. low / ~20% full"></div>
+        <div class="f"><label>Weather</label><input class="fld" name="as_weather" placeholder="e.g. Fine / dry"></div>
+      </div>
+
+      <!-- CCTV observation log -->
+      <div class="sec-head"><span class="t">CCTV observation log</span><span class="th">WSA 05 coded</span></div>
+      <div class="log-head"><span class="w-ch">Chainage m</span><span class="w-ck">Clock</span><span class="w-cd">WSA code</span><span class="w-ob">Observation</span><span>Severity</span></div>
+      <div id="logRows"></div>
+      <button class="add-row no-print" id="addLog" type="button">+ add observation</button>
+      <details class="ref">
+        <summary>Reference · WSA 05 grades, clock &amp; common codes</summary>
+        <div class="ref-body">
+          <b>Condition grade</b> (structural &amp; service): <code>1</code> good/new · <code>2</code> minor · <code>3</code> moderate · <code>4</code> poor/significant · <code>5</code> failed/collapsed.<br>
+          <b>Clock position</b> (looking downstream): <code>12</code> crown/top · <code>6</code> invert/bottom · <code>3</code> right wall · <code>9</code> left wall.<br>
+          <b>Common codes</b>: <code>B</code> broken · <code>CR</code> crack · <code>F</code> fracture · <code>D</code> deformed · <code>JD</code> joint displaced · <code>OJ</code> open joint · <code>R</code> roots · <code>DE/DES</code> debris/settled deposits · <code>GS</code> grease · <code>OB</code> obstruction · <code>SC</code> surface corrosion · <code>I/IS</code> infiltration/seepage.<br>
+          <b>Severity</b>: Low = minor debris/staining · Mod = minor cracks/moderate roots · High = significant roots/open joints/structural cracks · Critical = collapse/major obstruction/significant in-/exfiltration.
+        </div>
+      </details>
+
+      <!-- Defect assessment -->
+      <div class="sec-head"><span class="t">Defect assessment</span><span class="th">Structural &amp; service</span></div>
+      <div class="blk-label">Structural defects</div>
+      <div class="log-head"><span class="w-ob" style="flex:1">Defect</span><span style="width:18mm">Distance m</span><span>Severity</span></div>
+      <div id="structRows"></div>
+      <button class="add-row no-print" id="addStruct" type="button">+ add structural defect</button>
+      <div class="blk-label">Service defects</div>
+      <div class="log-head"><span class="w-ob" style="flex:1">Defect</span><span style="width:18mm">Distance m</span><span>Severity</span></div>
+      <div id="serviceRows"></div>
+      <button class="add-row no-print" id="addService" type="button">+ add service defect</button>
+
+      <!-- Condition summary -->
+      <div class="sec-head"><span class="t">Condition summary</span><span class="th">Overall assessment</span></div>
+      <div class="blk-label">Overall condition rating</div>
+      <div class="rating-row">
+        <div class="seg lg" role="radiogroup" aria-label="Overall condition">
+          <label class="p"><input type="radio" name="rating" value="excellent"><span>Excellent</span></label>
+          <label class="p"><input type="radio" name="rating" value="good"><span>Good</span></label>
+          <label class="w"><input type="radio" name="rating" value="fair"><span>Fair</span></label>
+          <label class="f"><input type="radio" name="rating" value="poor"><span>Poor</span></label>
+          <label class="x"><input type="radio" name="rating" value="critical"><span>Critical</span></label>
+        </div>
+      </div>
+      <div class="grades">
+        <div>
+          <div class="grow-lbl">Overall <b>structural</b> grade (WSA 1–5)</div>
+          <div class="seg" role="radiogroup" aria-label="Structural grade">
+            <label class="g"><input type="radio" name="grade_struct" value="1"><span>1</span></label>
+            <label class="g"><input type="radio" name="grade_struct" value="2"><span>2</span></label>
+            <label class="g"><input type="radio" name="grade_struct" value="3"><span>3</span></label>
+            <label class="g"><input type="radio" name="grade_struct" value="4"><span>4</span></label>
+            <label class="g"><input type="radio" name="grade_struct" value="5"><span>5</span></label>
+          </div>
+        </div>
+        <div>
+          <div class="grow-lbl">Overall <b>service</b> grade (WSA 1–5)</div>
+          <div class="seg" role="radiogroup" aria-label="Service grade">
+            <label class="g"><input type="radio" name="grade_service" value="1"><span>1</span></label>
+            <label class="g"><input type="radio" name="grade_service" value="2"><span>2</span></label>
+            <label class="g"><input type="radio" name="grade_service" value="3"><span>3</span></label>
+            <label class="g"><input type="radio" name="grade_service" value="4"><span>4</span></label>
+            <label class="g"><input type="radio" name="grade_service" value="5"><span>5</span></label>
+          </div>
+        </div>
+      </div>
+      <div class="blk-label">Summary findings</div>
+      <textarea class="fld grow" name="summary_findings" rows="2"
+        placeholder="e.g. The sewer line between IS-1 and MH-2 was inspected for 42.6 m. The pipeline generally remains serviceable; however, root intrusion was observed at 18.4 m and a displaced joint at 27.1 m, with localised debris accumulation. Remedial maintenance is recommended."></textarea>
+
+      <!-- Photos -->
+      <div class="photos-head">
+        <div class="blk-label">CCTV stills / photographs</div>
+        <button class="btn btn-primary btn-sm no-print" id="addPhotoBtn" type="button">+ Add photos</button>
+      </div>
+      <div class="photo-intro">Recommended: start &amp; end location · each significant defect · surface location photos where relevant · stills showing the distance counter. Captions should carry the chainage. Add as many as you need.</div>
+      <div class="dropzone no-print" id="dropzone">Drag photos here, or <b>click to choose</b> from your device</div>
+      <input type="file" id="fileInput" accept="image/*" multiple hidden>
+      <div class="photo-grid" id="photoGrid"></div>
+
+      <!-- Recommendations -->
+      <div class="sec-head"><span class="t">Recommendations</span><span class="th">Findings &amp; next steps</span></div>
+      <div class="checks" id="recChecks"></div>
+      <textarea class="fld grow" name="rec_notes" rows="1" style="margin-top:2mm" placeholder="Immediate actions · future monitoring · repair options · sections not inspected and why…"></textarea>
+
+      <!-- Certification + signature -->
+      <section class="summary">
+        <div class="decl">
+          <div class="blk-label">Certification</div>
+          <div style="font-family:'Roboto',sans-serif;font-size:9px;line-height:1.5;color:var(--ink-soft)">
+            I certify that this inspection was carried out by me, and that the information in this report accurately reflects my findings at the time of inspection.
+          </div>
+        </div>
+        <div class="sig">
+          <div class="blk-label">Drainer signature</div>
+          <div class="sig-pad-wrap">
+            <canvas class="sig-pad" id="sigPad"></canvas>
+            <button class="sig-upload no-print" id="sigUploadBtn" type="button">⤒ upload</button>
+            <button class="sig-clear no-print" id="sigClear" type="button">clear</button>
+            <input type="file" id="sigUpload" accept="image/*" hidden>
+          </div>
+          <div class="sig-cap">
+            <span>Beau Petterson · Lic. 468634C</span>
+            <label>Date <input class="mono" name="date_signed" placeholder="DD Mmm YYYY" style="width:24mm"></label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Scope & disclaimers -->
+      <div class="disclaimer">
+        <div class="blk-label">Scope &amp; disclaimers</div>
+        <textarea class="grow" name="disclaimer" rows="6"></textarea>
+      </div>
+
+    </div>
+
+    <footer>
+      <div>Coastal Ways Plumbing &nbsp;·&nbsp; Sewer &amp; Drain CCTV Condition Report</div>
+      <div>coastalwaysplumbing.com.au</div>
+    </footer>
+
+  </div>
+</div>
+
+<script>
+"use strict";
+const LS_KEY = "cwp-sewer-builder-v1";
+const $ = (s,el=document)=>el.querySelector(s);
+const uid = ()=>Math.random().toString(36).slice(2,9);
+
+const RECS = ["Remove root intrusion by mechanical cutting","High-pressure water jet cleaning","Spot / point repair","Pipe relining (CIPP)","Excavation & replacement","Reinspect within 12 months","Monitor root regrowth","Refer to structural engineer for sag assessment"];
+
+const DEFAULT_DISCLAIMER =
+"This report assesses the condition of accessible private sanitary drainage from the stated upstream access point to the stated downstream point only. It does not assess water-authority sewer mains, stormwater, roof drainage, internal fixture plumbing, or any pipe section not accessible to the CCTV camera at the time of inspection. "+
+"Sections obstructed by debris, root intrusion, water level or physical access constraints were not inspected and are noted in the report. This report reflects the condition of the drainage system at the time of inspection only; conditions can change. "+
+"This report is not a Certificate of Compliance under the Plumbing and Drainage Act 2011 (NSW) and does not certify that the system complies with any legislative or building-code requirement. "+
+"It is prepared for the named client and stated purpose and should not be relied upon by any third party without Coastal Ways Plumbing's written consent. Findings are based on visual observation via CCTV and professional judgement; further investigation including excavation or specialist structural assessment may be required before relying on this report for repair-cost estimation or investment decisions. Coastal Ways Plumbing holds current public liability and professional indemnity insurance.";
+
+function defaultLog(){return [{id:uid(),ch:"0.00",clk:"—",code:"",obs:"Start of inspection",sev:""}];}
+function defaultStruct(){return [
+  {id:uid(),name:"Cracking",dist:"",sev:""},{id:uid(),name:"Fracture",dist:"",sev:""},
+  {id:uid(),name:"Collapse",dist:"",sev:""},{id:uid(),name:"Deformation",dist:"",sev:""},
+  {id:uid(),name:"Joint displacement",dist:"",sev:""},
+];}
+function defaultService(){return [
+  {id:uid(),name:"Root intrusion",dist:"",sev:""},{id:uid(),name:"Grease build-up",dist:"",sev:""},
+  {id:uid(),name:"Debris / deposits",dist:"",sev:""},{id:uid(),name:"Siltation",dist:"",sev:""},
+  {id:uid(),name:"Obstruction",dist:"",sev:""},
+];}
+
+let state = {fields:{}, checks:{}, log:defaultLog(), struct:defaultStruct(), service:defaultService(), photos:[], sig:""};
+
+let saveTimer=null;
+function save(){ clearTimeout(saveTimer); saveTimer=setTimeout(()=>{ try{ localStorage.setItem(LS_KEY, JSON.stringify(state)); }catch(e){} },300); }
+function load(){
+  try{
+    const raw=localStorage.getItem(LS_KEY); if(!raw) return;
+    const s=JSON.parse(raw);
+    if(s && typeof s==="object"){
+      state.fields=s.fields||{}; state.checks=s.checks||{};
+      state.log=Array.isArray(s.log)&&s.log.length?s.log:defaultLog();
+      state.struct=Array.isArray(s.struct)&&s.struct.length?s.struct:defaultStruct();
+      state.service=Array.isArray(s.service)&&s.service.length?s.service:defaultService();
+      state.photos=Array.isArray(s.photos)?s.photos:[];
+      state.sig=s.sig||"";
+    }
+  }catch(e){}
+}
+
+function bindFields(){
+  document.querySelectorAll("[name]").forEach(el=>{
+    const n=el.name;
+    if(el.type==="radio"){
+      el.checked = state.fields[n]===el.value;
+      el.addEventListener("change",()=>{ if(el.checked){state.fields[n]=el.value; save();} });
+    }else{
+      if(state.fields[n]!=null) el.value=state.fields[n];
+      el.addEventListener("input",()=>{ state.fields[n]=el.value; if(el.classList.contains("grow"))autoGrow(el); validate(); save(); });
+      el.addEventListener("change",()=>{ state.fields[n]=el.value; save(); });
+      if(el.classList.contains("grow")) autoGrow(el);
+    }
+  });
+}
+function autoGrow(el){ el.style.height="auto"; el.style.height=(el.scrollHeight)+"px"; }
+function escapeHTML(s){return String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
+function escapeAttr(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+
+function renderChecks(hostId, items, group){
+  const host=$("#"+hostId); host.innerHTML="";
+  items.forEach(label=>{
+    const key=group+"::"+label;
+    const wrap=document.createElement("label"); wrap.className="chk";
+    wrap.innerHTML=`<input type="checkbox" ${state.checks[key]?"checked":""}><span>${escapeHTML(label)}</span>`;
+    wrap.querySelector("input").addEventListener("change",e=>{ state.checks[key]=e.target.checked; save(); });
+    host.appendChild(wrap);
+  });
+}
+
+/* severity segmented (Low/Mod/High/Critical) */
+function sevHTML(name, val){
+  const opt=(v,cls,label)=>`<label class="${cls}"><input type="radio" name="${name}" value="${v}" ${val===v?"checked":""}><span>${label}</span></label>`;
+  return `<div class="seg" role="radiogroup">${opt("low","n","Low")}${opt("mod","w","Mod")}${opt("high","f","High")}${opt("crit","x","Crit")}</div>`;
+}
+
+function makeInput(val,ph,cls,oninput){
+  const i=document.createElement("input"); i.value=val||""; i.placeholder=ph||""; if(cls)i.className=cls;
+  i.addEventListener("input",()=>oninput(i.value)); return i;
+}
+
+function renderLog(){
+  const host=$("#logRows"); host.innerHTML="";
+  state.log.forEach(row=>{
+    const r=document.createElement("div"); r.className="log-row";
+    const ch=makeInput(row.ch,"0.00","w-ch",v=>{row.ch=v;save();}); ch.classList.add("w-ch");
+    const ck=makeInput(row.clk,"—",null,v=>{row.clk=v;save();}); ck.classList.add("w-ck");
+    const cd=makeInput(row.code,"code",null,v=>{row.code=v;save();}); cd.classList.add("w-cd");
+    const ob=makeInput(row.obs,"Observation",null,v=>{row.obs=v;save();}); ob.classList.add("w-ob");
+    r.appendChild(ch); r.appendChild(ck); r.appendChild(cd); r.appendChild(ob);
+    const seg=document.createElement("span"); seg.innerHTML=sevHTML("ls_"+row.id,row.sev);
+    seg.querySelectorAll("input").forEach(ri=>ri.addEventListener("change",()=>{row.sev=ri.value;save();}));
+    r.appendChild(seg.firstElementChild);
+    const x=document.createElement("button"); x.className="row-x no-print"; x.textContent="×"; x.title="Remove";
+    x.addEventListener("click",()=>{state.log=state.log.filter(p=>p.id!==row.id);renderLog();save();});
+    r.appendChild(x); host.appendChild(r);
+  });
+}
+
+function renderDefects(hostId, arr, namePrefix){
+  const host=$("#"+hostId); host.innerHTML="";
+  arr.forEach(row=>{
+    const r=document.createElement("div"); r.className="def-row";
+    const dn=document.createElement("div"); dn.className="dn";
+    dn.appendChild(makeInput(row.name,"Defect",null,v=>{row.name=v;save();}));
+    const dist=document.createElement("div"); dist.className="dist";
+    dist.appendChild(makeInput(row.dist,"— m",null,v=>{row.dist=v;save();}));
+    r.appendChild(dn); r.appendChild(dist);
+    const seg=document.createElement("span"); seg.innerHTML=sevHTML(namePrefix+"_"+row.id,row.sev);
+    seg.querySelectorAll("input").forEach(ri=>ri.addEventListener("change",()=>{row.sev=ri.value;save();}));
+    r.appendChild(seg.firstElementChild);
+    const x=document.createElement("button"); x.className="row-x no-print"; x.textContent="×"; x.title="Remove";
+    x.addEventListener("click",()=>{ const i=arr.indexOf(row); if(i>-1)arr.splice(i,1); renderDefects(hostId,arr,namePrefix); save(); });
+    r.appendChild(x); host.appendChild(r);
+  });
+}
+
+/* photos */
+function downscale(file,maxEdge,quality){
+  return new Promise(res=>{
+    const url=URL.createObjectURL(file); const img=new Image();
+    img.onload=()=>{ URL.revokeObjectURL(url);
+      let w=img.naturalWidth,h=img.naturalHeight;
+      const sc=Math.min(1,maxEdge/Math.max(w,h)); w=Math.round(w*sc); h=Math.round(h*sc);
+      const c=document.createElement("canvas"); c.width=w; c.height=h;
+      c.getContext("2d").drawImage(img,0,0,w,h);
+      try{ res(c.toDataURL("image/jpeg",quality)); }catch(e){ res(null); }
+    };
+    img.onerror=()=>{URL.revokeObjectURL(url);res(null);};
+    img.src=url;
+  });
+}
+async function addFiles(files){
+  const imgs=[...files].filter(f=>f.type.startsWith("image/"));
+  for(const f of imgs){ const src=await downscale(f,1600,0.82); if(src) state.photos.push({id:uid(),src,caption:""}); }
+  renderPhotos(); save();
+}
+function renderPhotos(){
+  const g=$("#photoGrid"); g.innerHTML="";
+  if(!state.photos.length){ g.innerHTML='<div class="photo-empty no-print">No photos yet — drag images onto the box above or click “+ Add photos”.</div>'; return; }
+  state.photos.forEach((p,i)=>{
+    const card=document.createElement("div"); card.className="photo-card";
+    card.innerHTML=`<div class="photo-frame"><img src="${p.src}" alt="CCTV still ${i+1}">
+        <div class="photo-ctrls no-print">
+          <button class="up" title="Move up" ${i===0?"disabled":""}>↑</button>
+          <button class="dn" title="Move down" ${i===state.photos.length-1?"disabled":""}>↓</button>
+          <button class="del" title="Remove">×</button>
+        </div></div>
+      <textarea class="fld grow photo-cap" rows="1" placeholder="Caption — e.g. 18.4 m · root intrusion · 2 o'clock">${escapeHTML(p.caption)}</textarea>`;
+    const cap=card.querySelector(".photo-cap");
+    cap.addEventListener("input",()=>{p.caption=cap.value;autoGrow(cap);save();}); autoGrow(cap);
+    card.querySelector(".up").addEventListener("click",()=>{if(i>0){[state.photos[i-1],state.photos[i]]=[state.photos[i],state.photos[i-1]];renderPhotos();save();}});
+    card.querySelector(".dn").addEventListener("click",()=>{if(i<state.photos.length-1){[state.photos[i+1],state.photos[i]]=[state.photos[i],state.photos[i+1]];renderPhotos();save();}});
+    card.querySelector(".del").addEventListener("click",()=>{state.photos.splice(i,1);renderPhotos();save();});
+    g.appendChild(card);
+  });
+}
+
+/* signature */
+function initSig(){
+  const cv=$("#sigPad"); const ctx=cv.getContext("2d");
+  function fit(){
+    const r=cv.getBoundingClientRect(); const dpr=window.devicePixelRatio||1; const data=state.sig;
+    cv.width=Math.round(r.width*dpr); cv.height=Math.round(r.height*dpr);
+    ctx.scale(dpr,dpr); ctx.lineWidth=1.8; ctx.lineCap="round"; ctx.lineJoin="round"; ctx.strokeStyle="#10202D";
+    if(data){ const im=new Image(); im.onload=()=>ctx.drawImage(im,0,0,r.width,r.height); im.src=data; }
+  }
+  let drawing=false,last=null;
+  const pos=e=>{const r=cv.getBoundingClientRect();const t=e.touches?e.touches[0]:e;return{x:t.clientX-r.left,y:t.clientY-r.top};};
+  function start(e){drawing=true;last=pos(e);e.preventDefault();}
+  function move(e){ if(!drawing)return; const p=pos(e); ctx.beginPath();ctx.moveTo(last.x,last.y);ctx.lineTo(p.x,p.y);ctx.stroke(); last=p; e.preventDefault(); }
+  function end(){ if(!drawing)return; drawing=false; try{state.sig=cv.toDataURL("image/png");save();}catch(e){} }
+  cv.addEventListener("pointerdown",start); cv.addEventListener("pointermove",move); window.addEventListener("pointerup",end);
+  $("#sigClear").addEventListener("click",()=>{const r=cv.getBoundingClientRect();ctx.clearRect(0,0,r.width,r.height);state.sig="";save();});
+  setTimeout(fit,60); window.addEventListener("resize",()=>setTimeout(fit,60));
+}
+function placeImageOnPad(file){
+  const cv=$("#sigPad"); if(!cv) return; const ctx=cv.getContext("2d"); const r=cv.getBoundingClientRect();
+  const url=URL.createObjectURL(file); const img=new Image();
+  img.onload=()=>{ URL.revokeObjectURL(url); ctx.clearRect(0,0,r.width,r.height);
+    const pad=6, mw=r.width-pad*2, mh=r.height-pad*2;
+    const s=Math.min(mw/img.naturalWidth, mh/img.naturalHeight);
+    const w=img.naturalWidth*s, h=img.naturalHeight*s;
+    ctx.drawImage(img,(r.width-w)/2,(r.height-h)/2,w,h);
+    try{ state.sig=cv.toDataURL("image/png"); save(); }catch(e){}
+  };
+  img.onerror=()=>URL.revokeObjectURL(url); img.src=url;
+}
+
+function validate(){ const empty=!(state.fields.property_address||"").trim(); $("#addrWarn").classList.toggle("show",empty); return !empty; }
+
+function init(){
+  load();
+  if(state.fields.disclaimer==null) state.fields.disclaimer=DEFAULT_DISCLAIMER;
+  renderChecks("recChecks",RECS,"rec");
+  bindFields();
+  renderLog(); renderDefects("structRows",state.struct,"ss"); renderDefects("serviceRows",state.service,"sv");
+  renderPhotos(); initSig(); validate();
+
+  $("#addLog").addEventListener("click",()=>{state.log.push({id:uid(),ch:"",clk:"",code:"",obs:"",sev:""});renderLog();save();});
+  $("#addStruct").addEventListener("click",()=>{state.struct.push({id:uid(),name:"",dist:"",sev:""});renderDefects("structRows",state.struct,"ss");save();});
+  $("#addService").addEventListener("click",()=>{state.service.push({id:uid(),name:"",dist:"",sev:""});renderDefects("serviceRows",state.service,"sv");save();});
+
+  $("#addPhotoBtn").addEventListener("click",()=>$("#fileInput").click());
+  $("#dropzone").addEventListener("click",()=>$("#fileInput").click());
+  $("#fileInput").addEventListener("change",e=>{addFiles(e.target.files);e.target.value="";});
+  const dz=$("#dropzone");
+  ["dragenter","dragover"].forEach(ev=>dz.addEventListener(ev,e=>{e.preventDefault();dz.classList.add("drag");}));
+  ["dragleave","drop"].forEach(ev=>dz.addEventListener(ev,e=>{e.preventDefault();dz.classList.remove("drag");}));
+  dz.addEventListener("drop",e=>{ if(e.dataTransfer&&e.dataTransfer.files) addFiles(e.dataTransfer.files); });
+  window.addEventListener("dragover",e=>e.preventDefault());
+  window.addEventListener("drop",e=>{ if(e.target.closest&&!e.target.closest("#dropzone")&&e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files.length){e.preventDefault();addFiles(e.dataTransfer.files);} });
+
+  $("#sigUploadBtn").addEventListener("click",()=>$("#sigUpload").click());
+  $("#sigUpload").addEventListener("change",e=>{ if(e.target.files[0]) placeImageOnPad(e.target.files[0]); e.target.value=""; });
+  $("#saveBtn").addEventListener("click",()=>{ document.activeElement&&document.activeElement.blur(); syncHeights(); window.print(); });
+  $("#clearBtn").addEventListener("click",()=>{
+    if(confirm("Start a blank report? This clears everything in this browser.")){
+      localStorage.removeItem(LS_KEY);
+      state={fields:{disclaimer:DEFAULT_DISCLAIMER},checks:{},log:defaultLog(),struct:defaultStruct(),service:defaultService(),photos:[],sig:""};
+      document.querySelectorAll("[name]").forEach(el=>{if(el.type==="radio")el.checked=false;else if(el.name!=="disclaimer")el.value="";});
+      $('[name="disclaimer"]').value=DEFAULT_DISCLAIMER;
+      renderChecks("recChecks",RECS,"rec");
+      renderLog(); renderDefects("structRows",state.struct,"ss"); renderDefects("serviceRows",state.service,"sv"); renderPhotos();
+      const cv=$("#sigPad"); cv.getContext("2d").clearRect(0,0,cv.width,cv.height);
+      syncHeights(); validate();
+    }
+  });
+  window.addEventListener("beforeprint",syncHeights);
+}
+function syncHeights(){ document.querySelectorAll("textarea.grow").forEach(autoGrow); }
+
+document.addEventListener("DOMContentLoaded",init);
+</script>
+</body>
+</html>
