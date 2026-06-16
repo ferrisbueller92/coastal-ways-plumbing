@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Site Photos — Coastal Ways Plumbing</title>
+<!--
+  ============================================================================
+  COASTAL WAYS PLUMBING · Site Photos builder (browser tool, not a fillable PDF)
+  ============================================================================
+  WHY THIS EXISTS: macOS Preview cannot drag-drop a photo INTO a PDF box (it
+  inserts dragged images as new pages). A browser page CAN take real drag-drop /
+  file-picker photos, so Emma builds the photo sheet here, then Save as PDF.
+
+  USE: double-click to open in Safari/Chrome → drag photos in (or click Add
+  photos) → caption each → Save as PDF. Unlimited photos, flows across pages.
+  ============================================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Roboto:wght@300;400;500&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#fff; --ink:#10202D; --ink-soft:#384850; --slate:#536268;
+    --cool-grey:#C4CFD1; --teal:#055A5F; --hairline:rgba(16,32,45,0.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#EEEFF0;color:var(--ink);
+    font-family:'Space Grotesk','Inter',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;print-color-adjust:exact;-webkit-print-color-adjust:exact;}
+
+  /* ---------- screen toolbar (hidden in print) ---------- */
+  .toolbar{position:sticky;top:0;z-index:20;background:var(--ink);color:#fff;
+    display:flex;gap:14px;align-items:center;padding:12px 20px;flex-wrap:wrap;}
+  .toolbar h2{font-size:13px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;margin-right:auto;}
+  .btn{font-family:'Roboto',sans-serif;font-size:13px;font-weight:500;border:none;border-radius:6px;
+    padding:9px 16px;cursor:pointer;}
+  .btn--add{background:#fff;color:var(--ink);}
+  .btn--save{background:var(--teal);color:#fff;}
+  .btn:active{transform:translateY(1px)}
+  .hint{font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:.04em;color:var(--cool-grey);width:100%;}
+
+  .stage{max-width:1000px;margin:22px auto;padding:0 20px;}
+  .dropzone{border:2px dashed var(--cool-grey);border-radius:10px;background:#fff;
+    padding:34px;text-align:center;color:var(--slate);font-family:'Roboto',sans-serif;font-size:14px;
+    margin-bottom:22px;transition:.15s;}
+  body.dragging .dropzone{border-color:var(--teal);background:rgba(5,90,95,.06);color:var(--teal);}
+  .dropzone b{color:var(--ink);font-weight:500;}
+
+  /* job header (prints) */
+  .jobline{display:flex;gap:12px;align-items:center;margin-bottom:18px;}
+  .jobline label{font-family:'Roboto Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--slate);}
+  .jobline input{flex:1;font:inherit;font-size:14px;border:none;border-bottom:1.5px solid var(--hairline);
+    background:transparent;padding:4px 2px;color:var(--ink);outline:none;}
+  .jobline input:focus{border-bottom-color:var(--teal);}
+
+  /* photo grid */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .card{background:#fff;border-radius:8px;overflow:hidden;position:relative;
+    box-shadow:0 2px 10px rgba(16,32,45,.08);break-inside:avoid;}
+  /* plain block (not flex) so the frame hugs each photo's natural height */
+  .card .frame{background:#f0f2f3;overflow:hidden;}
+  /* frame grows to each photo's own shape (no crop, no zoom); contain is a
+     safety net only when a very tall image hits the max-height cap */
+  .card .frame img{width:100%;height:auto;max-height:120mm;object-fit:contain;display:block;}
+  .card .cap{width:100%;border:none;border-top:1px solid var(--hairline);font:inherit;
+    font-size:12px;color:var(--ink);padding:8px 10px;outline:none;}
+  .card .cap::placeholder{color:rgba(83,98,104,.5);font-style:italic;}
+  .card .num{position:absolute;top:8px;left:8px;background:rgba(16,32,45,.78);color:#fff;
+    font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:.06em;padding:3px 7px;border-radius:4px;}
+  .card .rm{position:absolute;top:6px;right:6px;width:26px;height:26px;border:none;border-radius:50%;
+    background:rgba(16,32,45,.78);color:#fff;font-size:16px;line-height:1;cursor:pointer;}
+  .empty{color:var(--slate);font-family:'Roboto',sans-serif;font-size:14px;text-align:center;padding:30px;}
+
+  /* print header / footer */
+  .sheet-head{display:none;}
+  .sheet-foot{display:none;}
+
+  @media print{
+    @page{size:A4;margin:14mm 12mm 16mm 12mm;}
+    html,body{background:#fff;}
+    .toolbar,.dropzone,.card .rm,.btn{display:none !important;}
+    .stage{margin:0;padding:0;max-width:none;}
+    .sheet-head{display:block;border-bottom:2px solid var(--ink);padding-bottom:6px;margin-bottom:12px;}
+    .sheet-head .brand{font-family:'Space Grotesk';font-weight:500;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);}
+    .sheet-head .doc{font-family:'Roboto Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin-top:3px;}
+    .jobline{margin-bottom:14px;} .jobline input{border-bottom:none;}
+    .grid{gap:12px;}
+    .card{box-shadow:none;border:1px solid var(--hairline);}
+    .card .cap{border-top:1px solid var(--hairline);}
+    .sheet-foot{display:block;position:fixed;bottom:6mm;left:12mm;right:12mm;
+      border-top:1px solid var(--hairline);padding-top:3mm;
+      font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--slate);
+      display:flex;justify-content:space-between;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="toolbar no-print">
+    <h2>Coastal Ways · Site Photos</h2>
+    <button class="btn btn--add" id="add">＋ Add photos</button>
+    <button class="btn btn--save" id="save">Save as PDF ⤓</button>
+    <input id="file" type="file" accept="image/*" multiple hidden>
+    <div class="hint">Drag photos anywhere on this page, or click “Add photos”. Caption each, then Save as PDF. Add as many as you need.</div>
+  </div>
+
+  <div class="stage">
+
+    <div class="sheet-head">
+      <div class="brand">Coastal Ways Plumbing</div>
+      <div class="doc">Water Efficiency Inspection Report · Site Photos</div>
+    </div>
+
+    <div class="jobline">
+      <label>Property</label>
+      <input id="job" type="text" placeholder="e.g. 26 Belyando Crescent, Blue Haven NSW 2262">
+    </div>
+
+    <div class="dropzone no-print" id="drop">
+      <b>Drag photos here</b> — or click “Add photos” above. They’ll appear below; caption each, then Save as PDF.
+    </div>
+
+    <div class="grid" id="grid"></div>
+    <div class="empty no-print" id="empty">No photos yet — drag some in to start.</div>
+
+  </div>
+
+  <div class="sheet-foot">
+    <span>Coastal Ways Plumbing &nbsp;·&nbsp; Site Photos</span>
+    <span>Licence 468634C · ABN 62 284 909 142</span>
+  </div>
+
+<script>
+  const grid = document.getElementById('grid');
+  const empty = document.getElementById('empty');
+
+  function renumber(){
+    [...grid.children].forEach((c,i)=> c.querySelector('.num').textContent = 'Photo '+(i+1));
+    empty.style.display = grid.children.length ? 'none' : '';
+  }
+  function addFiles(files){
+    for(const f of files){
+      if(!f || !f.type || !f.type.startsWith('image/')) continue;
+      const url = URL.createObjectURL(f);
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML =
+        '<span class="num"></span>'+
+        '<button class="rm no-print" title="Remove">&times;</button>'+
+        '<div class="frame"><img></div>'+
+        '<input class="cap" type="text" placeholder="Caption (optional) — e.g. Kitchen mixer · WELS 5-star">';
+      card.querySelector('img').src = url;
+      card.querySelector('.rm').addEventListener('click', ()=>{ card.remove(); renumber(); });
+      grid.appendChild(card);
+    }
+    renumber();
+  }
+
+  // file picker
+  document.getElementById('add').addEventListener('click', ()=> document.getElementById('file').click());
+  document.getElementById('file').addEventListener('change', e=> addFiles(e.target.files));
+
+  // drag-and-drop anywhere on the page
+  ['dragenter','dragover'].forEach(ev =>
+    document.addEventListener(ev, e=>{ e.preventDefault(); document.body.classList.add('dragging'); }));
+  document.addEventListener('dragleave', e=>{ if(e.relatedTarget===null) document.body.classList.remove('dragging'); });
+  document.addEventListener('drop', e=>{
+    e.preventDefault();
+    document.body.classList.remove('dragging');
+    if(e.dataTransfer && e.dataTransfer.files) addFiles(e.dataTransfer.files);
+  });
+
+  document.getElementById('save').addEventListener('click', ()=> window.print());
+  renumber();
+</script>
+</body>
+</html>
