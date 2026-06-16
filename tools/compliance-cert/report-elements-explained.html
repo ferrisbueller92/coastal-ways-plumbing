@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Why every element is here — Coastal Ways report builders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Roboto:wght@300;400;500&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#fff;--ink:#10202D;--ink-soft:#384850;--slate:#536268;--cool-grey:#C4CFD1;--teal:#055A5F;
+    --pass:#2D9D5A;--warn:#B6802A;--fail:#C84A2D;--na:#7A8890;
+    --hairline:rgba(16,32,45,.10);--hairline-mid:rgba(16,32,45,.18);--field:rgba(5,90,95,.05);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#E7EAEB;color:var(--ink);font-family:'Space Grotesk','Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;print-color-adjust:exact;-webkit-print-color-adjust:exact;padding:24px 12px 60px}
+  .sheet{width:210mm;max-width:100%;margin:0 auto;background:var(--paper);box-shadow:0 10px 40px rgba(16,32,45,.14);border-radius:2px;overflow:hidden}
+  .head{background:var(--ink);color:#fff;padding:8mm 12mm}
+  .head .eyebrow{font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.26em;text-transform:uppercase;color:var(--cool-grey);margin-bottom:2mm}
+  .head h1{font-weight:400;font-size:24px;letter-spacing:-.02em;line-height:1.08;text-transform:uppercase}
+  .head h1 em{font-style:normal;color:#7fd0c5;font-weight:500}
+  .head p{font-family:'Roboto',sans-serif;font-weight:300;font-size:11px;line-height:1.5;color:#cfd9da;margin-top:3mm;max-width:150mm}
+  .body{padding:7mm 12mm 10mm}
+
+  .principle{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm;margin-bottom:7mm}
+  .pcard{border:1px solid var(--hairline);border-left:2.5px solid var(--teal);border-radius:5px;padding:3mm 3.5mm;background:#FBFCFC}
+  .pcard h3{font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:1.5mm}
+  .pcard p{font-family:'Roboto',sans-serif;font-size:9.5px;line-height:1.5;color:var(--ink-soft)}
+  .pcard b{color:var(--ink)}
+
+  h2{font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:.02em;border-left:2.5px solid var(--teal);padding:1mm 0 1mm 8px;margin:6mm 0 2.5mm;display:flex;justify-content:space-between;align-items:baseline}
+  h2 span{font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.08em;color:var(--slate);text-transform:uppercase}
+
+  table{width:100%;border-collapse:collapse}
+  th{font-family:'Roboto Mono',monospace;font-size:7.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);text-align:left;padding:0 4px 1.5mm;border-bottom:1px solid var(--hairline-mid)}
+  td{font-size:10px;line-height:1.45;color:var(--ink-soft);padding:1.6mm 4px;border-bottom:1px dashed var(--hairline);vertical-align:top}
+  td.el{font-weight:500;color:var(--ink);width:42mm}
+  td.why b{color:var(--ink);font-weight:500}
+  .tag{display:inline-block;font-family:'Roboto Mono',monospace;font-size:7px;letter-spacing:.04em;text-transform:uppercase;
+    padding:1px 5px;border-radius:3px;white-space:nowrap;border:1px solid}
+  .t-std{color:var(--teal);border-color:var(--teal);background:rgba(5,90,95,.06)}
+  .t-law{color:#3454a6;border-color:#3454a6;background:rgba(52,84,166,.06)}
+  .t-liab{color:var(--fail);border-color:var(--fail);background:rgba(200,74,45,.06)}
+  .t-brief{color:var(--na);border-color:var(--na);background:rgba(122,136,144,.08)}
+  td.auth{width:30mm}
+
+  .flag{margin-top:7mm;border:1px solid var(--warn);background:#FBF2E1;border-radius:6px;padding:4mm}
+  .flag h3{font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--warn);margin-bottom:2mm}
+  .flag ul{margin:0;padding-left:5mm}
+  .flag li{font-family:'Roboto',sans-serif;font-size:9.5px;line-height:1.55;color:var(--ink-soft);margin-bottom:1.5mm}
+  .flag li b{color:var(--ink)}
+
+  .legend{display:flex;gap:10px;flex-wrap:wrap;margin:4mm 0 0;font-size:0}
+  .legend .tag{margin-right:0}
+  footer{padding:4mm 12mm 6mm;border-top:1px solid var(--hairline);font-family:'Roboto Mono',monospace;font-size:7.5px;letter-spacing:.06em;color:var(--slate);line-height:1.6}
+  @media print{@page{size:A4;margin:0}body{background:#fff;padding:0}.sheet{box-shadow:none;width:auto}}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="head">
+    <div class="eyebrow">Coastal Ways Plumbing · Internal guide · not a customer document</div>
+    <h1>Why every element <em>earns its place</em></h1>
+    <p>A plain-English walkthrough of the two new report builders — <b>Shower Leak Test</b> and <b>Sewer &amp; Drain CCTV</b>. The rule we built to: every field is here for a reason — it's required by a <b>standard</b>, demanded by a <b>law</b>, asked for in <b>Beau's brief</b>, or it <b>protects you legally</b>. If an element couldn't be justified, it was flagged for you to cut (see the amber box).</p>
+  </div>
+  <div class="body">
+
+    <div class="principle">
+      <div class="pcard"><h3>① The standards</h3><p><b>Shower:</b> AS 3740:2021 (wet-area waterproofing) under NCC 2022. <b>Sewer:</b> WSA 05-2020 v4.1 (the conduit condition-coding code) + AS/NZS 3500.2. These are the benchmarks a buyer, council or tribunal measures the report against.</p></div>
+      <div class="pcard"><h3>② The law</h3><p><b>Home Building Act 1989 (NSW)</b> — waterproofing warranties (6 yr major / 2 yr other). <b>Plumbing &amp; Drainage Act 2011 (NSW)</b> — licensing + what is/isn't a Certificate of Compliance. Regulator: Building Commission NSW; Central Coast Council for local drainage.</p></div>
+      <div class="pcard"><h3>③ The liability</h3><p>Once a report is handed to a buyer or agent, the <b>Australian Consumer Law (s60)</b> "due care &amp; skill" guarantee and <b>negligent-misstatement</b> duty attach. Scope statements, disclaimers and a named licensed signature are how Beau manages that exposure.</p></div>
+    </div>
+
+    <div class="legend">
+      <span class="tag t-std">Standard</span> &nbsp;
+      <span class="tag t-law">Law</span> &nbsp;
+      <span class="tag t-liab">Liability</span> &nbsp;
+      <span class="tag t-brief">Beau's brief</span>
+    </div>
+
+    <!-- SHOWER -->
+    <h2>Shower Leak Test Report <span>AS 3740 · Home Building Act</span></h2>
+    <table>
+      <thead><tr><th class="el">Element</th><th class="why">Why it earns its place</th><th class="auth">Backed by</th></tr></thead>
+      <tbody>
+        <tr><td class="el">Client &amp; property</td><td class="why">Identifies who the report is <b>for</b> — which fixes who may rely on it.</td><td><span class="tag t-liab">Liability</span></td></tr>
+        <tr><td class="el">Lot / unit + strata plan no.</td><td class="why">Triggers the strata question: the <b>membrane is usually common property</b> (Owners Corp), tiles &amp; grout are the lot owner's.</td><td><span class="tag t-law">Strata Act 2015</span></td></tr>
+        <tr><td class="el">Purpose</td><td class="why">Sets scope &amp; who may rely on it — insurers, agents and NCAT read this first.</td><td><span class="tag t-liab">Liability</span></td></tr>
+        <tr><td class="el">Shower type &amp; finishes</td><td class="why">Lets Beau assess against AS 3740 and pin the likely cause of the leak.</td><td><span class="tag t-std">AS 3740</span></td></tr>
+        <tr><td class="el">Approx. age of install</td><td class="why">The <b>warranty clock</b> — major defects 6 yrs, others 2 yrs from completion.</td><td><span class="tag t-law">HBA s18E</span></td></tr>
+        <tr><td class="el">Test method (flood / moisture / thermal / dye + duration)</td><td class="why">Disclosing exactly what was — and wasn't — done is a core liability shield. Flood testing is the AS 3740 method.</td><td><span class="tag t-std">AS 3740 App C</span></td></tr>
+        <tr><td class="el">Pre-test moisture baseline</td><td class="why">You can't <b>prove</b> a leak without a dry baseline to compare the after-readings against.</td><td><span class="tag t-std">Method</span></td></tr>
+        <tr><td class="el">Existing damage noted</td><td class="why">Separates pre-existing faults from test findings — protects against "you caused it".</td><td><span class="tag t-liab">Liability</span></td></tr>
+        <tr><td class="el">Results — area Pass/Fail + timed observations</td><td class="why">The factual record of the test, area by area, as the leak develops.</td><td><span class="tag t-brief">Beau's brief</span></td></tr>
+        <tr><td class="el">Moisture assessment (before→after→change)</td><td class="why">The hard evidence: a significant rise = ingress. The builder auto-flags it red.</td><td><span class="tag t-std">Evidence</span></td></tr>
+        <tr><td class="el">Defects identified</td><td class="why">Names the failure — membrane / grout / silicone / waste flange.</td><td><span class="tag t-brief">Beau's brief</span></td></tr>
+        <tr><td class="el">Severity + "consistent with a major defect?"</td><td class="why"><b>The standout field.</b> Links the finding to the s18E habitability/structural test that decides 6-yr vs 2-yr rights — framed as a flag, not a legal ruling.</td><td><span class="tag t-law">HBA s18E</span></td></tr>
+        <tr><td class="el">Photos</td><td class="why">Evidence that travels with the report.</td><td><span class="tag t-brief">Beau's brief</span></td></tr>
+        <tr><td class="el">Conclusion (Pass / Fail / Inconclusive)</td><td class="why">The plain-English verdict at time of inspection.</td><td><span class="tag t-brief">Beau's brief</span></td></tr>
+        <tr><td class="el">Recommendations</td><td class="why">Next steps. "Engage a licensed waterproofer" matters — rectification over <b>$5,000</b> needs a waterproofing licence.</td><td><span class="tag t-law">Licensing</span></td></tr>
+        <tr><td class="el">Declaration + signature + Lic. 468634C</td><td class="why">A report's weight comes from a <b>named, licensed</b> person standing behind it.</td><td><span class="tag t-liab">ACL s60</span></td></tr>
+        <tr><td class="el">Scope &amp; disclaimers</td><td class="why">Caps reliance, states what couldn't be seen (concealed membrane), and that it's <b>not a statutory certificate</b>.</td><td><span class="tag t-liab">Liability</span></td></tr>
+      </tbody>
+    </table>
+
+    <!-- SEWER -->
+    <h2>Sewer &amp; Drain CCTV Condition Report <span>WSA 05-2020 v4.1 · P&amp;D Act 2011</span></h2>
+    <table>
+      <thead><tr><th class="el">Element</th><th class="why">Why it earns its place</th><th class="auth">Backed by</th></tr></thead>
+      <tbody>
+        <tr><td class="el">Client / property + Lot/DP</td><td class="why">Identification + the "prepared for / reliance" scope.</td><td><span class="tag t-liab">Liability</span></td></tr>
+        <tr><td class="el">Purpose</td><td class="why">"Pre-purchase" and "build-over sewer" are different legal contexts — the reader needs to know which.</td><td><span class="tag t-liab">Liability</span></td></tr>
+        <tr><td class="el">Drain system (sewer / stormwater)</td><td class="why">They're separate systems with separate rules — must be stated.</td><td><span class="tag t-std">WSA 05</span></td></tr>
+        <tr><td class="el">Pipe material</td><td class="why">Drives the recommendations and build-over rules — AC/VC mains need special care near structures.</td><td><span class="tag t-std">WSA 05 / CCC</span></td></tr>
+        <tr><td class="el">Diameter &amp; length surveyed</td><td class="why">Defines the asset and the <b>extent</b> of what was actually inspected.</td><td><span class="tag t-std">WSA 05</span></td></tr>
+        <tr><td class="el">Upstream / downstream access points</td><td class="why">Define the <b>private-drain boundary</b> — the owner's responsibility ends at the connection point to Council's main.</td><td><span class="tag t-law">P&amp;D Act 2011</span></td></tr>
+        <tr><td class="el">Direction · camera · sonde · pre-cleaned · flow</td><td class="why">WSA records the inspection conditions so the result is credible and repeatable.</td><td><span class="tag t-std">WSA 05</span></td></tr>
+        <tr><td class="el">CCTV observation log — chainage · clock · WSA code · severity</td><td class="why"><b>The WSA-graded heart of the report:</b> where along the pipe (chainage), where on the pipe face (clock), what (code) and how bad (severity).</td><td><span class="tag t-std">WSA 05 v4.1</span></td></tr>
+        <tr><td class="el">Defect assessment — structural &amp; service</td><td class="why">WSA v4.1 deliberately splits <b>structural</b> (the pipe failing) from <b>service</b> (flow blocked) — both matter, differently.</td><td><span class="tag t-std">WSA 05 v4.1</span></td></tr>
+        <tr><td class="el">Condition rating + structural/service grades 1–5</td><td class="why">The headline a buyer/agent reads. Grades 1–5 are the WSA standard scale.</td><td><span class="tag t-std">WSA 05</span></td></tr>
+        <tr><td class="el">Summary findings</td><td class="why">Plain-English synthesis of the log for a non-technical reader.</td><td><span class="tag t-brief">Beau's brief</span></td></tr>
+        <tr><td class="el">CCTV stills (chainage captions)</td><td class="why">WSA requires photographs of defects, located by chainage.</td><td><span class="tag t-std">WSA 05 App F</span></td></tr>
+        <tr><td class="el">Recommendations</td><td class="why">Repair options — cut / jet / reline / excavate — plus a reinspection interval.</td><td><span class="tag t-brief">Beau's brief</span></td></tr>
+        <tr><td class="el">Certification + signature + Lic. 468634C</td><td class="why">Only a <b>licensed drainer</b> should issue this; the licence is the credibility.</td><td><span class="tag t-law">P&amp;D Act 2011</span></td></tr>
+        <tr><td class="el">Scope &amp; disclaimers</td><td class="why">States the private-drain-only scope, lists uninspected sections, and that it's <b>not a Certificate of Compliance</b> under the Act.</td><td><span class="tag t-liab">Liability</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="flag">
+      <h3>⚑ Flagged for your call — couldn't fully justify, or deliberately softened</h3>
+      <ul>
+        <li><b>Sewer “Weather”</b> — low value for an underground asset. Kept only because WSA records inspection conditions and Beau's template listed it. <b>Cut it if it feels like clutter.</b></li>
+        <li><b>“Major defect?” / condition-rating fields are worded as professional <em>flags</em>, not legal rulings</b> (“consistent with…”, “Uncertain”). That's deliberate: deciding a <em>major defect</em> or <em>strata responsibility</em> is NCAT's job — stating it as fact would create liability. Keep the soft wording.</li>
+        <li><b>Everything else validated</b> against a standard, a law, Beau's brief, or a liability rationale. Nothing is in there "just because the template had it."</li>
+      </ul>
+    </div>
+
+  </div>
+  <footer>
+    Sources: AS 3740:2021 · NCC 2022 Vol Two Pt 10.2 · WSA 05-2020 v4.1 (WSAA) · AS/NZS 3500.2:2025 · Home Building Act 1989 (NSW) s18E · Plumbing &amp; Drainage Act 2011 (NSW) · Strata Schemes Management Act 2015 · Australian Consumer Law (Competition &amp; Consumer Act 2010, Sch 2) s60 · Building Commission NSW · Central Coast Council.<br>
+    Coastal Ways Plumbing · Lic. 468634C · internal reference only — confirm licensing boundaries &amp; CCTV Notice-of-Work position with Building Commission NSW / Central Coast Council before launch.
+  </footer>
+</div>
+</body>
+</html>
