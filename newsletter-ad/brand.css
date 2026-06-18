@@ -104,5 +104,5 @@ h1,h2,h3{font-family:"Space Grotesk";font-weight:700;line-height:.98;
 @media print{
   @page{size:96mm 61mm;margin:0}
   html,body{margin:0;background:#fff}
-  .card{width:96mm;height:61mm;box-shadow:none}
+  .card{width:96mm;height:61mm;box-shadow:none;zoom:1!important}
 }
