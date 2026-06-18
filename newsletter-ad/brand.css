@@ -1,0 +1,108 @@
+/* ============================================================
+   Coastal Ways Plumbing — Newsletter Ad System
+   Shared brand foundation for all concepts.
+   Print frame: 90×55mm trim · 96×61mm bleed (3mm) · 300 DPI
+   Layout uses container-query units (cqw/cqh) so the SAME markup
+   renders identically at the px proof size and the mm print size.
+   ============================================================ */
+
+@font-face{font-family:"Space Grotesk";font-weight:700;font-display:block;
+  src:url("assets/fonts/space-grotesk-latin-700-normal.woff2") format("woff2");}
+@font-face{font-family:"Space Grotesk";font-weight:500;font-display:block;
+  src:url("assets/fonts/space-grotesk-latin-500-normal.woff2") format("woff2");}
+@font-face{font-family:"Roboto";font-weight:300;font-display:block;
+  src:url("assets/fonts/roboto-latin-300-normal.woff2") format("woff2");}
+@font-face{font-family:"Roboto";font-weight:400;font-display:block;
+  src:url("assets/fonts/roboto-latin-400-normal.woff2") format("woff2");}
+@font-face{font-family:"Roboto";font-weight:500;font-display:block;
+  src:url("assets/fonts/roboto-latin-500-normal.woff2") format("woff2");}
+
+:root{
+  --sand:#FBF6F3;
+  --navy:#10202D;
+  --teal:#055A5F;
+  --teal-tint:#E6F0F1;
+  --white:#ffffff;
+  /* tints used sparingly for depth, all derived from brand */
+  --navy-80:rgba(16,32,45,.80);
+  --navy-55:rgba(16,32,45,.55);
+  --teal-12:rgba(5,90,95,.12);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+/* ---- Card frame -------------------------------------------------- */
+/* The bleed box. Backgrounds/photos fill this to the edge.          */
+.card{
+  position:relative;
+  width:1134px;height:720px;            /* proof: 96×61mm @300dpi */
+  container-type:size;                    /* enables cqw/cqh inside */
+  overflow:hidden;
+  background:var(--sand);
+  font-family:"Roboto",-apple-system,Helvetica,Arial,sans-serif;
+  color:var(--navy);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+/* Safe area = 3mm trim + ~3mm safety from bleed edge.              */
+/* All TEXT lives inside .safe; bg art may bleed past it.            */
+.safe{position:absolute;inset:6.4cqw 6.5cqw;display:flex;}
+
+h1,h2,h3{font-family:"Space Grotesk";font-weight:700;line-height:.98;
+  letter-spacing:-.015em;color:var(--navy)}
+.on-dark,.on-dark h1,.on-dark h2,.on-dark h3{color:var(--sand)}
+
+/* ---- Shared atoms ---------------------------------------------- */
+.eyebrow{font-family:"Space Grotesk";font-weight:500;text-transform:uppercase;
+  letter-spacing:.22em;font-size:2.35cqw;color:var(--teal)}
+.on-dark .eyebrow{color:var(--teal-tint)}
+
+.phone{font-family:"Space Grotesk";font-weight:700;letter-spacing:-.01em;
+  font-size:6cqw;color:var(--teal);line-height:1;white-space:nowrap}
+.on-dark .phone{color:var(--white)}
+.phone .pre{font-size:.42em;letter-spacing:.18em;text-transform:uppercase;
+  font-weight:500;color:var(--navy-55);display:block;margin-bottom:.35em}
+.on-dark .phone .pre{color:var(--teal-tint)}
+
+.web{font-family:"Roboto";font-weight:500;font-size:2.7cqw;color:var(--navy);
+  letter-spacing:.01em}
+.on-dark .web{color:var(--sand)}
+
+.meta{font-family:"Roboto",monospace;font-weight:400;font-size:2.25cqw;
+  color:var(--navy-55);letter-spacing:.02em}
+.on-dark .meta{color:rgba(251,246,243,.6)}
+
+/* licence chip — legally required on trade advertising */
+.lic{font-family:"Space Grotesk";font-weight:500;font-size:2.05cqw;
+  letter-spacing:.06em;color:var(--navy-55)}
+.on-dark .lic{color:rgba(251,246,243,.55)}
+
+.qr{width:11.5cqw;height:11.5cqw;border-radius:1.4cqw;background:#fff;
+  padding:.9cqw;display:block;box-shadow:0 .4cqw 1.2cqw rgba(16,32,45,.10)}
+.qr img{width:100%;height:100%;display:block}
+.qr-cap{font-family:"Space Grotesk";font-weight:500;font-size:1.7cqw;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--navy-55);
+  text-align:center;margin-top:.7cqw}
+.on-dark .qr-cap{color:rgba(251,246,243,.6)}
+
+.tick{display:flex;align-items:center;gap:1.6cqw;font-family:"Roboto";
+  font-weight:400;font-size:3cqw;color:var(--navy);line-height:1.15}
+.on-dark .tick{color:var(--sand)}
+.tick svg{flex:0 0 auto;width:3.4cqw;height:3.4cqw}
+
+.rule{height:.28cqw;background:var(--teal);border:0;width:100%}
+
+/* coastline motif — subtle, on-brand depth */
+.waves{position:absolute;left:0;right:0;bottom:0;width:100%;display:block}
+
+/* ---- Proof helpers (screen only; never printed) ----------------- */
+.guides .card::after{content:"";position:absolute;inset:35.4px;
+  outline:1px dashed rgba(5,90,95,.45);pointer-events:none}
+
+/* ---- Print: lock to physical bleed size ------------------------- */
+@media print{
+  @page{size:96mm 61mm;margin:0}
+  html,body{margin:0;background:#fff}
+  .card{width:96mm;height:61mm;box-shadow:none}
+}
