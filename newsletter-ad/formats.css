@@ -1,0 +1,179 @@
+/* ============================================================
+   Coastal Ways Plumbing — Newsletter Ad · LARGE FORMATS
+   Full page (174×269mm portrait) + Half page (174×117mm landscape).
+   Builds on brand.css (fonts, colours, atoms). Same markup renders
+   identically at the px proof size and the mm print size.
+   Proof scale: 6px/mm (152.4dpi); render at device-scale-factor 2 = ~305dpi.
+   ============================================================ */
+
+/* ---------- FULL PAGE · 174 × 269 mm portrait ---------- */
+.card.full{
+  width:1044px;height:1614px;           /* 174×269mm @ 6px/mm */
+  display:flex;flex-direction:column;background:var(--sand);
+}
+.full .f-head{display:flex;align-items:center;justify-content:space-between;
+  padding:4.8cqw 5.8cqw 2.4cqw}
+.full .f-head .logo{width:40cqw;height:auto;display:block}
+.full .f-head .eyebrow{font-size:2.0cqw}
+
+.full .f-hero{position:relative;width:100%;height:36%;overflow:hidden}
+.full .f-hero img{width:100%;height:100%;object-fit:cover;object-position:50% 31%}
+.full .f-hero::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(16,32,45,0) 50%,rgba(16,32,45,.9) 100%)}
+.full .nameplate{position:absolute;left:5.8cqw;bottom:3.6cqw;color:var(--sand);z-index:2}
+.full .nameplate .n{font-family:"Space Grotesk";font-weight:700;font-size:3.7cqw;line-height:1}
+.full .nameplate .r{font-family:"Roboto";font-weight:400;font-size:2.1cqw;
+  color:rgba(251,246,243,.86);margin-top:.8cqw}
+
+.full .f-body{flex:1;padding:4.4cqw 5.8cqw 0;display:flex;flex-direction:column}
+.full .f-body h1{font-size:7.2cqw;letter-spacing:-.02em}
+.full .f-body h1 em{font-style:normal;color:var(--teal)}
+.full .f-body .sub{font-family:"Roboto";font-weight:300;font-size:2.8cqw;color:var(--navy-80);
+  margin-top:1.4cqw;line-height:1.25}
+.full .ticks{display:grid;grid-template-columns:1fr 1fr;gap:1.7cqw 4cqw;margin-top:2.6cqw}
+.full .ticks .tick{font-size:2.9cqw}
+.full .ticks .tick svg{width:3.6cqw;height:3.6cqw}
+
+.full .f-foot{position:relative;margin-top:auto;background:var(--navy);
+  padding:4.8cqw 5.8cqw 4.6cqw;display:flex;align-items:flex-end;justify-content:space-between;gap:4cqw}
+.full .f-foot .fwaves{position:absolute;left:0;bottom:100%;width:100%;height:5.2cqw;display:block}
+.full .f-foot .phone{font-size:7cqw;color:#fff}
+.full .f-foot .phone .pre{color:var(--teal-tint)}
+.full .f-foot .lines{display:flex;flex-direction:column;gap:1.2cqw;margin-top:1.6cqw}
+.full .f-foot .web{color:var(--sand);font-size:2.7cqw}
+.full .f-foot .meta{color:rgba(251,246,243,.64);font-size:2.2cqw}
+.full .f-foot .qrwrap{text-align:center;flex:0 0 auto}
+.full .f-foot .qr{width:16cqw;height:16cqw}
+.full .f-foot .qr-cap{color:rgba(251,246,243,.66);font-size:1.85cqw;margin-top:1cqw}
+
+/* ---------- HALF PAGE · 174 × 117 mm landscape ---------- */
+.card.half{
+  width:1044px;height:702px;            /* 174×117mm @ 6px/mm */
+  display:flex;background:var(--sand);
+}
+.half .h-photo{position:relative;flex:0 0 38%;overflow:hidden}
+.half .h-photo img{width:100%;height:100%;object-fit:cover;object-position:56% 16%}
+.half .h-photo::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(16,32,45,0) 52%,rgba(16,32,45,.92) 100%)}
+.half .nameplate{position:absolute;left:2.4cqw;right:1.4cqw;bottom:3cqw;color:var(--sand);z-index:2}
+.half .nameplate .n{font-family:"Space Grotesk";font-weight:700;font-size:2.7cqw;line-height:1}
+.half .nameplate .r{font-family:"Roboto";font-weight:400;font-size:1.6cqw;
+  color:rgba(251,246,243,.86);margin-top:.6cqw}
+/* body is its own query container so cqw = % of the body column, not the card */
+.half .h-body{flex:1;min-width:0;container-type:inline-size;
+  padding:4.6cqw 5cqw;display:flex;flex-direction:column}
+.half .h-top{display:flex;align-items:center;justify-content:space-between;gap:2cqw}
+.half .h-top .logo{width:38cqw;height:auto;display:block}
+.half .h-top .eyebrow{font-size:2.5cqw;white-space:nowrap}
+.half .h-body h1{font-size:8.2cqw;margin-top:3cqw;letter-spacing:-.02em;line-height:1}
+.half .h-body h1 em{font-style:normal;color:var(--teal)}
+.half .sub{font-family:"Roboto";font-weight:300;font-size:2.95cqw;color:var(--navy-80);
+  margin-top:2cqw;line-height:1.32}
+.half .ticks{display:grid;grid-template-columns:1fr 1fr;gap:4.2cqw 5cqw;margin-top:3.6cqw}
+.half .ticks .tick{font-size:3.4cqw}
+.half .ticks .tick svg{width:4.2cqw;height:4.2cqw}
+.half .h-rule{height:2px;background:rgba(16,32,45,.12);margin-top:auto}
+.half .h-foot{margin-top:3.4cqw;display:flex;align-items:flex-end;justify-content:space-between;gap:3cqw}
+.half .h-foot .phone{font-size:8.4cqw}
+.half .h-foot .web{font-size:3.4cqw}
+.half .h-foot .lic{font-size:2.95cqw}
+.half .h-foot .lines{display:flex;flex-direction:column;gap:1cqw;margin-top:1.4cqw}
+.half .h-foot .qrwrap{text-align:center;flex:0 0 auto}
+.half .h-foot .qr{width:22cqw;height:22cqw}
+.half .h-foot .qr-cap{font-size:2.4cqw;margin-top:.8cqw}
+
+/* ---------- FULL PAGE · SPLIT (photo full-height left, info right) ---------- */
+.card.full-split{width:1044px;height:1614px;display:flex;background:var(--sand)}
+.full-split .fs-photo{flex:0 0 52%;position:relative;overflow:hidden}
+.full-split .fs-photo img{width:100%;height:100%;object-fit:cover;object-position:63% 18%}
+.full-split .fs-photo::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(16,32,45,.36) 0%,rgba(16,32,45,0) 26%,rgba(16,32,45,0) 58%,rgba(16,32,45,.92) 100%)}
+.full-split .nameplate{position:absolute;left:2.6cqw;right:1.6cqw;bottom:2.8cqw;color:var(--sand);z-index:2}
+.full-split .nameplate .n{font-family:"Space Grotesk";font-weight:700;font-size:2.9cqw;line-height:1}
+.full-split .nameplate .r{font-family:"Roboto";font-weight:400;font-size:1.75cqw;color:rgba(251,246,243,.86);margin-top:.6cqw}
+.full-split .fs-body{flex:1;min-width:0;container-type:inline-size;display:flex;flex-direction:column}
+.full-split .fs-top{padding:8.5cqw 7.5cqw 0}
+.full-split .fs-mid{flex:1;display:flex;flex-direction:column;justify-content:center;padding:6cqw 7.5cqw}
+.full-split .fs-top .logo{width:72cqw;height:auto;display:block}
+.full-split .fs-top .eyebrow{font-size:3cqw;display:inline-block;margin-top:3.4cqw}
+.full-split h1{font-size:10.8cqw;margin-top:0;letter-spacing:-.02em;line-height:1}
+.full-split h1 em{font-style:normal;color:var(--teal)}
+.full-split .sub{font-family:"Roboto";font-weight:300;font-size:3.6cqw;color:var(--navy-80);margin-top:3cqw;line-height:1.3}
+.full-split .ticks{display:flex;flex-direction:column;gap:4cqw;margin-top:8.5cqw}
+.full-split .ticks .tick{font-size:4.3cqw}
+.full-split .ticks .tick svg{width:5.2cqw;height:5.2cqw}
+.full-split .fs-foot{margin-top:auto;background:var(--navy);padding:7cqw 7.5cqw 7.5cqw;display:flex;align-items:flex-end;justify-content:space-between;gap:3cqw}
+.full-split .fs-foot .phone{color:#fff}
+.full-split .phone{font-size:8.2cqw}
+.full-split .lines{display:flex;flex-direction:column;gap:1.3cqw;margin-top:1.8cqw}
+.full-split .web{font-size:3.5cqw}
+.full-split .lic{font-size:3cqw;display:block;margin-top:.6cqw}
+.full-split .qrwrap{text-align:center;flex:0 0 auto}
+.full-split .qr{width:23cqw;height:23cqw}
+.full-split .qr-cap{font-size:2.6cqw;margin-top:1cqw}
+
+/* ---------- FULL PAGE · FULL-BLEED (Beau fills the page, text overlaid) ---------- */
+.card.full-bleed{width:1044px;height:1614px;position:relative;overflow:hidden;background:var(--navy)}
+.full-bleed .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 16%}
+.full-bleed::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(16,32,45,.58) 0%,rgba(16,32,45,.10) 18%,rgba(16,32,45,0) 38%,rgba(16,32,45,.78) 68%,rgba(16,32,45,.97) 100%)}
+.full-bleed .fb-top{position:absolute;top:6cqw;left:6.2cqw;right:6.2cqw;z-index:2;
+  display:flex;align-items:center;justify-content:space-between;gap:3cqw}
+.full-bleed .fb-top .logo{width:44cqw;height:auto;display:block}
+.full-bleed .fb-top .eyebrow{font-size:2cqw;color:var(--teal-tint)}
+.full-bleed .fb-bot{position:absolute;left:6.2cqw;right:6.2cqw;bottom:6.4cqw;z-index:2;color:var(--sand);
+  text-shadow:0 .2cqw 1.3cqw rgba(0,0,0,.55)}
+.full-bleed .fb-top{text-shadow:0 .2cqw 1.1cqw rgba(0,0,0,.45)}
+.full-bleed .np{font-family:"Space Grotesk";font-weight:500;font-size:2.5cqw;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--teal-tint);margin-bottom:2.4cqw}
+.full-bleed h1{font-size:8.4cqw;color:var(--sand);letter-spacing:-.02em}
+.full-bleed h1 em{font-style:normal;color:#63C7CC}
+.full-bleed .rule{width:16cqw;margin:3cqw 0 3cqw;background:#63C7CC}
+.full-bleed .fb-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:3cqw;margin-top:1cqw}
+.full-bleed .phone{font-size:7.4cqw;color:#fff}
+.full-bleed .phone .pre{color:var(--teal-tint)}
+.full-bleed .lines{display:flex;flex-direction:column;gap:1.1cqw;margin-top:1.6cqw}
+.full-bleed .web{color:var(--sand);font-size:2.7cqw}
+.full-bleed .meta{color:rgba(251,246,243,.7);font-size:2.2cqw}
+.full-bleed .qrwrap{text-align:center;flex:0 0 auto}
+.full-bleed .qr{width:16cqw;height:16cqw}
+.full-bleed .qr-cap{color:rgba(251,246,243,.72);font-size:1.85cqw;margin-top:1cqw}
+/* B&W full-bleed */
+.full-bleed.bw .bg{filter:grayscale(1) contrast(1.06)}
+.full-bleed.bw::after{background:linear-gradient(180deg,rgba(0,0,0,.5) 0%,rgba(0,0,0,.05) 18%,rgba(0,0,0,0) 36%,rgba(0,0,0,.66) 56%,#000 78%)}
+.full-bleed.bw h1,.full-bleed.bw h1 em,.full-bleed.bw .np,.full-bleed.bw .eyebrow{color:#fff}
+.full-bleed.bw .rule{background:#fff}
+.full-bleed.bw .phone{color:#fff}
+.full-bleed.bw .phone .pre,.full-bleed.bw .web,.full-bleed.bw .qr-cap{color:#eee}
+.full-bleed.bw .meta{color:#cfcfcf}
+
+/* ---------- BLACK & WHITE variant (newsprint) ---------- */
+.card.bw{background:#fff}
+.bw .f-hero img,.bw .h-photo img,.bw .fs-photo img{filter:grayscale(1) contrast(1.06) brightness(1.02)}
+.bw .f-head .logo,.bw .h-top .logo,.bw .fs-top .logo{filter:grayscale(1)}
+.bw h1{color:#111}
+.bw .f-body h1 em,.bw .h-body h1 em,.bw .fs-mid h1 em{color:#111}
+.bw .eyebrow{color:#444}
+.bw .sub{color:#333}
+.bw .phone{color:#111}
+.bw .phone .pre{color:#555}
+.bw .web{color:#111}
+.bw .lic,.bw .meta{color:#555}
+.bw .ticks .tick{color:#111}
+.bw .ticks .tick svg circle{fill:#e9e9e9}
+.bw .ticks .tick svg path{stroke:#111}
+.bw .rule{background:#111}
+/* dark footer band → near-black for B&W */
+.bw .f-foot,.bw .fs-foot{background:#141414}
+.bw .f-foot .phone,.bw .f-foot .web,.bw .fs-foot .phone,.bw .fs-foot .web{color:#fff}
+.bw .f-foot .phone .pre,.bw .f-foot .qr-cap,.bw .fs-foot .phone .pre,.bw .fs-foot .qr-cap{color:rgba(255,255,255,.66)}
+.bw .f-foot .meta,.bw .fs-foot .lic{color:rgba(255,255,255,.6)}
+
+/* ---------- print: lock to physical size ---------- */
+@media print{
+  html,body{margin:0;background:#fff}
+  body{display:block}
+  .card.full,.card.full-split,.card.full-bleed{width:174mm;height:269mm}
+  .card.half{width:174mm;height:117mm}
+}
+@page{margin:0}
