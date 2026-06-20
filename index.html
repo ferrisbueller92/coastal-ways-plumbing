@@ -77,6 +77,25 @@
     /* Scroll reveal */
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Reviews carousel — center focus + faded peek, scales to any number of reviews */
+    .reviews-carousel { position: relative; display: flex; align-items: center; gap: 8px; }
+    .rc-viewport { overflow: hidden; flex: 1;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%); }
+    .rc-track { display: flex; gap: 24px; align-items: stretch; will-change: transform;
+      transition: transform 0.55s cubic-bezier(.22,.61,.36,1); padding: 10px 0; }
+    .rc-card { flex: 0 0 clamp(258px, 80vw, 360px); opacity: .4; transform: scale(.88);
+      transition: transform 0.55s, opacity 0.55s; }
+    @media (min-width: 640px) { .rc-card { flex-basis: 360px; } }
+    .rc-card.is-near { opacity: .65; transform: scale(.93); }
+    .rc-card.is-active { opacity: 1; transform: scale(1); }
+    .rc-btn { flex: 0 0 auto; width: 44px; height: 44px; border-radius: 9999px; border: 1.5px solid #10202D;
+      background: #fff; color: #10202D; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: .15s; z-index: 2; }
+    .rc-btn:hover { background: #10202D; color: #fff; }
+    .rc-btn:disabled { opacity: .25; cursor: default; }
+    @media (prefers-reduced-motion: reduce) { .rc-track, .rc-card { transition: none; } }
   </style>
 
   <!-- JSON-LD Structured Data -->
@@ -449,6 +468,84 @@
     </div>
   </section>
 
+  <!-- TESTIMONIALS · cards auto-filled by vault tools/cwp_reviews_fetch.py (server-side · Google Places API) -->
+  <section id="reviews" class="py-20 sm:py-28 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 reveal">
+        <p class="text-teal font-display font-medium text-sm tracking-widest uppercase mb-3">What Our Customers Say</p>
+        <h2 class="text-3xl sm:text-4xl font-display font-bold text-navy mb-4">Reviews from the Central Coast</h2>
+      </div>
+      <!-- CWP-REVIEWS:START -->
+      <div class="text-center mb-12 reveal">
+        <div class="inline-flex items-center gap-4 bg-sand border border-cool-grey/20 rounded-2xl px-7 py-4">
+          <span class="font-display font-bold text-navy leading-none" style="font-size:2.75rem">5.0</span>
+          <div class="text-left">
+            <div class="flex gap-0.5 mb-1"><svg class="w-5 h-5" fill="#FBBC04" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg><svg class="w-5 h-5" fill="#FBBC04" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg><svg class="w-5 h-5" fill="#FBBC04" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg><svg class="w-5 h-5" fill="#FBBC04" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg><svg class="w-5 h-5" fill="#FBBC04" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg></div>
+            <p class="text-navy/60 text-sm font-light">3 five-star reviews on Google</p>
+          </div>
+        </div>
+      </div>
+      <div class="reviews-carousel">
+        <button class="rc-btn rc-prev" type="button" aria-label="Previous reviews"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></button>
+        <div class="rc-viewport">
+          <div class="rc-track">
+        <div class="rc-card bg-sand rounded-xl p-8 border border-cool-grey/20 flex flex-col">
+          <div class="flex items-center gap-0.5 mb-4" aria-label="5 out of 5 stars"><svg class="w-5 h-5" fill="#FBBC04" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg><svg class="w-5 h-5" fill="#FBBC04" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg><svg class="w-5 h-5" fill="#FBBC04" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg><svg class="w-5 h-5" fill="#FBBC04" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg><svg class="w-5 h-5" fill="#FBBC04" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg></div>
+          <p class="text-navy/70 font-light leading-relaxed mb-6 flex-1">I contacted them regarding a plumbing issue, and they had a plumber at my property within an hour. The plumber was professional, friendly, and quickly identified the source of the leak. He completed the repair efficiently and took the time to ensure the work area was left clean and tidy afterward.
+
+The service was prompt, professional, and reasonably priced. I was very impressed with the overall experience and would highly recommend them to anyone looking for reliable plumbing services.</p>
+          <div class="flex items-center gap-3 pt-4 border-t border-cool-grey/20">
+            <img src="https://lh3.googleusercontent.com/a-/ALV-UjUVFVedHUMBjAEc16rachuSfwq-ePwnEUXjt1fMGI_Sli800KCk=s128-c0x00000000-cc-rp-mo" alt="Jason" class="w-10 h-10 rounded-full" loading="lazy" referrerpolicy="no-referrer">
+            <div>
+              <a href="https://www.google.com/maps/contrib/110278304866738600074/reviews" target="_blank" rel="noopener" class="font-display font-bold text-navy text-sm hover:text-teal">Jason</a>
+              <p class="text-navy/50 text-xs font-light">a week ago &middot; via Google</p>
+            </div>
+          </div>
+        </div>
+        <div class="rc-card bg-sand rounded-xl p-8 border border-cool-grey/20 flex flex-col">
+          <div class="flex items-center gap-0.5 mb-4" aria-label="5 out of 5 stars"><svg class="w-5 h-5" fill="#FBBC04" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg><svg class="w-5 h-5" fill="#FBBC04" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg><svg class="w-5 h-5" fill="#FBBC04" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg><svg class="w-5 h-5" fill="#FBBC04" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg><svg class="w-5 h-5" fill="#FBBC04" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg></div>
+          <p class="text-navy/70 font-light leading-relaxed mb-6 flex-1">We’ve had the pleasure of using Beau for plumbing work in our home a number of times and couldn’t be more impressed. From the outset he was professional, reliable and clearly takes great pride in his work. Everything was completed to a high standard and he made the process easier by explaining things clearly and turning up when he said he would. We know him to have quite a broad experience in different aspects of plumbing from his earlier employment.
+Just as importantly, Beau is a lovely young man - friendly,  respectful and a pleasure to have around. It’s not always easy to find someone who combines technical skills with such a positive and trustworthy manner.
+We happily recommend Beau and Coastal Ways Plumbing to anyone looking for a skilled and dependable plumber. And we are confident his business will go from strength to strength.</p>
+          <div class="flex items-center gap-3 pt-4 border-t border-cool-grey/20">
+            <img src="https://lh3.googleusercontent.com/a-/ALV-UjXXTm-e45NB9hNs8KdpyCxhmA3pVtqrZGRfh4H44f4m1EWU4TXcwA=s128-c0x00000000-cc-rp-mo" alt="Sharon Coles" class="w-10 h-10 rounded-full" loading="lazy" referrerpolicy="no-referrer">
+            <div>
+              <a href="https://www.google.com/maps/contrib/116268864453106952922/reviews" target="_blank" rel="noopener" class="font-display font-bold text-navy text-sm hover:text-teal">Sharon Coles</a>
+              <p class="text-navy/50 text-xs font-light">a month ago &middot; via Google</p>
+            </div>
+          </div>
+        </div>
+        <div class="rc-card bg-sand rounded-xl p-8 border border-cool-grey/20 flex flex-col">
+          <div class="flex items-center gap-0.5 mb-4" aria-label="5 out of 5 stars"><svg class="w-5 h-5" fill="#FBBC04" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg><svg class="w-5 h-5" fill="#FBBC04" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg><svg class="w-5 h-5" fill="#FBBC04" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg><svg class="w-5 h-5" fill="#FBBC04" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg><svg class="w-5 h-5" fill="#FBBC04" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg></div>
+          <p class="text-navy/70 font-light leading-relaxed mb-6 flex-1">I don’t usually leave reviews, but this one’s well deserved. I had an issue that needed fixing quickly and from the first call through to the job being done, everything was handled professionally and without any stress.
+
+Beau showed up on time, explained exactly what was going on in plain English (no BS or upselling), and gave a clear price upfront so there were no surprises. You can tell straight away he knows what he’s doing.
+
+What I appreciated most was how clean and efficient everything was. No mess left behind, no cutting corners, just solid, honest work done properly the first time.
+
+It’s actually hard to find tradies you can trust these days, but this is one of them. I wouldn’t hesitate to recommend him to anyone and will definitely be using him again.</p>
+          <div class="flex items-center gap-3 pt-4 border-t border-cool-grey/20">
+            <img src="https://lh3.googleusercontent.com/a/ACg8ocL8oHv-n8hQwmd2UVVJ5QFxGVpUz0HyNlDFLYscLKWWwYNdEQ=s128-c0x00000000-cc-rp-mo" alt="Albert De Bruyn" class="w-10 h-10 rounded-full" loading="lazy" referrerpolicy="no-referrer">
+            <div>
+              <a href="https://www.google.com/maps/contrib/110219083352492691544/reviews" target="_blank" rel="noopener" class="font-display font-bold text-navy text-sm hover:text-teal">Albert De Bruyn</a>
+              <p class="text-navy/50 text-xs font-light">a month ago &middot; via Google</p>
+            </div>
+          </div>
+        </div>
+          </div>
+        </div>
+        <button class="rc-btn rc-next" type="button" aria-label="Next reviews"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+      <p class="text-center mt-10 reveal">
+        <a href="https://maps.google.com/?cid=12820027596322472374" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm text-navy/60 font-light hover:text-teal">
+          Read all our reviews on Google
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        </a>
+      </p>
+      <!-- CWP-REVIEWS:END -->
+    </div>
+  </section>
+
   <!-- CONTACT -->
   <section id="contact" class="py-20 sm:py-28 bg-sand">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -632,6 +729,36 @@
           document.getElementById('mobile-nav')?.classList.add('hidden');
         }
       });
+    });
+
+    // Reviews carousel — center focus + faded peek; scales to any number of reviews
+    document.querySelectorAll('.reviews-carousel').forEach((root) => {
+      const track = root.querySelector('.rc-track');
+      if (!track) return;
+      const cards = Array.from(track.children);
+      if (!cards.length) return;
+      const prev = root.querySelector('.rc-prev');
+      const next = root.querySelector('.rc-next');
+      const vp = root.querySelector('.rc-viewport');
+      let i = Math.min(1, cards.length - 1); // start with the second card centered
+      function layout() {
+        const cw = cards[0].getBoundingClientRect().width;
+        const gap = parseFloat(getComputedStyle(track).gap) || 24;
+        const off = (vp.clientWidth - cw) / 2;
+        track.style.transform = `translateX(${off - i * (cw + gap)}px)`;
+        cards.forEach((c, idx) => {
+          const d = Math.abs(idx - i);
+          c.classList.toggle('is-active', d === 0);
+          c.classList.toggle('is-near', d === 1);
+        });
+        if (prev) prev.disabled = i <= 0;
+        if (next) next.disabled = i >= cards.length - 1;
+      }
+      if (prev) prev.addEventListener('click', () => { if (i > 0) { i--; layout(); } });
+      if (next) next.addEventListener('click', () => { if (i < cards.length - 1) { i++; layout(); } });
+      window.addEventListener('resize', layout);
+      setTimeout(layout, 120);
+      layout();
     });
   </script>
 
