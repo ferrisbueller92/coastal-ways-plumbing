@@ -82,6 +82,86 @@
 .half .h-foot .qr{width:22cqw;height:22cqw}
 .half .h-foot .qr-cap{font-size:2.4cqw;margin-top:.8cqw}
 
+/* ---------- QUARTER PAGE · 114.17 × 87 mm landscape ---------- */
+/* Same content + copy as the half page (sub line + 6 services), scaled into
+   the smaller slot — mirrors .half's cqw values so it's a faithful scale-down. */
+.card.quarter{
+  width:685px;height:522px;             /* 114.17×87mm @ 6px/mm */
+  display:flex;background:var(--sand);
+}
+.quarter .q-photo{position:relative;flex:0 0 38%;overflow:hidden}
+.quarter .q-photo img{width:100%;height:100%;object-fit:cover;object-position:56% 16%}
+.quarter .q-photo::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(16,32,45,0) 52%,rgba(16,32,45,.92) 100%)}
+.quarter .nameplate{position:absolute;left:2.4cqw;right:1.4cqw;bottom:3cqw;color:var(--sand);z-index:2}
+.quarter .nameplate .n{font-family:"Space Grotesk";font-weight:700;font-size:2.7cqw;line-height:1}
+.quarter .nameplate .r{font-family:"Roboto";font-weight:400;font-size:1.6cqw;
+  color:rgba(251,246,243,.86);margin-top:.6cqw}
+/* body is its own query container so cqw = % of the body column, not the card */
+.quarter .q-body{flex:1;min-width:0;container-type:inline-size;
+  padding:4.6cqw 5cqw;display:flex;flex-direction:column}
+.quarter .q-top{display:flex;align-items:center;justify-content:space-between;gap:2cqw}
+.quarter .q-top .logo{width:38cqw;height:auto;display:block}
+.quarter .q-top .eyebrow{font-size:2.5cqw;white-space:nowrap}
+.quarter .q-body h1{font-size:9.2cqw;margin-top:3cqw;letter-spacing:-.02em;line-height:1}
+.quarter .q-body h1 em{font-style:normal;color:var(--teal)}
+.quarter .sub{font-family:"Roboto";font-weight:300;font-size:3.15cqw;color:var(--navy-80);
+  margin-top:2.4cqw;line-height:1.36}
+/* ticks centred in the gap between the copy and the contact strip:
+   equal auto margins top & bottom → white space above == white space below.
+   Rows spread to fill the middle so it reads filled like the half, not airy. */
+.quarter .ticks{display:grid;grid-template-columns:auto auto;justify-content:start;
+  column-gap:6.5cqw;row-gap:5cqw;margin-top:auto;margin-bottom:auto}
+.quarter .ticks .tick{font-size:3.6cqw;gap:1.7cqw;line-height:1.12}
+.quarter .ticks .tick svg{width:4.2cqw;height:4.2cqw}
+.quarter .q-rule{height:2px;background:rgba(16,32,45,.12)}
+.quarter .q-foot{margin-top:3.2cqw;display:flex;align-items:flex-end;justify-content:space-between;gap:3cqw}
+.quarter .q-foot .phone{font-size:9.4cqw}
+.quarter .q-foot .web{font-size:3.1cqw}
+.quarter .q-foot .lic{font-size:2.7cqw}
+.quarter .q-foot .lines{display:flex;flex-direction:column;gap:1cqw;margin-top:1.4cqw}
+.quarter .q-foot .qrwrap{text-align:center;flex:0 0 auto}
+.quarter .q-foot .qr{width:20cqw;height:20cqw}
+.quarter .q-foot .qr-cap{font-size:2.2cqw;margin-top:.7cqw}
+
+/* ---------- QUARTER PAGE · B — picture-less, dark navy (114.17 × 87 mm) ---------- */
+/* No photo. Brand mark + headline + services + contact on a deep navy field. */
+.card.quarter-b{
+  width:685px;height:522px;position:relative;overflow:hidden;
+  background:var(--navy);color:var(--sand);display:flex;flex-direction:column;
+}
+.quarter-b::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(125% 90% at 102% -8%, rgba(99,199,204,.16), rgba(16,32,45,0) 52%)}
+.quarter-b > *{position:relative;z-index:1}
+.quarter-b .qb-head{display:flex;align-items:center;justify-content:space-between;gap:3cqw;
+  padding:5cqw 6cqw 0}
+.quarter-b .qb-head .logo{width:30cqw;height:auto;display:block}
+.quarter-b .qb-head .eyebrow{font-size:1.95cqw;color:var(--teal-tint);white-space:nowrap}
+.quarter-b .qb-mid{flex:1;min-height:0;container-type:inline-size;
+  padding:3.4cqw 6cqw 0;display:flex;flex-direction:column}
+.quarter-b h1{font-size:7cqw;color:var(--sand);letter-spacing:-.02em;line-height:1.03}
+.quarter-b h1 em{font-style:normal;color:#63C7CC}
+.quarter-b .ticks{display:grid;grid-template-columns:auto auto;justify-content:start;
+  column-gap:7cqw;row-gap:2.7cqw;margin-top:auto;margin-bottom:auto}
+.quarter-b .tick{font-size:2.95cqw;color:var(--sand);display:flex;align-items:center;
+  gap:1.7cqw;line-height:1.12}
+.quarter-b .tick svg{flex:0 0 auto;width:3.5cqw;height:3.5cqw}
+.quarter-b .qb-foot{padding:3cqw 6cqw 4.4cqw;border-top:1px solid rgba(230,240,241,.16);
+  display:flex;align-items:flex-end;justify-content:space-between;gap:3cqw}
+.quarter-b .phone{font-family:"Space Grotesk";font-weight:700;letter-spacing:-.01em;
+  font-size:7.4cqw;color:#fff;line-height:1;white-space:nowrap}
+.quarter-b .phone .pre{font-size:.34em;letter-spacing:.18em;text-transform:uppercase;
+  font-weight:500;color:var(--teal-tint);display:block;margin-bottom:.55em}
+.quarter-b .lines{display:flex;flex-direction:column;gap:.9cqw;margin-top:1.5cqw}
+.quarter-b .web{font-family:"Roboto";font-weight:500;font-size:2.8cqw;color:var(--sand)}
+.quarter-b .lic{font-family:"Space Grotesk";font-weight:500;font-size:2.3cqw;
+  letter-spacing:.04em;color:rgba(251,246,243,.6)}
+.quarter-b .qrwrap{text-align:center;flex:0 0 auto}
+.quarter-b .qr{width:18.5cqw;height:18.5cqw;border-radius:1.4cqw;background:#fff;padding:.9cqw;display:block}
+.quarter-b .qr img{width:100%;height:100%;display:block}
+.quarter-b .qr-cap{font-family:"Space Grotesk";font-weight:500;font-size:1.95cqw;
+  letter-spacing:.12em;text-transform:uppercase;color:rgba(251,246,243,.6);margin-top:.7cqw}
+
 /* ---------- FULL PAGE · SPLIT (photo full-height left, info right) ---------- */
 .card.full-split{width:1044px;height:1614px;display:flex;background:var(--sand)}
 .full-split .fs-photo{flex:0 0 52%;position:relative;overflow:hidden}
@@ -149,10 +229,10 @@
 
 /* ---------- BLACK & WHITE variant (newsprint) ---------- */
 .card.bw{background:#fff}
-.bw .f-hero img,.bw .h-photo img,.bw .fs-photo img{filter:grayscale(1) contrast(1.06) brightness(1.02)}
-.bw .f-head .logo,.bw .h-top .logo,.bw .fs-top .logo{filter:grayscale(1)}
+.bw .f-hero img,.bw .h-photo img,.bw .fs-photo img,.bw .q-photo img{filter:grayscale(1) contrast(1.06) brightness(1.02)}
+.bw .f-head .logo,.bw .h-top .logo,.bw .fs-top .logo,.bw .q-top .logo{filter:grayscale(1)}
 .bw h1{color:#111}
-.bw .f-body h1 em,.bw .h-body h1 em,.bw .fs-mid h1 em{color:#111}
+.bw .f-body h1 em,.bw .h-body h1 em,.bw .fs-mid h1 em,.bw .q-body h1 em{color:#111}
 .bw .eyebrow{color:#444}
 .bw .sub{color:#333}
 .bw .phone{color:#111}
@@ -175,5 +255,6 @@
   body{display:block}
   .card.full,.card.full-split,.card.full-bleed{width:174mm;height:269mm}
   .card.half{width:174mm;height:117mm}
+  .card.quarter,.card.quarter-b{width:114.17mm;height:87mm}
 }
 @page{margin:0}
