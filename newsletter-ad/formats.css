@@ -161,6 +161,12 @@
 .quarter-b .qr img{width:100%;height:100%;display:block}
 .quarter-b .qr-cap{font-family:"Space Grotesk";font-weight:500;font-size:1.95cqw;
   letter-spacing:.12em;text-transform:uppercase;color:rgba(251,246,243,.6);margin-top:.7cqw}
+/* B&W variant of the picture-less design — own modifier (qbw), NOT .bw, so it
+   doesn't inherit the light-ad dark-text rules. Already light-on-dark; just
+   swap navy field for near-black and drop the teal accent to white. */
+.card.quarter-b.qbw{background:#141414}
+.quarter-b.qbw::before{background:none}
+.quarter-b.qbw h1 em{color:#fff}
 
 /* ---------- FULL PAGE · SPLIT (photo full-height left, info right) ---------- */
 .card.full-split{width:1044px;height:1614px;display:flex;background:var(--sand)}
