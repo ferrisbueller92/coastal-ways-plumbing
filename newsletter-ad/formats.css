@@ -162,11 +162,21 @@
 .quarter-b .qr-cap{font-family:"Space Grotesk";font-weight:500;font-size:1.95cqw;
   letter-spacing:.12em;text-transform:uppercase;color:rgba(251,246,243,.6);margin-top:.7cqw}
 /* B&W variant of the picture-less design — own modifier (qbw), NOT .bw, so it
-   doesn't inherit the light-ad dark-text rules. Already light-on-dark; just
-   swap navy field for near-black and drop the teal accent to white. */
-.card.quarter-b.qbw{background:#141414}
+   doesn't inherit the photo-ad rules. Newsprint-friendly: WHITE field, BLACK
+   type, dark logo (the colour version stays dark navy; this is the print B&W). */
+.card.quarter-b.qbw{background:#fff;color:#161616}
 .quarter-b.qbw::before{background:none}
-.quarter-b.qbw h1 em{color:#fff}
+.quarter-b.qbw h1,.quarter-b.qbw h1 em{color:#161616}
+.quarter-b.qbw .qb-head .eyebrow{color:#555}
+.quarter-b.qbw .tick{color:#161616}
+.quarter-b.qbw .tick svg circle{fill:#e9e9e9}
+.quarter-b.qbw .phone{color:#161616}
+.quarter-b.qbw .phone .pre{color:#666}
+.quarter-b.qbw .web{color:#161616}
+.quarter-b.qbw .lic{color:#666}
+.quarter-b.qbw .qb-foot{border-top-color:rgba(16,32,45,.16)}
+.quarter-b.qbw .qr{box-shadow:none}
+.quarter-b.qbw .qr-cap{color:#666}
 
 /* ---------- FULL PAGE · SPLIT (photo full-height left, info right) ---------- */
 .card.full-split{width:1044px;height:1614px;display:flex;background:var(--sand)}
