@@ -134,11 +134,11 @@
   background:radial-gradient(125% 90% at 102% -8%, rgba(99,199,204,.16), rgba(16,32,45,0) 52%)}
 .quarter-b > *{position:relative;z-index:1}
 .quarter-b .qb-head{display:flex;align-items:center;justify-content:space-between;gap:3cqw;
-  padding:5cqw 6cqw 0}
+  padding:3.2cqw 6cqw 0}
 .quarter-b .qb-head .logo{width:30cqw;height:auto;display:block}
 .quarter-b .qb-head .eyebrow{font-size:1.95cqw;color:var(--teal-tint);white-space:nowrap}
 .quarter-b .qb-mid{flex:1;min-height:0;container-type:inline-size;
-  padding:3.4cqw 6cqw 0;display:flex;flex-direction:column}
+  padding:1.4cqw 6cqw 0;display:flex;flex-direction:column}
 .quarter-b h1{font-size:7cqw;color:var(--sand);letter-spacing:-.02em;line-height:1.03}
 .quarter-b h1 em{font-style:normal;color:#63C7CC}
 .quarter-b .ticks{display:grid;grid-template-columns:auto auto;justify-content:start;
