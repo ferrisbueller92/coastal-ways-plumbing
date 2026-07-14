@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Water Leak Report — Builder · Coastal Ways Plumbing</title>
+<!--
+  ============================================================================
+  COASTAL WAYS PLUMBING · Water Leak Report — BUILDER
+  ============================================================================
+  Browser authoring tool (client-side only, no server, no build step).
+  Emma/Beau open this page, fill auto-growing fields, record the leak's
+  location, cause, detection method, meter readings & repair, add photos
+  (adaptive frames — whole image, no crop), then "Save as PDF".
+
+  Matched set with report-builder.html (Water Efficiency),
+  report-builder-shower.html (Shower Leak Test) and
+  report-builder-sewer.html (Sewer CCTV).
+
+  Field set = Beau's spec (location · description · fix · previous works ·
+  meter reading · recommendation · photos · property type · council vs
+  property mains · pipe material) + the fields the water authorities
+  require in a plumber's concealed-leak report (Central Coast Council
+  Water & Sewer Concessions and Rebate Policy cl 6.9.2; Hunter Water
+  Undetected Leak Rebate form; Sydney Water hidden leak allowance):
+  dates found/repaired, cause, how the leak was located, meter serial +
+  reading at repair, where escaping water travelled, signed statements.
+  NOT a Certificate of Compliance — a professional report of findings.
+  Disclaimers pre-filled (editable).
+  ============================================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Roboto:wght@300;400;500&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF; --ink:#10202D; --ink-soft:#384850; --slate:#536268;
+    --cool-grey:#C4CFD1; --teal:#055A5F;
+    --pass:#2D9D5A; --pass-bg:#E8F5EE;
+    --fail:#C84A2D; --fail-bg:#FBEAE5;
+    --warn:#B6802A; --warn-bg:#FBF2E1;
+    --na:#7A8890;   --na-bg:#EEF1F2;
+    --hairline:rgba(16,32,45,0.10);
+    --hairline-mid:rgba(16,32,45,0.18);
+    --field-bg:rgba(5,90,95,0.05);
+    --field-focus:rgba(5,90,95,0.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{
+    background:#E7EAEB; color:var(--ink);
+    font-family:'Space Grotesk','Inter',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased; print-color-adjust:exact; -webkit-print-color-adjust:exact;
+  }
+
+  /* ===================== APP SHELL (screen only) ===================== */
+  .app-bar{position:sticky;top:0;z-index:50;background:var(--ink);color:#fff;
+    display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:12px 22px;box-shadow:0 2px 10px rgba(16,32,45,.18)}
+  .app-bar .brand{font-weight:500;letter-spacing:.02em;font-size:15px}
+  .app-bar .brand b{color:#fff}
+  .app-bar .brand span{color:var(--cool-grey);font-family:'Roboto Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;display:block;margin-top:1px}
+  .app-bar .spacer{margin-left:auto}
+  .btn{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:13.5px;cursor:pointer;
+    border:1.5px solid transparent;border-radius:8px;padding:9px 18px;display:inline-flex;align-items:center;gap:8px;transition:.12s}
+  .btn-primary{background:var(--teal);color:#fff}
+  .btn-primary:hover{background:#06484c;transform:translateY(-1px)}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+  .btn-sm{font-size:12px;padding:6px 12px;border-radius:6px}
+
+  .hint-bar{background:#FBF6EE;border-bottom:1px solid var(--hairline);
+    color:var(--ink-soft);font-size:12.5px;line-height:1.5;padding:9px 22px;text-align:center}
+  .hint-bar b{color:var(--ink)}
+
+  .workspace{padding:26px 16px 80px;display:flex;justify-content:center}
+
+  /* ===================== SHEET ===================== */
+  .sheet{width:210mm;max-width:100%;background:var(--paper);color:var(--ink);
+    box-shadow:0 10px 40px rgba(16,32,45,.14);border-radius:2px;overflow:hidden}
+  .letterhead{background:var(--ink);color:#fff;padding:7mm 12mm;min-height:20mm;display:flex;align-items:center;justify-content:space-between}
+  .letterhead img{height:13mm;width:auto;display:block}
+  .letterhead .doctype{font-size:10px;font-weight:400;letter-spacing:.30em;text-transform:uppercase;opacity:.92;text-align:right}
+  .letterhead .doctype b{display:block;font-weight:500;opacity:1}
+  .contact-strip{padding:3mm 12mm;border-bottom:1px solid var(--hairline);
+    font-family:'Roboto Mono',ui-monospace,monospace;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);text-align:center}
+  .contact-strip .dot{color:var(--cool-grey);margin:0 5px}
+  .body-area{padding:6mm 12mm 10mm}
+  .eyebrow{font-family:'Roboto Mono',ui-monospace,monospace;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);margin-bottom:2mm;display:flex;align-items:center;gap:9px}
+  .eyebrow::before{content:'';width:20px;height:1.5px;background:var(--teal);flex:0 0 auto}
+  h1{font-weight:400;font-size:22px;letter-spacing:-.025em;line-height:1.05;text-transform:uppercase;margin-bottom:5mm}
+  h1 em{font-style:normal;color:var(--teal);font-weight:500}
+
+  .issued{display:grid;grid-template-columns:1fr 1fr;gap:8mm;margin-bottom:6mm}
+  .block-label{font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin-bottom:2mm;padding-bottom:1.5mm;border-bottom:1.5px solid var(--teal)}
+  dl{display:grid;grid-template-columns:28mm 1fr;gap:2mm 3mm;align-items:start}
+  dt{font-size:10px;color:var(--slate);font-weight:400;padding-top:2px}
+  dd{font-size:11px;color:var(--ink);font-weight:500}
+  dd.mono{font-family:'Roboto Mono',monospace;font-size:9.5px}
+
+  .fld{font:inherit;font-size:11px;color:var(--ink);width:100%;border:none;background:var(--field-bg);
+    border-bottom:1px solid var(--hairline-mid);border-radius:3px 3px 0 0;padding:2px 5px;resize:none;line-height:1.4;display:block}
+  .fld::placeholder{color:var(--slate);opacity:.7;font-weight:300;font-style:italic}
+  .fld:focus{outline:none;background:var(--field-focus);border-bottom-color:var(--teal)}
+  .fld.mono{font-family:'Roboto Mono',monospace;font-size:9.5px}
+  textarea.fld{overflow:hidden;min-height:1.5em}
+  .fld + .fld{margin-top:1.5mm}
+  select.fld{appearance:none;-webkit-appearance:none;cursor:pointer;
+    background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23536268' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 5px center;padding-right:16px}
+
+  .sec-head{display:flex;justify-content:space-between;align-items:baseline;border-left:2.5px solid var(--teal);padding:1mm 0 1mm 8px;margin:6mm 0 2.5mm}
+  .sec-head .t{font-size:12px;font-weight:500;color:var(--ink)}
+  .sec-head .th{font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.08em;color:var(--slate);text-transform:uppercase}
+  .blk-label{font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin:5mm 0 2mm}
+
+  .dgrid{display:grid;grid-template-columns:1fr 1fr;gap:2mm 8mm}
+  .dgrid .f label{font-family:'Roboto Mono',monospace;font-size:7.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);display:block;margin-bottom:.5mm}
+  .dgrid .f.wide{grid-column:1/-1}
+
+  /* Checklists */
+  .checks{display:grid;grid-template-columns:1fr 1fr;gap:1mm 6mm;margin-top:1mm}
+  .chk{display:flex;align-items:flex-start;gap:6px;font-size:10.5px;color:var(--ink);cursor:pointer;padding:.6mm 0}
+  .chk input{appearance:none;-webkit-appearance:none;width:13px;height:13px;border:1.5px solid var(--hairline-mid);border-radius:3px;margin-top:1px;flex:0 0 auto;cursor:pointer;position:relative;background:#fff}
+  .chk input:checked{background:var(--teal);border-color:var(--teal)}
+  .chk input:checked::after{content:'';position:absolute;left:3.5px;top:1px;width:3.5px;height:7px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+
+  /* Reference key */
+  details.ref{margin-top:2mm;border:1px solid var(--hairline);border-radius:6px;background:var(--na-bg);overflow:hidden}
+  details.ref summary{cursor:pointer;list-style:none;font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);padding:2mm 3mm}
+  details.ref summary::-webkit-details-marker{display:none}
+  details.ref[open] summary{border-bottom:1px solid var(--hairline)}
+  details.ref .ref-body{padding:2mm 3mm;font-family:'Roboto',sans-serif;font-size:9px;line-height:1.6;color:var(--ink-soft)}
+  details.ref .ref-body b{color:var(--ink)}
+
+  /* Signature */
+  .summary{display:grid;grid-template-columns:1fr 1fr;gap:8mm;margin-top:4mm;align-items:end}
+  .sig-pad-wrap{position:relative}
+  .sig-pad{width:100%;height:24mm;border:1px solid var(--hairline-mid);border-radius:5px;background:#fff;display:block;touch-action:none;cursor:crosshair}
+  .sig-clear{position:absolute;top:4px;right:6px;font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.05em;color:var(--slate);background:rgba(255,255,255,.9);border:1px solid var(--hairline);border-radius:4px;padding:2px 6px;cursor:pointer}
+  .sig-upload{position:absolute;top:4px;left:6px;font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.05em;color:var(--teal);background:rgba(255,255,255,.92);border:1px solid var(--hairline);border-radius:4px;padding:2px 6px;cursor:pointer}
+  .sig-upload:hover{border-color:var(--teal)}
+  .sig-cap{font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin-top:1.5mm;display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .sig-cap input{border:none;border-bottom:1px solid var(--hairline-mid);background:transparent;font-family:'Roboto Mono',monospace;font-size:9px;color:var(--ink);padding:1px 3px}
+
+  /* Photos */
+  .photos-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:6mm 0 2mm}
+  .photos-head .blk-label{margin:0}
+  .photo-intro{font-family:'Roboto',sans-serif;font-size:9.5px;line-height:1.5;font-weight:300;color:var(--ink-soft);margin-bottom:3mm;padding-left:8px;border-left:2.5px solid var(--teal)}
+  .dropzone{border:1.6px dashed var(--cool-grey);border-radius:6px;background:var(--field-bg);padding:7mm;text-align:center;color:var(--slate);font-size:11px;cursor:pointer;transition:.12s;margin-bottom:3mm}
+  .dropzone.drag{border-color:var(--teal);background:var(--field-focus);color:var(--teal)}
+  .dropzone b{color:var(--teal)}
+  .photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:6mm 7mm}
+  .photo-card{display:flex;flex-direction:column;gap:2mm}
+  .photo-frame{position:relative;border:1px solid var(--hairline-mid);border-radius:5px;overflow:hidden;background:var(--na-bg)}
+  /* frame grows to each photo's own shape (no crop, no zoom); contain is a safety net at the cap */
+  .photo-frame img{width:100%;height:auto;max-height:120mm;object-fit:contain;display:block}
+  .photo-ctrls{position:absolute;top:4px;right:4px;display:flex;gap:3px}
+  .photo-ctrls button{width:20px;height:20px;border:none;border-radius:4px;background:rgba(16,32,45,.72);color:#fff;font-size:12px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .photo-ctrls button:hover{background:var(--ink)}
+  .photo-ctrls .del:hover{background:var(--fail)}
+  .photo-cap{font-size:9px;line-height:1.4}
+  .photo-empty{grid-column:1/-1;color:var(--slate);font-size:10.5px;font-style:italic;text-align:center;padding:4mm 0}
+
+  .disclaimer{margin-top:5mm;border:1px solid var(--hairline);border-radius:6px;background:#FBFBFA;padding:3mm 4mm}
+  .disclaimer .blk-label{margin:0 0 2mm}
+  .disclaimer textarea{font-family:'Roboto',sans-serif;font-size:8.5px;line-height:1.55;color:var(--ink-soft);width:100%;border:none;background:transparent;resize:none;overflow:hidden;display:block}
+  .disclaimer textarea:focus{outline:none;background:var(--field-bg);border-radius:3px}
+
+  /* Statements (tick-if-applicable) */
+  .statements{margin-top:4mm;border:1px solid var(--hairline);border-radius:6px;background:#FBFBFA;padding:3mm 4mm}
+  .statements .blk-label{margin:0 0 1mm}
+  .statements .note{font-family:'Roboto',sans-serif;font-size:8.5px;line-height:1.5;color:var(--slate);margin-bottom:2mm;font-weight:300}
+  .statements .checks{grid-template-columns:1fr}
+
+  footer{padding:4mm 12mm;border-top:1px solid var(--hairline);display:flex;justify-content:space-between;font-family:'Roboto Mono',monospace;font-size:7.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--slate)}
+  .req-warn{color:var(--fail);font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.05em;margin-top:1mm;display:none}
+  .req-warn.show{display:block}
+
+  @media (max-width:560px){
+    .issued,.dgrid,.summary{grid-template-columns:1fr}
+    .summary{gap:5mm}
+  }
+
+  @media print{
+    @page{size:A4;margin:12mm 11mm 16mm}
+    html,body{background:#fff}
+    .app-bar,.hint-bar,.no-print,.dropzone,.photo-ctrls,.sig-clear{display:none!important}
+    .workspace{padding:0;display:block}
+    .sheet{width:auto;max-width:none;box-shadow:none;border-radius:0;overflow:visible}
+    .letterhead{border-radius:0}
+    .body-area{padding:5mm 0 0}
+    .letterhead,.contact-strip{margin:0 -1mm}
+    .fld,.sig-cap input,.disclaimer textarea{background:transparent!important;border-bottom-color:transparent!important}
+    .fld::placeholder,.sig-cap input::placeholder{color:transparent!important}
+    select.fld{background-image:none}
+    .fld:placeholder-shown{min-height:0}
+    details.ref{background:#fff}
+    .sec-block,.photo-card,.summary,.issued,.disclaimer,.statements,.checks,.dgrid .f{break-inside:avoid}
+    .sec-head{break-after:avoid}
+    .req-warn{display:none!important}
+    footer{position:fixed;bottom:0;left:0;right:0;border-top:1px solid var(--hairline);padding:3mm 0;background:#fff}
+  }
+</style>
+</head>
+<body>
+
+<div class="app-bar no-print">
+  <div class="brand"><b>Report Builder</b><span>Coastal Ways · Water Leak</span></div>
+  <div class="spacer"></div>
+  <button class="btn btn-ghost btn-sm" id="clearBtn" type="button">Start blank</button>
+  <button class="btn btn-primary" id="saveBtn" type="button">⤓ &nbsp;Save as PDF</button>
+</div>
+<div class="hint-bar no-print">
+  Record <b>where the leak was, what caused it, how it was found and what was done</b> — then the meter readings, photos and recommendations. When ready, click <b>Save as PDF</b> (Destination: <b>“Save as PDF”</b>, Margins: <b>Default</b>). Your work auto-saves in this browser.
+</div>
+
+<div class="workspace">
+  <div class="sheet" id="sheet">
+
+    <header class="letterhead">
+      <img src="https://coastalwaysplumbing.com/assets/logo-white.png" alt="Coastal Ways Plumbing"
+           onerror="this.style.display='none'">
+      <div class="doctype">Water Leak<b>Report</b></div>
+    </header>
+    <div class="contact-strip">
+      Jilliby NSW 2259 <span class="dot">·</span> 0402 269 088
+      <span class="dot">·</span> coastalwaysplumbing@outlook.com
+      <span class="dot">·</span> coastalwaysplumbing.com.au
+      <span class="dot">·</span> Licence 468634C <span class="dot">·</span> ABN 62 284 909 142
+    </div>
+
+    <div class="body-area">
+      <div class="eyebrow">Licensed plumber’s report · Plumbing &amp; Drainage Act 2011 (NSW) · AS/NZS 3500.1 water services</div>
+      <h1>Water <em>Leak</em> Report</h1>
+
+      <section class="issued">
+        <div class="block">
+          <div class="block-label">Property &amp; engagement</div>
+          <dl>
+            <dt>Address</dt>
+            <dd><textarea class="fld grow" name="property_address" rows="1" placeholder="e.g. 26 Belyando Crescent, Blue Haven NSW 2262"></textarea>
+                <div class="req-warn" id="addrWarn">Add the property address before saving</div></dd>
+            <dt>Client</dt>
+            <dd><input class="fld" name="client_name" placeholder="Client name">
+                <input class="fld" name="client_role" placeholder="Owner / tenant / agent / strata manager"></dd>
+            <dt>Contact</dt>
+            <dd><input class="fld" name="client_contact" placeholder="Phone / email"></dd>
+            <dt>Property type</dt>
+            <dd><select class="fld" name="property_type">
+                <option value="" disabled selected>Select…</option>
+                <option>Stand-alone house</option>
+                <option>Duplex / dual occupancy</option>
+                <option>Townhouse / villa</option>
+                <option>Strata unit / apartment</option>
+                <option>Rural / acreage</option>
+                <option>Commercial premises</option>
+                <option>Other</option>
+              </select></dd>
+            <dt>Occupancy</dt>
+            <dd><select class="fld" name="occupancy">
+                <option value="" disabled selected>Select…</option>
+                <option>Owner-occupied</option>
+                <option>Tenanted</option>
+                <option>Vacant</option>
+                <option>Holiday home</option>
+                <option>Not confirmed</option>
+              </select></dd>
+            <dt>Purpose</dt>
+            <dd><select class="fld" name="purpose">
+                <option value="" disabled selected>Select purpose…</option>
+                <option>Record of leak &amp; repair</option>
+                <option>Water bill / leak assistance claim</option>
+                <option>Insurance claim</option>
+                <option>Strata / owners corporation</option>
+                <option>Real estate / property manager</option>
+                <option>Other</option>
+              </select></dd>
+          </dl>
+        </div>
+        <div class="block">
+          <div class="block-label">Attending plumber</div>
+          <dl>
+            <dt>Plumber</dt><dd>Beau Petterson</dd>
+            <dt>Business</dt><dd>Coastal Ways Plumbing</dd>
+            <dt>NSW Licence</dt><dd class="mono">468634C</dd>
+            <dt>ABN</dt><dd class="mono">62 284 909 142</dd>
+            <dt>Report no.</dt><dd><input class="fld mono" name="report_no" placeholder="CWP-LEAK-2026-____"></dd>
+            <dt>Leak found</dt><dd><input class="fld mono" name="found_date" placeholder="DD Mmm YYYY"></dd>
+            <dt>Repaired</dt><dd><input class="fld mono" name="repair_date" placeholder="DD Mmm YYYY"></dd>
+            <dt>Issued</dt><dd><input class="fld mono" name="issue_date" placeholder="DD Mmm YYYY"></dd>
+          </dl>
+        </div>
+      </section>
+
+      <!-- Leak details -->
+      <div class="sec-head"><span class="t">Leak details</span><span class="th">Where, what &amp; why</span></div>
+      <div class="dgrid">
+        <div class="f wide"><label>Specific location of leak</label>
+          <textarea class="fld grow" name="leak_location" rows="1" placeholder="e.g. Front yard, ~1.5 m on the property side of the water meter, approx. 400 mm below ground"></textarea></div>
+        <div class="f wide"><label>Description of leak</label>
+          <textarea class="fld grow" name="leak_description" rows="1" placeholder="e.g. Pinhole leak spraying from a corroded copper elbow on the incoming water service; steady loss under mains pressure"></textarea></div>
+        <div class="f"><label>Located on</label>
+          <select class="fld" name="mains_side">
+            <option value="" disabled selected>Select…</option>
+            <option>Property mains — owner’s side of the water meter</option>
+            <option>Council mains — street side of the water meter</option>
+            <option>Internal pipework — within the building</option>
+            <option>Not yet determined</option>
+          </select></div>
+        <div class="f"><label>Line affected</label>
+          <select class="fld" name="line_affected">
+            <option value="" disabled selected>Select…</option>
+            <option>Water service — meter to house</option>
+            <option>Internal cold water line</option>
+            <option>Internal hot water line</option>
+            <option>Irrigation line off the service</option>
+            <option>Fixture connection</option>
+            <option>Other</option>
+          </select></div>
+        <div class="f"><label>Pipe material</label>
+          <select class="fld" name="pipe_material">
+            <option value="" disabled selected>Select…</option>
+            <option>Copper</option>
+            <option>PEX</option>
+            <option>Polybutylene</option>
+            <option>PVC</option>
+            <option>Polyethylene (poly / blue-line)</option>
+            <option>Galvanised steel</option>
+            <option>Multilayer / composite</option>
+            <option>Unknown</option>
+            <option>Other</option>
+          </select></div>
+        <div class="f"><label>Pipe size (mm)</label><input class="fld mono" name="pipe_size" placeholder="e.g. 20"></div>
+        <div class="f"><label>Cause of leak</label>
+          <select class="fld" name="leak_cause">
+            <option value="" disabled selected>Select…</option>
+            <option>Corrosion / pinhole</option>
+            <option>Fitting or joint failure</option>
+            <option>Tree root damage</option>
+            <option>Ground movement / settlement</option>
+            <option>Mechanical damage (excavation, impact)</option>
+            <option>Age / material degradation</option>
+            <option>Defective component</option>
+            <option>High water pressure</option>
+            <option>Undetermined</option>
+            <option>Other</option>
+          </select></div>
+        <div class="f"><label>How the leak was located</label>
+          <select class="fld" name="detection_method">
+            <option value="" disabled selected>Select…</option>
+            <option>Visual inspection</option>
+            <option>Meter movement test</option>
+            <option>Acoustic listening equipment</option>
+            <option>Thermal imaging</option>
+            <option>Pressure testing / isolation</option>
+            <option>Excavation &amp; exposure</option>
+            <option>Reported by customer — confirmed on site</option>
+            <option>Other</option>
+          </select></div>
+        <div class="f"><label>Visible / audible before detection?</label>
+          <select class="fld" name="visibility">
+            <option value="" disabled selected>Select…</option>
+            <option>Yes — water visible at surface</option>
+            <option>Yes — audible with fixtures off</option>
+            <option>No — concealed from view; not locatable by visual inspection</option>
+            <option>Partially — see notes</option>
+          </select></div>
+        <div class="f"><label>Detection notes (optional)</label><textarea class="fld grow" name="detection_notes" rows="1" placeholder="e.g. Isolated at meter, listened along the line, confirmed by excavation"></textarea></div>
+        <div class="f"><label>Signs of previous works?</label>
+          <select class="fld" name="previous_works">
+            <option value="" disabled selected>Select…</option>
+            <option>None observed</option>
+            <option>Yes — previous repair works observed (see notes)</option>
+            <option>Unable to determine</option>
+          </select></div>
+        <div class="f"><label>Previous works notes</label><textarea class="fld grow" name="previous_works_notes" rows="1" placeholder="e.g. Older compression coupling ~300 mm from failure point; disturbed backfill"></textarea></div>
+        <div class="f wide"><label>Where the escaping water travelled / resultant damage</label>
+          <textarea class="fld grow" name="water_travel" rows="1" placeholder="e.g. Water tracked beneath the driveway subgrade and surfaced at the kerb; no damage to the dwelling observed"></textarea></div>
+        <div class="f"><label>If strata — pipe serves</label>
+          <select class="fld" name="strata_serves">
+            <option value="" disabled selected>Select…</option>
+            <option>N/A — not strata</option>
+            <option>This lot only</option>
+            <option>Multiple lots</option>
+            <option>Common area</option>
+            <option>Unknown</option>
+          </select></div>
+        <div class="f"><label>Strata notes (optional)</label><textarea class="fld grow" name="strata_notes" rows="1" placeholder="e.g. Pipe runs within the shared riser serving units 3–6"></textarea></div>
+      </div>
+
+      <!-- Water meter -->
+      <div class="sec-head"><span class="t">Water meter</span><span class="th">Reading at repair</span></div>
+      <div class="dgrid">
+        <div class="f"><label>Meter serial no.</label><input class="fld mono" name="meter_serial" placeholder="On the meter face"></div>
+        <div class="f"><label>Meter reading at repair (kL)</label><input class="fld mono" name="meter_reading" placeholder="e.g. 1247.635"></div>
+        <div class="f"><label>Reading date</label><input class="fld mono" name="meter_reading_date" placeholder="DD Mmm YYYY"></div>
+        <div class="f"><label>Meter location</label><input class="fld" name="meter_location" placeholder="e.g. Front boundary, left of driveway"></div>
+      </div>
+      <div class="blk-label">Meter leak test — optional</div>
+      <div class="dgrid">
+        <div class="f"><label>Start reading (kL) &amp; time</label><input class="fld mono" name="test_start" placeholder="e.g. 1247.630 @ 8:00 am"></div>
+        <div class="f"><label>End reading (kL) &amp; time</label><input class="fld mono" name="test_end" placeholder="e.g. 1247.645 @ 9:00 am"></div>
+        <div class="f"><label>No water use during test</label>
+          <select class="fld" name="test_verified">
+            <option value="" disabled selected>Select…</option>
+            <option>Confirmed by plumber on site</option>
+            <option>Customer-reported</option>
+            <option>Not confirmed</option>
+          </select></div>
+        <div class="f"><label>Calculated loss (L/hr)</label><input class="fld mono" name="test_loss" placeholder="e.g. 15"></div>
+      </div>
+
+      <!-- Repair performed -->
+      <div class="sec-head"><span class="t">Repair performed</span><span class="th">What was done</span></div>
+      <div class="dgrid">
+        <div class="f wide"><label>What has been done to fix it</label>
+          <textarea class="fld grow" name="repair_description" rows="2" placeholder="e.g. Excavated and exposed the failed section, cut out the corroded elbow and ~600 mm of pipe, replaced with new 20 mm copper and brass fittings, pressure-tested, backfilled and reinstated turf"></textarea></div>
+        <div class="f wide"><label>Parts &amp; materials used</label>
+          <textarea class="fld grow" name="repair_materials" rows="1" placeholder="e.g. 20 mm Type B copper × 600 mm, 2 × brass compression couplings, 1 × brass elbow"></textarea></div>
+        <div class="f"><label>Repair status</label>
+          <select class="fld" name="repair_status">
+            <option value="" disabled selected>Select…</option>
+            <option>Permanent repair</option>
+            <option>Temporary — further work required</option>
+          </select></div>
+        <div class="f"><label>Site reinstatement</label>
+          <select class="fld" name="reinstatement">
+            <option value="" disabled selected>Select…</option>
+            <option>Reinstated — backfill / turf / concrete</option>
+            <option>Partially reinstated — see notes</option>
+            <option>Not required</option>
+          </select></div>
+      </div>
+      <div class="blk-label">Post-repair verification — tick what was done</div>
+      <div class="checks" id="verifyChecks"></div>
+
+      <!-- Photos -->
+      <div class="photos-head">
+        <div class="blk-label">Photographs</div>
+        <button class="btn btn-primary btn-sm no-print" id="addPhotoBtn" type="button">+ Add photos</button>
+      </div>
+      <div class="photo-intro">Recommended: the leak as found · exposed pipe &amp; failed section · completed repair · the meter reading on repair day · reinstated area. Captions should say what &amp; where.</div>
+      <div class="dropzone no-print" id="dropzone">Drag photos here, or <b>click to choose</b> from your device</div>
+      <input type="file" id="fileInput" accept="image/*" multiple hidden>
+      <div class="photo-grid" id="photoGrid"></div>
+
+      <!-- Recommendations -->
+      <div class="sec-head"><span class="t">Recommendations</span><span class="th">Findings &amp; next steps</span></div>
+      <div class="checks" id="recChecks"></div>
+      <textarea class="fld grow" name="rec_notes" rows="1" style="margin-top:2mm" placeholder="Immediate actions · future monitoring · replacement options · anything the owner should know…"></textarea>
+      <details class="ref">
+        <summary>Reference · Water bill help after a concealed leak (Central Coast Council)</summary>
+        <div class="ref-body">
+          Central Coast Council can reduce the water bill after a <b>concealed leak</b> (up to 50% of the additional usage, capped at $1,000, one claim per ownership). The customer must apply within <b>30 days of the bill issue date</b> with a statutory declaration plus <b>a licensed plumber’s report</b> stating: licence number &amp; contact details · that the leak was concealed from view and could not be located by visual inspection · that the failure was not due to faulty plumbing · how the leak was located · details of the repairs · the meter reading at repair. Not available for tenanted, vacant or holiday properties, or for fixture faults (taps, cisterns, hot water systems), pools, irrigation or hoses. This report is designed to carry all of that — tick the statements below only when they’re true.
+        </div>
+      </details>
+
+      <!-- Statements -->
+      <div class="statements">
+        <div class="blk-label">Concealed-leak statements — tick only if applicable</div>
+        <div class="note">Used for water-authority financial assistance claims (e.g. Central Coast Council concealed leak assistance). Tick only when the statement reflects the findings above.</div>
+        <div class="checks" id="stmtChecks"></div>
+      </div>
+
+      <!-- Certification + signature -->
+      <section class="summary">
+        <div class="decl">
+          <div class="blk-label">Certification</div>
+          <div style="font-family:'Roboto',sans-serif;font-size:9px;line-height:1.5;color:var(--ink-soft)">
+            I certify that I attended the property, located and repaired the leak described in this report, and that the information recorded accurately reflects my findings at the time of attendance.
+          </div>
+        </div>
+        <div class="sig">
+          <div class="blk-label">Plumber signature</div>
+          <div class="sig-pad-wrap">
+            <canvas class="sig-pad" id="sigPad"></canvas>
+            <button class="sig-upload no-print" id="sigUploadBtn" type="button">⤒ upload</button>
+            <button class="sig-clear no-print" id="sigClear" type="button">clear</button>
+            <input type="file" id="sigUpload" accept="image/*" hidden>
+          </div>
+          <div class="sig-cap">
+            <span>Beau Petterson · Lic. 468634C</span>
+            <label>Date <input class="mono" name="date_signed" placeholder="DD Mmm YYYY" style="width:24mm"></label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Scope & disclaimers -->
+      <div class="disclaimer">
+        <div class="blk-label">Scope &amp; disclaimers</div>
+        <textarea class="grow" name="disclaimer" rows="6"></textarea>
+      </div>
+
+    </div>
+
+    <footer>
+      <div>Coastal Ways Plumbing &nbsp;·&nbsp; Water Leak Report</div>
+      <div>coastalwaysplumbing.com.au</div>
+    </footer>
+
+  </div>
+</div>
+
+<script>
+"use strict";
+const LS_KEY = "cwp-leak-builder-v1";
+const $ = (s,el=document)=>el.querySelector(s);
+const uid = ()=>Math.random().toString(36).slice(2,9);
+
+const VERIFY = ["Meter re-checked — no movement with all fixtures off","Pressure test passed after repair","Visual inspection — no further leakage","Isolation / stop valve operation checked","Hot water system checked and operating","Site left clean and safe"];
+
+const RECS = ["Monitor the water meter for further movement","Replace the remaining section of ageing pipework","Full water service renewal (meter to house)","Install / replace the isolation stop valve","Install a pressure limiting valve","Re-inspect / re-test in 3–6 months","Provide this report and the invoice to your insurer","Apply to the water authority for concealed-leak bill assistance","Refer to the strata manager / owners corporation"];
+
+const STMTS = ["The leak was concealed from view and could not be located by visual inspection alone.","The leak did not result from faulty or defective plumbing workmanship or installation."];
+
+const DEFAULT_DISCLAIMER =
+"This report records the findings of a licensed plumber at the time of attendance and relates only to the leak and pipework described. It is not a Certificate of Compliance under the Plumbing and Drainage Act 2011 (NSW) and does not certify that the plumbing system as a whole complies with any legislative or building-code requirement. "+
+"Concealed pipework not exposed during the works was not inspected, and no assurance is given regarding sections of the system beyond the repair area described; conditions can change after the date of attendance. "+
+"Observations regarding the visibility, cause and duration of the leak are professional opinions based on the physical evidence available on site. Determinations of insurance coverage, water-authority financial assistance eligibility, or strata common-property responsibility rest with the relevant insurer, water authority or owners corporation. "+
+"This report is prepared for the named client and stated purpose and should not be relied upon by any third party without Coastal Ways Plumbing's written consent. Coastal Ways Plumbing holds current public liability and professional indemnity insurance.";
+
+let state = {fields:{}, checks:{}, photos:[], sig:""};
+
+let saveTimer=null;
+function save(){ clearTimeout(saveTimer); saveTimer=setTimeout(()=>{ try{ localStorage.setItem(LS_KEY, JSON.stringify(state)); }catch(e){} },300); }
+function load(){
+  try{
+    const raw=localStorage.getItem(LS_KEY); if(!raw) return;
+    const s=JSON.parse(raw);
+    if(s && typeof s==="object"){
+      state.fields=s.fields||{}; state.checks=s.checks||{};
+      state.photos=Array.isArray(s.photos)?s.photos:[];
+      state.sig=s.sig||"";
+    }
+  }catch(e){}
+}
+
+function bindFields(){
+  document.querySelectorAll("[name]").forEach(el=>{
+    const n=el.name;
+    if(el.type==="radio"){
+      el.checked = state.fields[n]===el.value;
+      el.addEventListener("change",()=>{ if(el.checked){state.fields[n]=el.value; save();} });
+    }else{
+      if(state.fields[n]!=null) el.value=state.fields[n];
+      el.addEventListener("input",()=>{ state.fields[n]=el.value; if(el.classList.contains("grow"))autoGrow(el); validate(); save(); });
+      el.addEventListener("change",()=>{ state.fields[n]=el.value; save(); });
+      if(el.classList.contains("grow")) autoGrow(el);
+    }
+  });
+}
+function autoGrow(el){ el.style.height="auto"; el.style.height=(el.scrollHeight)+"px"; }
+function escapeHTML(s){return String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
+
+function renderChecks(hostId, items, group){
+  const host=$("#"+hostId); host.innerHTML="";
+  items.forEach(label=>{
+    const key=group+"::"+label;
+    const wrap=document.createElement("label"); wrap.className="chk";
+    wrap.innerHTML=`<input type="checkbox" ${state.checks[key]?"checked":""}><span>${escapeHTML(label)}</span>`;
+    wrap.querySelector("input").addEventListener("change",e=>{ state.checks[key]=e.target.checked; save(); });
+    host.appendChild(wrap);
+  });
+}
+
+/* photos */
+function downscale(file,maxEdge,quality){
+  return new Promise(res=>{
+    const url=URL.createObjectURL(file); const img=new Image();
+    img.onload=()=>{ URL.revokeObjectURL(url);
+      let w=img.naturalWidth,h=img.naturalHeight;
+      const sc=Math.min(1,maxEdge/Math.max(w,h)); w=Math.round(w*sc); h=Math.round(h*sc);
+      const c=document.createElement("canvas"); c.width=w; c.height=h;
+      c.getContext("2d").drawImage(img,0,0,w,h);
+      try{ res(c.toDataURL("image/jpeg",quality)); }catch(e){ res(null); }
+    };
+    img.onerror=()=>{URL.revokeObjectURL(url);res(null);};
+    img.src=url;
+  });
+}
+async function addFiles(files){
+  const imgs=[...files].filter(f=>f.type.startsWith("image/"));
+  for(const f of imgs){ const src=await downscale(f,1600,0.82); if(src) state.photos.push({id:uid(),src,caption:""}); }
+  renderPhotos(); save();
+}
+function renderPhotos(){
+  const g=$("#photoGrid"); g.innerHTML="";
+  if(!state.photos.length){ g.innerHTML='<div class="photo-empty no-print">No photos yet — drag images onto the box above or click “+ Add photos”.</div>'; return; }
+  state.photos.forEach((p,i)=>{
+    const card=document.createElement("div"); card.className="photo-card";
+    card.innerHTML=`<div class="photo-frame"><img src="${p.src}" alt="Photo ${i+1}">
+        <div class="photo-ctrls no-print">
+          <button class="up" title="Move up" ${i===0?"disabled":""}>↑</button>
+          <button class="dn" title="Move down" ${i===state.photos.length-1?"disabled":""}>↓</button>
+          <button class="del" title="Remove">×</button>
+        </div></div>
+      <textarea class="fld grow photo-cap" rows="1" placeholder="Caption — e.g. Failed copper elbow after excavation, front yard">${escapeHTML(p.caption)}</textarea>`;
+    const cap=card.querySelector(".photo-cap");
+    cap.addEventListener("input",()=>{p.caption=cap.value;autoGrow(cap);save();}); autoGrow(cap);
+    card.querySelector(".up").addEventListener("click",()=>{if(i>0){[state.photos[i-1],state.photos[i]]=[state.photos[i],state.photos[i-1]];renderPhotos();save();}});
+    card.querySelector(".dn").addEventListener("click",()=>{if(i<state.photos.length-1){[state.photos[i+1],state.photos[i]]=[state.photos[i],state.photos[i+1]];renderPhotos();save();}});
+    card.querySelector(".del").addEventListener("click",()=>{state.photos.splice(i,1);renderPhotos();save();});
+    g.appendChild(card);
+  });
+}
+
+/* signature */
+function initSig(){
+  const cv=$("#sigPad"); const ctx=cv.getContext("2d");
+  function fit(){
+    const r=cv.getBoundingClientRect(); const dpr=window.devicePixelRatio||1; const data=state.sig;
+    cv.width=Math.round(r.width*dpr); cv.height=Math.round(r.height*dpr);
+    ctx.scale(dpr,dpr); ctx.lineWidth=1.8; ctx.lineCap="round"; ctx.lineJoin="round"; ctx.strokeStyle="#10202D";
+    if(data){ const im=new Image(); im.onload=()=>ctx.drawImage(im,0,0,r.width,r.height); im.src=data; }
+  }
+  let drawing=false,last=null;
+  const pos=e=>{const r=cv.getBoundingClientRect();const t=e.touches?e.touches[0]:e;return{x:t.clientX-r.left,y:t.clientY-r.top};};
+  function start(e){drawing=true;last=pos(e);e.preventDefault();}
+  function move(e){ if(!drawing)return; const p=pos(e); ctx.beginPath();ctx.moveTo(last.x,last.y);ctx.lineTo(p.x,p.y);ctx.stroke(); last=p; e.preventDefault(); }
+  function end(){ if(!drawing)return; drawing=false; try{state.sig=cv.toDataURL("image/png");save();}catch(e){} }
+  cv.addEventListener("pointerdown",start); cv.addEventListener("pointermove",move); window.addEventListener("pointerup",end);
+  $("#sigClear").addEventListener("click",()=>{const r=cv.getBoundingClientRect();ctx.clearRect(0,0,r.width,r.height);state.sig="";save();});
+  setTimeout(fit,60); window.addEventListener("resize",()=>setTimeout(fit,60));
+}
+function placeImageOnPad(file){
+  const cv=$("#sigPad"); if(!cv) return; const ctx=cv.getContext("2d"); const r=cv.getBoundingClientRect();
+  const url=URL.createObjectURL(file); const img=new Image();
+  img.onload=()=>{ URL.revokeObjectURL(url); ctx.clearRect(0,0,r.width,r.height);
+    const pad=6, mw=r.width-pad*2, mh=r.height-pad*2;
+    const s=Math.min(mw/img.naturalWidth, mh/img.naturalHeight);
+    const w=img.naturalWidth*s, h=img.naturalHeight*s;
+    ctx.drawImage(img,(r.width-w)/2,(r.height-h)/2,w,h);
+    try{ state.sig=cv.toDataURL("image/png"); save(); }catch(e){}
+  };
+  img.onerror=()=>URL.revokeObjectURL(url); img.src=url;
+}
+
+function validate(){ const empty=!(state.fields.property_address||"").trim(); $("#addrWarn").classList.toggle("show",empty); return !empty; }
+
+function init(){
+  load();
+  if(state.fields.disclaimer==null) state.fields.disclaimer=DEFAULT_DISCLAIMER;
+  renderChecks("verifyChecks",VERIFY,"verify");
+  renderChecks("recChecks",RECS,"rec");
+  renderChecks("stmtChecks",STMTS,"stmt");
+  bindFields();
+  renderPhotos(); initSig(); validate();
+
+  $("#addPhotoBtn").addEventListener("click",()=>$("#fileInput").click());
+  $("#dropzone").addEventListener("click",()=>$("#fileInput").click());
+  $("#fileInput").addEventListener("change",e=>{addFiles(e.target.files);e.target.value="";});
+  const dz=$("#dropzone");
+  ["dragenter","dragover"].forEach(ev=>dz.addEventListener(ev,e=>{e.preventDefault();dz.classList.add("drag");}));
+  ["dragleave","drop"].forEach(ev=>dz.addEventListener(ev,e=>{e.preventDefault();dz.classList.remove("drag");}));
+  dz.addEventListener("drop",e=>{ if(e.dataTransfer&&e.dataTransfer.files) addFiles(e.dataTransfer.files); });
+  window.addEventListener("dragover",e=>e.preventDefault());
+  window.addEventListener("drop",e=>{ if(e.target.closest&&!e.target.closest("#dropzone")&&e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files.length){e.preventDefault();addFiles(e.dataTransfer.files);} });
+
+  $("#sigUploadBtn").addEventListener("click",()=>$("#sigUpload").click());
+  $("#sigUpload").addEventListener("change",e=>{ if(e.target.files[0]) placeImageOnPad(e.target.files[0]); e.target.value=""; });
+  $("#saveBtn").addEventListener("click",()=>{ document.activeElement&&document.activeElement.blur(); syncHeights(); window.print(); });
+  $("#clearBtn").addEventListener("click",()=>{
+    if(confirm("Start a blank report? This clears everything in this browser.")){
+      localStorage.removeItem(LS_KEY);
+      state={fields:{disclaimer:DEFAULT_DISCLAIMER},checks:{},photos:[],sig:""};
+      document.querySelectorAll("[name]").forEach(el=>{if(el.type==="radio")el.checked=false;else if(el.tagName==="SELECT")el.selectedIndex=0;else if(el.name!=="disclaimer")el.value="";});
+      $('[name="disclaimer"]').value=DEFAULT_DISCLAIMER;
+      renderChecks("verifyChecks",VERIFY,"verify");
+      renderChecks("recChecks",RECS,"rec");
+      renderChecks("stmtChecks",STMTS,"stmt");
+      renderPhotos();
+      const cv=$("#sigPad"); cv.getContext("2d").clearRect(0,0,cv.width,cv.height);
+      syncHeights(); validate();
+    }
+  });
+  window.addEventListener("beforeprint",syncHeights);
+}
+function syncHeights(){ document.querySelectorAll("textarea.grow").forEach(autoGrow); }
+
+document.addEventListener("DOMContentLoaded",init);
+</script>
+</body>
+</html>
