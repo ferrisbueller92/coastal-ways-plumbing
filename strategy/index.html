@@ -157,6 +157,21 @@ footer.close .lead{color:rgba(251,246,243,.8);font-weight:300;margin-top:14px;ma
 footer.close img{height:40px;margin-top:28px}
 footer.close .fine{font-family:var(--f-d);font-weight:500;font-size:12px;color:rgba(251,246,243,.4);margin-top:22px}
 .small{font-size:13px;color:var(--navy-55);font-weight:300}
+
+/* ── progress log ── */
+.log{display:grid;gap:14px}
+.log .entry{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px 24px}
+.log .entry .when{display:inline-flex;align-items:center;font-family:var(--f-d);font-weight:700;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:#fff;background:var(--teal);padding:6px 13px;border-radius:8px;margin-bottom:16px}
+.log .entry.latest .when{background:var(--navy)}
+.log ul.items{list-style:none;display:grid;gap:15px}
+.log ul.items li{display:flex;gap:12px;align-items:flex-start}
+.log ul.items li>div{font-size:15px;color:var(--navy-80);font-weight:300;line-height:1.58}
+.log ul.items li .dot{flex:0 0 auto;width:9px;height:9px;border-radius:50%;background:var(--teal);margin-top:8px}
+.log li b{font-family:var(--f-d);font-weight:600;color:var(--navy)}
+.st{font-family:var(--f-d);font-weight:600;font-size:10px;letter-spacing:.05em;text-transform:uppercase;padding:3px 9px;border-radius:6px;margin-right:9px;white-space:nowrap;display:inline-block;vertical-align:1px}
+.st.done{background:rgba(62,124,90,.14);color:var(--green)}
+.st.prog{background:var(--teal-tint);color:var(--teal)}
+.st.queued{background:rgba(184,134,59,.15);color:var(--gold)}
 </style>
 </head>
 <body>
@@ -165,6 +180,7 @@ footer.close .fine{font-family:var(--f-d);font-weight:500;font-size:12px;color:r
   <div class="in">
     <img src="assets/logo-horizontal-dark.png" alt="Coastal Ways Plumbing">
     <div class="links">
+      <a href="#progress">Progress</a>
       <a href="#today">Where you stand</a>
       <a href="#strategy">The strategy</a>
       <a href="#reviews">Reviews</a>
@@ -188,8 +204,28 @@ footer.close .fine{font-family:var(--f-d);font-weight:500;font-size:12px;color:r
     <span class="chip">Central Coast NSW</span>
     <span class="chip terra">Indigenous-owned</span>
   </div>
-  <div class="stamp">Live strategy · updated July 2026 · figures below are your real numbers, hover any chart</div>
+  <div class="stamp">Live strategy · updated 21 July 2026 · figures below are your real numbers, hover any chart</div>
 </div></header>
+
+<!-- PROGRESS LOG -->
+<section id="progress"><div class="wrap">
+  <div class="eyebrow">Progress log · updated 21 July 2026</div>
+  <h2 class="sech">Where we're <span class="t">up to.</span></h2>
+  <p class="secsub">A running record of what we've talked through and what's moving — most recent first. We keep this current so you can always see exactly where things stand.</p>
+
+  <div class="log">
+    <!-- NEW ENTRIES GO HERE: add above, most-recent first, and move "latest" onto the newest .entry -->
+    <div class="entry latest">
+      <span class="when">21 July 2026 · phone catch-up</span>
+      <ul class="items">
+        <li><span class="dot"></span><div><span class="st prog">In progress</span><b>More reviews, less friction.</b> You're at a perfect 5.0★ and the review request is working — the focus now is lifting the <i>number</i> of reviews. The plan: a tap-to-review card Beau can use the moment a job's done (the customer taps their phone and your Google review page opens — no searching, no app), a short same-day text from Beau himself for the jobs where the customer wasn't on site, and making sure the link jumps straight to the star rating in a single tap.</div></li>
+        <li><span class="dot"></span><div><span class="st done">Delivered</span><b>Vehicle magnets.</b> Three car-magnet designs sent through for you to choose from — <a href="../vehicle-magnets/">view the concepts</a>. Pick a direction and orientation and we'll finalise the print file.</div></li>
+        <li><span class="dot"></span><div><span class="st prog">In progress</span><b>Supply Nation application.</b> We're assembling your application and will draft version one from everything we hold on Coastal Ways, then send it back for your review — waiting on the last few details from Beau.</div></li>
+        <li><span class="dot"></span><div><span class="st queued">Queued</span><b>Google keywords &amp; ad costs.</b> Flagged for a little later — once job volume steps up we'll show you which searches are worth targeting and what each click costs, so paid search is there as an option when you're ready.</div></li>
+      </ul>
+    </div>
+  </div>
+</div></section>
 
 <!-- WHERE YOU STAND -->
 <section id="today" class="alt"><div class="wrap">
