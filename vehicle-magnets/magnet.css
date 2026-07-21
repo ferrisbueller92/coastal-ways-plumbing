@@ -1,0 +1,144 @@
+/* ============================================================
+   Coastal Ways Plumbing — Vehicle Magnetic Sign System
+   Trim 600×400mm (landscape) / 400×600mm (portrait)
+   + 3mm bleed  →  606×406mm / 406×606mm
+   Proof renders at 3px/mm; PDF locks to true mm via @page.
+
+   ORIENTATION-STABLE UNIT
+   --u is set from the SHORT edge in both orientations, so 1u is
+   the same physical size (4.06mm) whether landscape or portrait.
+   Every dimension below is authored in u → one type scale, two
+   orientations, identical physical output.
+   ============================================================ */
+
+@font-face{font-family:"Space Grotesk";font-weight:700;font-display:block;
+  src:url("assets/fonts/space-grotesk-latin-700-normal.woff2") format("woff2");}
+@font-face{font-family:"Space Grotesk";font-weight:500;font-display:block;
+  src:url("assets/fonts/space-grotesk-latin-500-normal.woff2") format("woff2");}
+@font-face{font-family:"Roboto";font-weight:300;font-display:block;
+  src:url("assets/fonts/roboto-latin-300-normal.woff2") format("woff2");}
+@font-face{font-family:"Roboto";font-weight:400;font-display:block;
+  src:url("assets/fonts/roboto-latin-400-normal.woff2") format("woff2");}
+@font-face{font-family:"Roboto";font-weight:500;font-display:block;
+  src:url("assets/fonts/roboto-latin-500-normal.woff2") format("woff2");}
+
+:root{
+  --sand:#FBF6F3;
+  --navy:#10202D;
+  --teal:#055A5F;
+  --teal-tint:#E6F0F1;
+  --cool-grey:#C4CFD1;
+  --white:#ffffff;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#5c6a72}
+
+/* ---- The magnet ------------------------------------------------- */
+.mag{
+  position:relative;
+  container-type:size;
+  overflow:hidden;
+  font-family:"Roboto",-apple-system,Helvetica,Arial,sans-serif;
+  color:var(--navy);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+/* Landscape 606×406mm @3px/mm. Short edge = height → 1cqh = 4.06mm */
+.mag.land{width:1818px;height:1218px;--u:1cqh}
+/* Portrait 406×606mm @3px/mm. Short edge = width → 1cqw = 4.06mm  */
+.mag.port{width:1218px;height:1818px;--u:1cqw}
+
+/* Safe area: 8u ≈ 32.5mm in from the bleed edge = ~29.5mm from trim.
+   Magnets are die-cut with a ~25mm corner radius, which removes material
+   within 25mm of BOTH edges at each corner — so corner-dwelling items
+   (logo, licence, web, tagline) need to clear that arc, not just the trim. */
+.safe{position:absolute;inset:calc(8*var(--u));display:flex;flex-direction:column}
+
+/* ---- Type atoms (all sized in u = physically identical both ways) */
+.eyebrow{
+  font-family:"Space Grotesk";font-weight:500;text-transform:uppercase;
+  letter-spacing:.2em;font-size:calc(2.7*var(--u));line-height:1;
+  color:var(--teal);
+}
+.phone{
+  font-family:"Space Grotesk";font-weight:700;letter-spacing:-.02em;
+  line-height:.92;white-space:nowrap;color:var(--teal);
+}
+.land .phone{font-size:calc(20*var(--u))}   /* ≈81mm → ~57mm cap height */
+/* Portrait is only 406mm wide, so one line would force the number down to
+   ~37mm cap height. Breaking after the mobile prefix instead keeps the
+   cap height at ~51mm — a ~40% legibility gain at road distance. */
+.port .phone{font-size:calc(21*var(--u));white-space:normal;line-height:.86}
+.phone .ln{display:block}
+
+.web{
+  font-family:"Space Grotesk";font-weight:500;font-size:calc(4.3*var(--u));
+  letter-spacing:.005em;line-height:1;color:var(--navy);
+}
+.lic{
+  font-family:"Roboto";font-weight:500;font-size:calc(2.7*var(--u));
+  letter-spacing:.1em;text-transform:uppercase;line-height:1;
+  color:var(--navy);opacity:.62;
+}
+.svc{
+  font-family:"Roboto";font-weight:400;font-size:calc(3.7*var(--u));
+  letter-spacing:.005em;line-height:1.25;color:var(--navy);
+}
+.svc b{font-weight:500}
+/* Portrait has more width per item (2×2 grid) and more height to fill —
+   scale services up rather than leaving dead air. */
+.port .svc{font-size:calc(4.3*var(--u))}
+.port .web{font-size:calc(4.9*var(--u))}
+
+/* on-dark inversions */
+.on-dark .phone,.on-dark .web{color:var(--sand)}
+.on-dark .eyebrow{color:var(--teal-tint)}
+.on-dark .lic{color:var(--sand);opacity:.6}
+.on-dark .svc{color:var(--sand)}
+
+/* ---- Logo ------------------------------------------------------- */
+/* Lockup is cropped tight (mark touches the artwork edge), so clear
+   space is enforced here with margin, per the brand rule
+   "clear space = height of the C".                                  */
+.logo{display:block;height:auto}
+.land .logo-h{width:calc(72*var(--u))}   /* ≈292mm wide, 3.5:1 → ≈83mm tall */
+.port .logo-s{width:calc(42*var(--u))}   /* stacked 0.907:1 → ≈171×188mm    */
+
+/* ---- Structural bands (full-bleed, never floating cards) -------- */
+.band{position:absolute;left:0;right:0;display:flex;align-items:center}
+.band.bottom{bottom:0}
+.rule{border:0;height:calc(.5*var(--u));background:var(--teal);width:100%}
+
+/* ---- Service list ---------------------------------------------- */
+.svc-row{display:flex;flex-wrap:nowrap;gap:calc(3*var(--u));align-items:center}
+/* Portrait: 2×2 grid instead of one row — saves ~50mm of vertical space
+   that the taller phone lockup needs. */
+.svc-grid{display:grid;grid-template-columns:auto auto;
+  gap:calc(2.8*var(--u)) calc(4*var(--u));justify-content:start}
+.svc-item{display:flex;align-items:center;gap:calc(1.7*var(--u));white-space:nowrap}
+.dot{width:calc(1.1*var(--u));height:calc(1.1*var(--u));border-radius:50%;
+  background:var(--teal);flex:0 0 auto}
+.on-dark .dot{background:var(--teal-tint)}
+
+/* ---- Perimeter keyline ------------------------------------------ */
+/* A light-field magnet on white or silver vehicle paint has almost no
+   edge contrast — it reads as a decal or a dirty patch rather than a
+   sign. A navy perimeter band restores the edge. Kept at 10mm so the
+   ±1mm variance of a die-cut is imperceptible along its width.        */
+.frame{position:absolute;inset:0;pointer-events:none;z-index:4;
+  border:calc(2.5*var(--u)) solid var(--navy)}
+
+/* ---- Proof-only guides (screen; stripped from print) ------------ */
+.guide{position:absolute;pointer-events:none}
+.guide.trim{inset:calc(3*3px);outline:2px dashed rgba(255,255,255,.30);
+  border-radius:calc(25*3px)}
+
+/* ---- Print: lock to true physical size -------------------------- */
+@media print{
+  html,body{background:#fff;margin:0}
+  .guide{display:none!important}
+  .mag.land{width:606mm;height:406mm}
+  .mag.port{width:406mm;height:606mm}
+}
+@page{margin:0}

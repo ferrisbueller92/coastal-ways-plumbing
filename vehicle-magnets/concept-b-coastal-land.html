@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<title>Coastal Ways Plumbing — Vehicle Magnet — Concept B (Coastal Light) — Landscape</title>
+<link rel="stylesheet" href="magnet.css">
+<style>
+  /* Concept B — COASTAL LIGHT
+     Bet: local, clean, approachable — the "Caregiver" archetype the
+     brand tokens actually specify. Reads hardest on DARK vehicles
+     (navy / charcoal / black utes), where Concept A would disappear.
+     Structure: sand field with an organic wave footer lifted from the
+     logomark's own wave lines — not a hard band. Light, not loud. */
+  .mag{background:var(--sand)}
+  .safe{bottom:calc(20*var(--u));justify-content:space-between}
+  .top{display:flex;align-items:flex-start;justify-content:space-between}
+  .svc-row .svc{white-space:nowrap}
+  .hero .eyebrow{margin-bottom:calc(2.4*var(--u))}
+  .accent{width:calc(24*var(--u));margin-bottom:calc(3.2*var(--u))}
+
+  /* wave footer — echoes the wave lines inside the logo's "C" */
+  .waves{position:absolute;left:0;right:0;bottom:0;width:100%;
+    height:calc(11*var(--u));display:block}
+
+  .foot{position:absolute;left:calc(7*var(--u));right:calc(7*var(--u));
+    bottom:calc(12.5*var(--u));display:flex;align-items:baseline;
+    justify-content:space-between}
+  .foot .web{color:var(--navy)}
+  .foot .tagline{font-family:"Space Grotesk";font-weight:500;
+    font-size:calc(2.9*var(--u));letter-spacing:.2em;text-transform:uppercase;
+    color:var(--teal);line-height:1}
+</style>
+</head>
+<body>
+
+<div class="mag land">
+
+  <svg class="waves" viewBox="0 0 1818 200" preserveAspectRatio="none" aria-hidden="true">
+    <g fill="none" stroke="#055A5F" stroke-linecap="round">
+      <path d="M-20,58 C 150,10 300,106 470,58 S 790,10 960,58 S 1280,106 1450,58 S 1770,10 1840,58"
+            stroke-width="9" opacity=".22"/>
+      <path d="M-20,92 C 150,44 300,140 470,92 S 790,44 960,92 S 1280,140 1450,92 S 1770,44 1840,92"
+            stroke-width="13" opacity=".38"/>
+      <path d="M-20,130 C 150,82 300,178 470,130 S 790,82 960,130 S 1280,178 1450,130 S 1770,82 1840,130"
+            stroke-width="17" opacity=".62"/>
+      <path d="M-20,170 C 150,122 300,218 470,170 S 790,122 960,170 S 1280,218 1450,170 S 1770,122 1840,170"
+            stroke-width="21" opacity="1"/>
+    </g>
+  </svg>
+
+  <div class="safe">
+    <div class="top">
+      <img class="logo logo-h" src="assets/logo-horizontal-trans.png"
+           alt="Coastal Ways Plumbing">
+      <span class="lic">NSW Lic. 468634C</span>
+    </div>
+
+    <div class="svc-row">
+      <span class="dot"></span><span class="svc">Blocked drains</span>
+      <span class="dot"></span><span class="svc">Hot water</span>
+      <span class="dot"></span><span class="svc">Gas fitting</span>
+      <span class="dot"></span><span class="svc">Leak detection</span>
+    </div>
+
+    <div class="hero">
+      <hr class="rule accent">
+      <div class="eyebrow">Call Beau &middot; 24/7 Emergency</div>
+      <div class="phone">0402&nbsp;269&nbsp;088</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="web">coastalwaysplumbing.com</div>
+    <div class="tagline">Central Coast</div>
+  </div>
+
+  <div class="frame"></div>
+</div>
+
+</body>
+</html>

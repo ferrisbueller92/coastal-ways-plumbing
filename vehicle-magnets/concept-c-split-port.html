@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<title>Coastal Ways Plumbing — Vehicle Magnet — Concept C (Deep Teal Split) — Portrait</title>
+<link rel="stylesheet" href="magnet.css">
+<style>
+  /* Concept C — DEEP TEAL SPLIT — portrait 400×600mm
+     ("split", NOT hi-vis — no safety-yellow anywhere in this design.) */
+  .mag.port{display:flex;flex-direction:column;background:var(--teal)}
+
+  .zone-top{flex:0 0 52%;padding:calc(7*var(--u)) calc(7*var(--u)) 0;
+    display:flex;flex-direction:column;justify-content:space-between;
+    position:relative;z-index:2}
+  .zone-bot{flex:1;background:var(--navy);
+    padding:calc(1*var(--u)) calc(7*var(--u)) calc(6*var(--u));
+    display:flex;flex-direction:column;justify-content:flex-end;
+    position:relative;z-index:1}
+
+  .top{display:flex;align-items:flex-start;justify-content:space-between}
+  /* C's logo lives in a fixed 52% zone, not the full safe area — the
+     global 42u portrait logo overflows it and collides with the service
+     list. Scaled to fit its own zone.
+     NOTE: must out-specify `.port .logo-s` in magnet.css (0,2,0). */
+  .mag.port .logo-s{width:calc(36*var(--u))}
+  .zone-top .lic{color:var(--sand);opacity:.72}
+  .zone-top .svc{color:var(--sand)}
+  .zone-top .dot{background:var(--sand);opacity:.55}
+  /* must clear the wave crest, which rises 7u into the teal zone */
+  .svc-grid{margin-bottom:calc(11*var(--u))}
+
+  .split{position:absolute;left:0;right:0;bottom:48%;width:100%;
+    height:calc(7*var(--u));display:block;z-index:1}
+
+  .zone-bot .eyebrow{color:var(--teal-tint);margin-bottom:calc(2*var(--u))}
+  .zone-bot .phone{color:var(--sand)}
+  .foot{display:flex;flex-direction:column;align-items:flex-start;
+    gap:calc(1.6*var(--u));margin-top:calc(3*var(--u))}
+  .foot .web{color:var(--sand)}
+  .foot .tagline{font-family:"Space Grotesk";font-weight:500;
+    font-size:calc(2.9*var(--u));letter-spacing:.2em;text-transform:uppercase;
+    color:var(--teal-tint);line-height:1}
+</style>
+</head>
+<body>
+
+<div class="mag port on-dark">
+
+  <div class="zone-top">
+    <div class="top">
+      <img class="logo logo-s" src="assets/logo-full-white.png"
+           alt="Coastal Ways Plumbing">
+      <span class="lic">NSW Lic.<br>468634C</span>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-item"><span class="dot"></span><span class="svc">Blocked drains</span></div>
+      <div class="svc-item"><span class="dot"></span><span class="svc">Hot water</span></div>
+      <div class="svc-item"><span class="dot"></span><span class="svc">Gas fitting</span></div>
+      <div class="svc-item"><span class="dot"></span><span class="svc">Leak detection</span></div>
+    </div>
+  </div>
+
+  <svg class="split" viewBox="0 0 1218 120" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,120 L0,66 C 140,14 280,104 415,58 S 685,6 825,58 S 1085,106 1218,52 L1218,120 Z"
+          fill="#10202D"/>
+  </svg>
+
+  <div class="zone-bot">
+    <div class="eyebrow">Call Beau &middot; 24/7 Emergency</div>
+    <div class="phone"><span class="ln">0402</span><span class="ln">269&nbsp;088</span></div>
+    <div class="foot">
+      <div class="web">coastalwaysplumbing.com</div>
+      <div class="tagline">Central Coast</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<title>Coastal Ways Plumbing — Vehicle Magnet — Concept B (Coastal Light) — Portrait</title>
+<link rel="stylesheet" href="magnet.css">
+<style>
+  /* Concept B — COASTAL LIGHT — portrait 400×600mm */
+  .mag{background:var(--sand)}
+  /* B has no footer band to separate the phone from the web line, so the
+     safe area has to stop well clear of .foot — 20u collided. */
+  .safe{bottom:calc(26*var(--u));justify-content:space-between}
+  .mag.port .logo-s{width:calc(35*var(--u))}
+  .mag.port .phone{font-size:calc(19*var(--u))}
+  .top{display:flex;align-items:flex-start;justify-content:space-between}
+  .hero .eyebrow{margin-bottom:calc(2.4*var(--u))}
+  .accent{width:calc(24*var(--u));margin-bottom:calc(3.2*var(--u))}
+
+  .waves{position:absolute;left:0;right:0;bottom:0;width:100%;
+    height:calc(11*var(--u));display:block}
+  .foot{position:absolute;left:calc(7*var(--u));right:calc(7*var(--u));
+    bottom:calc(12.5*var(--u));display:flex;flex-direction:column;
+    align-items:flex-start;gap:calc(1.6*var(--u))}
+  .foot .web{color:var(--navy)}
+  .foot .tagline{font-family:"Space Grotesk";font-weight:500;
+    font-size:calc(2.9*var(--u));letter-spacing:.2em;text-transform:uppercase;
+    color:var(--teal);line-height:1}
+</style>
+</head>
+<body>
+
+<div class="mag port">
+
+  <svg class="waves" viewBox="0 0 1218 200" preserveAspectRatio="none" aria-hidden="true">
+    <g fill="none" stroke="#055A5F" stroke-linecap="round">
+      <path d="M-20,58 C 110,10 220,106 340,58 S 570,10 690,58 S 920,106 1040,58 S 1230,10 1240,58"
+            stroke-width="9" opacity=".22"/>
+      <path d="M-20,92 C 110,44 220,140 340,92 S 570,44 690,92 S 920,140 1040,92 S 1230,44 1240,92"
+            stroke-width="13" opacity=".38"/>
+      <path d="M-20,130 C 110,82 220,178 340,130 S 570,82 690,130 S 920,178 1040,130 S 1230,82 1240,130"
+            stroke-width="17" opacity=".62"/>
+      <path d="M-20,170 C 110,122 220,218 340,170 S 570,122 690,170 S 920,218 1040,170 S 1230,122 1240,170"
+            stroke-width="21" opacity="1"/>
+    </g>
+  </svg>
+
+  <div class="safe">
+    <div class="top">
+      <img class="logo logo-s" src="assets/logo-stacked-dark.png"
+           alt="Coastal Ways Plumbing">
+      <span class="lic">NSW Lic.<br>468634C</span>
+    </div>
+
+    <div class="svc-grid">
+      <div class="svc-item"><span class="dot"></span><span class="svc">Blocked drains</span></div>
+      <div class="svc-item"><span class="dot"></span><span class="svc">Hot water</span></div>
+      <div class="svc-item"><span class="dot"></span><span class="svc">Gas fitting</span></div>
+      <div class="svc-item"><span class="dot"></span><span class="svc">Leak detection</span></div>
+    </div>
+
+    <div class="hero">
+      <hr class="rule accent">
+      <div class="eyebrow">Call Beau &middot; 24/7 Emergency</div>
+      <div class="phone"><span class="ln">0402</span><span class="ln">269&nbsp;088</span></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="web">coastalwaysplumbing.com</div>
+    <div class="tagline">Central Coast</div>
+  </div>
+
+  <div class="frame"></div>
+</div>
+
+</body>
+</html>
