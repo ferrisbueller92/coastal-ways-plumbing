@@ -3,33 +3,63 @@
 
 User-agent: *
 Allow: /
+Disallow: /social-content/
+Disallow: /tools/compliance-cert/template-fillable.html
+Disallow: /tools/compliance-cert/template-report-fillable.html
 
 # AI answer engines — explicitly welcomed (we want to be cited)
 User-agent: GPTBot
 Allow: /
+Disallow: /social-content/
+Disallow: /tools/compliance-cert/template-fillable.html
+Disallow: /tools/compliance-cert/template-report-fillable.html
 
 User-agent: OAI-SearchBot
 Allow: /
+Disallow: /social-content/
+Disallow: /tools/compliance-cert/template-fillable.html
+Disallow: /tools/compliance-cert/template-report-fillable.html
 
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /social-content/
+Disallow: /tools/compliance-cert/template-fillable.html
+Disallow: /tools/compliance-cert/template-report-fillable.html
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /social-content/
+Disallow: /tools/compliance-cert/template-fillable.html
+Disallow: /tools/compliance-cert/template-report-fillable.html
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /social-content/
+Disallow: /tools/compliance-cert/template-fillable.html
+Disallow: /tools/compliance-cert/template-report-fillable.html
 
 User-agent: Claude-Web
 Allow: /
+Disallow: /social-content/
+Disallow: /tools/compliance-cert/template-fillable.html
+Disallow: /tools/compliance-cert/template-report-fillable.html
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /social-content/
+Disallow: /tools/compliance-cert/template-fillable.html
+Disallow: /tools/compliance-cert/template-report-fillable.html
 
 User-agent: Applebot-Extended
 Allow: /
+Disallow: /social-content/
+Disallow: /tools/compliance-cert/template-fillable.html
+Disallow: /tools/compliance-cert/template-report-fillable.html
 
 User-agent: CCBot
 Allow: /
+Disallow: /social-content/
+Disallow: /tools/compliance-cert/template-fillable.html
+Disallow: /tools/compliance-cert/template-report-fillable.html
 
 Sitemap: https://coastalwaysplumbing.com/sitemap.xml
