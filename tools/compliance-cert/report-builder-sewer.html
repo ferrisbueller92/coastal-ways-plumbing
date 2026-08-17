@@ -307,7 +307,7 @@
         <div class="f"><label>Upstream access point</label><input class="fld" name="as_upstream" placeholder="e.g. IS-1 / IO / cleanout @ rear"></div>
         <div class="f"><label>Downstream access point</label><input class="fld" name="as_downstream" placeholder="e.g. MH-2 / boundary shaft / sewer main"></div>
         <div class="f"><label>Survey direction</label><select class="fld" name="as_direction"><option value="" disabled selected>Select…</option><option>Upstream → downstream</option><option>Downstream → upstream</option></select></div>
-        <div class="f"><label>Camera make / model</label><input class="fld" name="as_camera" placeholder="CCTV crawler / push-rod make &amp; model"></div>
+        <div class="f"><label>Camera make / model</label><input class="fld" name="as_camera" value="Ridgid See Snake CS6X Versa Monitor" readonly></div>
         <div class="f"><label>Sonde location used</label><select class="fld" name="as_sonde"><option value="" disabled selected>Select…</option><option>Yes</option><option>No</option></select></div>
         <div class="f"><label>Pipe pre-cleaned</label><select class="fld" name="as_cleaned"><option value="" disabled selected>Select…</option><option>Yes — jetted</option><option>No</option></select></div>
         <div class="f"><label>Flow level at inspection</label><input class="fld" name="as_flow" placeholder="e.g. low / ~20% full"></div>
@@ -435,6 +435,7 @@
 <script>
 "use strict";
 const LS_KEY = "cwp-sewer-builder-v1";
+const FIXED_CAMERA = "Ridgid See Snake CS6X Versa Monitor";
 const $ = (s,el=document)=>el.querySelector(s);
 const uid = ()=>Math.random().toString(36).slice(2,9);
 
@@ -630,6 +631,7 @@ function validate(){ const empty=!(state.fields.property_address||"").trim(); $(
 function init(){
   load();
   if(state.fields.disclaimer==null) state.fields.disclaimer=DEFAULT_DISCLAIMER;
+  state.fields.as_camera=FIXED_CAMERA;
   renderChecks("recChecks",RECS,"rec");
   bindFields();
   renderLog(); renderDefects("structRows",state.struct,"ss"); renderDefects("serviceRows",state.service,"sv");
@@ -655,9 +657,10 @@ function init(){
   $("#clearBtn").addEventListener("click",()=>{
     if(confirm("Start a blank report? This clears everything in this browser.")){
       localStorage.removeItem(LS_KEY);
-      state={fields:{disclaimer:DEFAULT_DISCLAIMER},checks:{},log:defaultLog(),struct:defaultStruct(),service:defaultService(),photos:[],sig:""};
-      document.querySelectorAll("[name]").forEach(el=>{if(el.type==="radio")el.checked=false;else if(el.name!=="disclaimer")el.value="";});
+      state={fields:{disclaimer:DEFAULT_DISCLAIMER,as_camera:FIXED_CAMERA},checks:{},log:defaultLog(),struct:defaultStruct(),service:defaultService(),photos:[],sig:""};
+      document.querySelectorAll("[name]").forEach(el=>{if(el.type==="radio")el.checked=false;else if(el.name!=="disclaimer"&&el.name!=="as_camera")el.value="";});
       $('[name="disclaimer"]').value=DEFAULT_DISCLAIMER;
+      $('[name="as_camera"]').value=FIXED_CAMERA;
       renderChecks("recChecks",RECS,"rec");
       renderLog(); renderDefects("structRows",state.struct,"ss"); renderDefects("serviceRows",state.service,"sv"); renderPhotos();
       const cv=$("#sigPad"); cv.getContext("2d").clearRect(0,0,cv.width,cv.height);

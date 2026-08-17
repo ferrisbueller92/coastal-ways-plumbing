@@ -1,0 +1,18 @@
+# Coastal Ways Plumbing — repo hygiene
+# This repo publishes straight to GitHub Pages, so anything committed becomes a
+# public URL. Keep build junk and customer documents out of it.
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Film-verify / screenshot artefacts (regenerated on demand, never served)
+*.preview.desktop.png
+*.preview.mobile.png
+
+# Issued customer documents — real addresses. These belong in Drive, not on a
+# public website. PDFs cannot carry a noindex tag.
+tools/compliance-cert/issued/*.pdf
+
+# Beau's signature image — publishing it puts a liftable copy on the internet.
+tools/compliance-cert/beau-petterson-signature.png

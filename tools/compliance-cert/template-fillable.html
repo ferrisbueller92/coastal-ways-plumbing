@@ -2,6 +2,7 @@
 <html lang="en-AU">
 <head>
 <meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Water Efficiency Compliance Certificate · Coastal Ways Plumbing</title>
 <!--
@@ -200,7 +201,7 @@
 
   /* Issued grid */
   .issued-grid {
-    margin-top: 6mm;
+    margin-top: 4mm;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 14mm;
@@ -246,8 +247,8 @@
 
   /* Declaration */
   .declaration {
-    margin-top: 5mm;
-    padding: 5mm 6mm;
+    margin-top: 3.5mm;
+    padding: 4mm 6mm;
     background: #FAFBFB;
     border-left: 2.5px solid var(--teal);
     border-radius: 3px;
@@ -310,7 +311,7 @@
   .declaration__citation b { color: var(--ink); font-weight: 500; }
 
   /* Fixtures */
-  .fixtures { margin-top: 4mm; }
+  .fixtures { margin-top: 2.5mm; }
   .fixtures__inner {
     font-family: 'Roboto', sans-serif;
     font-size: 10.5px;
@@ -324,7 +325,7 @@
 
   /* Signature — sig lines align across both columns, meta hangs beneath */
   .signature {
-    margin-top: 8mm;
+    margin-top: 4mm;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 18mm;
@@ -447,7 +448,8 @@
     .ff-input:focus, .ff-textarea:focus, .ff-sig:focus {
       background: transparent;
     }
-    .ff-input::placeholder, .ff-textarea::placeholder {
+    .ff-input::placeholder, .ff-textarea::placeholder,
+    .ff-sig::placeholder, .ff-signature::placeholder {
       color: transparent;
     }
   }
@@ -496,10 +498,10 @@
       <div class="block">
         <div class="block-label">Property certified</div>
         <dl>
-          <dt>Address</dt><dd><input class="ff-input" type="text" name="property_address" placeholder="e.g. 26 Belyando Crescent, Blue Haven NSW 2262"></dd>
+          <dt>Address</dt><dd><textarea class="ff-textarea" name="property_address" rows="2" placeholder="e.g. 26 Belyando Crescent, Blue Haven NSW 2262"></textarea></dd>
           <dt>Inspected</dt><dd><input class="ff-input mono" type="text" name="inspection_date" placeholder="DD Mmm YYYY" style="font-family: 'Roboto Mono', ui-monospace, monospace; font-size: 11px;"></dd>
           <dt>Owner / agent</dt><dd><input class="ff-input" type="text" name="owner_name" placeholder="Contact name (e.g. Managing Agent)"><br><input class="ff-input" type="text" name="owner_company" placeholder="Agency / company (or Private owner)"></dd>
-          <dt>Owner address</dt><dd><input class="ff-input" type="text" name="owner_address" placeholder="Owner / agent postal address"></dd>
+          <dt>Owner address</dt><dd><textarea class="ff-textarea" name="owner_address" rows="2" placeholder="Owner / agent postal address"></textarea></dd>
         </dl>
       </div>
       <div class="block">
@@ -537,7 +539,7 @@
 
     <section class="signature">
       <div>
-        <div class="sig-line"><input class="ff-signature" type="text" name="plumber_signature" data-pdf-field-type="signature" placeholder="" aria-label="Plumber signature"><span class="sig-line__hint">Plumber signature</span></div>
+        <div class="sig-line"><span class="sig-line__hint">Plumber signature</span></div>
         <div class="sig-meta"><b>Beau Petterson</b> &nbsp;·&nbsp; Coastal Ways Plumbing</div>
         <div class="sig-meta__small">Licence 468634C &nbsp;·&nbsp; ABN 62 284 909 142</div>
       </div>

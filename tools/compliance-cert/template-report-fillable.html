@@ -2,6 +2,7 @@
 <html lang="en-AU">
 <head>
 <meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Water Efficiency Inspection Report · Coastal Ways Plumbing</title>
 <!--
@@ -161,7 +162,7 @@
     padding: 1.5px 0;
     border-bottom: 1px dotted var(--hairline);
     align-items: center;
-    min-height: 5.5mm;
+    min-height: 4.8mm;
   }
   .inspection__row > .loc {
     padding-right: 6px;
@@ -224,13 +225,14 @@
     input[type="checkbox"].ff-check { background: transparent; }
     .ff-input, .ff-textarea { border-bottom-color: transparent; background: transparent; }
     .ff-signature, .ff-sig { background: transparent; }
-    .ff-input::placeholder, .ff-textarea::placeholder { color: transparent; }
+    .ff-input::placeholder, .ff-textarea::placeholder,
+    .ff-sig::placeholder, .ff-signature::placeholder { color: transparent; }
   }
 
   /* ========== NOTES (promoted) ========== */
   .notes {
-    margin-top: 3mm;
-    padding: 2.5mm 0 2.5mm 8px;
+    margin-top: 2mm;
+    padding: 2mm 0 2mm 8px;
     border-left: 2.5px solid var(--cool-grey);
   }
   .notes__label {
@@ -242,13 +244,13 @@
     font-family: 'Roboto', sans-serif;
     font-size: 9.5px; line-height: 1.5;
     color: var(--ink-soft); font-weight: 300;
-    min-height: 14mm;
+    min-height: 10mm;
   }
 
   /* ========== SUMMARY ========== */
   .summary {
-    margin-top: 3mm;
-    padding: 3mm 5mm 3mm 5mm;
+    margin-top: 2mm;
+    padding: 2.5mm 5mm 2.5mm 5mm;
     background: #FAFBFB;
     border-radius: 3px;
     border: 1px solid var(--hairline);
@@ -286,7 +288,7 @@
 
   /* ========== OVERALL RESULT — big banner ========== */
   .overall {
-    margin-top: 4mm;
+    margin-top: 2.5mm;
     display: grid; grid-template-columns: 1fr 1fr;
     gap: 0;
     border: 1.2px solid var(--ink);
@@ -309,7 +311,7 @@
 
   /* ========== SIGNATURE ========== */
   .signature {
-    margin-top: 4mm;
+    margin-top: 2.5mm;
     display: grid; grid-template-columns: 1.4fr 1fr; gap: 14mm;
     align-items: start;
   }
@@ -339,6 +341,39 @@
     font-family: 'Roboto Mono', ui-monospace, monospace;
     font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--slate);
+  }
+
+  /* ========== PAGE 2 — SITE PHOTOS ========== */
+  .page--photos { page-break-before: always; }
+  .photo-intro {
+    font-family: 'Roboto', sans-serif;
+    font-size: 9.5px; line-height: 1.5; font-weight: 300;
+    color: var(--ink-soft);
+    margin: 3mm 0 5mm;
+    padding-left: 8px; border-left: 2.5px solid var(--teal);
+  }
+  .photo-intro b { font-weight: 500; color: var(--ink); }
+  .photo-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 7mm 8mm;
+  }
+  .photo-cell { display: flex; flex-direction: column; gap: 2mm; }
+  .ff-photo {
+    height: 58mm; width: 100%;
+    border: 1.4px dashed var(--cool-grey);
+    border-radius: 4px;
+    background: rgba(5,90,95,0.03);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ff-photo__hint {
+    font-family: 'Roboto Mono', ui-monospace, monospace;
+    font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--slate); opacity: 0.55;
+  }
+  .photo-caption { font-size: 9px; line-height: 1.4; }
+  @media print {
+    .ff-photo { background: transparent; }
+    /* keep the per-box hint faintly visible in the PDF so a non-technical
+       user knows the dashed frame is for a photo — a dropped photo covers it */
   }
 </style>
 </head>
@@ -372,10 +407,10 @@
       <div class="block">
         <div class="block-label">Property inspected</div>
         <dl>
-          <dt>Address</dt><dd><input class="ff-input" type="text" name="property_address" placeholder="e.g. 26 Belyando Crescent, Blue Haven NSW 2262"></dd>
+          <dt>Address</dt><dd><textarea class="ff-textarea" name="property_address" rows="2" placeholder="e.g. 26 Belyando Crescent, Blue Haven NSW 2262"></textarea></dd>
           <dt>Inspected</dt><dd><input class="ff-input mono" type="text" name="inspection_date" placeholder="DD Mmm YYYY" style="font-family:'Roboto Mono',ui-monospace,monospace;font-size:9.5px;"></dd>
           <dt>Owner / agent</dt><dd><input class="ff-input" type="text" name="owner_name" placeholder="Contact name"><br><input class="ff-input" type="text" name="owner_company" placeholder="Agency / company (or Private owner)"></dd>
-          <dt>Owner address</dt><dd><input class="ff-input" type="text" name="owner_address" placeholder="Owner / agent postal address"></dd>
+          <dt>Owner address</dt><dd><textarea class="ff-textarea" name="owner_address" rows="2" placeholder="Owner / agent postal address"></textarea></dd>
         </dl>
       </div>
       <div class="block">
@@ -543,7 +578,7 @@
 
     <section class="signature">
       <div>
-        <div class="sig-line"><input class="ff-signature" type="text" name="plumber_signature" data-pdf-field-type="signature" aria-label="Plumber signature"><span class="sig-line__hint">Plumber signature</span></div>
+        <div class="sig-line"><span class="sig-line__hint">Plumber signature</span></div>
         <div class="sig-meta"><b>Beau Petterson</b> &nbsp;·&nbsp; Coastal Ways Plumbing</div>
         <div class="sig-meta__small">Licence 468634C &nbsp;·&nbsp; ABN 62 284 909 142</div>
       </div>
