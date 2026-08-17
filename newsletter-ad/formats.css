@@ -151,12 +151,12 @@
 /* left column spans the QR's full height: CALL BEAU DIRECT sits level with the
    QR's top edge, email + licence stay pinned to the original bottom line. */
 .quarter-b .qb-foot > div:first-child{display:flex;flex-direction:column;
-  justify-content:space-between}
+  justify-content:flex-start}
 .quarter-b .phone{font-family:"Space Grotesk";font-weight:700;letter-spacing:-.01em;
   font-size:7.4cqw;color:#fff;line-height:1;white-space:nowrap}
 .quarter-b .phone .pre{font-size:.34em;letter-spacing:.18em;text-transform:uppercase;
-  font-weight:500;color:var(--teal-tint);display:block;margin-bottom:.55em}
-.quarter-b .lines{display:flex;flex-direction:column;gap:.9cqw;margin-top:0}
+  font-weight:500;color:var(--teal-tint);display:block;margin-bottom:9.3cqw}
+.quarter-b .lines{display:flex;flex-direction:column;gap:.9cqw;margin-top:9.3cqw}
 .quarter-b .web{font-family:"Roboto";font-weight:500;font-size:2.8cqw;color:var(--sand)}
 .quarter-b .lic{font-family:"Space Grotesk";font-weight:500;font-size:2.3cqw;
   letter-spacing:.04em;color:rgba(251,246,243,.6)}
