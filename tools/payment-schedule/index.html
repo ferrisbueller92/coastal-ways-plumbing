@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Payment Schedule — Builder · Coastal Ways Plumbing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Roboto:wght@300;400;500&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sand:#FBF6F3; --warm-mist:#F2EDEB; --light-stone:#E3E0DF;
+    --cool-grey:#C4CFD1; --harbour:#9BAAAE; --ocean:#72858B; --slate:#536268;
+    --deep-slate:#384850; --navy:#10202D; --teal:#055A5F; --teal-tint:#E6F0F1;
+    --err:#D92B2B; --err-tint:#FDECEC; --ok:#2D9D5A; --ok-tint:#E8F5EE;
+    --warn:#E6A817; --warn-tint:#FDF6E3;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--warm-mist);color:var(--navy);
+    font-family:'Space Grotesk','Inter',system-ui,sans-serif;font-size:14px;line-height:1.5}
+
+  /* ── app chrome ── */
+  .app-bar{position:sticky;top:0;z-index:50;background:var(--navy);color:#fff;
+    display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 20px;flex-wrap:wrap}
+  .app-bar .brand{font-weight:700;font-size:15px;letter-spacing:.01em}
+  .app-bar .brand span{color:var(--cool-grey);font-family:'Roboto Mono',monospace;font-size:10px;
+    letter-spacing:.12em;text-transform:uppercase;display:block;margin-top:1px}
+  .bar-actions{display:flex;gap:8px;flex-wrap:wrap}
+  .btn{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:13.5px;cursor:pointer;
+    border-radius:7px;padding:8px 15px;border:1px solid rgba(255,255,255,.28);background:transparent;color:#fff;transition:.13s}
+  .btn:hover{background:rgba(255,255,255,.1)}
+  .btn-primary{background:var(--teal);color:#fff;border-color:var(--teal)}
+  .btn-primary:hover{background:#044A4E}
+
+  .helpstrip{background:var(--sand);border-bottom:1px solid var(--light-stone);
+    padding:12px 20px;font-family:'Roboto',sans-serif;font-size:13px;color:var(--slate);text-align:center;line-height:1.55}
+  .helpstrip b{color:var(--navy)}
+  .helpstrip .lawbit{display:inline-block;background:var(--teal-tint);color:var(--teal);
+    border-radius:5px;padding:2px 8px;font-weight:500}
+
+  /* ── the sheet ── */
+  .sheet-wrap{padding:26px 16px 60px;display:flex;justify-content:center}
+  .sheet{width:210mm;max-width:100%;background:#fff;box-shadow:0 2px 4px rgba(16,32,45,.06),0 14px 40px rgba(16,32,45,.10)}
+  .hd{background:var(--navy);color:#fff;padding:9mm 11mm;display:flex;align-items:center;justify-content:space-between;gap:14px}
+  .hd .mark{display:flex;align-items:center;gap:9px}
+  .hd .mark .dot{width:34px;height:34px;border-radius:50%;border:2.5px solid #fff;position:relative;flex:none}
+  .hd .mark .dot::after{content:'';position:absolute;width:9px;height:12px;background:#fff;
+    border-radius:0 0 50% 50%;left:11px;top:8px;transform:rotate(0deg)}
+  .hd .mark b{font-size:14px;font-weight:700;letter-spacing:.02em;line-height:1.15;display:block}
+  .hd .mark span{font-family:'Roboto Mono',monospace;font-size:8.5px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--cool-grey)}
+  .hd .doctype{font-family:'Roboto Mono',monospace;font-size:9.5px;letter-spacing:.2em;
+    text-transform:uppercase;text-align:right;line-height:1.7}
+  .strip{border-bottom:1px solid var(--light-stone);padding:3.5mm 11mm;
+    font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.06em;color:var(--slate);
+    text-align:center;text-transform:uppercase;line-height:1.9}
+  .body{padding:9mm 11mm 11mm}
+
+  .eyebrow{font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--teal);margin-bottom:2.5mm;display:flex;align-items:center;gap:9px}
+  .eyebrow::before{content:'';width:20px;height:1.5px;background:var(--teal);flex:0 0 auto}
+  h1{font-size:26px;font-weight:500;letter-spacing:-.01em;margin:0 0 6mm;line-height:1.1}
+  h1 em{font-style:normal;color:var(--teal)}
+
+  .block{margin-top:7mm}
+  .block-label{font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--teal);margin-bottom:2.5mm;padding-bottom:1.5mm;border-bottom:1.5px solid var(--teal);
+    display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
+  .block-label .hint{color:var(--harbour);letter-spacing:.1em}
+  .sec-title{display:flex;align-items:center;gap:8px;margin:8mm 0 3mm}
+  .sec-title i{width:3px;height:17px;background:var(--teal);border-radius:2px;flex:none}
+  .sec-title b{font-size:15.5px;font-weight:500}
+  .sec-title span{margin-left:auto;font-family:'Roboto Mono',monospace;font-size:8px;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--harbour)}
+
+  .g2{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+  .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4mm}
+  .fld{margin-bottom:3mm}
+  .fld label{display:block;font-family:'Roboto Mono',monospace;font-size:7.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--slate);margin-bottom:1.2mm}
+  input[type=text],input[type=number],input[type=date],select,textarea{
+    width:100%;font-family:'Roboto',sans-serif;font-size:12.5px;color:var(--navy);
+    background:var(--sand);border:1px solid var(--light-stone);border-radius:4px;padding:6px 8px;transition:.12s}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--teal);background:#fff}
+  input::placeholder,textarea::placeholder{color:var(--harbour);font-style:italic}
+  textarea{resize:vertical;min-height:52px;line-height:1.5}
+  .mono{font-family:'Roboto Mono',monospace!important}
+
+  /* work-type switch — the gate that decides the legal cap */
+  .switch{display:flex;gap:0;border:1.5px solid var(--navy);border-radius:7px;overflow:hidden;margin-bottom:1mm}
+  .switch button{flex:1;font-family:'Space Grotesk',sans-serif;font-size:12.5px;font-weight:500;
+    padding:9px 10px;background:#fff;color:var(--slate);border:0;cursor:pointer;transition:.13s}
+  .switch button+button{border-left:1.5px solid var(--navy)}
+  .switch button.on{background:var(--navy);color:#fff}
+  .switch-note{font-family:'Roboto',sans-serif;font-size:11px;color:var(--slate);line-height:1.5;margin-top:1.5mm}
+
+  /* the guard — the thing that keeps Emma safe */
+  .guard{border-radius:6px;padding:3mm 4mm;margin-top:3mm;font-family:'Roboto',sans-serif;font-size:11.5px;line-height:1.55;display:none}
+  .guard.show{display:block}
+  .guard b{font-family:'Space Grotesk',sans-serif}
+  .guard.bad{background:var(--err-tint);border:1px solid rgba(217,43,43,.4);color:#8B1A1A}
+  .guard.warn{background:var(--warn-tint);border:1px solid rgba(230,168,23,.5);color:#8B6500}
+  .guard.good{background:var(--ok-tint);border:1px solid rgba(45,157,90,.4);color:#1A5E36}
+
+  /* stage rows — two lines, so the trigger sentence gets full width and never truncates */
+  .stg-head{display:grid;grid-template-columns:24px 1fr 96px 58px 24px;gap:8px;align-items:end;
+    font-family:'Roboto Mono',monospace;font-size:7.5px;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--slate);padding:0 3mm 1.5mm;border-bottom:1px solid var(--light-stone);margin-bottom:2mm}
+  .stg-row{border:1px solid var(--light-stone);border-radius:6px;padding:2.5mm 3mm;margin-bottom:2mm;
+    background:#fff;transition:.12s}
+  .stg-row:focus-within{border-color:var(--teal)}
+  .stg-row.dep{background:var(--teal-tint);border-color:rgba(5,90,95,.28)}
+  .stg-top{display:grid;grid-template-columns:24px 1fr 96px 58px 24px;gap:8px;align-items:center}
+  .stg-row .n{font-family:'Roboto Mono',monospace;font-size:10px;color:#fff;background:var(--navy);
+    width:21px;height:21px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none}
+  .stg-row.dep .n{background:var(--teal)}
+  .stg-row .s-name{font-weight:500;font-family:'Space Grotesk',sans-serif;font-size:13px;
+    background:transparent;border:0;border-bottom:1px dashed var(--light-stone);border-radius:0;padding:3px 2px}
+  .stg-row .s-name:focus{background:transparent;border-bottom-color:var(--teal)}
+  .stg-row.dep .s-name{border-bottom-color:transparent}
+  .trigwrap{margin:2mm 0 0 32px}
+  .trigwrap label{display:block;font-family:'Roboto Mono',monospace;font-size:7px;letter-spacing:.15em;
+    text-transform:uppercase;color:var(--harbour);margin-bottom:1mm}
+  textarea.s-trig{width:100%;min-height:0;font-size:12px;line-height:1.5;padding:5px 8px;
+    background:var(--sand);border:1px solid var(--light-stone);overflow:hidden;resize:none}
+  .stg-row.dep textarea.s-trig{background:rgba(255,255,255,.7)}
+  .amt{text-align:right;font-family:'Roboto Mono',monospace!important;font-size:12px!important}
+  .pct{text-align:right;font-family:'Roboto Mono',monospace;font-size:11px;color:var(--slate)}
+  .rm{background:none;border:0;color:var(--harbour);cursor:pointer;font-size:16px;line-height:1;padding:0}
+  .rm:hover{color:var(--err)}
+  .stg-tot{display:grid;grid-template-columns:24px 1fr 96px 58px 24px;gap:8px;align-items:center;
+    border-top:1.5px solid var(--navy);padding:2mm 3mm 0;margin-top:1mm;
+    font-family:'Roboto Mono',monospace;font-size:11px;font-weight:500}
+  .stg-tot .lbl{text-transform:uppercase;letter-spacing:.12em;font-size:8px;color:var(--slate)}
+  .addbtn{font-family:'Roboto Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;
+    background:var(--sand);border:1px dashed var(--cool-grey);border-radius:5px;color:var(--teal);
+    padding:6px 12px;cursor:pointer;margin-top:2mm}
+  .addbtn:hover{border-color:var(--teal);background:var(--teal-tint)}
+
+  .callout{background:var(--sand);border-left:3px solid var(--teal);border-radius:0 5px 5px 0;
+    padding:3mm 4mm;font-family:'Roboto',sans-serif;font-size:11.5px;color:var(--slate);line-height:1.6;margin-top:3mm}
+  .callout b{color:var(--navy)}
+  .disc{border:1px solid var(--light-stone);border-radius:5px;padding:3.5mm 4mm;margin-top:7mm;
+    font-family:'Roboto',sans-serif;font-size:9px;line-height:1.6;color:var(--slate)}
+  .disc .dl{font-family:'Roboto Mono',monospace;font-size:7.5px;letter-spacing:.15em;
+    text-transform:uppercase;color:var(--teal);margin-bottom:1.5mm}
+  .sigrow{display:grid;grid-template-columns:1fr 1fr;gap:8mm;margin-top:7mm}
+  .sigline{border-bottom:1px solid var(--navy);height:14mm}
+  .sigcap{font-family:'Roboto Mono',monospace;font-size:7.5px;letter-spacing:.13em;
+    text-transform:uppercase;color:var(--slate);margin-top:1.5mm}
+  .ft{border-top:1px solid var(--light-stone);padding:3.5mm 11mm;display:flex;justify-content:space-between;
+    font-family:'Roboto Mono',monospace;font-size:7.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--harbour)}
+
+  @media print{
+    .app-bar,.helpstrip,.addbtn,.rm,.no-print{display:none!important}
+    body{background:#fff} .sheet-wrap{padding:0} .sheet{box-shadow:none;width:auto}
+    input,select,textarea{background:#fff!important;border-color:var(--light-stone)!important}
+    textarea.s-trig{overflow:visible!important;height:auto!important;border:0!important;padding-left:0!important;
+      background:transparent!important;font-style:normal}
+    .stg-row{break-inside:avoid;page-break-inside:avoid}
+    .stg-row.dep{background:#fff!important}
+    .guard{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    @page{size:A4;margin:10mm}
+  }
+  @media(max-width:760px){
+    .g2,.g3{grid-template-columns:1fr}
+    .stg-head{display:none}
+    .stg-top{grid-template-columns:24px 1fr 24px;row-gap:5px}
+    .stg-top .amt{grid-column:2 / 3;text-align:left}
+    .stg-top .pct{grid-column:2 / 3;text-align:left}
+    .trigwrap{margin-left:0}
+    .stg-tot{grid-template-columns:1fr auto auto}
+    .stg-tot .lbl{grid-column:1}
+  }
+</style>
+</head>
+<body>
+
+<div class="app-bar">
+  <div class="brand">Payment Schedule Builder<span>Coastal Ways · progress payments</span></div>
+  <div class="bar-actions">
+    <button class="btn" onclick="if(confirm('Clear everything and start a blank schedule?')){localStorage.removeItem('cwp-pay');location.reload();}">Start blank</button>
+    <button class="btn btn-primary" onclick="window.print()">↓ Save as PDF</button>
+  </div>
+</div>
+
+<div class="helpstrip">
+  Pick the job type to load its stages, enter the contract price, and the schedule builds itself.
+  <b>Save as PDF</b> when you're done (Destination: <b>"Save as PDF"</b>, Margins: <b>Default</b>) — your work auto-saves in this browser.
+  <span class="lawbit">In NSW a deposit on residential work cannot exceed 10%</span> — this builder will not let you go over it.
+</div>
+
+<div class="sheet-wrap"><div class="sheet">
+
+  <div class="hd">
+    <div class="mark"><div class="dot"></div>
+      <div><b>Coastal Ways Plumbing</b><span>Licensed plumber · Central Coast NSW</span></div></div>
+    <div class="doctype">Payment<br>Schedule</div>
+  </div>
+
+  <div class="strip">
+    Jilliby NSW 2259 &nbsp;·&nbsp; 0402 269 088 &nbsp;·&nbsp; coastalwaysplumbing@outlook.com &nbsp;·&nbsp;
+    coastalwaysplumbing.com &nbsp;·&nbsp; Licence 468634C &nbsp;·&nbsp; ABN 62 284 909 142
+  </div>
+
+  <div class="body">
+    <div class="eyebrow">Schedule of payments · annexure to the written contract · Home Building Act 1989 (NSW)</div>
+    <h1>PAYMENT <em>SCHEDULE</em></h1>
+
+    <!-- ═══ WORK TYPE — the gate ═══ -->
+    <div class="block">
+      <div class="block-label">Type of work <span class="hint">this sets the legal deposit cap</span></div>
+      <div class="switch">
+        <button id="wtR" class="on" onclick="setWork('res')">Residential — a home</button>
+        <button id="wtC" onclick="setWork('com')">Commercial / non-residential</button>
+      </div>
+      <div class="switch-note" id="wtNote"></div>
+    </div>
+
+    <!-- ═══ JOB & PARTIES ═══ -->
+    <div class="sec-title"><i></i><b>The job</b><span>who, where, how much</span></div>
+    <div class="g2">
+      <div>
+        <div class="fld"><label>Property address</label>
+          <input type="text" id="addr" placeholder="e.g. 26 Belyando Crescent, Blue Haven NSW 2262"></div>
+        <div class="fld"><label>Client name</label>
+          <input type="text" id="client" placeholder="Owner / tenant / agent / strata manager"></div>
+        <div class="fld"><label>Contact</label>
+          <input type="text" id="contact" placeholder="Phone / email"></div>
+      </div>
+      <div>
+        <div class="fld"><label>Job type</label>
+          <select id="jobtype" onchange="loadStages()"></select></div>
+        <div class="fld"><label>Contract price — including GST</label>
+          <input type="number" id="price" class="mono" placeholder="e.g. 9800" oninput="recalc()"></div>
+        <div class="g2">
+          <div class="fld"><label>Quote / job no.</label><input type="text" id="jobno" class="mono" placeholder="CWP-Q-2026-___"></div>
+          <div class="fld"><label>Date</label><input type="text" id="dt" class="mono" placeholder="DD Mmm YYYY"></div>
+        </div>
+      </div>
+    </div>
+    <div class="fld"><label>Scope of the work this schedule covers</label>
+      <textarea id="scope" placeholder="e.g. Full bathroom re-pipe and fit-off: remove existing galvanised water services, install new 20 mm Type B copper hot and cold, relocate floor waste, supply and install tapware and mixer, pressure test and issue compliance certificate."></textarea></div>
+
+    <!-- ═══ DEPOSIT ═══ -->
+    <div class="sec-title"><i></i><b>Deposit</b><span>payable on signing, before work starts</span></div>
+    <div class="g3">
+      <div class="fld"><label>Deposit %</label>
+        <input type="number" id="depPct" class="mono" value="10" step="0.5" oninput="recalc()"></div>
+      <div class="fld"><label>Deposit amount</label>
+        <input type="text" id="depAmt" class="mono amt" readonly></div>
+      <div class="fld"><label>Balance across stages</label>
+        <input type="text" id="balAmt" class="mono amt" readonly></div>
+    </div>
+    <div class="guard" id="depGuard"></div>
+
+    <!-- ═══ STAGES ═══ -->
+    <div class="sec-title"><i></i><b>Progress payments</b><span>each one tied to work actually done</span></div>
+    <div class="stg-head">
+      <div>#</div><div>Stage &amp; what triggers it</div><div style="text-align:right">Amount</div><div style="text-align:right">%</div><div></div>
+    </div>
+    <div id="stages"></div>
+    <div class="stg-tot">
+      <div></div><div class="lbl">Total — must equal the contract price</div>
+      <div class="amt" id="totAmt">—</div><div class="pct" id="totPct">—</div><div></div>
+    </div>
+    <button class="addbtn no-print" onclick="addStage()">+ Add a stage</button>
+    <div class="guard" id="totGuard"></div>
+
+    <div class="callout">
+      <b>Why it's staged and not one big deposit.</b> NSW law caps the deposit on residential building work at
+      10% of the contract price, however large the job. What it does <b>not</b> cap is progress payments — so the
+      money arrives as the work is done rather than all at the start. Each stage below has to be tied to work
+      genuinely carried out, not to a date or to time on the job.
+    </div>
+
+    <!-- ═══ TERMS ═══ -->
+    <div class="sec-title"><i></i><b>How payment works</b><span>terms and method</span></div>
+    <div class="g3">
+      <div class="fld"><label>Each claim payable within</label>
+        <select id="terms"><option>7 days of the claim</option><option>14 days of the claim</option><option>On the day of the claim</option></select></div>
+      <div class="fld"><label>Payment method</label>
+        <select id="method"><option>Bank transfer</option><option>Bank transfer or card</option><option>Bank transfer, card or cash</option></select></div>
+      <div class="fld"><label>Interest or fee on the plan</label>
+        <input type="text" value="None — nil charge for paying by instalments" readonly></div>
+    </div>
+    <div class="callout">
+      <b>Each stage is invoiced when it is reached</b>, with photographs of the completed work attached.
+      Work on the following stage begins once the previous claim is paid. There is <b>no interest, and no fee,
+      for paying this way</b> — the price is the same as it would be paid in one amount.
+    </div>
+
+    <!-- ═══ OVER $20K GATES ═══ -->
+    <div id="bigJob" style="display:none">
+      <div class="sec-title"><i></i><b>Because this job is over $20,000</b><span>two extra legal requirements</span></div>
+      <div class="guard warn show" style="margin-top:0">
+        <b>Home Building Compensation cover must be in place first.</b> For residential work over $20,000, cover
+        must be taken out and the certificate given to the owner <b>before any work starts and before any money
+        is taken</b> — including the deposit. <br><br>
+        <b>Cooling-off:</b> the owner has <b>5 clear business days</b> to withdraw after signing.
+      </div>
+      <div class="g2" style="margin-top:3mm">
+        <div class="fld"><label>HBC certificate number</label><input type="text" id="hbc" class="mono" placeholder="Certificate no."></div>
+        <div class="fld"><label>Certificate given to owner on</label><input type="text" id="hbcDate" class="mono" placeholder="DD Mmm YYYY"></div>
+      </div>
+    </div>
+
+    <!-- ═══ VARIATIONS ═══ -->
+    <div class="sec-title"><i></i><b>Changes to the work</b><span>variations</span></div>
+    <div class="fld"><label>Anything not included in this price</label>
+      <textarea id="excl" placeholder="e.g. Tiling and waterproofing by others. Rectification of any pre-existing drainage defect found once walls are opened will be quoted separately before work continues."></textarea></div>
+    <div class="callout">
+      Any change to the scope is <b>agreed in writing and signed by both of us before it is carried out</b>,
+      with the effect on the price and on this schedule set out at the same time.
+    </div>
+
+    <!-- ═══ SIGN ═══ -->
+    <div class="sigrow">
+      <div><div class="sigline"></div><div class="sigcap">Client signature &nbsp;·&nbsp; date</div></div>
+      <div><div class="sigline"></div><div class="sigcap">Beau Petterson &nbsp;·&nbsp; Lic. 468634C &nbsp;·&nbsp; date</div></div>
+    </div>
+
+    <div class="disc">
+      <div class="dl">Scope of this document</div>
+      This schedule sets out how and when the contract price is paid. It forms part of, and is read with, the
+      written contract for the work — it is not the contract on its own. Residential building work in NSW valued
+      over $5,000 including GST requires a written contract; work over $20,000 requires a large jobs contract and,
+      where the Home Building Compensation Scheme applies, cover taken out and the certificate given to the owner
+      before any work starts or any money is taken. Deposits on residential building work are capped at 10% of the
+      contract price. Progress payments must relate to work actually carried out. Nothing in this schedule limits
+      the consumer guarantees under the Australian Consumer Law or the statutory warranties under the Home Building
+      Act 1989 (NSW), which cannot be excluded. Coastal Ways Plumbing holds current public liability insurance.
+    </div>
+  </div>
+
+  <div class="ft">
+    <span>Coastal Ways Plumbing · Payment Schedule</span>
+    <span>coastalwaysplumbing.com</span>
+  </div>
+
+</div></div>
+
+<script>
+/* ── the stage library — real plumbing milestones, not generic "50% up front" ── */
+const LIB={
+ bathroom:{n:'Bathroom renovation — plumbing',s:[
+  ['Strip-out and rough-in commenced','Existing services removed, walls and floor opened up, new pipework begun',25],
+  ['Rough-in complete','New hot, cold and waste in place, pressure tested and ready for inspection',25],
+  ['Fit-off complete','Tapware, mixer and fixtures installed, water on and tested',25],
+  ['Final','Everything working, site clean, compliance certificate issued',15]]},
+ hotwater:{n:'Hot water system replacement',s:[
+  ['Unit delivered to site','New unit and fittings on site, ready to install',40],
+  ['Install and commission','Old unit removed and disposed of, new unit installed, connected and running',35],
+  ['Final','Tested at temperature, tempering valve checked, compliance certificate issued',15]]},
+ repipe:{n:'Re-pipe — full or partial',s:[
+  ['Materials to site, first section opened','Pipework and fittings on site, first run opened up',25],
+  ['Rough-in complete','New pipework run and pressure tested throughout',30],
+  ['Reinstatement and fit-off','Walls and floors made good, fixtures reconnected',20],
+  ['Final','Full system tested, compliance certificate issued',15]]},
+ sewer:{n:'Sewer / stormwater drainage replacement',s:[
+  ['Excavation commenced','Site set up, dig started, existing line exposed',25],
+  ['New drainage laid','New line laid to grade and CCTV inspected',30],
+  ['Backfill and reinstatement','Trench backfilled and compacted, surface made good',20],
+  ['Final','Final CCTV, compliance certificate issued',15]]},
+ gas:{n:'Gas installation or appliance',s:[
+  ['Materials to site and rough-in','Gas line run, appliance on site',35],
+  ['Install and commission','Appliance installed, connected and commissioned',40],
+  ['Final','Pressure and leak tested, gas compliance certificate issued',15]]},
+ commercial:{n:'Commercial fit-out or maintenance contract',s:[
+  ['Rough-in complete','Services roughed in and inspected',25],
+  ['Fit-off complete','Fixtures and appliances installed and tested',25],
+  ['Practical completion','Works complete and handed over',15],
+  ['Final / defects release','End of the defects period',5]]},
+ custom:{n:'Something else — build my own stages',s:[
+  ['Stage 2','',30],['Stage 3','',35],['Final','Work complete, certificate issued',25]]}
+};
+const CAP=10;                    // NSW residential deposit cap, %
+let WORK='res';
+
+const $=id=>document.getElementById(id);
+const money=n=>isFinite(n)?'$'+n.toLocaleString('en-AU',{minimumFractionDigits:2,maximumFractionDigits:2}):'—';
+
+/* populate job types */
+$('jobtype').innerHTML=Object.entries(LIB).map(([k,v])=>`<option value="${k}">${v.n}</option>`).join('');
+
+function setWork(w){
+  WORK=w;
+  $('wtR').classList.toggle('on',w==='res');
+  $('wtC').classList.toggle('on',w==='com');
+  $('wtNote').innerHTML = w==='res'
+    ? 'Plumbing on a home is <b>residential building work</b> under the Home Building Act 1989 (NSW). The deposit is capped at <b>10%</b> — no matter how big the job is.'
+    : 'Non-residential work sits outside the Home Building Act deposit cap, so a larger deposit can be agreed commercially. <b>If there is any doubt whether the property is a residence, treat it as residential.</b>';
+  if(w==='res' && parseFloat($('depPct').value)>CAP) $('depPct').value=CAP;
+  recalc();
+}
+
+/* auto-grow so the full trigger sentence is always visible — and always PRINTS in full */
+function grow(t){ t.style.height='auto'; t.style.height=(t.scrollHeight+2)+'px'; }
+
+function stageRow(name,trig,pct,isDep){
+  const esc=v=>String(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+  const d=document.createElement('div');
+  d.className='stg-row'+(isDep?' dep':'');
+  d.innerHTML=`<div class="stg-top">
+      <div class="n">${isDep?'D':''}</div>
+      <input type="text" class="s-name" value="${esc(name)}" placeholder="Name this stage" ${isDep?'readonly':''}>
+      <input type="number" class="s-amt amt" step="1">
+      <div class="pct">—</div>
+      ${isDep?'<div></div>':'<button class="rm no-print" title="Remove this stage">×</button>'}
+    </div>
+    <div class="trigwrap">
+      <label>Payable when</label>
+      <textarea class="s-trig" rows="1" placeholder="What must be true on site before this payment is claimed — e.g. 'New hot, cold and waste in place, pressure tested and ready for inspection'">${esc(trig)}</textarea>
+    </div>`;
+  d.querySelector('.s-amt').addEventListener('input',()=>recalcFromAmounts());
+  const ta=d.querySelector('.s-trig');
+  ta.addEventListener('input',()=>{grow(ta);save();});
+  requestAnimationFrame(()=>grow(ta));
+  const rm=d.querySelector('.rm'); if(rm) rm.onclick=()=>{d.remove();renumber();recalcFromAmounts();};
+  return d;
+}
+
+function loadStages(){
+  const lib=LIB[$('jobtype').value];
+  const host=$('stages'); host.innerHTML='';
+  host.appendChild(stageRow('Deposit — on signing','Payable when the contract is signed, before work starts',CAP,true));
+  lib.s.forEach(([n,t,p])=>host.appendChild(stageRow(n,t,p,false)));
+  host._weights=[CAP,...lib.s.map(x=>x[2])];
+  recalc();
+}
+
+function renumber(){
+  [...$('stages').children].forEach((r,i)=>{ const n=r.querySelector('.n'); if(!r.classList.contains('dep')) n.textContent=i; });
+}
+
+/* price + weights → amounts */
+function recalc(){
+  const price=parseFloat($('price').value)||0;
+  const rows=[...$('stages').children];
+  let dep=parseFloat($('depPct').value); if(!isFinite(dep)) dep=CAP;
+
+  /* the guard */
+  const g=$('depGuard');
+  if(WORK==='res' && dep>CAP){
+    g.className='guard bad show';
+    g.innerHTML=`<b>That deposit is not lawful.</b> NSW caps the deposit on residential building work at <b>10%</b>
+      of the contract price — for every job, of every size. A deposit of ${dep}% on this job would be
+      ${money(price*dep/100)} against a lawful maximum of ${money(price*CAP/100)}.
+      Bring it back to 10% and take the difference as a progress payment instead — the money still arrives early,
+      and it arrives lawfully.`;
+  } else if(WORK==='res' && dep===CAP && price>0){
+    g.className='guard good show';
+    g.innerHTML=`<b>${money(price*CAP/100)} on signing.</b> That is the most the law allows on a residential job,
+      and the rest arrives as the work is done.`;
+  } else if(WORK==='com' && dep>CAP){
+    g.className='guard warn show';
+    g.innerHTML=`<b>${dep}% deposit — allowed here because this is commercial work.</b> If any part of this
+      property is someone's home, the 10% residential cap applies instead and this figure has to come down.`;
+  } else { g.className='guard'; g.innerHTML=''; }
+
+  /* distribute by the library weights, deposit first */
+  const w=$('stages')._weights||[];
+  const restW=w.slice(1).reduce((a,b)=>a+b,0)||1;
+  let running=0;
+  rows.forEach((r,i)=>{
+    const isDep=r.classList.contains('dep');
+    const last = i===rows.length-1;
+    let v;
+    if(!price){ v=''; }
+    else if(last){ v = Math.round((price-running)*100)/100; }   // remainder absorbs rounding — always sums exactly
+    else {
+      const pct = isDep ? dep : (100-dep)*((w[i]||0)/restW);
+      v = Math.round(price*pct/100);
+      running += v;
+    }
+    r.querySelector('.s-amt').value = v;
+  });
+  renumber(); recalcFromAmounts();
+}
+
+/* amounts → total + % (so Emma can override any figure by hand) */
+function recalcFromAmounts(){
+  const price=parseFloat($('price').value)||0;
+  const rows=[...$('stages').children];
+  let tot=0;
+  rows.forEach(r=>{ const v=parseFloat(r.querySelector('.s-amt').value)||0; tot+=v;
+    r.querySelector('.pct').textContent = price? (v/price*100).toFixed(1)+'%' : '—'; });
+  const dep=parseFloat(rows[0]?.querySelector('.s-amt').value)||0;
+  $('depAmt').value=money(dep);
+  $('balAmt').value=money(tot-dep);
+  $('totAmt').textContent=money(tot);
+  $('totPct').textContent = price? (tot/price*100).toFixed(1)+'%' : '—';
+
+  const g=$('totGuard'); const diff=+(tot-price).toFixed(2);
+  if(price>0 && Math.abs(diff)>=1){
+    g.className='guard bad show';
+    g.innerHTML=`<b>The stages don't add up to the contract price.</b> They total ${money(tot)} against a price of
+      ${money(price)} — ${diff>0?'that is '+money(diff)+' too much':'that leaves '+money(-diff)+' unallocated'}.
+      Adjust a stage before you send this.`;
+  } else if(price>0){ g.className='guard good show'; g.innerHTML=`<b>Adds up.</b> The stages total exactly the contract price.`; }
+  else { g.className='guard'; g.innerHTML=''; }
+
+  $('bigJob').style.display = (price>20000 && WORK==='res')?'block':'none';
+  save();
+}
+
+/* add / persist */
+function addStage(){ $('stages').appendChild(stageRow('','',0,false));
+  ($('stages')._weights=$('stages')._weights||[]).push(0); renumber(); recalcFromAmounts(); }
+
+const FIELDS=['addr','client','contact','jobtype','price','jobno','dt','scope','depPct','terms','method','excl','hbc','hbcDate'];
+function save(){
+  const d={work:WORK}; FIELDS.forEach(f=>{const e=$(f); if(e)d[f]=e.value;});
+  d.stages=[...$('stages').children].map(r=>({
+    n:r.querySelector('.s-name').value, t:r.querySelector('.s-trig').value,
+    a:r.querySelector('.s-amt').value, dep:r.classList.contains('dep')}));
+  d.weights=$('stages')._weights;
+  try{localStorage.setItem('cwp-pay',JSON.stringify(d));}catch(e){}
+}
+function load(){
+  let d; try{d=JSON.parse(localStorage.getItem('cwp-pay'));}catch(e){}
+  if(!d){loadStages();setWork('res');return;}
+  FIELDS.forEach(f=>{const e=$(f); if(e&&d[f]!==undefined)e.value=d[f];});
+  const host=$('stages'); host.innerHTML='';
+  (d.stages||[]).forEach(s=>{const r=stageRow(s.n||'',s.t||'',0,s.dep); host.appendChild(r);
+    r.querySelector('.s-amt').value=s.a||'';});
+  host._weights=d.weights||[];
+  if(!host.children.length){loadStages();}
+  setWork(d.work||'res'); renumber(); recalcFromAmounts();
+}
+FIELDS.forEach(f=>{const e=$(f); if(e)e.addEventListener('input',save);});
+$('stages').addEventListener('input',save);
+load();
+</script>
+</body>
+</html>
