@@ -33,9 +33,12 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(251,246,243,.93);backdr
 nav.top .in{max-width:1080px;margin:0 auto;padding:11px 26px;display:flex;align-items:center;gap:20px}
 nav.top img{height:26px;width:auto}
 nav.top .links{display:flex;gap:3px;margin-left:auto;overflow-x:auto}
-nav.top a{font-family:var(--f-d);font-weight:500;font-size:12px;letter-spacing:.02em;text-transform:uppercase;color:var(--navy-55);text-decoration:none;padding:8px 11px;border-radius:7px;white-space:nowrap}
+nav.top a{font-family:var(--f-d);font-weight:500;font-size:11.5px;letter-spacing:.01em;text-transform:uppercase;color:var(--navy-55);text-decoration:none;padding:8px 7px;border-radius:7px;white-space:nowrap}
 nav.top a:hover{color:var(--teal);background:var(--teal-12)}
-@media(max-width:820px){nav.top .links{display:none}}
+nav.top .links{margin-left:auto}
+nav.top a.live{flex:0 0 auto;color:var(--teal);border:1px solid var(--teal);margin-left:12px;padding:8px 12px}
+nav.top a.live:hover{background:var(--teal);color:#fff}
+@media(max-width:820px){nav.top .links{display:none}nav.top a.live{margin-left:auto}}
 
 /* ── hero ── */
 .hero{padding:58px 0 44px}
@@ -188,8 +191,8 @@ footer.close .fine{font-family:var(--f-d);font-weight:500;font-size:12px;color:r
       <a href="#partnerships">Partnerships</a>
       <a href="#coa">Supply Nation</a>
       <a href="#roadmap">Roadmap</a>
-      <a href="#numbers">The numbers</a>
     </div>
+    <a href="/analytics/" class="live">Live numbers &rarr;</a>
   </div>
 </nav>
 
@@ -242,19 +245,24 @@ footer.close .fine{font-family:var(--f-d);font-weight:500;font-size:12px;color:r
 <!-- WHERE YOU STAND -->
 <section id="today" class="alt"><div class="wrap">
   <div class="eyebrow">01 · Where you stand today</div>
-  <h2 class="sech">You're already <span class="t">showing up</span>. You're just not getting <span class="t">clicked</span> yet.</h2>
-  <p class="secsub">Good news first: Google already ranks Coastal Ways in the top spot for fifty-five local searches. Visibility isn't the problem — you've won that. What happens next is the problem: the map box sits above the ordinary results, it shows three plumbers with their star ratings and review counts, and the eye stops there. With six reviews you're not in it yet. Your nearest local competitors are on ten to thirteen, which is a much shorter climb than it sounds. That gap is what this plan closes first.</p>
+  <h2 class="sech">You're <span class="t">showing up</span>. Not enough people are <span class="t">seeing it</span>.</h2>
+  <p class="secsub">We have just been able to read your Google listing's own numbers for the first time, and they change the picture. Over six months <b>594 people looked at your listing</b> and <b>144 of them did something about it</b> &mdash; called, asked for directions, or clicked through. That is about one in four, which is a healthy rate. Nothing is wrong with how you come across. The problem is the 594: for a plumber on the Central Coast that is a small number of people finding you in the first place. This is a visibility problem, not a persuasion problem &mdash; and the fix is different from the one we had been planning.</p>
 
   <div class="grid g4" style="margin-bottom:26px">
-    <div class="stat teal"><div class="v">55</div><div class="l">Searches you rank #1 for</div><div class="d">Fifty-five "plumber + suburb" searches across the Coast where Google puts you first. Watanobbi, Warnervale, Wyong Creek, Jilliby, Mannering Park and fifty more.</div></div>
-    <div class="stat terra"><div class="v">2,271</div><div class="l">Times you appeared · 90 days</div><div class="d">Up from 215 in June — more than ten times the visibility. But only 24 clicks came of it.</div></div>
-    <div class="stat"><div class="v">6</div><div class="l">Google reviews · 5.0★</div><div class="d">Doubled since June, still a perfect rating. The nearest local operators sit on 10–13.</div></div>
-    <div class="stat"><div class="v">139<small>s</small></div><div class="l">Avg time on site</div><div class="d">Up from 102s. The visitors you do get are genuinely interested — the site is doing its job.</div></div>
+    <div class="stat teal"><div class="v">594</div><div class="l">People who saw your listing · 6 months</div><div class="d">Everyone who looked at your Google listing between March and August. This is the number that needs to grow.</div></div>
+    <div class="stat"><div class="v">24<small>%</small></div><div class="l">Acted on what they saw</div><div class="d">144 of those 594 called, asked for directions or clicked through. When people find you, they respond &mdash; that part is working.</div></div>
+    <div class="stat terra"><div class="v">13</div><div class="l">Phone calls from Google · 6 months</div><div class="d">About two a month. We had hoped calls were happening that our website tracking couldn't see. They weren't. Google is contributing very little of your work today.</div></div>
+    <div class="stat terra"><div class="v">107</div><div class="l">Direction requests</div><div class="d">Three-quarters of all the activity on your listing is people asking Google how to drive to you. You go to them. This is the first thing we're fixing, and it's free.</div></div>
+  </div>
+
+  <div class="callout" style="margin-bottom:26px">
+    <div class="t">These numbers update themselves</div>
+    <p>Every figure on this page now has a live companion. <a href="/analytics/" style="color:var(--teal,#055A5F);font-weight:500">Open your performance dashboard</a> to see the current numbers any time, what they mean in plain English, and what we're doing about each one. Nothing to log into &mdash; it's just a page.</p>
   </div>
 
   <div class="chart">
-    <div class="ct">The reviews gap — the one number holding you back</div>
-    <div class="cs">You against the plumbers you actually compete with on the Coast, counted from Google today. Hover any bar. The point isn't the firm at the top — it's how close the first step is.</div>
+    <div class="ct">The reviews gap — one of the levers, and the one you control</div>
+    <div class="cs">You against the plumbers you actually compete with on the Coast, counted from Google today. Hover any bar. Google states plainly that more reviews and better ratings help local ranking &mdash; it publishes no target number, so treat this as a direction to move in, not a finish line.</div>
     <svg id="c-reviews" viewBox="0 0 1000 320" role="img" aria-label="Reviews gap chart"></svg>
     <div class="legend">
       <span><i style="background:#055A5F"></i>Coastal Ways — today</span>

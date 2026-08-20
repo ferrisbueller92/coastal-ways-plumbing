@@ -1,62 +1,135 @@
 <!doctype html><html lang="en-AU"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Coastal Ways Plumbing — Website Analytics</title>
+<title>Coastal Ways Plumbing — Performance</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space Grotesk:wght@500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#10202D;--teal:#055A5F;--sand:#FBF6F3;--cool:#C4CFD1;--ink:#10202D}
+:root{--navy:#10202D;--teal:#055A5F;--sand:#FBF6F3;--cool:#C4CFD1;--ink:#10202D;--flag:#B4661E}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--sand);color:var(--ink);font-family:'Roboto',system-ui,sans-serif;font-weight:300;line-height:1.55;padding-bottom:60px}
 .wrap{max-width:920px;margin:0 auto;padding:0 22px}
-.top{background:var(--navy);padding:26px 0}
-.top img{height:42px;width:auto}
+.top{background:var(--navy);padding:22px 0}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.top img{height:40px;width:auto}
+.top a{color:#C4CFD1;text-decoration:none;font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;font-family:'Space Grotesk',sans-serif;font-weight:500;border:1px solid rgba(255,255,255,.28);border-radius:7px;padding:8px 14px}
+.top a:hover{background:rgba(255,255,255,.1);color:#fff}
 .hero{padding:34px 0 8px}
 .hero h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(26px,4.6vw,40px);color:var(--navy);letter-spacing:-.02em;line-height:1.05}
-.hero p{color:#4a5560;font-size:15px;margin-top:8px;max-width:640px}
+.hero p{color:#4a5560;font-size:15px;margin-top:10px;max-width:660px}
 .eyebrow{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
-h2{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:21px;color:var(--navy);margin:34px 0 4px}
-.sub{color:#6b7680;font-size:13.5px;margin-bottom:14px}
+h2{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;color:var(--navy);margin:40px 0 4px;letter-spacing:-.01em}
+h3{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:16px;color:var(--navy);margin:26px 0 4px}
+.sub{color:#6b7680;font-size:13.5px;margin-bottom:14px;max-width:660px}
+.fine{color:#8a929b;font-size:12px;margin-top:8px;max-width:680px;line-height:1.5}
 .rc-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin:16px 0}
 .rc-card{background:#fff;border:1px solid var(--cool);border-radius:12px;padding:18px 20px}
-.rc-l{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#6b7680;font-weight:500;margin-bottom:8px}
+.rc-card.hero{border-color:var(--teal);border-width:2px}
+.rc-card.good{background:#F2F7F7}
+.rc-l{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:#6b7680;font-weight:500;margin-bottom:8px;line-height:1.35}
 .rc-n{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:34px;color:var(--teal);line-height:1}
 .rc-sub{font-size:12px;color:#8a929b;margin-top:5px}
+.funnel{background:#fff;border:1px solid var(--cool);border-radius:12px;padding:20px 22px;margin:16px 0}
+.fh{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:14.5px;color:#4a5560;padding-bottom:16px;margin-bottom:16px;border-bottom:1px solid #eee}
+.fh b{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;color:var(--navy)}
+.fh-arrow{color:var(--teal);font-size:18px}
+.fr{margin-bottom:15px}.fr:last-child{margin-bottom:0}
+.fr-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.fr-n{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14.5px;color:var(--navy)}
+.fr-v{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;color:var(--navy)}
+.fr-track{height:9px;background:#EFEDEC;border-radius:5px;overflow:hidden;margin:6px 0 4px}
+.bar{height:100%;background:var(--teal);border-radius:5px}
+.bar-flag{height:100%;background:var(--flag);border-radius:5px}
+.fr-d{font-size:12.5px;color:#8a929b}
+.meaning{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:16px 0}
+.mn{background:#fff;border:1px solid var(--cool);border-left:3px solid var(--teal);border-radius:0 12px 12px 0;padding:17px 19px}
+.mn-t{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:var(--navy);margin-bottom:6px;line-height:1.25}
+.mn-b{font-size:13.5px;color:#4a5560;line-height:1.6}
 table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--cool);border-radius:12px;overflow:hidden;margin:12px 0;font-size:14px}
 th{text-align:left;background:var(--navy);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:12px;letter-spacing:.04em;padding:10px 16px}
-td{padding:11px 16px;border-bottom:1px solid #eee;color:var(--navy)}tr:last-child td{border-bottom:none}
+td{padding:11px 16px;border-bottom:1px solid #eee;color:var(--navy);vertical-align:top}
+tr:last-child td{border-bottom:none}
 td:last-child,th:last-child{text-align:right}
-.muted{color:#8a929b;font-size:13.5px;font-style:italic;background:#fff;border:1px dashed var(--cool);border-radius:12px;padding:14px 16px}
+.td-sub{font-size:12px;color:#8a929b;font-weight:300;margin-top:3px;text-align:left}
+.who{white-space:nowrap;color:var(--teal);font-size:12.5px}
+.bm-v{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--teal);text-align:right;white-space:nowrap}
+.nm{background:#fff;border:1px dashed var(--cool);border-radius:12px;padding:15px 17px;color:#6b7680;font-size:13.5px;margin:12px 0}
+.nm b{color:var(--navy);font-weight:500}
 .intro{background:#fff;border-left:3px solid var(--teal);border-radius:0 10px 10px 0;padding:16px 18px;margin:18px 0;font-size:14px;color:#4a5560}
-footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--cool);color:#8a929b;font-size:12.5px;text-align:center}
+.bench{background:var(--navy);color:#fff;border-radius:14px;padding:24px 26px;margin:18px 0}
+.bench h2{color:#fff;margin:0 0 6px}
+.bench .sub{color:#9BAAAE}
+.bench table{background:transparent;border:0;margin-top:14px}
+.bench th{background:transparent;border-bottom:1px solid rgba(255,255,255,.2);color:#9BAAAE;padding-left:0}
+.bench td{border-bottom:1px solid rgba(255,255,255,.08);color:#fff;padding-left:0}
+.bench .bm-v{color:#fff}
+.bench .td-sub{color:#9BAAAE}
+ul{margin:12px 0 0 20px;color:#4a5560;font-size:13.5px}
+li{margin-bottom:7px}
+footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--cool);color:#8a929b;font-size:12.5px;text-align:center}
 footer b{color:var(--teal)}
+footer a{color:var(--teal)}
+@media(max-width:640px){.top .wrap{flex-direction:column;align-items:flex-start}.fh{font-size:13.5px}}
 </style></head><body>
-<div class="top"><div class="wrap"><img src="/assets/logo-horizontal-white.png" alt="Coastal Ways Plumbing"></div></div>
+<div class="top"><div class="wrap">
+  <img src="/assets/logo-horizontal-white.png" alt="Coastal Ways Plumbing">
+  <a href="/strategy/">← Back to your growth plan</a>
+</div></div>
 <div class="wrap">
-<div class="hero">
-  <div class="eyebrow">Website Analytics</div>
-  <h1>How your website is doing</h1>
-  <p>A simple, always-current snapshot of Coastal Ways Plumbing's website — who's visiting, where they come from, and what they look at. Updated automatically.</p>
-</div>
-<div class="intro">This is the last 28 days (2026-07-19 to 2026-08-16). It refreshes on its own, so you can check back any time — nothing to do on your end.</div>
 
-<h2>The headlines</h2>
+<div class="hero">
+  <div class="eyebrow">Performance</div>
+  <h1>How Coastal Ways is doing online</h1>
+  <p>Everything Google can tell us about how people find you, and what they do next. This page
+  updates on its own — nothing to do on your end. The numbers are yours, pulled straight from
+  your own Google accounts.</p>
+</div>
+
+<h2>Your Google listing</h2>
+<p class="sub">This is the big one. Most people looking for a plumber never reach your website —
+they find your Google listing and act straight from it.</p>
+<div class="rc-cards"><div class="rc-card"><div class="rc-l">People who saw your listing</div><div class="rc-n">594</div><div class="rc-sub">over 6 months</div></div><div class="rc-card good"><div class="rc-l">Times someone acted on it</div><div class="rc-n">144</div><div class="rc-sub">24.2% of everyone who saw it</div></div><div class="rc-card hero"><div class="rc-l">Phone calls</div><div class="rc-n">13</div><div class="rc-sub">about 2.2 a month</div></div><div class="rc-card"><div class="rc-l">Clicks through to your website</div><div class="rc-n">20</div><div class="rc-sub">from the listing itself</div></div></div>
+<div class="funnel"><div class="fh"><span><b>594</b> people saw your listing</span><span class="fh-arrow">→</span><span><b>144</b> did something about it</span></div><div class="fr"><div class="fr-top"><span class="fr-n">Direction requests</span><span class="fr-v">107</span></div><div class="fr-track"><div class="bar-flag" style="width:100%"></div></div><div class="fr-d">Someone asked Google how to drive to you</div></div><div class="fr"><div class="fr-top"><span class="fr-n">Website clicks</span><span class="fr-v">20</span></div><div class="fr-track"><div class="bar" style="width:19%"></div></div><div class="fr-d">Tapped through to your site</div></div><div class="fr"><div class="fr-top"><span class="fr-n">Phone calls</span><span class="fr-v">13</span></div><div class="fr-track"><div class="bar" style="width:12%"></div></div><div class="fr-d">Pressed the call button</div></div><div class="fr"><div class="fr-top"><span class="fr-n">Chat messages</span><span class="fr-v">4</span></div><div class="fr-track"><div class="bar" style="width:4%"></div></div><div class="fr-d">Started a message</div></div></div><h3>Where people found your listing</h3><table><thead><tr><th>On what</th><th>Views</th><th>Share</th></tr></thead><tbody><tr><td>Google Search — mobile</td><td>226</td><td>38%</td></tr><tr><td>Google Search — desktop</td><td>158</td><td>27%</td></tr><tr><td>Google Maps — desktop</td><td>115</td><td>19%</td></tr><tr><td>Google Maps — mobile</td><td>95</td><td>16%</td></tr></tbody></table><h3>What people searched to find you</h3><p class="sub">In 6 months, Google showed your listing for <b>&lt;50 distinct terms</b>. These were the most common.</p><table><thead><tr><th>Search term</th><th>Times</th></tr></thead><tbody><tr><td>blocked drain toukley</td><td>&lt;15</td></tr><tr><td>coastal ways plumbing</td><td>&lt;15</td></tr><tr><td>coastal ways plumbing nsw</td><td>&lt;15</td></tr><tr><td>cs central coast plumbing</td><td>&lt;15</td></tr><tr><td>gas</td><td>&lt;15</td></tr></tbody></table><p class="fine">Google hides exact numbers below a threshold, so these show as “under 15” rather than a precise count. That is Google’s limit, not ours.</p>
+<p class="fine">Source: Google Business Profile — Performance tab, read manually · period 2026-03 to 2026-08 · read 2026-08-20. NOT an API pull — the Business Profile APIs are gated at 0 QPM pending an Application for Basic API Access.</p>
+
+<h2>What this means</h2>
+<p class="sub">The numbers above in plain English — what is working, what is not, and why.</p>
+<div class="meaning"><div class="mn"><div class="mn-t">The good news first</div><div class="mn-b">When people find you, they act. 144 out of 594 — about 24.2% — did something: called, asked for directions, or clicked through. That is a healthy rate. Nothing is wrong with how your listing presents you.</div></div><div class="mn"><div class="mn-t">The problem is how few people see it</div><div class="mn-b">594 views in 6 months is a small number for a plumber on the Central Coast. This is not a persuasion problem, it is a visibility problem — and that is a different fix from the one we had been planning.</div></div><div class="mn"><div class="mn-t">The phone is only ringing twice a month</div><div class="mn-b">13 calls in 6 months came through Google. We had wondered whether calls were happening that our website tracking simply could not see. Now we know: they were not. Google is contributing very little of your work at the moment.</div></div><div class="mn"><div class="mn-t">Most of your listing activity can’t become a job</div><div class="mn-b">107 of your 144 interactions — 74.3% — were people asking Google for driving directions. You are a mobile plumber. Nobody drives to you. That usually means the listing is set up as a shopfront with an address showing, instead of as a business that travels to customers. It is free to change, and it is the first thing we are fixing.</div></div><div class="mn"><div class="mn-t">You are barely showing up for the searches that matter</div><div class="mn-b">Google showed your listing for under 50 different search terms in 6 months, and three of the top five were people typing your own business name. Your website appears for 151 different searches. Your listing should be the one with the wider reach, not the narrower one — that gap is where new customers are being lost.</div></div><div class="mn"><div class="mn-t">And it is happening in ordinary Google, not just Maps</div><div class="mn-b">65% of the people who saw your listing were in normal Google search results; only 35% were in Google Maps. We had assumed the map box was where everything was won and lost. The data says it is more even than that, so we are widening what we work on rather than betting on one place.</div></div></div>
+
+<h2>What we are doing about it</h2>
+<table><thead><tr><th>The move</th><th>Who</th></tr></thead><tbody><tr><td><b>Fix how the listing is set up</b><div class="td-sub">Hide the street address, declare the suburbs you actually travel to, and check the business categories are right. This is the direction-requests problem, and it is free.</div></td><td class="who">Us · this week</td></tr><tr><td><b>Widen what you show up for</b><div class="td-sub">Right now your listing appears for under 50 searches. Correct categories, service areas and a fuller profile is how that number grows.</div></td><td class="who">Us · this month</td></tr><tr><td><b>Keep the reviews coming</b><div class="td-sub">Google says plainly that more reviews and better ratings help local ranking. You are on 6 at a perfect 5.0. The one-tap link is built and ready — it needs Beau asking on the job, and Emma’s past-customer list to fire the first wave.</div></td><td class="who">You + us</td></tr><tr><td><b>Then, and only then, consider ads</b><div class="td-sub">There is little sense paying Google to send people to a listing that is not set up right. Once the free work is done we will look at a small, capped test — and Google is currently offering you a A$600 new-advertiser credit we will read the terms on first.</div></td><td class="who">Later · your call</td></tr></tbody></table>
+
+<div class="bench">
+  <h2>Where you stand today</h2>
+  <p class="sub">We are writing these down so that in three and six months we can put the new
+  numbers beside them and see honestly whether what we did worked. If something we try does not
+  move these, we will say so and change the plan rather than keep going.</p>
+  <table><tbody><tr><td>People who saw your Google listing</td><td class="bm-v">594</td><td class="td-sub">6 months to Aug 2026</td></tr><tr><td>Phone calls from the listing</td><td class="bm-v">13</td><td class="td-sub">same period</td></tr><tr><td>Website clicks from the listing</td><td class="bm-v">20</td><td class="td-sub">same period</td></tr><tr><td>Direction requests</td><td class="bm-v">107</td><td class="td-sub">the number we want to see fall</td></tr><tr><td>Search terms your listing appears for</td><td class="bm-v">&lt;50 distinct terms</td><td class="td-sub">the number we want to see rise</td></tr><tr><td>Google reviews</td><td class="bm-v">6 at 5.0★</td><td class="td-sub">as at 19 Aug 2026</td></tr><tr><td>Times your website appeared in Google</td><td class="bm-v">1,214</td><td class="td-sub">last 28 days</td></tr><tr><td>Visits to your website</td><td class="bm-v">48</td><td class="td-sub">last 28 days</td></tr></tbody></table>
+</div>
+
+<h2>Your website</h2>
+<p class="sub">The last 28 days (2026-07-19 to 2026-08-16) — the smaller half of the picture, but it is where
+people go when they want to check you out properly before calling.</p>
 <div class="rc-cards"><div class="rc-card"><div class="rc-l">People who visited</div><div class="rc-n">41</div><div class="rc-sub">unique visitors</div></div><div class="rc-card"><div class="rc-l">Total visits</div><div class="rc-n">48</div><div class="rc-sub">including return visits</div></div><div class="rc-card"><div class="rc-l">Engaged visits</div><div class="rc-n">16</div><div class="rc-sub">stayed &amp; interacted</div></div><div class="rc-card"><div class="rc-l">Average time on site</div><div class="rc-n">2.3m</div><div class="rc-sub">per visit</div></div></div>
 
-<h2>Where your visitors come from</h2>
-<p class="sub">How people are finding your site.</p>
+<h3>Where your visitors come from</h3>
 <table><thead><tr><th>Where they came from</th><th>Visits</th></tr></thead><tbody><tr><td>Direct (typed in or bookmarked)</td><td>29</td></tr><tr><td>Google search</td><td>12</td></tr><tr><td>au.search.yahoo.com (link from another site)</td><td>2</td></tr><tr><td>Instagram</td><td>2</td></tr><tr><td>Facebook</td><td>1</td></tr><tr><td>justsorted.com.au (link from another site)</td><td>1</td></tr><tr><td>Newsletter (printed QR)</td><td>1</td></tr></tbody></table>
 
-<h2>Most-looked-at pages</h2>
+<h3>Most-looked-at pages</h3>
 <table><thead><tr><th>Page</th><th>Visits</th></tr></thead><tbody><tr><td>/</td><td>47</td></tr><tr><td>/leak-detection.html</td><td>1</td></tr></tbody></table>
 
-<h2>Your newsletter ad</h2>
-<p class="sub">The QR code on your printed ad is tracked separately, so you can see exactly what it brings in.</p>
+<h3>Your newsletter ad</h3>
 <table><thead><tr><th>Campaign</th><th>Source</th><th>Visits</th></tr></thead><tbody><tr><td>local_monthly</td><td>Newsletter (printed QR)</td><td>1</td></tr></tbody></table>
 
-<h2>Google Search</h2>
-<p class="sub">How your site performs in Google search results.</p>
-<div class="rc-cards"><div class="rc-card"><div class="rc-l">Clicks from Google</div><div class="rc-n">12</div></div><div class="rc-card"><div class="rc-l">Times shown on Google</div><div class="rc-n">1214</div></div><div class="rc-card"><div class="rc-l">Average position</div><div class="rc-n">12.4</div><div class="rc-sub">lower is better</div></div></div>
+<h2>Your website in Google search</h2>
+<p class="sub">How often your site itself shows up in ordinary Google results.</p>
+<div class="rc-cards"><div class="rc-card"><div class="rc-l">Times shown in Google</div><div class="rc-n">1,214</div></div><div class="rc-card"><div class="rc-l">Clicks to your site</div><div class="rc-n">12</div></div><div class="rc-card"><div class="rc-l">Average position</div><div class="rc-n">12.4</div><div class="rc-sub">lower is better</div></div></div>
 
-<footer>Prepared &amp; maintained by <b>Just Sorted</b> · updated 17 August 2026 · refreshes automatically</footer>
+<h2>What we cannot see yet</h2>
+<p class="sub">Being straight with you about the gaps, so no number here is mistaken for the whole
+picture. These are on our list.</p>
+<ul><li>Enquiries through the website — the contact form is not yet wired to report submissions.</li><li>Click-to-call on the website — taps on your phone number are not currently counted.</li><li>Which jobs came from where — nothing joins a Google call to a quote or an invoice yet.</li><li>Cost per call and cost per job — these only exist once ads run.</li></ul>
+
+<footer>Prepared &amp; maintained by <b>Just Sorted</b> · updated 20 August 2026 ·
+refreshes automatically · <a href="/strategy/">your growth plan</a></footer>
 </div></body></html>
