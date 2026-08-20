@@ -105,6 +105,23 @@ section.alt{background:var(--paper);border-top:1px solid var(--line);border-bott
 .callout p{font-weight:300;color:var(--navy-90)}
 .callout.terra{border-color:var(--terra);background:var(--terra-tint)}
 .callout.terra .t{color:var(--terra)}
+/* THE PLAN — moved here from the analytics dashboard 20 Aug so the numbers live in one
+   place and the actions live in another, each linking to the other. */
+.plan-block{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:30px 32px;margin-top:26px}
+.plan-h{font-family:var(--f-d);font-size:clamp(21px,2.4vw,28px);letter-spacing:-.02em;margin:0 0 8px}
+.plan-sub{color:var(--navy-55);max-width:700px;font-weight:300;font-size:16px;margin:0 0 22px}
+.plan-list{list-style:none;counter-reset:pl;margin:0;padding:0}
+.plan-list li{counter-increment:pl;position:relative;padding:0 0 20px 52px;margin-bottom:20px;border-bottom:1px solid var(--line)}
+.plan-list li:last-child{border-bottom:0;padding-bottom:0;margin-bottom:0}
+.plan-list li::before{content:counter(pl);position:absolute;left:0;top:-2px;width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;font-family:var(--f-d);font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center}
+.plan-list li:nth-child(1)::before,.plan-list li:nth-child(2)::before{background:var(--teal)}
+.pl-h{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:6px}
+.pl-h b{font-family:var(--f-d);font-weight:600;font-size:18px;letter-spacing:-.01em}
+.pl-w{font-family:var(--f-d);font-weight:500;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--teal);white-space:nowrap}
+.plan-list p{color:var(--navy-70,var(--navy-55));font-weight:300;font-size:15.5px;line-height:1.62;margin:0;max-width:80ch}
+.plan-foot{margin:24px 0 0;padding-top:18px;border-top:1px solid var(--line);color:var(--navy-55);font-size:15px;font-weight:300}
+.plan-foot a,.plan-sub a{color:var(--teal);font-weight:500}
+@media(max-width:640px){.plan-block{padding:22px 20px}.plan-list li{padding-left:0;padding-top:44px}.plan-list li::before{top:0}}
 
 /* ── roadmap phases ── */
 .phase{border:1px solid var(--line);border-radius:16px;background:var(--paper);overflow:hidden;margin-bottom:16px}
@@ -207,22 +224,32 @@ footer.close .fine{font-family:var(--f-d);font-weight:500;font-size:12px;color:r
     <span class="chip">Central Coast NSW</span>
     <span class="chip terra">Indigenous-owned</span>
   </div>
-  <div class="stamp">Live strategy · updated 19 August 2026 · figures below are your real numbers, hover any chart</div>
+  <div class="stamp">Live strategy · updated 20 August 2026 · figures below are your real numbers, hover any chart</div>
 </div></header>
 
 <!-- PROGRESS LOG -->
 <section id="progress"><div class="wrap">
-  <div class="eyebrow">Progress log · updated 19 August 2026</div>
+  <div class="eyebrow">Progress log · updated 20 August 2026</div>
   <h2 class="sech">Where we're <span class="t">up to.</span></h2>
   <p class="secsub">A running record of what we've talked through and what's moving — most recent first. We keep this current so you can always see exactly where things stand.</p>
 
   <div class="log">
     <!-- NEW ENTRIES GO HERE: add above, most-recent first, and move "latest" onto the newest .entry -->
     <div class="entry latest">
+      <span class="when">20 August 2026 · we can finally see your Google listing</span>
+      <ul class="items">
+        <li><span class="dot"></span><div><span class="st done">Delivered</span><b>We got into your Google Business Profile's own numbers for the first time.</b> Six months of them. Over that period <b>594 people</b> looked at your listing, <b>144</b> did something about it, and <b>13</b> rang you. Everything on this page has been rebuilt on those figures, and you now have a <a href="/analytics/">live dashboard</a> that keeps them current on its own.</div></li>
+        <li><span class="dot"></span><div><span class="st done">Delivered</span><b>We corrected the story we had been telling you.</b> We said twice that the map box was swallowing your clicks and that reviews were the ticket into it. Your listing's own data does not support that: most people who see you are in ordinary Google search, not Maps, and one in four of them acts. The honest read is simpler — not enough people are seeing you in the first place. That changes what we work on, so we changed it.</div></li>
+        <li><span class="dot"></span><div><span class="st done">Delivered</span><b>We took the ad revenue projection off this page.</b> It showed a budget, a cost per lead and a revenue figure at the end. Every input was an industry estimate rather than a Coastal Ways number, and multiplying estimates together makes a promise that looks precise and is not. Nobody knows what a plumbing lead costs on the Central Coast until an account has run here. Opening the Google Ads account at zero spend is how we find out.</div></li>
+        <li><span class="dot"></span><div><span class="st prog">In progress</span><b>Payment terms for jobs over $5,000.</b> A one-page standard sheet that goes out with every quote, built for Emma so there is nothing to fill in. The deposit is capped at 10% by NSW law rather than by us — the money comes through progress invoices instead.</div></li>
+      </ul>
+    </div>
+
+    <div class="entry">
       <span class="when">19 August 2026 · full review of your numbers</span>
       <ul class="items">
         <li><span class="dot"></span><div><span class="st done">Delivered</span><b>Your reviews have doubled — 3 to 6, still a perfect 5.0★.</b> And your visibility has gone up more than tenfold: Google put you in front of people 2,271 times over the last 90 days, against 215 back in June. Every figure on this page has been re-pulled from your own Google accounts today, so what you're reading is current.</div></li>
-        <li><span class="dot"></span><div><span class="st done">Delivered</span><b>We found the real bottleneck, and it's sharper than we thought.</b> There are <i>fifty-five</i> local searches where Google ranks you first — Watanobbi, Warnervale, Wyong Creek, Jilliby and fifty more — and across all of them you received no clicks at all. You've won the visibility. What's happening is that on a phone the map box sits above the ordinary results, showing three plumbers and their review counts, and most people never scroll past it. Reviews are the entry ticket to that box.</div></li>
+        <li><span class="dot"></span><div><span class="st done">Delivered</span><b>We found something odd in your search numbers.</b> There are dozens of local searches where Google ranks you first — Watanobbi, Warnervale, Wyong Creek, Jilliby and more — and across all of them your website received no clicks. At the time we told you the map box was swallowing them. That explanation turned out to be too simple. The 20 August entry above has what your listing's own numbers actually show.</div></li>
         <li><span class="dot"></span><div><span class="st done">Delivered</span><b>We corrected something we'd got wrong.</b> Earlier versions of this page pointed at a competitor with 152 reviews as the business to catch. Checking it properly, that business doesn't trade on the Coast under that name — we had it wrong. The real picture: the nearest local operators to you sit on 10 to 13 reviews, with the established firms well above 100. That means the first move is smaller and more winnable than we'd been telling you — you're a handful of reviews from overtaking your closest competition.</div></li>
         <li><span class="dot"></span><div><span class="st done">Delivered</span><b>And we've removed a channel we shouldn't have promised.</b> This page previously listed Google's "Verified" badge — Local Services Ads, where you pay per lead instead of per click — as a future step. We checked it against Google's own documentation before recommending you spend anything on it, and that product isn't available in Australia. It's been taken off the plan. Nothing was spent on it, and the rest of the strategy doesn't depend on it.</div></li>
         <li><span class="dot"></span><div><span class="st prog">In progress</span><b>Job photos are becoming part of the plan.</b> The before, during and after photos Beau already takes for compliance are exactly what your Google profile and Instagram need. Rather than that being extra work, we want to reuse what's already being captured on the job. We're working out the simplest way to get them from AroFlo to us.</div></li>
@@ -252,7 +279,7 @@ footer.close .fine{font-family:var(--f-d);font-weight:500;font-size:12px;color:r
     <div class="stat teal"><div class="v">594</div><div class="l">People who saw your listing · 6 months</div><div class="d">Everyone who looked at your Google listing between March and August. This is the number that needs to grow.</div></div>
     <div class="stat"><div class="v">24<small>%</small></div><div class="l">Acted on what they saw</div><div class="d">144 of those 594 called, asked for directions or clicked through. When people find you, they respond &mdash; that part is working.</div></div>
     <div class="stat terra"><div class="v">13</div><div class="l">Phone calls from Google · 6 months</div><div class="d">About two a month. We had hoped calls were happening that our website tracking couldn't see. They weren't. Google is contributing very little of your work today.</div></div>
-    <div class="stat terra"><div class="v">107</div><div class="l">Direction requests</div><div class="d">Three-quarters of all the activity on your listing is people asking Google how to drive to you. You go to them. This is the first thing we're fixing, and it's free.</div></div>
+    <div class="stat terra"><div class="v">107</div><div class="l">Direction requests</div><div class="d">Three-quarters of all the activity on your listing is people asking Google how to drive to you. Since you drive to them, that is not a lead. We count the 37 who called, clicked or messaged instead.</div></div>
   </div>
 
   <div class="callout" style="margin-bottom:26px">
@@ -274,7 +301,46 @@ footer.close .fine{font-family:var(--f-d);font-weight:500;font-size:12px;color:r
 
   <div class="callout terra">
     <div class="t">The insight that drives everything below</div>
-    <p>Google put you in front of people <b>2,271 times</b> in the last 90 days and it produced <b>24 clicks</b>. On fifty-five searches you rank <i>first</i> and got <b>no clicks at all</b>. That isn't a visibility problem — you've won that. It's that on a phone, the map box sits above you showing three plumbers and their review counts, and the eye stops there. <b>Reviews are what get you into that box.</b> You're on 6; the nearest local operators are on 10 to 13. That gap is four good weeks of asking — and the system to collect them is already built, waiting on one thing: your list of past customers.</p>
+    <p>Over six months, <b>594 people</b> looked at your Google listing and <b>144</b> did something about it. That is roughly one in four, which is a good rate — people who find you do respond. The problem is the 594. For a plumber covering the Central Coast, that is not many people finding you at all, and only <b>13</b> of them ended up ringing. <b>So the job is to get in front of more people, not to convince the ones who already see you.</b> Reviews are one of the three things Google says decides that, and they are the one you control directly. You're on 6; the nearest local operators are on 10 to 13. The system to collect them is already built, waiting on one thing: your list of past customers.</p>
+  </div>
+
+  <div class="plan-block">
+    <div class="eyebrow" style="margin-bottom:6px">What happens next</div>
+    <h3 class="plan-h">The four moves that come out of these numbers.</h3>
+    <p class="plan-sub">Ordered by what will shift the 594 fastest, and by what costs nothing.
+    The fuller staged programme is in <a href="#roadmap">the roadmap</a>; these are the immediate
+    moves the listing data points at.</p>
+    <ol class="plan-list">
+      <li>
+        <div class="pl-h"><b>Widen what your listing shows up for</b><span class="pl-w">Us · this month</span></div>
+        <p>Your listing appeared for under 50 different searches in six months, and three of the top
+        five were people typing your own business name. That means most of the people who found you
+        already knew you. Correct categories, the full set of suburbs you actually travel to, more
+        photos and pre-answered questions are how that number grows. Free.</p>
+      </li>
+      <li>
+        <div class="pl-h"><b>Keep the reviews coming</b><span class="pl-w">You + us</span></div>
+        <p>Google states plainly that more reviews and better ratings help local ranking. You are on
+        6 at a perfect 5.0, and the one-tap link is built and ready. It needs Beau asking on the job,
+        and Emma's past-customer list to fire the first wave. This is still the single highest-leverage
+        free thing available, and it has been waiting since June.</p>
+      </li>
+      <li>
+        <div class="pl-h"><b>Get the three invisible service pages found</b><span class="pl-w">Us</span></div>
+        <p>Hot water, emergency and gas fitting returned no search impressions at all in 90 days.
+        They are three of your highest-value services and Google is not showing them to anyone.
+        That is a content and structure job on the website, and it is free.</p>
+      </li>
+      <li>
+        <div class="pl-h"><b>Open the Google Ads account at zero spend</b><span class="pl-w">Us · then your call</span></div>
+        <p>Not to advertise. Opening the account is free and unlocks Google's keyword planner, which
+        gives us the real Central Coast cost per click instead of the industry estimates we are
+        working from. Once we have your actual numbers we will bring them to you, and you decide
+        whether a small capped test is worth running.</p>
+      </li>
+    </ol>
+    <p class="plan-foot">You can watch all of these move on your
+    <a href="/analytics/">live performance dashboard</a>, which updates on its own.</p>
   </div>
 </div></section>
 
@@ -309,7 +375,7 @@ footer.close .fine{font-family:var(--f-d);font-weight:500;font-size:12px;color:r
 <section id="reviews" class="alt"><div class="wrap">
   <div class="eyebrow">03 · Pillar 2, first — the fastest win</div>
   <h2 class="sech">Reviews are the ladder. <span class="t">Here's every rung.</span></h2>
-  <p class="secsub">We lead with reviews because they're free, they compound, and they're the exact thing keeping you out of the Map Pack right now. The engine is built — a one-tap SMS that goes to happy customers after a job. Here's what each milestone unlocks.</p>
+  <p class="secsub">We lead with reviews because they're free, they compound, and Google states plainly that more reviews and better ratings help local ranking. The engine is built — a one-tap SMS that goes to happy customers after a job. Here's what each milestone unlocks.</p>
 
   <div class="chart" style="margin-bottom:24px">
     <div class="ct">The review ladder — what each milestone unlocks</div>
@@ -333,7 +399,7 @@ footer.close .fine{font-family:var(--f-d);font-weight:500;font-size:12px;color:r
 <section id="google"><div class="wrap">
   <div class="eyebrow">04 · Pillar 1 — the primary battleground</div>
   <h2 class="sech">Google is where the phone-call decision <span class="t">gets made.</span></h2>
-  <p class="secsub">When something bursts, people reach for their phone. Your own numbers show 2,271 appearances producing 24 clicks to the website &mdash; but a click is only one of the things a searcher can do. Plenty of people tap <b>Call</b> straight from your Google listing and never visit the site at all, and until now we have had no way to see those. That changes this week: we now have access to your Google profile&rsquo;s own performance data, which counts every time someone pressed call, asked for directions, or tapped through. We will know rather than guess. What we can already say is that the three things which decide who gets picked are all things we control and all free: review count and how recent they are, a complete Google profile, and consistent business details across the web.</p>
+  <p class="secsub">When something bursts, people reach for their phone. A click to your website is only one of the things they can do &mdash; plenty tap <b>Call</b> straight from your Google listing and never visit the site. We used to have no way of seeing those. We do now, and the answer is <b>13 calls in six months</b>. So the calls were not quietly happening out of sight; there simply were not many. The three things Google says decide who gets picked are all free and all within reach: how many reviews you have and how recent they are, how complete your profile is, and whether your business details match everywhere they appear.</p>
 
   <div class="grid g2" style="margin-bottom:26px">
     <div class="chart">
@@ -354,7 +420,7 @@ footer.close .fine{font-family:var(--f-d);font-weight:500;font-size:12px;color:r
   </div>
 
   <h3 style="font-family:var(--f-d);font-size:19px;margin:34px 0 6px">The searches we're going after — and what each click costs</h3>
-  <p class="small" style="margin-bottom:16px;max-width:680px">Real Central Coast estimates. High-intent emergency searches are worth the most because the caller has a problem right now. These are the terms the Google profile and (later) the ads target.</p>
+  <p class="small" style="margin-bottom:16px;max-width:680px"><b>These are industry estimate ranges, not your numbers.</b> They come from published Australian advertising benchmarks, mostly gathered in capital cities, and the Central Coast is not a capital city. We are showing them so you can see the shape of the market &mdash; urgent searches cost more because the caller has a problem right now &mdash; not so you can budget from them. The real figures arrive when the Google Ads account is open.</p>
   <div style="overflow-x:auto">
   <table style="width:100%;border-collapse:collapse;font-size:14px;min-width:520px">
     <thead><tr>
@@ -532,25 +598,34 @@ footer.close .fine{font-family:var(--f-d);font-weight:500;font-size:12px;color:r
 <!-- JOB ECONOMICS -->
 <section id="economics" class="alt"><div class="wrap">
   <div class="eyebrow">07 · Does the spend pay for itself?</div>
-  <h2 class="sech">The maths behind a <span class="t">single job.</span></h2>
-  <p class="secsub">The paid steps only make sense if the jobs they win are worth more than the leads cost. On the Central Coast, they are — comfortably. Here's the honest arithmetic.</p>
+  <h2 class="sech">Honestly? <span class="t">We don't know yet.</span></h2>
+  <p class="secsub">The paid steps only make sense if the jobs they win are worth more than the leads cost. We are not going to pretend we already know that. Below is what we can stand behind, what we cannot, and how we find out before any of your money moves.</p>
 
   <div class="grid g2" style="margin-bottom:26px">
     <div class="chart">
       <div class="ct">What a job is worth — by type</div>
-      <div class="cs">Typical Central Coast job values. Hover each. The high-margin ones (hot water, bathrooms) are worth chasing with content; the urgent ones convert fastest.</div>
+      <div class="cs">Published Australian trade-pricing ranges, not your own figures. Hover each. Your real job values sit in Xero and AroFlo, and when we get access those replace these &mdash; first-party always beats a benchmark. The high-margin ones (hot water, bathrooms) are worth chasing; the urgent ones convert fastest.</div>
       <svg id="c-jobs" viewBox="0 0 1000 320" role="img" aria-label="Job value ranges"></svg>
     </div>
     <div style="display:grid;gap:18px;align-content:start">
-      <div class="stat teal"><div class="v">$300–600</div><div class="l">Average residential job</div></div>
-      <div class="stat"><div class="v">50–60<small>%</small></div><div class="l">Close rate on a qualified lead</div><div class="d">A ready-to-book caller from Google converts at roughly one in two.</div></div>
-      <div class="stat green"><div class="v">4.6<small>×</small></div><div class="l">Return on ad spend (benchmark)</div><div class="d">At a $60 cost-per-lead, every $1 of managed ad spend returns about $4.60 in booked work.</div></div>
+      <div class="stat teal"><div class="v">$0</div><div class="l">Spent on ads so far</div><div class="d">Nothing has been committed. Everything on this page up to now has been free groundwork.</div></div>
+      <div class="stat"><div class="v">A$600</div><div class="l">Credit Google is offering you</div><div class="d">A new-advertiser credit is sitting on your account. We will read the terms before counting on it, since these are normally matched against your own spend.</div></div>
+      <div class="stat"><div class="v">?</div><div class="l">What a lead actually costs you</div><div class="d">We genuinely do not know yet, and neither does anyone who has not run it. That is the first thing the test buys.</div></div>
     </div>
   </div>
 
   <div class="callout">
-    <div class="t">Worked example — one month of managed Google Ads</div>
-    <p>A <b>$800</b> monthly ad budget at a realistic Central Coast cost-per-lead brings in roughly <b>13 qualified leads</b> → at a 50–60% close rate that's <b>7–8 booked jobs</b> → at your average job value, about <b>$3,000 in revenue</b>. That's the test we run in the first 30 days, then calibrate to your real numbers before spending another dollar.</p>
+    <div class="t">Why there is no worked example here any more</div>
+    <p>An earlier version of this page showed one: a budget, a cost-per-lead, a close rate, and a
+    revenue figure at the end. We have taken it out. Every input in it was an industry estimate
+    rather than a Coastal Ways number, and multiplying estimates together produces a revenue promise
+    that looks precise and is not. <b>Nobody knows what a plumbing lead costs on the Central Coast
+    until an account has run here</b> — not us, and not Google, until it has data.</p>
+    <p style="margin-top:12px">So the sequence is: open the Google Ads account at <b>zero spend</b>
+    (it is free, and it unlocks Google's own keyword planner), pull the real local cost-per-click,
+    bring you the actual numbers, and only then decide together whether a small capped test is worth
+    running. If it is, we measure cost per call and cost per booked job — not clicks — and you can
+    switch it off at any point.</p>
   </div>
 </div></section>
 
@@ -658,7 +733,7 @@ footer.close .fine{font-family:var(--f-d);font-weight:500;font-size:12px;color:r
   <h2 class="sech">Four numbers. <span class="t">No vanity metrics.</span></h2>
   <p class="secsub">We track the four things that actually mean money in the bank — and ignore the rest. You'll see these move in your monthly update.</p>
   <div class="grid g4">
-    <div class="stat teal"><div class="v">14<small>+</small></div><div class="l">Google reviews @ 5.0★</div><div class="d">The 90-day target — it puts you ahead of your four nearest local competitors. 60 is the twelve-month goal.</div></div>
+    <div class="stat teal"><div class="v">14<small>+</small></div><div class="l">Google reviews @ 5.0★</div><div class="d">The 90-day target. Your nearest local operators sit on 10 to 13, so this is the point where you pass them. We have not set a twelve-month number because Google publishes no threshold to aim at.</div></div>
     <div class="stat teal"><div class="v">↑</div><div class="l">Google profile calls / month</div><div class="d">Tracked after every 10 new reviews — this is the number that turns into jobs.</div></div>
     <div class="stat"><div class="v">&lt;$80</div><div class="l">Cost per lead (Google Ads)</div><div class="d">Once ads switch on — we calibrate to real Central Coast costs in the first 30 days.</div></div>
     <div class="stat"><div class="v">by source</div><div class="l">Jobs booked / month</div><div class="d">"How did you hear about us?" — so every dollar is traceable to a channel.</div></div>
