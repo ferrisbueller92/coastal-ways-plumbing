@@ -142,7 +142,7 @@
 .quarter-b h1{font-size:7cqw;color:var(--sand);letter-spacing:-.02em;line-height:1.03}
 .quarter-b h1 em{font-style:normal;color:#63C7CC}
 .quarter-b .ticks{display:grid;grid-template-columns:auto auto;justify-content:start;
-  column-gap:7cqw;row-gap:2cqw;margin-top:auto;margin-bottom:auto}
+  column-gap:7cqw;row-gap:1.2cqw;margin-top:auto;margin-bottom:auto}
 .quarter-b .tick{font-size:2.95cqw;color:var(--sand);display:flex;align-items:center;
   gap:1.7cqw;line-height:1.12}
 .quarter-b .tick svg{flex:0 0 auto;width:3.5cqw;height:3.5cqw}
