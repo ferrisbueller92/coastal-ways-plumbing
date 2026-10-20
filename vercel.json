@@ -1,0 +1,20 @@
+{
+  "redirects": [
+    {
+      "source": "/:dir(analytics|n|newsletter-ad|review|strategy|vehicle-magnets)",
+      "destination": "/:dir/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tools/:dir(compliance-cert|payment-schedule|payment-terms)",
+      "destination": "/tools/:dir/",
+      "statusCode": 301
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/:path*",
+      "destination": "/:path*.html"
+    }
+  ]
+}
